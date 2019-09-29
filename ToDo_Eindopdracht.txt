@@ -1,4 +1,4 @@
-Things that need to be done:
+*Things that need to be done:*
 
 Requirements
 Testing + Prototyping
@@ -9,10 +9,11 @@ ________________________________________________________________________________
 *Description + Temporal plan of approach*
 
 --Understanding Exactly what to build--
-	Gathering Requirements
+	Gathering Requirements*
 	Functional prototype	Why: To as a developer understand the entire goal & flow of the product.
 				Why: to see if this is excactly what the product owner wants. Before design and code.
-				When can we move on?: The F.P. needs to get aproved by Product Owner before we can move to.
+				When can we move on?: The F.P. needs to get aproved by Product Owner before we can move on to Testing the F.D. & Design.
+				
 
 --Testing Design/Before Code--
 	User Expierience Test	Plan of approach: Testing and tweaking the Functional prototype from approach 1 (UX)	Why: UserExp.
@@ -37,3 +38,11 @@ ________________________________________________________________________________
 
 
 *Plan of approach still under construction
+
+____________________________________________________________________________________________________________________
+*Locations*
+Home:		The hard work
+At school:	Validation, Judging & Restructruring of eachothers work.
+_____________________________________________________________________________________________________________________
+* Determination of what are a MUST & Nice things to have in the software is also a part of
+& Nice things to have may be an ongoing requiremant at any time.
