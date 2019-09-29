@@ -1,0 +1,6 @@
+The right way to write comments in git
+https://chris.beams.io/posts/git-commit/
+
+The correct way to write your html
+
+The correct way to write write scalable css
