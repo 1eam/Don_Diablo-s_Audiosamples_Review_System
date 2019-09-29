@@ -1,0 +1,5 @@
+- Git autocommit.
+voor aan het midden van de dag + eind van de dag, zodat alles up to date blijft
+
+- Requirements environment.
+voor teamwork
