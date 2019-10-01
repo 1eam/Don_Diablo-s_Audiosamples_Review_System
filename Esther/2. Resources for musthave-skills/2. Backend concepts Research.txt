@@ -1,0 +1,16 @@
+The right way to write comments in git
+https://chris.beams.io/posts/git-commit/
+
+
+
+
+
+
+
+
+
+
+
+
+Best practices on java webappliation Security:
+Building Secure Web Applications_ Best Practices for Secure Java Web Application Development.pdf

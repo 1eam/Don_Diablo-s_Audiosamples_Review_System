@@ -1,0 +1,17 @@
+Write scalable maintainable css. Dont worry about overzealous, pre-existing styles that will cause problems.
+https://maintainablecss.com/chapters/introduction/
+
+
+--Designcourse Youtube Series--
+[1]The 2019 UI Design Crash Course for Beginners [1:36:52]
+https://www.youtube.com/watch?v=_Hp_dI0DzY4
+
+[2]The 2019 Frontend Developer Crash Course [2:40:38]
+https://www.youtube.com/watch?v=8gNrZ4lAnAw
+
+[3]Responsive Web Design Tutorial in Adobe XD [32:37]
+https://www.youtube.com/watch?v=Ejbu4ZyCCrs
+
+
+Free Adobe XD Tutorial: User Experience Design Course with Adobe XD Course [3:47:11]
+https://www.youtube.com/watch?v=68w2VwalD5w
