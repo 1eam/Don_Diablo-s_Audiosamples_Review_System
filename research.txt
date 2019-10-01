@@ -1,0 +1,10 @@
+The right way to write comments in git
+https://chris.beams.io/posts/git-commit/
+
+The correct way to write your html
+
+The correct way to write write scalable css
+
+
+https://www.youtube.com/watch?v=68w2VwalD5w
+22:44 "Its important to deliver what the future product owner wants, rather that what the client or developers(i) want"
