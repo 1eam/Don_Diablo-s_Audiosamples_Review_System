@@ -1,0 +1,39 @@
+Im about to start programming.
+What would I wish I did in the past?
+
+	- I wou
+
+
+
+Im about to start designing the Frontend.
+What would I wish I've done the past?
+
+	- User experience testing (Here we've found out the logical flow of the site. This will help me know flow of the wesite
+	- Beforehand discussed some color scemes as a guide to start off	
+
+	- Have a proper design research
+
+
+~~User experience testing~~
+*Prior to this we made a logical flow of the entire website.
+Its a digital, completely out-thought prototype presented in wireframes. *(probably a .xd file)
+This document has its main purpose to test the logical flow of the system and the placing of content e.g. buttons.
+
+	- Here we'll find out if the logical flow of our site is valid.
+	- Here we'll find out if the logical placing of content are valid. And make enhancements accordingly.
+
+	- This whole procces will help us make new enhancements on our prototype.
+
+*we'll go on improving our prototype until its in line to the best user experience. This will serve a placeholder for (the placing of content in) our weDesign. - Where we will work on the corporate identity = huisstijl (or apply the corporate ID if that allready exists)
+
+
+
+
+*After Designing the corporate ID of the website, Our prototype will eventually turn into a High Fidelity Prototype: (Wich means this prototype must be identical to the endresult.)
+
+	- This prototype still has to be tested however.
+	- Here we will find out wether our components, (colors, images, texts) are noticed as desired. And make enhancements accordingly.
+
+*Appearence of the site, (Colors, images and fonts ) will only be tested on usage and desired noticability, in contrast to each other. NOT on the niceness themselfes. Cause some parts may be part of the Corporate ID, wich can not change, and some parts on the logic of the site itself. wich also cannot change.
+
+*in progress
