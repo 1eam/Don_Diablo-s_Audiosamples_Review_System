@@ -1,2 +1,0 @@
-# Cthulu
-Eindopdracht Don Diablo
