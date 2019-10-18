@@ -1,0 +1,3 @@
+Uit hoeveel leden bestaat het beoordelingsteam van Don Diablo?
+
+Ik neem aan dat de Admin-pagina verantwoordelijk is voor het aanmaken van backoffice accounts

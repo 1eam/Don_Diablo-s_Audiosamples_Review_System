@@ -1,0 +1,2 @@
+(Ik zou zelfs doen: gebruikers kunnen voor een gegeven deadline maximaal 10 demos opsturen. Na deze deadline is het niet meer mogelijk hun bestanden in te trekken.
+Nadat de tijd is verstreken om maximaal 10 demo’s te uploaden, gaat het backoffice-team per profiel aan de slag. Het afkeuren en goedkeuren van een demo gaat gepaard met een automatisch commentaar en emailbericht.  Dit is een eenwegscommunicatie)
