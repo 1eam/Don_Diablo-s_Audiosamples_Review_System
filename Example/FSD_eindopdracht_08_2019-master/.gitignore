@@ -1,0 +1,9 @@
+**/target
+**/node_modules
+**/out
+**/*.mp3
+**/*.wav
+**/*.ogg
+**/test.html
+**/*.old
+**/old
