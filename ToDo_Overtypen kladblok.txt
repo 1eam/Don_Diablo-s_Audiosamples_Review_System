@@ -1,1 +1,0 @@
-overtypen: "Im about to start programming, what would i wish i had been done in the past + I new" + Over UI UX deleten, add: "Im about to start frontend what would i wish was done?"

@@ -1,0 +1,5 @@
+Alles in javascript is const.
+Alleen als we een variabel aanmaken die want waarde veranderd gebruiken we let;
+Zo valt het in een keer op van: Oh, hier is een let variabel, die gaat op den duur veranderen:
+https://youtu.be/LmL0Gh193M0?t=209 3:29 - 4:30
+____________________________________________________________________________________________________

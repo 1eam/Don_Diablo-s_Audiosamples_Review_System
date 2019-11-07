@@ -1,0 +1,29 @@
+PDF setction_EindProject [3. Frontend & Backend developement] [4/4]
+
+
+	- Onderzoek unit tests
+
+	- Onderzoek Build System (Maven, gradle, npm)
+ 	 vereiste: De applicatie maakt gebruik van een build systeem (maven, gradle, npm, etc
+
+	- Onderzoek / uitvogelen hoe het verantwoordingsdocument het best in elkaar gezet kan worden, vragen naar een reccomended voorbeeld.
+
+"Let op:  Naast het ontwikkelen van de applicatie schrijf je een VERANTWOORDINGSDOCUMENT waarin je een overzicht maakt van alle toegepaste technieken. Je vermeldt bij iedere techniek op welk regelnummer van de code dit gevonden kan worden en je onderbouwt waarom deze techniek toegepast is."
+(Vraag een voorbeeld aan docent)
+
+verantwoordingsdocument aan het einde van elke week, dag of sectie bijwerken.
+
+
+---[VRAGEN}---
+--------------
+Aan Erik Mols, niet klassikaal
+Kunt u aan mij de geschikte workflow utileggen, bij het maken van  de Eindopdracht, de website. Kunt u alles beknopt samenvatten.
+Waar begint u mee...
+
+Ik lees dat alle documenten uit de deelopdrachten, en de bestanden voor de webapplicatie geupload moeten worden in EdHub. [100mb]
+
+Betekent dit ook dat de site niet (gehost moet worden of) online moet staan?
+
+Wat betekent (Op pagina 1, onder het kopje "Opdracht")
+" Afhankelijk van de GROOTTE van de te bouwen applicatie werk je individueel of in een team."
+- Wat is de opdracht als je individueel werkt en wat is de opdracht als je samen werkt?

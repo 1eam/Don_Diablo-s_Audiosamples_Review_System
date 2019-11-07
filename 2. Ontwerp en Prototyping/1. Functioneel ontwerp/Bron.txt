@@ -1,0 +1,5 @@
+Voor het uitvoeren van een functioneel ontwerp heb ik deze bron als handleiding genomen:
+https://www.ictscripters.com/blog/Entry/143-Functioneel-ontwerp/
+
+-Omdat deze in de lessen en in Edhub niet uitgelegd staan.
+Groeten Esther.

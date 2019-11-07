@@ -1,0 +1,77 @@
+Bron: https://www.ostechnix.com/20-ffmpeg-commands-beginners/
+
+
+				~~[GENERAL]~~
+
+[SHOW FILE INFO]
+ffmpeg -i 'audio.mp3'
+
+[HIDE FFMPEG INFO]
+-hide_banner (after each command)
+
+[SPACES]
+bestandsnamen met spaties moeten "Tussen Aanhalingstekens staan.mp3"
+
+[SHOW SUPPORTED FORMATS]
+ffmpeg -formats
+
+
+
+				~~[COMPRESSING AUDIO files]~~
+
+[COMPRESS (.mp3) FILESIZE TO 15 MB + 128 kbps, IF]
+ffmpeg -i 'audio.mp3' -ab 128k -fs 15M'newname.mp3'
+
+
+				~~[CONVERTING + COMPRESS]~~
+
+[CONVERT AND COMPRESS (.wav) FILE TO 15 MB + 128 kbps, IF INPUTFILE IS < THEN 200 mb]
+ffmpeg -i 'audio.wav' -ab 128k -fs 15M 'newname.mp3'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+				~~[CONVERTING VIDEO]~~
+
+[MP4 TO AVI example]
+ffmpeg -i 'video.mp4' 'newname.avi'
+
+[PRESERVE SOURCE QUALITY]
+ffmpeg -i 'video.mp4' -qscale 0 'newname.mp4'
+
+[VIDEO TO AUDIO example]
+ffmpeg -i 'video.mp4' -vn 'audio.mp3'
+
+[TRANSCODING OPTIONS]
+ffmpeg -i 'video.mp4' -vn -ar '44100' -ac '2' -ab '320' -f 'mp3' 'newname.mp3'
+	PARAMETERSLIST
+	-vn – Indicates that we have disabled video recording in the output file.
+	-ar – Set the audio frequency of the output file. The common values used are 44100, 			48000 Hz.
+	-ac – Set the number of audio channels.
+	-ab – Indicates the audio bitrate.
+	-f – Output file format. In our case, it’s mp3 format.
+
+
+
+
+
