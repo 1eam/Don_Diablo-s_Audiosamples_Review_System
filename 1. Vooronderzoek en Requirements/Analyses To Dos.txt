@@ -1,0 +1,21 @@
+Wireframes:
+	1. nakijken/dingen wijzigen die nu nog kunnen.
+	2. precies opzetten zoals ik wil + niet te moeilijk
+	3. laatste prioriteit: Tablet: wordt geimplementeerd telefoon
+	1,5u per user-side
+
+   
+systeemanalyse af
+
+vooronderzoek up to date: 
+	RISICOANALYSE
+	1.duidelijke lijdraad/set up+conclusie-template klaarhebben:
+	2.de toepassingen van security en toelichtingen daarvan (wrm wel en niet)
+	3.(zelf ook security toepassingen en waarde ervan onderzoeken)
+
+	DEFINITIESTUDIE
+	1. duidelijke lijdraad opzetten. duidelijke conclusie.
+
+	HAALBAARHEIDSSTUDIE
+	1. Requirementsdie worden geschrapt meteen vermelden
+	2. na de cursus volledig mogelijk invullen.
