@@ -1,11 +1,4 @@
-Wireframes:
-	1. nakijken/dingen wijzigen die nu nog kunnen.
-	2. precies opzetten zoals ik wil + niet te moeilijk
-	3. laatste prioriteit: Tablet: wordt geimplementeerd telefoon
-	1,5u per user-side
-
-   
-systeemanalyse af
+Af: Systeemanalyse
 
 vooronderzoek up to date: 
 	RISICOANALYSE
