@@ -1,6 +1,6 @@
 Af: Systeemanalyse
 
-vooronderzoek up to date: 
+vooronderzoek up to date houden: 
 	RISICOANALYSE
 	1.duidelijke lijdraad/set up+conclusie-template klaarhebben:
 	2.de toepassingen van security en toelichtingen daarvan (wrm wel en niet)
@@ -10,5 +10,5 @@ vooronderzoek up to date:
 	1. duidelijke lijdraad opzetten. duidelijke conclusie.
 
 	HAALBAARHEIDSSTUDIE
-	1. Requirementsdie worden geschrapt meteen vermelden
+	1. Requirements die worden geschrapt meteen vermelden + reden
 	2. na de cursus volledig mogelijk invullen.
