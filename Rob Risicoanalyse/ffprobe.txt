@@ -1,5 +1,0 @@
-[SHOW INFO]
-ffprobe -i audio.mps
-
-[ADVANSED INFO + JSON FORMAT]
-ffprobe -show_streams -print_format json audio.mp3
