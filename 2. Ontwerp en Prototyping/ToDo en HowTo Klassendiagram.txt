@@ -1,0 +1,3 @@
+Klassendiagram bestaat in elk geval uit de Entities Klassen. Deze Klassenamen met hun methods alleen is voldoende (Die heb ik bij DB Design al.)
+
+Voor de rest per blok klassenrelaties die ik ga bouwen, bij view Layer. Die relaties gaan uitwerken. (Zowel tevoren als na) (Bij het volgen van Dans tutorial kan ik de klassenrelaties achteraf maken)
