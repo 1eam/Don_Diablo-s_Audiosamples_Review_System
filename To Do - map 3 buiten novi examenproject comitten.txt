@@ -1,4 +1,0 @@
-Voor de map 3. Frontend + Backend moet een nieuwe repository buiten deze map gemaakt worden.
-Om zo alleen versioncontrol van de eindopdracht te hebben.
-
-Het voorkomt ook dat een andere document een commitnaam krijgt die er niet op slaat omdat die ook toevallig is geweizigd.
