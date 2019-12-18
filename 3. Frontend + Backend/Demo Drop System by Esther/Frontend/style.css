@@ -1,0 +1,19 @@
+/* HEADER */
+/* appearance */
+a{
+text-decoration: none;
+}
+/* color */
+body, a {
+    background-color: black;
+    color: white;
+}
+
+a {
+    display: block;
+}
+/* Positioning*/
+.socialMediaIcons a{
+    display: inline;
+}
+
