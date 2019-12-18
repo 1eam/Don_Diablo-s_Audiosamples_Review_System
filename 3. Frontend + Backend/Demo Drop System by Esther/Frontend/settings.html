@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo Drop</title>
+   <link rel="stylesheet" href="/style.css"> 
+</head>
+<body>
+    <header>
+        <div class="class= text-logo">
+            <img src="/Images/hexagonlogo.png" height="20" alt="HEXAGON">
+        </div>
+    </header>
+
+    <!-- main -->
+    <main>
+        <!-- back button -->
+        <a href="/dashboard.html"><img src="/Images/back.png" width="20"></a>
+        
+        <!-- view profile photo + select new -->
+        <div class="img-box">
+            <label for="files" class="button"><img src="/Images/2. Temporary/Dj Christopher.jpg" width="130"></label>
+            <input id="files" style="visibility:hidden;" type="file">
+        </div>
+
+    <!-- settings form -->
+    <form action="PUT">
+        <p class="form-text">Edit Artististname</p>
+        <input type="text" placeholder="DJ Christopher" name="artistName">
+        <p class="form-text">Edit bio</p>
+        <textarea rows="10" cols="22" name="bio" th:text>Im a dutch-based producer</textarea>
+        <p class="form-text">Edit Name</p>
+        <input type="text" placeholder="Christopher" name="name">
+        <p class="form-text">Edit surname</p>
+        <input type="text" placeholder="de Berg" name="surName">
+        <p>Email: <span th:text>christopher.b@yahoo.com </span></p>
+        
+        <!-- save button -->
+        <input type="submit" value="SAVE" class="button">
+    </form>
+
+    <!-- edit password button -->
+    <a href="/dropdemo.html" class="button">Edit Password</a>
+    
+    <!-- edit password popup -->
+    <form action="PUT">
+        <p class="form-text">Password</p>
+        <input type="password" placeholder="Enter your password" name="oldPassword">
+        <p class="form-text">New Password</p>
+        <input type="password"  placeholder="Must have at least 8 characters" name="password">
+        <p class="form-text">Confirm Password</p>
+        <input type="password" name="comfirmPassword">
+
+        <!-- save button -->
+        <input type="submit" value="SAVE" class="button">
+        <!-- cancel button -->
+        <a href="/settings.html" class="underlined-text"> Cancel</a>
+        
+    </form>
+    </main>
+
+    <footer>
+        <img src="/Images/dondiablologo.png" alt="Logo Don Diablo" width="90">
+        <!-- Delete account -->
+        <form method="POST" th:action="@{/delete account}" sec:authorize="isAuthenticated()">
+            <a href="#">delete account</a>
+        </form>
+    </footer>
+</body>
+</html>

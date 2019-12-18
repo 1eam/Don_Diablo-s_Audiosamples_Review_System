@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dashboard</title>
+   <link rel="stylesheet" href="/style.css"> 
+</head>
+<body>
+    <!-- header -->
+    <header>
+        <div class="class= text-logo">
+            <img src="/Images/hexagonlogo.png" height="20" alt="HEXAGON">
+        </div>
+    </header>
+
+    <!-- main -->
+    <main>
+        <!-- top section - sticky header -->
+        <div class="top-section">
+            <!-- settings button -->
+            <a href="/settings.html"><img src="/Images/settingsbutton.svg" width="20"></a>
+            
+            <!-- profile section -->
+            <div class="profile">
+                <div class="img-box">
+                    <img src="/Images/2. Temporary/Dj Christopher.jpg" width="130">
+                    <h1>DJ CHRISTOPHER</h1>
+                </div>
+            </div>
+            
+            <!-- Drop Demo button -->
+            <a href="/dropdemo.html" class="button">DROP DEMO</a>
+        </div>
+
+        <!-- bottom section -->
+        <div class="bottom-section">
+            <ol class="list-of-demos">
+                <li><a href="#"> Title Demo</a></li>
+            </ol>
+        </div>
+    </main>
+
+    <footer>
+        <img src="/Images/dondiablologo.png" alt="Logo Don Diablo" width="90">
+        
+        <!-- logout -->
+        <form method="POST" th:action="@{/logout}" sec:authorize="isAuthenticated()">
+            <button class="underlined-text">logout</button>
+        </form>
+    </footer>
+</body>
+</html>
