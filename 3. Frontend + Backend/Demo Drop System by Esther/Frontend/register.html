@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Demo Drop Register</title>
+   <link rel="stylesheet" href="/style.css"> 
+</head>
+<body>
+    <header>
+        <!-- social media icons -->
+        <div class="social-media-icons">
+                <a href="https://www.facebook.com/HexagonHQ/"><img src="/Images/1. Socials icons/facebook.png" alt="" width="35"/>
+                <a href="https://www.instagram.com/hexagonhq/"><img src="/Images/1. Socials icons/instagram.png" alt="" width="35"/>
+                <a href="https://twitter.com/hexagonhq"><img src="/Images/1. Socials icons/twitter.png" alt="" width="35"/>
+                <a href="https://soundcloud.com/hexagon"><img src="/Images/1. Socials icons/soundcloud.png" alt="" width="35"/>
+                <a href="https://www.youtube.com/hexagon"><img src="/Images/1. Socials icons/youtube.png" alt="" width="35"/>
+        </div>
+        <!-- HeaderLogo -->
+        <div class="text-logo">
+            <img src="/Images/hexagonlogo.png" height="20" alt="HEXAGON">
+        </div>
+
+        <!-- DEMO DROP -->
+        <div class="heading"><h1>DEMO DROP</h1></div>
+
+        <!-- login link-->
+            <a href="/login.html"> <u>login</u></a>
+    </header>
+
+    <nav class="navbar">
+        <span>
+            <svg width="30" height="30">
+                <path d="M0,5 30,5" stroke="#fff" stroke-width="5"/>
+                <path d="M0,14 30,14" stroke="#fff" stroke-width="5"/>
+                <path d="M0,23 30,23" stroke="#fff" stroke-width="5"/>
+            </svg>
+        <span>
+
+        <ul>
+            <li><a href="https://www.hexagonhq.com/home">HOME</a></li>
+            <li><a href="https://www.hexagonhq.com/news">NEWS</a></li>
+            <li><a href="https://www.hexagonhq.com/releases">MUSIC</a></li>
+            <li><a href="https://www.hexagonhq.com/videos">VIDEOS</a></li>
+            <li><a href="https://www.hexagonhq.com/radio">RADIO</a></li>
+            <li><a href="https://shop.dondiablo.com/collections/hexagon">SHOP</a></li>
+            <li><a href="/demodrop">DEMO DROP</a></li>
+            <li><a href="https://www.hexagonhq.com/wallpapers">WHALLPAPERS</a></li>
+            <li><a href="https://www.hexagonhq.com/contact">CONTACT</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- popup-screen -->
+        <div class="popup">
+            <h2 class="popup-h2">Thanks for signing up!</h2>
+            <p class="popup-p">Please check your email to complete the activation</p>
+            <a href="/login.html" class="button"><u>Login</u></a>
+            <img src="/Images/dondiablologo.png" alt="Logo Don Diablo" width="90">
+        </div>
+
+        <!-- form -->
+        <form action="/register/submit">
+            <p class="form-text">Name</p>
+            <input type="text" name="name">
+            <p class="form-text">Surname</p>
+            <input type="text" name="surName">
+            <p class="form-text">Artististname</p>
+            <input type="text" name="artistName">
+            <p class="form-text">Email</p>
+            <input type="text" name="email">
+            <p class="form-text">Password</p>
+            <input type="password" placeholder="must be 8 characters long" name="password">
+            <p class="form-text">Confirm Password</p>
+            <input type="password" name="surName">
+            <p class="form-text">Tell something about yourself</p>
+            <textarea rows="10" cols="22" placeholder="I like coockies" name="bio"></textarea>
+            
+            <!-- terms and conditions -->
+            <p><input type="checkbox" required>Terms and Conditions</p>
+            
+            <!-- register button -->
+            <input type="submit" value="Register" id="registerPopup" class="button">
+            </form>
+    </main>
+
+    <script>
+        // When the user clicks on register open the popup
+        function showPopup() {
+          var popup = document.getElementById("registerPopup");
+          popup.classList.popup("show");
+        }
+    </script>
+
+    <footer>
+            <img src="/Images/dondiablologo.png" alt="Logo Don Diablo" width="90">
+    </footer>
+</body>
+</html>

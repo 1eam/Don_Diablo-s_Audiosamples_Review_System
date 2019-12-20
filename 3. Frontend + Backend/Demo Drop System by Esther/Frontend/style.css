@@ -9,6 +9,12 @@ input{
     box-sizing: border-box;
 } */
 
+input[type=checkbox] {
+    display: inline;
+}
+
+/* popups */
+/* .popup {visibility: hidden;} */
 
 
 /* ------------------------------------------ */

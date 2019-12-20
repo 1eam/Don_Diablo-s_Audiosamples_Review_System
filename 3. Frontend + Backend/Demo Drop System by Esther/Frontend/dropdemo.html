@@ -17,6 +17,25 @@
     </header>
 
     <main>
+
+        <!-- popup max demos reached -->
+        <div class="popup"> <!-- th:show if demos in review = 10 -->
+            <h2 class="popup-h2">Demo drop is currently unavailable...</h2>
+            <p class="popup-p">You have reached the maximum amount of demos in review. Please wait until our team has handled one of your demo's.</p>
+            <div class="underlined-text">
+                <a href="/dashboard.html"><u>Go back</u></a>
+            </div>
+        </div>
+
+        <!-- popup succes message -->
+        <div class="popup">
+            <h2 class="popup-h2">Your demo has been sent!</h2>
+            <p class="popup-p">We'll notify you as soon as we've reviewed your demo</p>
+            <div class="underlined-text">
+                <a href="/dropdemo.html"><u>Upload another demo</u></a>
+            </div>
+        </div>
+
         <!-- select file button -->
         <div>
             <label for="files" class="button">Select file</label>
@@ -25,11 +44,13 @@
 
         <!-- demo drom form -->
         <form action="#">
-            Title Demo <br>
-            <input type="text" name="title"> <br>
-            Description <br>
-            <input type="text" name="description"> <br>
-            <input type="submit" value="SUBMIT"> <br>
+            <p class="form-text">Title Demo</p>
+            <input type="text" placeholder="Please dont include your artistname, We have it ;)" name="titleDemo">
+            
+            <p class="form-text">Description</p>
+            <textarea rows="10" cols="22" name="Description" th:text>I used Sylenth for the melody and Nexux for bass</textarea>
+
+            <input type="submit" value="SUBMIT">
         </form>
 
     </main>

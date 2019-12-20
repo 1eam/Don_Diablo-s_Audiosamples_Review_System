@@ -9,17 +9,21 @@
 </head>
 <body>
     <header>
+        <!-- social media icons -->
         <div class="social-media-icons">
-                <a href="https://www.facebook.com/HexagonHQ/"><img src="/Images/1. Socials icons/facebook.png" alt="" width="35"/>
-                <a href="https://www.instagram.com/hexagonhq/"><img src="/Images/1. Socials icons/instagram.png" alt="" width="35"/>
-                <a href="https://twitter.com/hexagonhq"><img src="/Images/1. Socials icons/twitter.png" alt="" width="35"/>
-                <a href="https://soundcloud.com/hexagon"><img src="/Images/1. Socials icons/soundcloud.png" alt="" width="35"/>
-                <a href="https://www.youtube.com/hexagon"><img src="/Images/1. Socials icons/youtube.png" alt="" width="35"/>
-        </div>
-        <div class="text-logo">
-            <img src="/Images/hexagonlogo.png" height="20" alt="HEXAGON">
-        </div>
-        <div class="heading"><h1>DEMO DROP</h1></div>
+            <a href="https://www.facebook.com/HexagonHQ/"><img src="/Images/1. Socials icons/facebook.png" alt="" width="35"/>
+            <a href="https://www.instagram.com/hexagonhq/"><img src="/Images/1. Socials icons/instagram.png" alt="" width="35"/>
+            <a href="https://twitter.com/hexagonhq"><img src="/Images/1. Socials icons/twitter.png" alt="" width="35"/>
+            <a href="https://soundcloud.com/hexagon"><img src="/Images/1. Socials icons/soundcloud.png" alt="" width="35"/>
+            <a href="https://www.youtube.com/hexagon"><img src="/Images/1. Socials icons/youtube.png" alt="" width="35"/>
+    </div>
+    <!-- HeaderLogo -->
+    <div class="text-logo">
+        <img src="/Images/hexagonlogo.png" height="20" alt="HEXAGON">
+    </div>
+
+    <!-- DEMO DROP -->
+    <div class="heading"><h1>DEMO DROP</h1></div>
     </header>
 
     <nav class="navbar">
@@ -46,33 +50,30 @@
 
     <main>
 
-        <!-- alert messages -->
+        <!-- alert message -->
         <div class="alert-danger" th:if="${param.error != null}">
             Invalid username or password.
-        </div>
-        <div class="alert-success" th:if="${param.logout != null}">
-            You have been logged out.
         </div>
 
         <!-- login form -->
         <form action="" class="form">
-                Username <br>
-                <input type="text" name="username"> <br>
-                Password <br>
+                Username
+                <input type="text" name="username">
+                Password
                 <input type="password" placeholder="Must have at least 8 characters" name="passwordname"> <br>
                 
-                <!-- remember me checkbox -->
+                <!-- remember me checkbox (refactor later)-->
                 <label class="form-check-label">
                     <input id="remember-me" name="remember-me" class="form-check-input" type="checkbox" >
-                    <span style="padding-bottom: .15rem">Remember me</span>
-                </label> <br> <br>
+                    <span>Remember me</span>
+                </label>
 
-                <input type="submit" value="Login"> <br>
+                <a href=""></a> <input type="submit" value="Login" class="button">
         </form>
 
         <!-- register -->
-        <div class="underlined-text">
-            <a href="/register">Register</a>
+        <div class="underlined-text"> <!-- for positioning -->
+            <a href="/register.html"><u>Register</u></a>
         </div>
     </main>
 
