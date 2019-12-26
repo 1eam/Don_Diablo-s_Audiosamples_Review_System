@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Backoffice Login</title>
+   <link rel="stylesheet" href="/bo/bo-style.css">
+</head>
+<body>
+    <header>
+    <!-- HeaderLogo -->
+    <div class="text-logo">
+        <img src="/Images/hexagonlogo.png" height="20" alt="HEXAGON">
+    </div>
+    <h1 class="heading">BACKOFFICE</h1>
+    </header>    
+
+    <main>
+        <!-- alert message -->
+        <div class="alert-danger" th:if="${param.error != null}">
+            Invalid username or password.
+        </div>
+
+        <!-- login form -->
+        <form action="" class="form">
+                Username
+                <input type="text" name="username">
+                Password
+                <input type="password" name="password"> <br>
+                
+                <!-- remember me checkbox (refactor later)-->
+                <label class="form-check-label">
+                    <input id="remember-me" name="remember-me" class="form-check-input" type="checkbox" >
+                    <span>Remember me</span>
+                </label>
+
+                <a href=""></a> <input type="submit" value="Login" class="button">
+        </form>
+    </main>
+
+    <footer>
+            <img src="/Images/dondiablologo.png" alt="Logo Don Diablo" width="90">
+    </footer>
+</body>
+</html>

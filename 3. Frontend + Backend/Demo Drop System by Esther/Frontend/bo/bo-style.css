@@ -1,0 +1,46 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+
+    background-color: #C9C9C9;
+}
+
+/* inputfields */
+input{
+    display: block;
+}
+
+input[type=password], [type=text], textarea{
+    width: 275px;
+    height: 25px;
+    padding: 8px 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+input[type=checkbox] {
+    display: inline;
+}
+
+/* texts */
+a{
+    text-decoration: none;
+    display: inline;
+    color: black;
+}
+
+.heading{
+    color: white;
+    font-weight: lighter;
+}
+
+/* icons and images */
+.social-media-icons{
+    display: inline;
+}
+
+
+
+/* special stuff */
+

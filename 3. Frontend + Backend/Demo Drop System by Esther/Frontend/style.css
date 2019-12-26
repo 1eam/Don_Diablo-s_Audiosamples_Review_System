@@ -1,13 +1,24 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+
+    background-color: black;
+    color: white;
+}
+
 /* inputfields */
 input{
     display: block;
 }
 
-/* input[type=password], [type=text], textarea{
-    width: 100%;
+input[type=password], [type=text], textarea{
+    width: 275px;
+    height: 25px;
     padding: 8px 20px;
     box-sizing: border-box;
-} */
+    text-align: center;
+}
 
 input[type=checkbox] {
     display: inline;
@@ -17,24 +28,81 @@ input[type=checkbox] {
 /* .popup {visibility: hidden;} */
 
 
-/* ------------------------------------------ */
-
-/* HEADER */
-/* appearance */
-a{
-text-decoration: none;
+/* texts */
+.heading{
+    font-weight: lighter;
 }
-/* color */
-body, a {
-    background-color: black;
+a{
+    text-decoration: none;
+    display: inline;
     color: white;
 }
-
-a {
-    display: block;
-}
-/* Positioning*/
-.social-media-icons a{
+.social-media-icons{
     display: inline;
 }
+
+/* Responsive Navigation */
+.homepage-navbar{
+    width: 100%;
+    background: black;
+}
+
+.homepage-navbar > ul{
+    width: 80%;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.homepage-navbar > ul li{
+    list-style: none;
+    display: inline-block;
+    padding: 15px;
+    padding: .75em 1em;
+}
+
+.homepage-navbar > ul li a{
+    font-family: Roboto;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    line-height: 1em;
+    color: rgb(255,255,255,.6);
+}
+
+.homepage-navbar ul li a:hover{
+    color: rgb(255, 255, 255);
+    transition: color .2s 0s ease-in-out;
+    outline: none;
+}
+
+.hamburger-menu{
+    width: 100%;
+    padding: 10px 20px;
+    background: black; /**/
+    text-align: left;
+    box-sizing: border-box;
+    display: none;
+}
+
+@media (max-width:768px){
+    .hamburger-menu{
+        display: block;
+    }
+
+    .homepage-navbar > ul{
+        width: 100%; 
+        display: none;
+    }
+
+    .homepage-navbar ul li{
+        display: block;
+        text-align: center;
+    }
+}
+
+
+/* special stuff */
 
