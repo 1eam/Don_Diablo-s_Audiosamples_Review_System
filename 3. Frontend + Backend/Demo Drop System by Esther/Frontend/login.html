@@ -47,15 +47,13 @@
         </ul>
     </nav>
 
-    
-
     <!-- DEMO DROP -->
     <h1 class="heading">DEMO DROP</h1>
 
     <main>
 
         <!-- alert message -->
-        <div class="alert-danger" th:if="${param.error != null}">
+        <div class="alert-message" th:if="${param.error != null}">
             Invalid username or password.
         </div>
 
@@ -84,10 +82,8 @@
     <footer>
             <img src="/Images/dondiablologo.png" alt="Logo Don Diablo" width="90">
     </footer>
-
     
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
-    
+    <!-- Script to open and close the navbar -->
     <script>
         function hideAndShow() {
           var x = document.getElementById('ul');

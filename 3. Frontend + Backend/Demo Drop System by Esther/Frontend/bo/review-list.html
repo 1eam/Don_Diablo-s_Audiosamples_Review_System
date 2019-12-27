@@ -20,6 +20,13 @@
         <h2>LOGGED IN:</h2>
         <p th:text>Joris Dobbelaar</p>
 
+        <!-- popup-screen -->
+        <div class="popup">
+            <h2 class="popup-h2">First complete the review</h2>
+            <p class="popup-p">then press return to dashboard</p>
+            <button>OK</button> <!-- JS hide popup -->
+        </div>
+
         <!-- blocks of demos -->
         <div class="list-of-demos" th:each>
             <p> <span>ARTIST NAME</span> - <span>TITLE DEMO</span> <span class="allign right">DATE/2020</span></p>
@@ -40,7 +47,9 @@
     </div>
 
     <footer>
+        <a href="/bo/dashboard.html">
             <img src="/Images/dondiablologo.png" alt="Logo Don Diablo" width="90">
+        </a>
     </footer>
 </body>
 </html>
