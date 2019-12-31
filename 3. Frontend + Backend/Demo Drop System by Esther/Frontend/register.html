@@ -5,7 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Demo Drop Register</title>
-   <link rel="stylesheet" href="/style.css"> 
+   <link rel="stylesheet" href="/style.css">
+   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -79,14 +80,14 @@
             <p><input type="checkbox" required>Terms and Conditions</p>
             
             <!-- register button -->
-            <input type="submit" value="Register" id="registerPopup" class="button">
+            <input type="submit" value="Register" id="registerButton" class="button">
             </form>
     </main>
 
     <script>
         // When the user clicks on register open the popup
         function showPopup() {
-          var popup = document.getElementById("registerPopup");
+          var popup = document.getElementById("registerButton");
           popup.classList.popup("show");
         }
     </script>

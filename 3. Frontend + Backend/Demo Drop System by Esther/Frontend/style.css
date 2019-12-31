@@ -1,7 +1,7 @@
 body{
     margin: 0;
     padding: 0;
-    font-family: sans-serif;
+    font-family: 'Roboto', sans-serif;
 
     background-color: black;
     color: white;
@@ -12,7 +12,11 @@ input{
     display: block;
 }
 
-input[type=password], [type=text], textarea{
+input[type=checkbox] {
+    display: inline;
+}
+
+input[type=password], [type=text]{
     width: 275px;
     height: 25px;
     padding: 8px 20px;
@@ -20,9 +24,15 @@ input[type=password], [type=text], textarea{
     text-align: center;
 }
 
-input[type=checkbox] {
-    display: inline;
+textarea{
+    resize: none;
+    width: 275px;
+    height: 175px;
+    padding: 8px 20px;
+    box-sizing: border-box;
+    text-align: center;
 }
+
 
 /* popups */
 /* .popup {visibility: hidden;} */
@@ -44,7 +54,6 @@ a{
 /* Responsive Navigation */
 .homepage-navbar{
     width: 100%;
-    background: black;
 }
 
 .homepage-navbar > ul{

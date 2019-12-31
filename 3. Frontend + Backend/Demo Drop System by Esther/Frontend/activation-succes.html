@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Demo Drop Login</title>
+    <title>Demo Drop Activation</title>
     <link rel="stylesheet" href="/style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
 </head>
@@ -49,64 +49,15 @@
     </nav>
 
     <!-- DEMO DROP -->
-    <h1 class="heading">DEMO DROP</h1>
+    <h1 class="heading">ACTIVATION COMPLETED</h1>
 
     <main>
-
-        <!-- alert message -->
-        <div class="alert-message" th:if="${param.error != null}">
-            Invalid username or password.
-        </div>
-
-        <!-- login form -->
-        <div class="login-form">
-            <form action="" class="form">
-                Username
-                <input type="text" name="username">
-                Password
-                <input type="password" name="password"> <br>
-                <!-- remember me checkbox (refactor later)-->
-                <label class="form-check-label">
-                    <input id="remember-me" name="remember-me" class="form-check-input" type="checkbox" >
-                    <span>Remember me</span>
-                </label>
-                <!-- submit -->
-                <a href=""></a> <input type="submit" value="Login" class="button">
-            </form>
-        </div>
-
-        <!-- register form -->
-        <div>
-            <form action="/register/submit">
-            <p class="form-text">Name</p>
-            <input type="text" name="name">
-            <p class="form-text">Surname</p>
-            <input type="text" name="surName">
-            <p class="form-text">Artististname</p>
-            <input type="text" name="artistName">
-            <p class="form-text">Email</p>
-            <input type="text" name="email">
-            <p class="form-text">Password</p>
-            <input type="password" placeholder="must be at least 8 characters long" name="password">
-            <p class="form-text">Confirm Password</p>
-            <input type="password" name="surName">
-            <p class="form-text">Tell something about yourself</p>
-            <textarea rows="10" cols="22" placeholder="I like coockies" name="bio"></textarea>
-            <!-- terms and conditions -->
-            <p><input type="checkbox" required>Terms and Conditions</p>
-            <!-- register button -->
-            <input type="submit" value="Register" id="registerPopup" class="button">
-            </form>
-        </div>
-
-        <!-- register link (responsive) -->
-        <div class="underlined-text"> <!-- for positioning -->
-            <a href="/register.html"><u>Register</u></a>
-        </div>
+        <p>welcome to Hexagons demo drop system. Your account has been succesfully activated!</p>
+        <p>click <a href="/login.html"><u>here</u></a> to proceed to login</p>
     </main>
 
     <footer>
-            <img src="/Images/dondiablologo.png" alt="Logo Don Diablo" width="90">
+            <img src="/Images/dondiablologo.png" alt="Logo Don Diablo" width="72">
     </footer>
     
     <!-- Script to open and close the navbar -->

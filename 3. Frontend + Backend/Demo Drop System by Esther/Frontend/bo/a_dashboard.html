@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Deshboard</title>
+    <title>Dashboard</title>
    <link rel="stylesheet" href="/bo/bo-style.css">
+   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
 </head>
 <body>
     <header>
@@ -18,32 +19,35 @@
 
     <main>
         <h2>LOGGED IN:</h2>
-        <p th:text>Joris Dobbelaar</p>
+        <p>ADMIN</p>
 
         <!-- blocks -->
         <div>
-            <a href="/bo/review-list.html">REVIEW DEMOS</a>
+            <a href="/bo/set-texts.html">SET SYSTEM TEXTS</a>
         </div>
         <div>
-            <a href="/bo/sent-list.html">SENT DEMOS</a>
+            <a href="/bo/user-management.html">USER MANAGEMENT</a>
         </div>
         <div>
-            <a href="/bo/handled-list.html">HANDLEDDEMOS</a>
+            <a href="/bo/bo-management.html">BACKOFFICE MANAGEMENT</a>
         </div>
     </main>
 
     <!-- logout -->
-    <div class="underlined-text">
-        <a href="/bo/login.html"><u>Logout</u></a>
+    <div class="top-right-container">
+        <p>ADMIN</p>
+        <div class="underlined-text">
+            <a href="/bo/login.html"><u>Logout</u></a>
+        </div>
     </div>
 
     <!-- edit password -->
     <div class="underlined-text">
-        <a href="/bo/edit-password.html"><u>Edit Password</u></a>
+        <a href="/bo/a_edit-password.html"><u>Edit Password</u></a>
     </div>
 
     <footer>
-            <img src="/Images/dondiablologo.png" alt="Logo Don Diablo" width="90">
+        <a href="/bo/a_dashboard.html"><img src="/Images/dondiablologo.png" alt="Logo Don Diablo" width="72"></a>
     </footer>
 </body>
 </html>
