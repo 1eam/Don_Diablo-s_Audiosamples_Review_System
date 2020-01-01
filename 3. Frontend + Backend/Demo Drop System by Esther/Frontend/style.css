@@ -1,10 +1,16 @@
-body{
-    margin: 0;
-    padding: 0;
+body{ 
     font-family: 'Roboto', sans-serif;
 
     background-color: black;
     color: white;
+}
+
+.section-center{
+    display: block;
+    margin: 20px auto;
+    width: 275px;
+    padding: 0;
+
 }
 
 /* inputfields */
@@ -53,19 +59,20 @@ a{
 
 /* Responsive Navigation */
 .homepage-navbar{
-    width: 100%;
+    width: 100%;    /* keeps the main box stratched accros 100% of the screen & therefore centered */
+    background-color: blue;
 }
 
 .homepage-navbar > ul{
-    width: 80%;
-    margin: 0 auto;
-    padding: 0;
+    width: 80%;     /* acts as a padding of 80% inside the div */
+    background-color: brown;
+    text-align: center;
+    /* margin: 0;   /*margin has to stay off for desktop-view center*/
 }
 
 .homepage-navbar > ul li{
     list-style: none;
     display: inline-block;
-    padding: 15px;
     padding: .75em 1em;
 }
 
@@ -89,13 +96,11 @@ a{
 
 .hamburger-menu{
     width: 100%;
-    padding: 10px 20px;
     background: black; /**/
     text-align: left;
     box-sizing: border-box;
     display: none;
 }
-
 @media (max-width:768px){
     .hamburger-menu{
         display: block;
@@ -109,6 +114,25 @@ a{
     .homepage-navbar ul li{
         display: block;
         text-align: center;
+    }
+}
+
+
+/* Responsive Registery */
+.register-link-visibility{
+    display: none;
+}
+
+.responsive-register-form-container{
+    display: block;
+}
+@media (max-width:768px){
+    .register-link-visibility{
+        display: block;
+    }
+
+    .responsive-register-form-container{
+        display: none;
     }
 }
 

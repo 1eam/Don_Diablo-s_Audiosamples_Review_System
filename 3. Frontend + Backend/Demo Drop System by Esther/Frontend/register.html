@@ -18,37 +18,41 @@
                 <a href="https://soundcloud.com/hexagon"><img src="/Images/1. Socials icons/soundcloud.png" alt="" width="35"/>
                 <a href="https://www.youtube.com/hexagon"><img src="/Images/1. Socials icons/youtube.png" alt="" width="35"/>
         </div>
-        <!-- HeaderLogo -->
+       <!-- HeaderLogo -->
         <div class="text-logo"><img src="/Images/hexagonlogo.png" height="20" alt="HEXAGON"></div>
-
-        <!-- DEMO DROP -->
-        <div class="heading"><h1>DEMO DROP</h1></div>
-
-        <!-- login link-->
-            <a href="/login.html"> <u>login</u></a>
     </header>
+        
+    <!-- login link-->
+    <div left-align>
+        <a href="/login.html"><u>login</u></a>
+    </div>
 
-    <nav class="navbar">
-        <span>
-            <svg width="30" height="30">
-                <path d="M0,5 30,5" stroke="#fff" stroke-width="5"/>
-                <path d="M0,14 30,14" stroke="#fff" stroke-width="5"/>
-                <path d="M0,23 30,23" stroke="#fff" stroke-width="5"/>
+    <nav class="homepage-navbar left-align">
+        <div class="hamburger-menu" onclick="hideAndShow()">
+            <svg width="28" height="24">
+                <g fill="none" stroke="white" stroke-width="5">
+                    <path d="M0,5 30,5"/>
+                    <path d="M0,14 30,14"/>
+                    <path d="M0,23 30,23"/>
+                </g>
+                Sorry, your browser does not support inline SVG.
             </svg>
-        <span>
+        </div>
+    <ul id="ul">
+        <li><a href="https://www.hexagonhq.com/home">HOME</a></li>
+        <li><a href="https://www.hexagonhq.com/news">NEWS</a></li>
+        <li><a href="https://www.hexagonhq.com/releases">MUSIC</a></li>
+        <li><a href="https://www.hexagonhq.com/videos">VIDEOS</a></li>
+        <li><a href="https://www.hexagonhq.com/radio">RADIO</a></li>
+        <li><a href="https://shop.dondiablo.com/collections/hexagon">SHOP</a></li>
+        <li><a href="/demodrop">DEMO DROP</a></li>
+        <li><a href="https://www.hexagonhq.com/wallpapers">WHALLPAPERS</a></li>
+        <li><a href="https://www.hexagonhq.com/contact">CONTACT</a></li>
+    </ul>
+</nav>
 
-        <ul>
-            <li><a href="https://www.hexagonhq.com/home">HOME</a></li>
-            <li><a href="https://www.hexagonhq.com/news">NEWS</a></li>
-            <li><a href="https://www.hexagonhq.com/releases">MUSIC</a></li>
-            <li><a href="https://www.hexagonhq.com/videos">VIDEOS</a></li>
-            <li><a href="https://www.hexagonhq.com/radio">RADIO</a></li>
-            <li><a href="https://shop.dondiablo.com/collections/hexagon">SHOP</a></li>
-            <li><a href="/demodrop">DEMO DROP</a></li>
-            <li><a href="https://www.hexagonhq.com/wallpapers">WHALLPAPERS</a></li>
-            <li><a href="https://www.hexagonhq.com/contact">CONTACT</a></li>
-        </ul>
-    </nav>
+<!-- DEMO DROP -->
+<h1 class="heading">DEMO DROP</h1>
 
     <main>
         <!-- popup-screen -->
@@ -56,7 +60,7 @@
             <h2 class="popup-h2">Thanks for signing up!</h2>
             <p class="popup-p">Please check your email to complete the activation</p>
             <a href="/login.html" class="button"><u>Login</u></a>
-            <img src="/Images/dondiablologo.png" alt="Logo Don Diablo" width="90">
+            <img src="/Images/dondiablologo.png" alt="Logo Don Diablo" width="72">
         </div>
 
         <!-- form -->
@@ -95,5 +99,17 @@
     <footer>
             <img src="/Images/dondiablologo.png" alt="Logo Don Diablo" width="90">
     </footer>
+
+    <!-- Script to open and close the navbar -->
+    <script>
+        function hideAndShow() {
+          var x = document.getElementById('ul');
+          if (x.style.display === 'none') {
+            x.style.display = 'block';
+          } else {
+            x.style.display = 'none';
+          }
+        }
+    </script>
 </body>
 </html>

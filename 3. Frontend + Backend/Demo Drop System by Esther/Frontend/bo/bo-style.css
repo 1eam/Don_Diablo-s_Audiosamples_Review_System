@@ -95,4 +95,22 @@ a{
     -webkit-text-stroke: 1px black;
     color: transparent;
     font-size: 18px;
-  }
+}
+
+
+/* ADMIN SIDE TABLES */
+.database-container{
+    width: 80%;
+    height: 400px;
+    overflow-y: scroll;
+}
+
+.textalign-center {
+    text-align: center;
+}
+
+th{
+    background-color: #BFBFBF;
+    position: sticky;
+    top: 0;
+}

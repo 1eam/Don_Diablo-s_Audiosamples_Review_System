@@ -48,8 +48,8 @@
             <p class="form-text">Title Demo</p>
             <input type="text" placeholder="Please dont include your artistname, We have it ;)" name="titleDemo">
             
-            <p class="form-text">Description</p>
-            <textarea rows="10" cols="22" name="Description" th:text>I used Sylenth for the melody and Nexux for bass</textarea>
+            <p class="form-text">Description</p> <!-- hard coded restriction: max 300 char. (dont let frontend know) -->
+            <textarea rows="10" cols="22" name="Description" placeholder="Type here what you want to let us know about this track" th:text></textarea>
 
             <input type="submit" value="SUBMIT">
         </form>
