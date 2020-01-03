@@ -4,9 +4,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Date;
 
 @Entity
@@ -29,13 +27,12 @@ public class Demo {
 
     private Long uploadedBy;
     private Long reviewedBy;
-    private Long reviewState;
     private Long lastModifiedBy;
 
-//    StateNames
-//    User
 
-//    @ManyToOne
-//    @JoinTable(name = "user_id")
-//    private User user
+    @OneToOne(mappedBy = "demo")
+    private StateName stateName = new StateName(); //column called: reviewState
+
+    //User
+
 }
