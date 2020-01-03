@@ -1,9 +1,16 @@
 //package com.esther.dds.domain;
 //
+//import lombok.*;
+//
 //import javax.persistence.Entity;
 //import java.util.Date;
 //
 //@Entity
+//@RequiredArgsConstructor
+//@Getter
+//@Setter
+//@ToString
+//@NoArgsConstructor
 //public class User {
 //
 //    private Long id;

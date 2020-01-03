@@ -1,13 +1,13 @@
 package com.esther.dds.domain;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.NonNull;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Data
+@RequiredArgsConstructor
+@Getter @Setter
+@ToString
 @NoArgsConstructor
 public class Demo extends Auditable{
 
