@@ -5,7 +5,6 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import javax.persistence.*;
-import java.util.Date;
 
 @Entity
 @Data
@@ -14,7 +13,6 @@ public class Demo extends Auditable{
 
     @Id
     @GeneratedValue
-    @NonNull
     private Long id;
     @NonNull
     private String title;
@@ -23,16 +21,15 @@ public class Demo extends Auditable{
     @NonNull
     private String audioFileLocation;
 
-    private Date createdOn;
-    private Long uploadedBy;
-    private Long reviewedBy;
-    private Long lastModifiedBy;
+//    private Date createdOn;
+//    private Long uploadedBy;
+//    private Long reviewedBy;
+//    private Long lastEditedBy;
 
 
-    @OneToOne(mappedBy = "demo")
-    @Column(name = "reviewState")
-    private StateName stateName = new StateName(); //column called: reviewState
-
-    //User
+    //State LookupTable
+    @OneToOne(fetch=FetchType.LAZY)
+    @JoinColumn(name="State")
+    private State state;
 
 }
