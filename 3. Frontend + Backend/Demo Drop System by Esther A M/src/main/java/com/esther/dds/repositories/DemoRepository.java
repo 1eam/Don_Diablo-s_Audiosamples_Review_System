@@ -1,4 +1,4 @@
-package com.esther.dds.Repositories;
+package com.esther.dds.repositories;
 
 import com.esther.dds.domain.Demo;
 import org.springframework.data.jpa.repository.JpaRepository;
