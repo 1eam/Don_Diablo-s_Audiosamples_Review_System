@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface DemoRepository extends JpaRepository <Demo, Long> {
 
-//    Demo findByReviewState
+//    Demo findWhereReviewstate=2 (But this should be done in a service layer)
 }
