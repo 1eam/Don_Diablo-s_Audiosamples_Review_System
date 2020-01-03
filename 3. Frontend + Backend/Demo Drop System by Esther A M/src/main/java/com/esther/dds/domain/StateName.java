@@ -10,7 +10,7 @@ import java.util.Date;
 @Entity
 @Data
 @NoArgsConstructor
-public class StateName {
+public class StateName extends Auditable{
     private Long id;
     private String name;
     private String message;

@@ -10,7 +10,7 @@ import java.util.Date;
 @Entity
 @Data
 @NoArgsConstructor
-public class Demo {
+public class Demo extends Auditable{
 
     @Id
     @GeneratedValue
@@ -22,15 +22,15 @@ public class Demo {
     private String description;
     @NonNull
     private String audioFileLocation;
-    @NonNull
-    private Date createdOn;
 
+    private Date createdOn;
     private Long uploadedBy;
     private Long reviewedBy;
     private Long lastModifiedBy;
 
 
     @OneToOne(mappedBy = "demo")
+    @Column(name = "reviewState")
     private StateName stateName = new StateName(); //column called: reviewState
 
     //User
