@@ -21,10 +21,6 @@ public class Demo extends Auditable{
     @NonNull
     private String audioFileLocation;
 
-//    private Date createdOn;
-//    private Long uploadedBy;
-//    private Long reviewedBy;
-//    private Long lastEditedBy;
 
 
     //State LookupTable
