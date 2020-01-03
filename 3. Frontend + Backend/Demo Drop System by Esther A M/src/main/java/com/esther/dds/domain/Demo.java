@@ -19,18 +19,18 @@ public class Demo {
     @NonNull
     private Long id;
     @NonNull
-    private String audioFileLocation;
-    @NonNull
     private String title;
     @NonNull
     private String description;
     @NonNull
+    private String audioFileLocation;
+    @NonNull
     private Date createdOn;
 
-    private Long lastModifiedBy;
     private Long uploadedBy;
     private Long reviewedBy;
     private Long reviewState;
+    private Long lastModifiedBy;
 
 //    StateNames
 //    User
