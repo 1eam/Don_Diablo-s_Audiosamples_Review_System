@@ -11,7 +11,7 @@ import java.util.Date;
 @Setter
 @ToString
 @NoArgsConstructor
-public class State extends Auditable{
+public class State extends AuditableState{
 
     @Id
     @GeneratedValue
