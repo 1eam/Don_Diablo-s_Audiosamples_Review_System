@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>User Management</title>
+    <!-- Roboto font -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+    <!-- Bootstrap for styling tables-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <!-- custom css -->
+    <link rel="stylesheet" href="/bo/bo-style.css">
+</head>
+<body>
+    <header>
+        <!-- HeaderLogo -->
+        <div class="text-logo">
+            <img src="/Images/hexagonlogo.png" height="20" alt="HEXAGON">
+        </div>
+
+        <!-- navigation -->
+        <nav class="homepage-navbar">
+            <ul id="ul">
+                <li><a href="https://shop.dondiablo.com/collections/hexagon">SET SYSTEM TEXTS</a></li>
+                <li><a href="/demodrop">USER MANAGEMENT</a></li>
+                <li><a href="https://www.hexagonhq.com/wallpapers">BACKOFFICE MANAGEMENT</a></li>
+            </ul>
+        </nav>
+
+        <!-- Heading -->
+        <h1 class="heading">USER MANAGEMENT</h1>
+    </header>
+
+    <main>
+        <div class="search-bar">
+            <input type="text" placeholder="Search.."style="
+            width: 175px;
+            height: 25px;
+            padding: 8px 20px;
+            box-sizing: border-box;
+            text-align: right;">
+        </div>
+        
+        <!-- Tables -->
+        <div class="database-container">
+            <table class="table table-striped  table-hover">
+                <tr>
+                    <th>UserID</th>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Artistname</th>
+                    <th>Email</th>
+                    <th>Account deleted?</th>
+                </tr>
+                <tr th:each="user: ${ }">
+                    <td th:text="${user.id}">th: 01</td>
+                    <td th:text="${user.name}">th: Empty: Name</td>
+                    <td th:text="${user.surName}">th: Empty: Surname</td>
+                    <td th:text="${user.artistName}">th: Empty: Artistname</td>
+                    <td th:text="${user.email}">th: Empty: Email</td>
+                    <td class="textalign-center" th:text="${user.isDeleted}">th: ✓</td>
+                    <!-- DELETE OPTION. show at right mouse-click.. will delete this object -->
+                    <a th:href="@{delete/(id=${user.id})}">Delete User</a>
+                            
+                </tr>
+                <tr>
+                    <td>th: 01</td>
+                    <td>th: Empty: Name</td>
+                    <td>th: Empty: Surname</td>
+                    <td>th: Empty: Artistname</td>
+                    <td>th: Empty: Email</td>
+                    <td class="textalign-center">th: ✓</td>
+        
+                </tr>
+                <tr>
+                    <td>th: 01</td>
+                    <td>th: Empty: Name</td>
+                    <td>th: Empty: Surname</td>
+                    <td>th: Empty: Artistname</td>
+                    <td>th: Empty: Email</td>
+                    <td class="textalign-center">th: ✓</td>
+        
+                </tr>
+                <tr>
+                    <td>th: 01</td>
+                    <td>th: Empty: Name</td>
+                    <td>th: Empty: Surname</td>
+                    <td>th: Empty: Artistname</td>
+                    <td>th: Empty: Email</td>
+                    <td class="textalign-center">th: ✓</td>
+        
+                </tr>
+                <tr>
+                    <td>th: 01</td>
+                    <td>th: Empty: Name</td>
+                    <td>th: Empty: Surname</td>
+                    <td>th: Empty: Artistname</td>
+                    <td>th: Empty: Email</td>
+                    <td class="textalign-center">th: ✓</td>
+        
+                </tr>
+                <tr>
+                    <td>th: 01</td>
+                    <td>th: Empty: Name</td>
+                    <td>th: Empty: Surname</td>
+                    <td>th: Empty: Artistname</td>
+                    <td>th: Empty: Email</td>
+                    <td class="textalign-center">th: ✓</td>
+        
+                </tr>
+                <tr>
+                    <td>th: 01</td>
+                    <td>th: Empty: Name</td>
+                    <td>th: Empty: Surname</td>
+                    <td>th: Empty: Artistname</td>
+                    <td>th: Empty: Email</td>
+                    <td class="textalign-center">th: ✓</td>
+        
+                </tr>
+                <tr>
+                    <td>th: 01</td>
+                    <td>th: Empty: Name</td>
+                    <td>th: Empty: Surname</td>
+                    <td>th: Empty: Artistname</td>
+                    <td>th: Empty: Email</td>
+                    <td class="textalign-center">th: ✓</td>
+        
+                </tr>
+                <tr>
+                    <td>th: 01</td>
+                    <td>th: Empty: Name</td>
+                    <td>th: Empty: Surname</td>
+                    <td>th: Empty: Artistname</td>
+                    <td>th: Empty: Email</td>
+                    <td class="textalign-center">th: ✓</td>
+        
+                </tr>
+                <tr>
+                    <td>th: 01</td>
+                    <td>th: Empty: Name</td>
+                    <td>th: Empty: Surname</td>
+                    <td>th: Empty: Artistname</td>
+                    <td>th: Empty: Email</td>
+                    <td class="textalign-center">th: ✓</td>
+        
+                </tr>
+                <tr>
+                    <td>th: 01</td>
+                    <td>th: Empty: Name</td>
+                    <td>th: Empty: Surname</td>
+                    <td>th: Empty: Artistname</td>
+                    <td>th: Empty: Email</td>
+                    <td class="textalign-center">th: ✓</td>
+        
+                </tr>
+                <tr>
+                    <td>th: 01</td>
+                    <td>th: Empty: Name</td>
+                    <td>th: Empty: Surname</td>
+                    <td>th: Empty: Artistname</td>
+                    <td>th: Empty: Email</td>
+                    <td class="textalign-center">th: ✓</td>
+        
+                </tr>
+                <tr>
+                    <td>th: 01</td>
+                    <td>th: Empty: Name</td>
+                    <td>th: Empty: Surname</td>
+                    <td>th: Empty: Artistname</td>
+                    <td>th: Empty: Email</td>
+                    <td class="textalign-center">th: ✓</td>
+        
+                </tr>
+                <tr>
+                    <td>th: 01</td>
+                    <td>th: Empty: Name</td>
+                    <td>th: Empty: Surname</td>
+                    <td>th: Empty: Artistname</td>
+                    <td>th: Empty: Email</td>
+                    <td class="textalign-center">th: ✓</td>
+        
+                </tr>
+                <tr>
+                    <td>th: 01</td>
+                    <td>th: Empty: Name</td>
+                    <td>th: Empty: Surname</td>
+                    <td>th: Empty: Artistname</td>
+                    <td>th: Empty: Email</td>
+                    <td class="textalign-center">th: ✓</td>
+        
+                </tr>
+              </table>
+        </div>
+    </main>
+
+    <!-- logout -->
+    <div class="top-right-container">
+        <p>ADMIN</p>
+        <div class="underlined-text">
+            <a href="/bo/login.html"><u>Logout</u></a>
+        </div>
+    </div>
+
+    <footer>
+            <a href="/bo/a_dashboard.html"><img src="/Images/dondiablologo.png" alt="Logo Don Diablo" width="72"></a>
+    </footer>
+</body>
+</html>

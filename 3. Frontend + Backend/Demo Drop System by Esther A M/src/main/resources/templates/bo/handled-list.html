@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Sent List</title>
+   <link rel="stylesheet" href="/bo/bo-style.css">
+   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+    <!-- HeaderLogo -->
+    <div class="text-logo">
+        <img src="/Images/hexagonlogo.png" height="20" alt="HEXAGON">
+    </div>
+    <h1 class="heading">HANDLED: <span class="heading" th:text>(15)</span></h1>
+    </header>    
+
+    <main>
+        <h2>LOGGED IN:</h2>
+        <p th:text>Joris Dobbelaar</p>
+
+        <!-- blocks of demos -->
+        <div class="list-of-demos" th:each>
+            <a th: href="/review-mode">
+                <p><span>ARTIST NAME</span> - <span>TITLE DEMO</span> <span class="allign right">DATE/2020</span></p>
+            </a>
+        </div>
+
+    <!-- quick scroll -->
+    <img id="scroll" src="/Images/anchor_scroll.png" alt="quick scroll" width="25">
+
+    <!-- logout -->
+    <div class="top-right-container">
+        <p th:text style="display: inline;">Joris Dobbelaar</p>
+        <a href="/bo/login.html"><u>Logout</u></a>
+    </div>
+
+    <footer>
+        <a href="/bo/dashboard.html">
+            <img src="/Images/dondiablologo.png" alt="Logo Don Diablo" width="90">
+        </a>
+    </footer>
+</body>
+</html>

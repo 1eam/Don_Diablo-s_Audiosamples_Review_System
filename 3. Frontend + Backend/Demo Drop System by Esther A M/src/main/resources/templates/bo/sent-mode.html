@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Handled-Mode</title>
+   <link rel="stylesheet" href="/bo/bo-style.css">
+   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main>
+        <section class="section_1">
+            <div class="img-box">
+                <img th:src src="/Images/2. Temporary/Dj Christopher.jpg" width="130">
+            </div>
+            <h3 class="fat-h3" th:text>DJ CHRISTOPHER</h3>
+            <h5 class="fat-h5" th:text> Christopher de Berg</h5>
+            <h5 class="fat-h5" th:text> cris.b@yahoo.com</h5>
+            <p class="light-p"> Im Christopher, Im a dutch-based musicproducer with 
+                love for house music I make deep-house, future-house, tech-house, and bass  house.
+                I study computer science at the University of Amsterdam.</p>
+        </section>
+
+        <section class="section_2">
+            <header>
+                <!-- HeaderLogo -->
+                <div class="text-logo">
+                    <img src="/Images/hexagonlogo.png" height="20" alt="HEXAGON">
+                </div>
+                <h1 class="heading">BACKOFFICE</h1>
+            </header>
+
+            <!-- ACTUAL -->
+            <h3 class="fat-h3" th:text>DEMO TITLE</h3>
+            <h3 class="fat-h3">Producers Description</h3>
+            <div class="description-box">
+                <p class="light-p">Lorem Ipsim I used Nexus for bass and Sylent 1 for the melody. The track is not mastered yet but im gaining experience to do so Enjoy!</p>
+            </div>
+
+            <!-- footer -->
+            <footer>
+                <a href="/bo/dashboard.html">
+                    <img src="/Images/dondiablologo.png" alt="Logo Don Diablo" width="90">
+                </a>
+            </footer>
+        </section>
+
+        <section class="section_3">
+            <!-- logout -->
+            <div class="top-right-container">
+                <p th:text style="display: inline;">Joris Dobbelaar</p>
+                <a href="/bo/login.html"><u>Logout</u></a>
+            </div>
+
+            <!-- sent by -->
+            <h3 class="fat-h3">SENT BY:</h3>
+            <p th:text>Joris Dobbelaar</p>
+
+            <a href="/bo/sent-mode.html" class="next-demo"><u>Next demo</u><span>&#129054</span></a>
+            <a style="display: block;" href="/bo/dashboard.html" class="next-demo"><u>Return to dashboard</u><span>&#8635</span></a>
+        </section >
+    </main>
+</body>
+</html>

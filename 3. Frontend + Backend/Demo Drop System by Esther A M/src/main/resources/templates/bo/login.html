@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Backoffice Login</title>
+   <link rel="stylesheet" href="/static/css/bo-style.css">
+   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <!-- HeaderLogo -->
+        <div class="text-logo">
+            <img src="/static/images/hexagonlogo.png" height="20" alt="HEXAGON">
+        </div>
+        <h1 class="heading">BACK OFFICE</h1>
+    </header>
+
+    <!-- space -->
+    <div style= "display: inline-block; margin-bottom: 100px;"></div>
+
+    <main class="section-center login-form">
+        <!-- alert message -->
+        <!-- <div class="alert-danger" th:if="${param.error != null}">
+            Invalid username or password.
+        </div> -->
+
+        <!-- login form -->
+        <form action="">
+            <p>Username</p>
+            <input type="text" name="username">
+            <p>Password</p>
+            <input type="password" name="username"> <br>
+
+            <!-- space -->
+            <div style= "display: inline-block; margin-bottom: 60px;"></div>
+
+            <input type="submit" value="Login" class="button">
+        </form>
+    </main>
+
+    <!-- space -->
+    <div style= "display: inline-block; margin-bottom: 100px;"></div>
+
+    <footer>
+        <a href="/bo/dashboard.html">
+            <img src="/static/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
+        </a>
+    </footer>
+
+    <!-- space -->
+    <div style= "display: inline-block; margin-top: 40px;"></div>
+</body>
+</html>

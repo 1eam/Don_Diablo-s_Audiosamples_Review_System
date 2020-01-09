@@ -65,9 +65,11 @@ public class DemoController {
     }
 
 
-    //u_reference
+
+
+    //u_referenceMapping
     @GetMapping("/thymeleaf/u_reference")
-    public String foo(Model model){
+    public String reference(Model model){
         model.addAttribute("pageTitle", "reference");
         return "/thymeleaf/u_reference";
     }
