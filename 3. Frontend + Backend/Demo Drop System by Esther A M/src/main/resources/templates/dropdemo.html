@@ -45,11 +45,11 @@
 
         <!-- demo drom form -->
         <form action="#">
-            <p class="form-text">Title Demo</p>
-            <input type="text" placeholder="Please dont include your artistname, We have it ;)" name="titleDemo">
+            <p class="form-text">Title Demo</p> <!-- max characters: 45 -->
+            <input type="text" placeholder="Please dont include your artistname, We have it ;) [max 45 char.]" name="titleDemo">
             
             <p class="form-text">Description</p> <!-- hard coded restriction: max 300 char. (dont let frontend know) -->
-            <textarea rows="10" cols="22" name="Description" placeholder="Type here what you want to let us know about this track" th:text></textarea>
+            <textarea rows="10" cols="22" name="Description" placeholder="Type here what you want to let us know about this track (max 350 char.)" th:text></textarea>
 
             <input class="button" type="submit" value="SUBMIT" style="display: block;">
         </form>
