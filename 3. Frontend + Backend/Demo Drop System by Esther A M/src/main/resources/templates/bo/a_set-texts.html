@@ -5,71 +5,72 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Set System Texts</title>
-   <link rel="stylesheet" href="/bo/bo-style.css">
+   <link rel="stylesheet" href="/static/css/bo-style.css">
    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
+    <header class="section-center">
+        <!-- logout -->
+        <div class="upper-corner">
+            <p th:text style="display: inline;">ADMIN</p>
+            <a href="/templates/bo/login.html"><u>Logout</u></a>
+        </div>
         <!-- HeaderLogo -->
         <div class="text-logo">
-            <img src="/Images/hexagonlogo.png" height="20" alt="HEXAGON">
+            <img src="/static/images/hexagonlogo.png" height="20" alt="HEXAGON">
         </div>
-
-        <!-- navigation -->
-        <nav class="homepage-navbar">
-            <ul id="ul">
-                <li><a href="https://shop.dondiablo.com/collections/hexagon">SET SYSTEM TEXTS</a></li>
-                <li><a href="/demodrop">USER MANAGEMENT</a></li>
-                <li><a href="https://www.hexagonhq.com/wallpapers">BACKOFFICE MANAGEMENT</a></li>
-            </ul>
-        </nav>
-
-        <!-- Heading -->
-        <h1 class="heading">SET SYSTEM TEXTS</h1>
+        <div class="section-center">
+            <!-- navbar elements -->
+            <nav class="admin-navbar">
+                <ul id="ul">
+                    <li><a href="/templates/bo/a_set-texts.html"style="color: #707070;">SET SYSTEM TEXTS</a></li>
+                    <li><a href="/templates/bo/a_user-management.html">USER MANAGEMENT</a></li>
+                    <li><a href="/templates/bo/a_bo-management.html">BACKOFFICE MANAGEMENT</a></li>
+                </ul>
+            </nav>
+            <!-- heading -->
+            <h1 class="heading">SET SYSTEM TEXTS</h1>
+        </div>
     </header>
 
-    <main>
-        <!-- Pending Message -->
-        <div>
-            <p class="roboto-medium-16-lightgray">Pending message</p>
-            <form action="/pendingMessage">
-                <textarea name="p endingMessage" th:text>th: Your Demo is being is currently waiting to be reviewed. Well notify you as soon as we've reviewed your demo th:</textarea>
-                <input type="submit" value="Save" class="system-texts-save-button">
-            </form>            
-        </div>
+    <!-- space --><div style= "display: block; margin-bottom: 80px;"></div>
 
-        <!-- Succes Message -->
-        <div>
-            <p class="roboto-medium-16-lightgray">Succes message</p>
-            <form action="/succesMessage">
-                <textarea name="succesMessage" th:text>th: We have reviewed your demo and we want to let you know that we've forwarded your demo to Don Diablo.
-We'll send you an email about the further progress of the review.
-Greetings
-Team Hexagon th:</textarea>
-                <input type="submit" value="Save" class="system-texts-save-button">
-            </form>            
-        </div>
-
-        <!-- Reject Message -->
-        <div>
-            <p class="roboto-medium-16-lightgray">Reject message</p>
-            <form action="/rejectMessage">
-                <textarea name="rejectMessage" th:text>th: Your Demo is being is currently waiting to be reviewed. Well notify you as soon as we've reviewed your demo</textarea>
-                <input type="submit" value="Save" class="system-texts-save-button">
-            </form>            
+    <main class="section-center" style="width: 1200px;">
+        <div class="a_sections-container">
+            <!-- Pending Message -->
+            <section class="a_section">
+                <p class="roboto-medium-16-lightgray">PENDING MESSAGE</p>
+                <form action="/pendingMessage">
+                    <textarea name="p endingMessage" th:text>th: Your Demo is being is currently waiting to be reviewed. Well notify you as soon as we've reviewed your demo th:</textarea>
+                    <input type="submit" value="Save" class="button">
+                </form>            
+            </section>
+            
+            <!-- Succes Message -->
+            <section class="a_section">
+                <p class="roboto-medium-16-lightgray">SUCCES MESSAGE</p>
+                <form action="/succesMessage">
+                    <textarea name="succesMessage" th:text>th: We have reviewed your demo and we want to let you know that we've forwarded your demo to Don Diablo. We'll send you an email about the further progress of the review.GreetingsTeam Hexagon th:
+                    </textarea>
+                    <input type="submit" value="Save" class="button">
+                </form>            
+            </section>
+            
+            <!-- Reject Message -->
+            <section class="a_section">
+                <p class="roboto-medium-16-lightgray">REJECT MESSAGE</p>
+                <form action="/rejectMessage">
+                    <textarea name="rejectMessage" th:text>th: Your Demo is being is currently waiting to be reviewed. Well notify you as soon as we've reviewed your demo</textarea>
+                    <input type="submit" value="Save" class="button">
+                </form>            
+            </section>
         </div>
     </main>
 
-    <!-- logout -->
-    <div class="top-right-container">
-        <p>ADMIN</p>
-        <div class="underlined-text">
-            <a href="/bo/login.html"><u>Logout</u></a>
-        </div>
-    </div>
+    <!-- space --><div style= "display: block; margin-bottom: 80px;"></div>
 
     <footer>
-            <a href="/bo/a_dashboard.html"><img src="/Images/dondiablologo.png" alt="Logo Don Diablo" width="72"></a>
+            <a href="/templates/bo/a_dashboard.html"><img src="/static/images/dondiablologo.png" alt="Logo Don Diablo" width="72"></a>
     </footer>
 </body>
 </html>
