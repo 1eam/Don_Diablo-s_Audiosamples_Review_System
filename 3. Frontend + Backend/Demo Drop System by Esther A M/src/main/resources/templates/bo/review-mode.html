@@ -7,8 +7,13 @@
     <title>Review-Mode</title>
    <link rel="stylesheet" href="/static/css/bo-style.css">
    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+   <!-- audioplayer -->
+   <link rel="stylesheet" href="/static/css/audioplayer.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   <script src="/static/js/audioplayer.js"></script>
+   
 </head>
-<body>
+<body onload="myFunction()">
     <header class="section-center">
         <!-- logout -->
         <div class="upper-corner">
@@ -20,6 +25,9 @@
             <img src="/static/images/hexagonlogo.png" height="20" alt="HEXAGON">
         </div>
     </header>
+
+    <!-- space --><div style= "display: block; margin-bottom: 40px;"></div>
+
     <main class="section-center-bo">
         <!-- popup-screen -->
         <!-- <div class="popup">
@@ -50,7 +58,7 @@
                     <img src="/static/images/z. For white background/i_dondiablologo.png" height="20">
                 </div>
                 <!-- space --><div style= "display: block; margin-bottom: 34px;"></div>
-                <h3>PRODUCERS DESCRIPTION</h3>
+                <h3 style="font-weight: 500;">PRODUCERS DESCRIPTION</h3>
                 <div>
                     <p>Lorem Ipsim I used Nexus for bass and Sylent 1 for the melody. The track is not mastered yet but im gaining experience to do so Enjoy!</p>
                 </div>
@@ -65,22 +73,36 @@
             <section class="section s3">
                 
                 <!-- review -->
-                <h3 class="fat-h3">REVIEW</h3>
+                <h3>REVIEW</h3>
+                <!-- space --><div style= "display: block; margin-bottom: 100px;"></div>
                 <div class="judge-boxes">
                     <div class="judge-box"> ✗ </div>
                     <div class="judge-box"> ✓ </div>
                 </div>
-            
-                <a href="/templates/bo/review-mode.html" class="next-demo"><u>Next demo</u><span>&#129054</span></a>
-                <a style="display: block;" href="/templates/bo/review-mode.html" class="next-demo"><u>Exit reviewmode</u><span>&#8635</span></a>
+
+                    <!-- space --><div style= "display: block; margin-bottom: 100px;"></div>
+                <a href="/templates/bo/review-mode.html" style="color: black; font-weight: 300;"><u>Next Demo</u><span>&#129054</span></a>
+                    <!-- space --><div style= "display: block; margin-bottom: 250px;"></div>
+                <a style="display: block;" href="/templates/bo/review-mode.html"><u>Exit review-mode</u><span>&#8635</span></a>
             </section>            
         </div>
-        <div class="audio-container">
-            <audio class="audio" controls>
-                <source src="/static/audio/Deep House 2.mp3" type="audio/mpeg">
-                Your browser does not support the audio tag.
-            </audio>
+        <div class="audio-container" id="scroll"></div>
+            <audio class="audio" src="/static/audio/Deep House 2.mp3" preload="auto" controls></audio>
         </div>
     </main>
+
+
+    <script>
+        function myFunction() {
+            var elmnt = document.getElementById("scroll");
+            elmnt.scrollIntoView();
+        }
+    </script>
+
+    <!-- view custum audioplayer -->
+    <script>
+        $( function() { $( 'audio' ).audioPlayer(); } );
+    </script>
+    
 </body>
 </html>

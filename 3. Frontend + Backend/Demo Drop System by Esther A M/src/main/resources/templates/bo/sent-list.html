@@ -5,43 +5,78 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Sent List</title>
-   <link rel="stylesheet" href="/bo/bo-style.css">
-   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/bo-style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-    <!-- HeaderLogo -->
-    <div class="text-logo">
-        <img src="/Images/hexagonlogo.png" height="20" alt="HEXAGON">
-    </div>
-    <h1 class="heading">SENT: <span class="heading" th:text>(4)</span></h1>
-    </header>    
-
-    <main>
-        <h2>LOGGED IN:</h2>
-        <p th:text>Joris Dobbelaar</p>
-
-        <!-- blocks of demos -->
-        <div class="list-of-demos" th:each>
-            <a th: href="/review-mode">
-                <p><span>ARTIST NAME</span> - <span>TITLE DEMO</span> <span class="allign right">DATE/2020</span></p>
-            </a>
+    <header class="section-center">
+        <!-- logout -->
+        <div class="upper-corner">
+            <p th:text style="display: inline;">Joris Dobbelaar &ensp;</p>
+            <a href="/templates/bo/login.html"><u>Logout</u></a>
         </div>
+        <!-- headerLogo -->
+        <div class="">
+            <img src="/static/images/hexagonlogo.png" height="20" alt="HEXAGON">
+        </div>
+    
+    </header>
+
+    <!-- space -->
+    <div style= "display: block; margin-bottom: 15px;"></div>
+
+    <div class="section-center">
+        <!-- navbar elements -->
+        <nav class="homepage-navbar ">
+            <ul id="ul">
+                <li><a href="/templates/bo/handled-list.html">HANLED DEMOS</a></li>
+                <li><a href="/templates/bo/review-list.html">REVIEW DEMOS</a></li>
+                <li><a href="/templates/bo/sent-list.html"style="color: #707070;">SENT DEMOS</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- space -->
+    <div style= "display: block; margin-bottom: 50px;"></div>
+
+    <!-- todo -->
+    <h1 class="heading section-center">SENT: <span class="heading" th:text>(4)</span></h1>
+
+    <!-- space -->
+    <div style= "display: block; margin-bottom: 100px;"></div>
+
+    <main class="section-center">
+        <!-- quick scroll -->
+        <!-- <img id="scroll" class="scroll" src="/static/images/anchor_scroll.png" alt="quick scroll" width="25"> -->
+        
+        <!-- blocks of demos -->
+        <div th:each="demo : ${demos}">
+            <div class="list-of-demos">
+                <a href=""> <span>ARTIST NAME</span> - <span>TITLE DEMO</span> <span class="allign right">DATE/2020</span></a>
+            </div>
+            <div class="list-of-demos">
+                <a href=""> <span>ARTIST NAME</span> - <span>TITLE DEMO</span> <span class="allign right">DATE/2020</span></a>
+            </div>
+            <div class="list-of-demos">
+                <a href=""> <span>ARTIST NAME</span> - <span>TITLE DEMO</span> <span class="allign right">DATE/2020</span></a>
+            </div>
+        </div>
+
+        <!-- space -->
+        <div style= "display: block; margin-bottom: 50px;"></div>
     </main>
 
-    <!-- quick scroll -->
-    <img id="scroll" src="/Images/anchor_scroll.png" alt="quick scroll" width="25">
+    <!-- space -->
+    <div style= "display: block; margin-bottom: 100px;"></div>
 
-    <!-- logout -->
-    <div class="top-right-container">
-        <p th:text style="display: inline;">Joris Dobbelaar</p>
-        <a href="/bo/login.html"><u>Logout</u></a>
-    </div>
-
-    <footer>
-        <a href="/bo/dashboard.html">
-            <img src="/Images/dondiablologo.png" alt="Logo Don Diablo" width="90">
+    <footer class="section-center">
+        <a href="/templates/bo/dashboard.html">
+            <img src="/static/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
         </a>
     </footer>
+
+    <!-- space -->
+    <div style= "display: block; margin-top: 50px;"></div>
+    
 </body>
 </html>

@@ -5,61 +5,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Handled-Mode</title>
-   <link rel="stylesheet" href="/bo/bo-style.css">
+   <link rel="stylesheet" href="/static/css/bo-style.css">
    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+   <!-- audioplayer -->
+   <link rel="stylesheet" href="/static/css/audioplayer.css">
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   <script src="/static/js/audioplayer.js"></script>
+   
 </head>
-<body>
-    <main>
-        <section class="section_1">
-            <div class="img-box">
-                <img th:src src="/Images/2. Temporary/Dj Christopher.jpg" width="130">
-            </div>
-            <h3 class="fat-h3" th:text>DJ CHRISTOPHER</h3>
-            <h5 class="fat-h5" th:text> Christopher de Berg</h5>
-            <h5 class="fat-h5" th:text> cris.b@yahoo.com</h5>
-            <p class="light-p"> Im Christopher, Im a dutch-based musicproducer with 
-                love for house music I make deep-house, future-house, tech-house, and bass  house.
-                I study computer science at the University of Amsterdam.</p>
-        </section>
+<body onload="myFunction()">
+    <header class="section-center">
+        <!-- logout -->
+        <div class="upper-corner">
+            <p th:text style="display: inline;">Joris Dobbelaar &ensp;</p>
+            <a href="/templates/bo/login.html"><u>Logout</u></a>
+        </div>
+        <!-- headerLogo -->
+        <div class="">
+            <img src="/static/images/hexagonlogo.png" height="20" alt="HEXAGON">
+        </div>
+    </header>
 
-        <section class="section_2">
-            <header>
-                <!-- HeaderLogo -->
-                <div class="text-logo">
-                    <img src="/Images/hexagonlogo.png" height="20" alt="HEXAGON">
+    <!-- space --><div style= "display: block; margin-bottom: 40px;"></div>
+
+    <main class="section-center-bo">
+        <!-- popup-screen -->
+        <!-- <div class="popup">
+            <h2 class="popup-h2" style="margin-bottom: 0px;">First complete the review</h2>
+            <p class="popup-p">then press return to dashboard</p> <br>
+            <button id="ok">OK</button>
+        </div> -->
+        
+        <div class="sections-container">
+            <section class="section s1">
+                <div>
+                    <img th:src src="/static/images/2. Temporary/Dj Christopher.jpg" width="250" class="img-box">
                 </div>
-                <h1 class="heading">BACKOFFICE</h1>
-            </header>
+                <h3 class="artist-name" th:text>DJ CHRISTOPHER</h3>
+                <h5 th:text> Christopher de Berg</h5>
+                <h5 th:text> cris.b@yahoo.com</h5>
+                <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
+                <p> Im Christopher, Im a dutch-based musicproducer with love for house music I make deep-house, future-house, tech-house, and bass house. I study computer science at the University of AmsterdIm Christopher, Im a dutch-based musicproducer with love for house music I make deep-house, future-house, tech-house, and bass house. I study computer science at t</p>
+            </section>
+            
+            <section class="section s2">            
+                <!-- ACTUAL -->
+                <h3>ABOUT DEMO</h3>
+                <!-- space --><div style= "display: block; margin-bottom: 100px;"></div>
+                <div style="height: 120px;">
+                    <img src="/static/images/z. For white background/i_dondiablologo.png" height="20">
+                    <h3 class="demo-name" th:text>Deep House 2 </h3>
+                    <img src="/static/images/z. For white background/i_dondiablologo.png" height="20">
+                </div>
+                <!-- space --><div style= "display: block; margin-bottom: 34px;"></div>
+                <h3 style="font-weight: 500;">PRODUCERS DESCRIPTION</h3>
+                <div>
+                    <p>Lorem Ipsim I used Nexus for bass and Sylent 1 for the melody. The track is not mastered yet but im gaining experience to do so Enjoy!</p>
+                </div>
+            
+                <footer class="bo-footer">
+                    <a href="/templates/bo/dashboard.html">
+                        <img src="/static/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
+                    </a>
+                </footer>
+            </section>
+            
+            <section class="section s3">
+                
+                <!-- review -->
+                <h3>SENT BY:</h3>
+                <p style="display: inline;" th:text>Joris Dobbelaar</p>
 
-            <!-- ACTUAL -->
-            <h3 class="fat-h3" th:text>DEMO TITLE</h3>
-            <h3 class="fat-h3">Producers Description</h3>
-            <div class="description-box">
-                <p class="light-p">Lorem Ipsim I used Nexus for bass and Sylent 1 for the melody. The track is not mastered yet but im gaining experience to do so Enjoy!</p>
-            </div>
+                <!-- space --><div style= "display: block; margin-bottom: 233px;"></div>
 
-            <!-- footer -->
-            <footer>
-                <a href="/bo/dashboard.html">
-                    <img src="/Images/dondiablologo.png" alt="Logo Don Diablo" width="90">
-                </a>
-            </footer>
-        </section>
+                <a href="/templates/bo/handled-mode.html" style="color: black; font-weight: 300;"><u>Next Demo</u><span>&#129054</span></a>
+                
+                <!-- space --><div style= "display: block; margin-bottom: 250px;"></div>
 
-        <section class="section_3">
-            <!-- logout -->
-            <div class="top-right-container">
-                <p th:text style="display: inline;">Joris Dobbelaar</p>
-                <a href="/bo/login.html"><u>Logout</u></a>
-            </div>
-
-            <!-- sent by -->
-            <h3 class="fat-h3">SENT BY:</h3>
-            <p th:text>Joris Dobbelaar</p>
-
-            <a href="/bo/sent-mode.html" class="next-demo"><u>Next demo</u><span>&#129054</span></a>
-            <a style="display: block;" href="/bo/dashboard.html" class="next-demo"><u>Return to dashboard</u><span>&#8635</span></a>
-        </section >
+                <a style="display: block;" href="/templates/bo/review-mode.html"><u>Return to dashboard</u><span>&#8635</span></a>
+            </section>            
+        </div>
+        <div class="audio-container" id="scroll"></div>
+            <audio class="audio" src="/static/audio/Deep House 2.mp3" preload="auto" controls></audio>
+        </div>
     </main>
+
+
+    <script>
+        function myFunction() {
+            var elmnt = document.getElementById("scroll");
+            elmnt.scrollIntoView();
+        }
+    </script>
+
+    <!-- view custum audioplayer -->
+    <script>
+        $( function() { $( 'audio' ).audioPlayer(); } );
+    </script>
+    
 </body>
 </html>

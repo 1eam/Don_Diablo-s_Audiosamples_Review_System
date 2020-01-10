@@ -57,7 +57,7 @@ h2{
 /* bo review modes */
 h3{
     margin: 0;
-    font-weight: 500;
+    font-weight: 300;
     color: black;
 }
 
@@ -73,11 +73,13 @@ h5{
 }
 
 .artist-name{
+    font-weight: 500;
     margin-top: 20px;
 }
 
 .demo-name{
     display: inline-block;
+    font-weight: 500;
     font-size: 32px;
     text-transform: uppercase;
 }
@@ -104,6 +106,7 @@ h5{
     border-style: solid;
     border-width: 3px;
     border-color: white;
+    background-color: #C9C9C9;
 
     width: 150px;
     height: 60px;
@@ -114,8 +117,6 @@ h5{
     color: #707070;
 
     text-align: center;
-
-    background-color: #C9C9C9;
     
     cursor:pointer;
 
@@ -148,6 +149,26 @@ h5{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.judge-boxes{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}
+.judge-box{
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+    background-color: #D4D4D4;
+
+    padding: 10px 50px;
+    margin: 0px 7px;
+    transition: all 0.2s ease 0s;
+}
+.judge-box:hover{
+    background-color: white;
+    transition: all 0.3s ease 0s;
 }
 
 /* forms */
@@ -187,9 +208,6 @@ h5{
 }
 
 
-
-
-
 /* specific elements */
 /* div-boxes */
 .blocks-container{
@@ -201,7 +219,6 @@ h5{
     align-content: flex-start;
     flex-wrap: wrap;
 
-   
     letter-spacing: 2px;
 }
 .block1{
@@ -224,7 +241,6 @@ h5{
     padding: 10px 0px;
     margin: 0px 10px;
     
-
     transition: all 0.3s ease 0s;
 }
 .block1:hover, .block2-3:hover{
@@ -245,17 +261,22 @@ h5{
 .sections-container{
     display: flex;
     justify-content: center;
-    height: 100%;
+    height: 90vh;
 }
 .section{
-    border: solid;
     width: 100%;
-    padding: 100px 50px;
+    padding: 50px 80px;
     position: relative;
 
 }
 .s1{
-    background-color: #D4D4D4;
+    background-color: rgba(255, 255, 255, 0.541);
+    box-shadow: 1px -3px 10px;
+    
+}
+.s3{
+    background-color: rgba(255, 255, 255, 0.541);
+    box-shadow: -1px -3px 10px;
 }
 
 .img-box{
@@ -264,35 +285,14 @@ h5{
     box-shadow: 1px 1px 10px;
 }
 
-.judge-boxes{
-    display: flex;
-    justify-content: center;
-}
-.judge-box{
-    border-style: solid;
-    border-color: black;
-
-    padding: 10px 50px;
-    margin: 0px 10px;
-}
-
 .bo-footer{
     position: absolute;
     left: 40%;
     bottom: 50px;
 }
-.audio-container{
-    display: flex;
-    flex-direction: column;
-}
-.audio{
-
-
-}
     
 
 /* navbar */
-/* Responsive Navigation */
 .homepage-navbar{
     width: 100%;    /* keeps the main box stratched accros 100% of the screen & therefore centered */
 }
