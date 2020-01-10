@@ -14,7 +14,9 @@ body{
 .section-center{
     display: block;
     margin: 0px auto;
-    width: 275px;
+    width: 100%;
+
+    position: relative;
 }
 
 /* texts - standard properties */
@@ -104,7 +106,13 @@ a{
 
 /* forms */
 .login-form{
+
     text-align: center;
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+    margin: 0px 20px;
 }
 
 .login-form > form > p{
@@ -140,8 +148,14 @@ a{
 .desktop-form{
     display: flex;
     margin: 0px auto;
+    width: 70%;
 }
+
 @media (max-width:768px){
+    .login-form{
+        margin: 0px 0px;
+    }
+
     .desktop-form{
         display: block;
     }
@@ -220,7 +234,9 @@ a{
 }
 
 .responsive-register-form-container{
-    display: block;
+    display: flex;
+    width: 100%;
+    margin: 0px;
 }
 @media (max-width:768px){
     .register-link-visibility{
