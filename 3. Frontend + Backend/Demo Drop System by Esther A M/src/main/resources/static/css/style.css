@@ -3,6 +3,7 @@ body{
     text-align: center;
 
     margin-top: 5px;
+    margin: 0;
 
     font-family: 'Roboto', sans-serif;
     font-weight: 300;
@@ -26,14 +27,6 @@ a{
     color: white;
 }
 
-/* mainly for demo-list */
-/*li{
-    list-style-type: none;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-} */
-
 .regular-text{
     font-weight: 400;
 }
@@ -49,6 +42,13 @@ a{
 
 .artist-name{
     font-weight: 300;
+}
+
+.upper-corner{
+    position: absolute;
+    top: 25px;
+    right: 10%;
+
 }
 
 /* buttons */
@@ -79,15 +79,26 @@ a{
     transition: all 0.2s ease 0s;
 }
 
+.button-a{
+    width: 30%;
+}
+
 .settings-button{
     text-align: right;
+    margin-right: 15%;
+}
+
+.demo-list{
+    display: flex;
+    width: 100%;
+    justify-content: center;
 }
 
 .demo-component{
     
     box-sizing: border-box;
     margin-bottom: 20px;
-    padding: 15px 20px;
+    padding: 0px 15%;
 
     display: flex;
     justify-content: center;
@@ -151,6 +162,14 @@ a{
     width: 70%;
 }
 
+.img-box{
+
+}
+.img-box > img{
+    border: solid;
+    width: 15%;
+}
+
 @media (max-width:768px){
     .login-form{
         margin: 0px 0px;
@@ -158,6 +177,10 @@ a{
 
     .desktop-form{
         display: block;
+    }
+
+    .img-box > img{
+        width: 130px;
     }
 }
 
@@ -238,6 +261,7 @@ a{
     width: 100%;
     margin: 0px;
 }
+
 @media (max-width:768px){
     .register-link-visibility{
         display: block;
@@ -246,8 +270,18 @@ a{
     .responsive-register-form-container{
         display: none;
     }
+
+    .button-a{
+        width: 275px;
+    }
+
+    .upper-corner{
+        display: block;
+        margin-top: 40px;
+        position: unset;
+        top: unset;
+        right: unset;
+    }
 }
 
-
-/* special stuff */
 

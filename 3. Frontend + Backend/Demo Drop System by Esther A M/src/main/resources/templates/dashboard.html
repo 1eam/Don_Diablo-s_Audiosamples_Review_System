@@ -16,20 +16,19 @@
 
         <!-- top section - sticky header -->
         <main class="top-section">
-
              <!-- settings button -->
-        <div class="settings-button">
-            <a href="/settings.html"><img src="/static/images/settingsbutton.svg" width="20"></a>
-        </div>
+            <div class="settings-button">
+                <a href="/settings.html"><img src="/static/images/settingsbutton.svg" width="20"></a>
+            </div>
 
             <!-- profile section -->
             <div class="img-box">
-                <img src="/static/images/2. Temporary/Dj Christopher.jpg" width="130">
+                <img src="/static/images/2. Temporary/Dj Christopher.jpg" >
             </div>
             <h1 class="artist-name">DJ CHRISTOPHER</h1>
 
             <!-- Drop Demo button -->
-            <a href="/templates/dropdemo.html"><button class="button" style="width: 275px;">DROP DEMO</button></a>
+            <a href="/templates/dropdemo.html"><button class="button button-a">DROP DEMO</button></a>
         </main>
     </div>
 
@@ -37,14 +36,14 @@
     <div style= "display: inline-block; margin-bottom: 50px;"></div>
 
     <!-- horizontal separator -->
-    <div style="border-top: 1px solid white; width: 100%;"></div> <!-- (border top, position relative (to drop demo) ) -->
+    <div style="border-top: 1px solid white; width: 100;"></div> <!-- (border top, position relative (to drop demo) ) -->
     
     <!-- space -->
     <div style= "display: inline-block; margin-bottom: 50px;"></div>
 
     <!-- bottom section -->
     <div class="section-center">
-        <div th:each="demo : ${demos}">
+        <div class="demo-list" th:each="demo : ${demos}">
             <div class="demo-component">
                 <!-- thymeleaf if-statement (reviewed = true), show afbeelding (css justify in div) -->
                 <img src="/static/images/z. For white background/i_dondiablologo.png" height="15">
@@ -61,11 +60,11 @@
         <img src="/static/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
         
         <!-- logout -->
-        <form method="POST" th:action="@{/logout}" sec:authorize="isAuthenticated()">
-            <div class="underlined-text">
-                <a href="/login.html"><u>Logout</u></a>
-            </div>
+        <form class="upper-corner" method="POST" th:action="@{/logout}" sec:authorize="isAuthenticated()">
+            <a href="/login.html"><u>Logout</u></a>
         </form>
     </footer>
+
+    <!-- space --><div style= "display: inline-block; margin-bottom: 50px;"></div>
 </body>
 </html>

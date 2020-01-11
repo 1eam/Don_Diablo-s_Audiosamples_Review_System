@@ -9,55 +9,85 @@
    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <div class="class= textLogo">
+    <header class="section-center" style="">
+        <div class="" style="width: 100%;">
             <img src="/static/images/hexagonlogo.png" height="20" alt="HEXAGON">
         </div>
-        <a href="/dashboard.html"><img src="/static/images/back.png"></a>
-        <h1>DEMO DROP</h1>
+        <div class="settings-button">
+            <a href="/dashboard.html" ><img src="/static/images/back.png"></a>
+        </div>
+        <h1 class="heading">DEMO DROP</h1>
     </header>
 
-    <main class="section-center">
+    <!-- space -->
+    <div style= "display: inline-block; margin-bottom: 50px;"></div>
 
-        <!-- popup max demos reached -->
-        <div class="popup"> <!-- th:show if demos in review = 10 -->
+    <main class="section-center " style="">
+        <!-- popup max demos reached TH:show if demos in review = 10 -->
+        <!-- <div class="popup"> 
             <h2 class="popup-h2">Demo drop is currently unavailable...</h2>
             <p class="popup-p">You have reached the maximum amount of demos in review. Please wait until our team has handled one of your demo's.</p>
             <div class="underlined-text">
                 <a href="/dashboard.html"><u>Go back</u></a>
             </div>
-        </div>
-
+        </div> -->
+        
         <!-- popup succes message -->
-        <div class="popup">
+        <!-- <div class="popup">
             <h2 class="popup-h2">Your demo has been sent!</h2>
             <p class="popup-p">We'll notify you as soon as we've reviewed your demo</p>
             <div class="underlined-text">
                 <a href="/dropdemo.html"><u>Upload another demo</u></a>
             </div>
-        </div>
-
+        </div> -->
+        
         <!-- select file button -->
-        <div>
-            <input id="files" type="file" style="display: none;">
-            <label for="files" class="button" style="display: block;">Select Files</label>
+        <div class="">
+            <input type="file" id="file" hidden="hidden"/>
+            <button type="button" id="button" class="button" style="min-width: 40%; width: 200px; height: 40px;">SELECT FILE</button>
+            <span style="display: block; margin-top: 20px;" id="filename">No file chosen</span>
         </div>
+        
+        <!-- space -->
+        <div style= "display: inline-block; margin-bottom: 40px;"></div>
 
         <!-- demo drom form -->
-        <form action="#">
-            <p class="form-text">Title Demo</p> <!-- max characters: 45 -->
-            <input type="text" placeholder="Please dont include your artistname, We have it ;) [max 45 char.]" name="titleDemo">
-            
-            <p class="form-text">Description</p> <!-- hard coded restriction: max 300 char. (dont let frontend know) -->
-            <textarea rows="10" cols="22" name="Description" placeholder="Type here what you want to let us know about this track (max 350 char.)" th:text></textarea>
-
-            <input class="button" type="submit" value="SUBMIT" style="display: block;">
-        </form>
-
+        <div class="login-form" style="margin: 0px" >
+            <form action="#">
+                <p class="form-text">Title Demo</p> <!-- max characters: 45 -->
+                <input type="text" placeholder="Please dont include your artistname, We have it ;) [max 45 char.]" name="titleDemo">
+                
+                <p class="form-text">Description</p> <!-- hard coded restriction: max 300 char. (dont let frontend know) -->
+                <textarea rows="10" cols="22" name="Description" placeholder="Type here what you want to let us know about this track (max 350 char.)" th:text></textarea>
+                
+                <input class="button section-center" style="margin-top: 40px;" type="submit" value="SUBMIT">
+            </form>
+        </div>
     </main>
 
-    <footer>
+    <!-- space -->
+    <div style= "display: inline-block; margin-bottom: 50px;"></div>
+    
+    <footer class="section-center">
         <img src="/static/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
     </footer>
+
+    <script type="text/javascript">
+        const file = document.getElementById("file");
+        const button = document.getElementById("button");
+        const filename = document.getElementById("filename");
+
+        button.addEventListener("click", function(){
+            file.click();
+        });
+
+        file.addEventListener("change", function(){
+            if (file.value){
+                filename.innerHTML = file.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1]; //"to remove fake-path String"
+            } else {
+                filename.innerHTML = "No file chosen";
+            }
+        });
+    </script>
 </body>
 </html>
