@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Set System Texts</title>
-   <link rel="stylesheet" href="/static/css/bo-style.css">
+   <link rel="stylesheet" href="/css/bo-style.css">
    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -13,19 +13,19 @@
         <!-- logout -->
         <div class="upper-corner">
             <p th:text style="display: inline;">ADMIN</p>
-            <a href="/templates/bo/login.html"><u>Logout</u></a>
+            <a href=bo/login.html"><u>Logout</u></a>
         </div>
         <!-- HeaderLogo -->
         <div class="text-logo">
-            <img src="/static/images/hexagonlogo.png" height="20" alt="HEXAGON">
+            <img src="/images/hexagonlogo.png" height="20" alt="HEXAGON">
         </div>
         <div class="section-center">
             <!-- navbar elements -->
             <nav class="admin-navbar">
                 <ul id="ul">
-                    <li><a href="/templates/bo/a_set-texts.html"style="color: #707070;">SET SYSTEM TEXTS</a></li>
-                    <li><a href="/templates/bo/tables/a_user-management.html">USER MANAGEMENT</a></li>
-                    <li><a href="/templates/bo/tables/a_bo-management.html">BACKOFFICE MANAGEMENT</a></li>
+                    <li><a href=bo/a_set-texts.html"style="color: #707070;">SET SYSTEM TEXTS</a></li>
+                    <li><a href=bo/tables/a_user-management.html">USER MANAGEMENT</a></li>
+                    <li><a href=bo/tables/a_bo-management.html">BACKOFFICE MANAGEMENT</a></li>
                 </ul>
             </nav>
             <!-- heading -->
@@ -70,7 +70,7 @@
     <!-- space --><div style= "display: block; margin-bottom: 80px;"></div>
 
     <footer>
-            <a href="/templates/bo/a_dashboard.html"><img src="/static/images/dondiablologo.png" alt="Logo Don Diablo" width="72"></a>
+            <a href=bo/a_dashboard.html"><img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="72"></a>
     </footer>
 </body>
 </html>

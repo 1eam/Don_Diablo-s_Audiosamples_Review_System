@@ -1,29 +1,29 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Dashboard</title>
-   <link rel="stylesheet" href="/static/css/style.css">
-   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
 </head>
 <body>
     <div class="sticky-header section-center">
         <header>
-            <img src="/static/images/hexagonlogo.png" height="20" alt="HEXAGON">
+            <img src="/images/hexagonlogo.png" height="20" alt="HEXAGON">
         </header>
 
         <!-- top section - sticky header -->
         <main class="top-section">
              <!-- settings button -->
             <div class="settings-button">
-                <a href="/settings.html"><img src="/static/images/settingsbutton.svg" width="20"></a>
+                <a href="/settings.html"><img src="/images/settingsbutton.svg" width="20"></a>
             </div>
 
             <!-- profile section -->
             <div class="img-box">
-                <img src="/static/images/2. Temporary/Dj Christopher.jpg" >
+                <img src="/images/2. Temporary/Dj Christopher.jpg" >
             </div>
             <h1 class="artist-name">DJ CHRISTOPHER</h1>
 
@@ -35,19 +35,19 @@
     <!-- space -->
     <div style= "display: inline-block; margin-bottom: 50px;"></div>
 
-    <!-- horizontal separator -->
-    <div style="border-top: 1px solid white; width: 100;"></div>
+    <!-- FIX horizontal separator -->
+    <div style="border-top: 1px solid white; width: 100%;"></div>
     
     <!-- space -->
     <div style= "display: inline-block; margin-bottom: 50px;"></div>
 
     <!-- bottom section -->
     <div class="section-center">
-        <div class="demo-list" th:each="demo : ${demos}">
+        <div class="demo-list" th:each="demo: ${demos}">
             <div class="demo-component">
                 <!-- thymeleaf if-statement (reviewed = true), show afbeelding (css justify in div) -->
-                <img src="/static/images/z. For white background/i_dondiablologo.png" height="15">
-                <a style="color: black;" href="#" th:text> Title Demo </a>
+                <img src="/images/z. For white background/i_dondiablologo.png" height="15">
+                <a style="color: black;" th:href="@{'/demo/' + ${demo.id}}" th:text="${demo.title}"> Title Demo</a>
             </div>
         </div>
     </div>
@@ -57,7 +57,7 @@
 
 
     <footer>
-        <img src="/static/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
+        <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
         
         <!-- logout -->
         <form class="upper-corner" method="POST" th:action="@{/logout}" sec:authorize="isAuthenticated()">

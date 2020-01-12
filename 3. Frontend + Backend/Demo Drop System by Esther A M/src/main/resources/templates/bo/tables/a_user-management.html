@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -18,7 +18,7 @@
     <!-- Copy paste css from site (table style) -->
     <link rel="stylesheet" href="css/tablestyle.css">
     <!-- Your custom styles (optional) -->
-    <link rel="stylesheet" href="/static/css/bo-style.css">
+    <link rel="stylesheet" href="/css/bo-style.css">
 </head>
 <body>
 
@@ -26,20 +26,20 @@
         <!-- logout -->
         <div class="upper-corner">
           <p th:text style="display: inline;">ADMIN</p>
-          <a href="/templates/bo/login.html"><u>Logout</u></a>
+          <a href=bo/login.html"><u>Logout</u></a>
       </div>
       <!-- HeaderLogo -->
       <div class="text-logo">
-          <img src="/static/images/hexagonlogo.png" height="20" alt="HEXAGON">
+          <img src="/images/hexagonlogo.png" height="20" alt="HEXAGON">
       </div>
       <!-- space --><div style= "display: block; margin-bottom: 15px;"></div>
       <div class="section-center">
           <!-- navbar elements -->
           <nav class="admin-navbar">
               <ul id="ul">
-                  <li><a href="/templates/bo/a_set-texts.html">SET SYSTEM TEXTS</a></li>
-                  <li><a href="/templates/bo/tables/a_user-management.html" style="color: #707070;">USER MANAGEMENT</a></li>
-                  <li><a href="/templates/bo/tables/a_bo-management.html">BACKOFFICE MANAGEMENT</a></li>
+                  <li><a href=bo/a_set-texts.html">SET SYSTEM TEXTS</a></li>
+                  <li><a href=bo/tables/a_user-management.html" style="color: #707070;">USER MANAGEMENT</a></li>
+                  <li><a href=bo/tables/a_bo-management.html">BACKOFFICE MANAGEMENT</a></li>
               </ul>
           </nav>
           <!-- heading -->
@@ -76,7 +76,7 @@
   </main>
   <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
   <footer>
-      <a href="/templates/bo/a_dashboard.html"><img src="/static/images/dondiablologo.png" alt="Logo Don Diablo" width="72"></a>
+      <a href=bo/a_dashboard.html"><img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="72"></a>
       <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
   </footer>
   <!-- End your project here-->

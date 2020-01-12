@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>View demo</title>
-   <link rel="stylesheet" href="/static/css/restyle.css">
+   <link rel="stylesheet" href="/css/restyle.css">
    <!-- font -->
    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
    <!-- audioplayer -->
-   <link rel="stylesheet" href="/static/css/audioplayer user-side.css">
+   <link rel="stylesheet" href="/css/audioplayer user-side.css">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-   <script src="/static/js/audioplayer.js"></script>
+   <script src="/js/audioplayer.js"></script>
 </head>
 <body>
     <main class="section-center">
@@ -27,16 +27,16 @@
         </div> -->
         
         <!-- top section -->
-        <h2>TITLE DEMO</h2>
-        <p>lorem ipsum I used Nexus for bass and Sylent 1 for the melody</p>
+        <h2 th:text="${demo.title}">TITLE DEMO</h2>
+        <p th:text="${demo.description}">lorem ipsum I used Nexus for bass and Sylent 1 for the melody</p>
         
         <!-- space -->
         <div style= "display: inline-block; margin-bottom: 30px;"></div>
         
         <!-- demo -->
         <div class="container">
-            <audio controls >
-                <source src="/static/audio/Deep House 2.mp3" type="audio/mpeg">
+            <audio preload="auto" controls >
+                <source th:src="${demo.audioFile}" type="audio/mpeg">
             </audio>
         </div>
         
@@ -51,11 +51,11 @@
         
         <!-- bottom section -->
         <!-- icon -->
-        <img src="/static/images/dondiablologo.png" alt="Logo Don Diablo" width="15">
+        <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="15">
         
         
         <h2>TEAM HEXAGON</h2>
-        <p>Your demo currently waiting to be reviewed. We'll notify you as soon as we've reviewed your demo. Greetings Team Hexagon</p>
+        <p th:text="${demo.state}">Your demo currently waiting to be reviewed. We'll notify you as soon as we've reviewed your demo. Greetings Team Hexagon</p>
         
 
     </main>
@@ -65,7 +65,7 @@
 
     <!-- relative to p -->
     <footer class="section-center">
-        <img src="/static/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
+        <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
 
         <!-- space -->
         <div style= "display: block; margin-bottom: 50px;"></div>

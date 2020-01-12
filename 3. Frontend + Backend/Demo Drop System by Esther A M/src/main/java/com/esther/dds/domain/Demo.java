@@ -1,16 +1,8 @@
 package com.esther.dds.domain;
 
 import lombok.*;
-import org.ocpsoft.prettytime.PrettyTime;
 
 import javax.persistence.*;
-import java.net.URI;
-import java.net.URISyntaxException;
-
-
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
 
 
 @Entity
@@ -38,12 +30,7 @@ public class Demo extends Auditable{
 
 
 
-//    //PrettyTime Config
-//    public String getDomainName() throws URISyntaxException {
-//        URI uri = new URI(this.audioFile);
-//        String domain = uri.getHost();
-//        return domain.startsWith("www.") ? domain.substring(4) : domain;
-//    } //delte method?
+//    //PrettyTime Config:v3.0
 //
 //    public String getPrettyTime() {
 //        PrettyTime pt = new PrettyTime();
