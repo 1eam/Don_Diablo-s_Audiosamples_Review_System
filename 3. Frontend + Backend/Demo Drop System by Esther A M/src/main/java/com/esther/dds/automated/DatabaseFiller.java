@@ -17,8 +17,7 @@ public class DatabaseFiller implements CommandLineRunner {
 
 //          Demo
             demoRepository.save(new Demo("Deep Houde 4: Sana", "I didnt wanna put a description. Sorry", "/serverside_audiofiles/deep house 4.mp3"));
-            demoRepository.save(new Demo("Virus", "You Gotta love it, it was a hit song", "/serverside_audiofiles/virus.mp3"));
-            demoRepository.save(new Demo("Deep House 2", "Lorem ipsum I used Nexus for base, and Sylenth1 for the melody...", "/serverside_audiofiles/Deep House 2.mp3"));
+            demoRepository.save(new Demo("Virus", "You Gotta love it, it was a hit song", "/serverside_audiofiles/virus.mp3", stateNameRepository.findById()));
 
 
 //          State

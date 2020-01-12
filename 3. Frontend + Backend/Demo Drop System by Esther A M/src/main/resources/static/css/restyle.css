@@ -1,7 +1,6 @@
 
 body{
     box-sizing: border-box;
-    text-align: ;
 
     margin: 0px;
     padding: 0px;
@@ -156,6 +155,18 @@ h2{
 }
 
 /* popups */
+.popup{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    background-color:rgba(255, 255, 255, 0.177);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #popup1, #popup2, #popup3{
     width: 100%;
     height: 100%;

@@ -169,6 +169,18 @@ a{
 
 
 /* popups */
+.popup{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    background-color:rgba(255, 255, 255, 0.177);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 #popup{
     width: 100%;
     height: 100%;

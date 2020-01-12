@@ -23,24 +23,7 @@
     <div style= "display: inline-block; margin-bottom: 50px;"></div>
 
     <main class="section-center " style="">
-        <!-- popup max demos reached TH:show if demos in review = 10 -->
-        <!-- <div class="popup"> 
-            <h2 class="popup-h2">Demo drop is currently unavailable...</h2>
-            <p class="popup-p">You have reached the maximum amount of demos in review. Please wait until our team has handled one of your demo's.</p>
-            <div class="underlined-text">
-                <a href="/dashboard.html"><u>Go back</u></a>
-            </div>
-        </div> -->
-        
-        <!-- popup succes message -->
-        <!-- <div class="popup">
-            <h2 class="popup-h2">Your demo has been sent!</h2>
-            <p class="popup-p">We'll notify you as soon as we've reviewed your demo</p>
-            <div class="underlined-text">
-                <a href="/dropdemo.html"><u>Upload another demo</u></a>
-            </div>
-        </div> -->
-        
+
         <!-- select file button -->
         <div class="">
             <input type="file" id="file" hidden="hidden"/>
@@ -71,6 +54,22 @@
     <footer class="section-center">
         <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
     </footer>
+
+    <!-- flashatt. th: true Popup attribute -->
+<!--    -->
+<!--    <div class="popup" th:if="${maxReached}">-->
+<!--        <div class="section-center popup-content">-->
+<!--            <h2>Demo drop is currently unavailable...</h2>-->
+<!--            <p>You have reached the maximum amount of demos in review. Please wait until our team has handled one of your demo's.</p>-->
+<!--            &lt;!&ndash; space &ndash;&gt;<div style= "display: block; margin-bottom: 50px;"></div>-->
+<!--            <div>-->
+<!--                <a href="/dashboard"><button class="button">Go back</button></a>-->
+<!--            </div>-->
+<!--            &lt;!&ndash; space &ndash;&gt;<div style= "display: block; margin-bottom: 20px;"></div>-->
+<!--            <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="72">-->
+<!--            &lt;!&ndash; space &ndash;&gt;<div style= "display: block; margin-bottom: 20px;"></div>-->
+<!--        </div>-->
+<!--    </div>-->
 
     <script type="text/javascript">
         const file = document.getElementById("file");

@@ -25,7 +25,7 @@ public class Demo extends Auditable{
 
     //State LookupTable
     @OneToOne(fetch=FetchType.LAZY)
-    @JoinColumn(name="State")
+    @JoinColumn(name="state", referencedColumnName = "stateName")
     private State state;
 
 
