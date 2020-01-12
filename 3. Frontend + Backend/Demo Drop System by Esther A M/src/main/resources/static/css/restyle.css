@@ -1,0 +1,215 @@
+
+body{
+    box-sizing: border-box;
+    text-align: ;
+
+    margin: 0px;
+    padding: 0px;
+    margin-top: 80px;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    
+    background-color: black;
+    color: white;
+
+}
+
+.section-center{
+    text-align: center;
+    padding: 0px 20%;
+    margin: 0px auto;
+    max-width: 80%;
+    display: flex row;
+    width: 600px;
+    justify-content: center;
+}
+@media (max-width:768px){
+    .section-center{
+        width: auto;
+    }
+    
+}
+
+/* texts - standard properties */
+a{
+    text-decoration: none;
+    display: inline;
+    color: white;
+}
+
+h1{
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: 5px;
+    color: white;
+}
+
+h2{
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: white;
+}
+
+/* buttons */
+.button{
+    border-style: solid;
+    border-width: 3px;
+    border-color: white;
+
+    width: 150px;
+    height: 60px;
+
+    font-family: 'Roboto', sans-serif;  /* font properties have to be present for other tags that dont pick it up */
+    font-weight: 300;
+    font-size: 16px;
+    color: white;
+
+    text-align: center;
+
+    background-color: black;
+    
+    cursor:pointer;
+
+    transition: all 0.3s ease 0s;
+}
+.button:hover{
+    color: black; 
+    background-color: white;
+    transition: all 0.2s ease 0s;
+}
+
+.settings-button{
+    position: absolute;
+    right: 15%;
+}
+
+/* forms */
+.login-form{
+    min-width: 275px;
+    max-width: 40%;
+    text-align: center;
+}
+
+.login-form > form > p{
+    text-align: left;
+}
+
+.login-form > form > input[type=checkbox] {
+    display: inline;
+}
+
+.login-form > form > input[type=password], [type=text]{
+    width: 100%;
+    height: 30px;
+    padding: 8px 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.login-form > form > [type="submit"] textarea{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+.login-form > form > textarea{
+    
+    resize: none;
+    width: 100%;
+    height: 175px;
+    padding: 8px 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* profilephotos */
+.img-box{
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    width: 130px;
+    cursor: pointer;
+}
+
+.img-box-s{
+    border-style: solid;
+    border-width: 3px;
+    border-color: white;
+    width: 180px;
+
+    cursor: pointer;
+    position: relative;
+}
+.edit-icon{
+    width: 20px;
+    position: absolute;
+    top: 305px;
+    right: 680px;
+    opacity: 0.4;
+}
+
+
+.separator{
+    display: block;
+    border-top: 1px solid #707070;
+}
+
+/* popups */
+#popup1, #popup2, #popup3{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    background-color:rgba(255, 255, 255, 0.177);
+    
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+.popup-content{
+    width: 20%;
+    height: auto;
+    background-color: #505050;
+    box-shadow: 3px 3px 25px black;
+    position: relative;
+}
+
+.close-button, .close-button-2, .close-button-3{
+    position: absolute;
+    top: 15px;
+    right: 70px;
+    font-size: 43px;
+    transform: rotate(45deg);
+    cursor: pointer;
+}
+
+/* specific elements */
+
+/* danger button */
+.button-d{
+    border-style: solid;
+    border-width: 3px;
+    border-color: white;
+
+    width: 150px;
+    height: 60px;
+
+    font-family: 'Roboto', sans-serif;  /* font properties have to be present for other tags that dont pick it up */
+    font-weight: 300;
+    font-size: 16px;
+    color: white;
+
+    text-align: center;
+
+    background-color: black;
+    
+    cursor:pointer;
+
+    transition: all 0.3s ease 0s;
+}
+.button-d:hover{
+    color: white; 
+    background-color: rgb(255, 82, 82);
+    transition: all 0.2s ease 0s;
+}

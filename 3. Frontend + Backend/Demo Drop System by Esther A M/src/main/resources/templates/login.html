@@ -125,6 +125,7 @@
                     <textarea rows="10" cols="22" placeholder="I like coockies" name="bio"></textarea>
                     <!-- terms and conditions -->
                     <p><input type="checkbox" required>Terms and Conditions</p>
+                    <!-- space --><div style= "display: inline-block; margin-bottom: 60px;"></div>
                     <!-- register button -->
                     <input type="submit" value="Register" id="registerPopup" class="button">
                 </form>
@@ -138,6 +139,21 @@
     <footer class="section-center" th:fragment="footer">
         <img src="/static/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
     </footer>
+
+    <!-- flashatt. th: true Flash attribute -->
+    <div id="popup">
+        <div class="section-center popup-content">
+        <h2>Thanks for signing up!</h2>
+        <p>Please check your email to complete the activation</p>
+        <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
+        <div>
+            <a href="/templates/login.html"><button class="button">Login</button></a>
+        </div>
+        <!-- space --><div style= "display: block; margin-bottom: 20px;"></div>
+        <img src="/static/images/dondiablologo.png" alt="Logo Don Diablo" width="72">
+            <!-- space --><div style= "display: block; margin-bottom: 20px;"></div>
+        </div>
+    </div>
     
 
     <!-- This script opens and closes the navbar when the hamburgermenu is clicked 
