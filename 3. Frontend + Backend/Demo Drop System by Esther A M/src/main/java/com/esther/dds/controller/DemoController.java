@@ -1,6 +1,8 @@
 package com.esther.dds.controller;
 
+import com.esther.dds.DdsApplication;
 import com.esther.dds.domain.Demo;
+import com.esther.dds.domain.State;
 import com.esther.dds.repositories.DemoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +19,8 @@ import java.util.Optional;
 public class DemoController {
 
     private static final Logger logger = LoggerFactory.getLogger(DemoController.class);
+
+
 
     private DemoRepository demoRepository;
 
@@ -56,11 +60,14 @@ public class DemoController {
     public String createDemo(@Valid Demo demo, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
         if( bindingResult.hasErrors() ) {
             logger.info("Validation errors were found while submitting a new demo.");
-            model.addAttribute("demo",demo); //keep data when page refreshes
+            model.addAttribute("demo",demo); //keep data when error occurs & page refreshes
             return "dropdemo";
         } else {
-            // save our link
+            // save uploaded demo
             demoRepository.save(demo);
+//            demo.setState(state1);
+            demoRepository.save(demo);
+
             logger.info("New Demo was saved successfully");
             redirectAttributes
                     .addAttribute("id",demo.getId())

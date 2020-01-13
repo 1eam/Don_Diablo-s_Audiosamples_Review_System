@@ -3,6 +3,7 @@ package com.esther.dds.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,11 +18,17 @@ public class Demo extends Auditable{
     @Id
     @GeneratedValue
     private Long id;
+
     @NonNull
+    @NotEmpty(message = "Please enter a title")
     private String title;
+
     @NonNull
+    @NotEmpty(message = "Description is required")
     private String description;
+
     @NonNull
+//    @NotEmpty(message = "Select a file")
     private String audioFile;
 
 

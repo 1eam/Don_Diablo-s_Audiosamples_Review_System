@@ -22,26 +22,35 @@
     <!-- space -->
     <div style= "display: inline-block; margin-bottom: 50px;"></div>
 
-    <main class="section-center " style="">
+    <main class="section-center" style="">
 
-        <!-- select file button -->
-        <div class="">
-            <input type="file" id="file" hidden="hidden"/>
-            <button type="button" id="button" class="button" style="min-width: 40%; width: 200px; height: 40px;">SELECT FILE</button>
-            <span style="display: block; margin-top: 20px;" id="filename">No file chosen</span>
-        </div>
-        
-        <!-- space -->
-        <div style= "display: inline-block; margin-bottom: 40px;"></div>
 
-        <!-- demo drom form -->
-        <div class="login-form" style="margin: 0px" >
-            <form action="#">
+        <div class="login-form" style="margin: 0px;" >
+
+            <!-- demo drop form -->
+            <form method="POST" th:action="@{/dropdemo}" th:object="${demo}">
+                <!-- select file button -->
+                <div class="">
+                    <input type="file" id="file" hidden="hidden" required/>
+                    <button type="button" id="button" class="button" style="min-width: 40%; width: 200px; height: 40px;">SELECT FILE</button>
+                    <span style="display: block; margin-top: 20px;" id="filename">No file chosen</span>
+                </div>
+
+                <!-- space --><div style= "display: inline-block; margin-bottom: 40px;"></div>
+
+
                 <p class="form-text">Title Demo</p> <!-- max characters: 45 -->
-                <input type="text" placeholder="Please dont include your artistname, We have it ;) [max 45 char.]" name="titleDemo">
+                <input type="text"
+                       placeholder="Please dont include your artistname, We have it ;) [max 45 char.]"
+                       name="titleDemo"
+                       required th:field="*{title}">
                 
                 <p class="form-text">Description</p> <!-- hard coded restriction: max 300 char. (dont let frontend know) -->
-                <textarea rows="10" cols="22" name="Description" placeholder="Type here what you want to let us know about this track (max 350 char.)" th:text></textarea>
+                <textarea rows="10" cols="22"
+                          name="Description"
+                          placeholder="Type here what you want to let us know about this track (max 350 char.)"
+                          required
+                          th:field="*{description}"></textarea>
                 
                 <input class="button section-center" style="margin-top: 40px;" type="submit" value="SUBMIT">
             </form>

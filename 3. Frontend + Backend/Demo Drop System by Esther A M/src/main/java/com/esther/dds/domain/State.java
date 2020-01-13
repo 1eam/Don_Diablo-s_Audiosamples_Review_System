@@ -23,5 +23,4 @@ public class State extends AuditableState{
     private String stateName;
     @NonNull
     private String message;
-
 }
