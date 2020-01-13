@@ -1,6 +1,7 @@
 package com.esther.dds.controller;
 
 import com.esther.dds.DdsApplication;
+import com.esther.dds.automated.DatabaseFiller;
 import com.esther.dds.domain.Demo;
 import com.esther.dds.domain.State;
 import com.esther.dds.repositories.DemoRepository;
@@ -20,13 +21,15 @@ public class DemoController {
 
     private static final Logger logger = LoggerFactory.getLogger(DemoController.class);
 
-
-
     private DemoRepository demoRepository;
 
-    public DemoController(DemoRepository demoRepository) {
+    private DatabaseFiller databaseFiller;
+
+    public DemoController(DemoRepository demoRepository, DatabaseFiller databaseFiller) {
         this.demoRepository = demoRepository;
+        this.databaseFiller = databaseFiller;
     }
+
 
     // List of Demos on dashboard
     @GetMapping("/dashboard")
@@ -65,7 +68,9 @@ public class DemoController {
         } else {
             // save uploaded demo
             demoRepository.save(demo);
-//            demo.setState(state1);
+            // assign this demo to pending state
+            demo.setState(databaseFiller.state1);
+            // save demo again (update)
             demoRepository.save(demo);
 
             logger.info("New Demo was saved successfully");

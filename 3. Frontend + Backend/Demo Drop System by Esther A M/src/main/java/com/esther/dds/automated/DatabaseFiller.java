@@ -24,7 +24,6 @@ public class DatabaseFiller implements CommandLineRunner {
     CommandLineRunner runner(DemoRepository demoRepository, StateNameRepository stateNameRepository) {
         return args -> {
 
-
             //save state
             stateNameRepository.save(state1);
             stateNameRepository.save(state2);

@@ -25,6 +25,7 @@ public class Demo extends Auditable{
 
     @NonNull
     @NotEmpty(message = "Description is required")
+    @Column(length = 350)
     private String description;
 
     @NonNull
