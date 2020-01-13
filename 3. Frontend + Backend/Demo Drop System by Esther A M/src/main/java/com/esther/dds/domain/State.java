@@ -1,6 +1,7 @@
 package com.esther.dds.domain;
 
 import lombok.*;
+import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import java.util.Date;

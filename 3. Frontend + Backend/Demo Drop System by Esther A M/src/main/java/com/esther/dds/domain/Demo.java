@@ -3,6 +3,8 @@ package com.esther.dds.domain;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -24,9 +26,14 @@ public class Demo extends Auditable{
 
 
     //State LookupTable
-    @ManyToOne (fetch=FetchType.LAZY)
-    @JoinColumn(name="state", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name="state", referencedColumnName = "id") //decides wich name it presents in the 2hDB
     private State state;
+
+
+//    public void addState (State state){
+//        state = new State();
+//    }
 
 
 
