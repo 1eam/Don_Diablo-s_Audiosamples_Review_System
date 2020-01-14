@@ -46,7 +46,7 @@ public class DemoController {
     public String userSideDemo (@PathVariable Long id, Model model){
         Optional<Demo> demo = demoRepository.findById(id);
         if( demo.isPresent() ) {
-            model.addAttribute("demo",demo.get());
+            model.addAttribute("demo", demo.get());
             model.addAttribute("success", model.containsAttribute("success"));
             return "viewdemo";
 
@@ -54,6 +54,13 @@ public class DemoController {
             return "redirect:/";
         }
     }
+
+//    // Delete Demo
+//    @DeleteMapping("/demo/{id}")
+//    public String deleteDemo(Demo demo, @PathVariable Long id, Model model){
+//        demoRepository.delete(demo);
+//        return "dashboard";
+//    }
 
 //     DROPDEMO.HTML
     // Load new Demo-object in form
@@ -114,17 +121,18 @@ public class DemoController {
 
     }
 
-    //     BO - DASHBOARD.HTML
+    //     BO - REVIEWLIST.HTML
     // List of Demos
     @GetMapping("/bo/review-list")
     public String boSideList(Model model){
-        model.addAttribute("demos", demoRepository.findAll());
+        model.addAttribute("demos", demoRepository.findByStateStateName("Pending"));
+
         return "bo/review-list";
     }
 
-    //     VIEWDEMO.HTML
+    //     BO - REVIEW-MODE.HTML
     // Play
-    @GetMapping("/bo/{id}")
+    @GetMapping("/review-mode/{id}")
     public String boSideDemo (@PathVariable Long id, Model model){
         Optional<Demo> demo = demoRepository.findById(id);
         if( demo.isPresent() ) {
@@ -135,31 +143,75 @@ public class DemoController {
         }
     }
 
+//-----------------------------------------//
+    @PostMapping("/submit-state")
+    public String setState(@Valid Demo demo, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
 
-    @PutMapping("/bo/{id}")
-    public String updateState(@Valid Demo demo, Demo nextDemo, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
-        if( bindingResult.hasErrors() ) {
-            logger.info("Validation errors were found while setting a state to the existing demo.");
-            model.addAttribute("demo",demo); //keep data when error occurs & page refreshes
-            return "bo/review-mode";
-        } else {
+        model.addAttribute("demo",demo);{
+        // assign this demo to pending state
+        demo.setState(databaseFiller.state2);
 
-            // assign this demo to rejected state
-            demo.setState(databaseFiller.state2);
+        // save uploaded demo (title, description.)
+        demoRepository.save(demo);
 
-            // update state
-            demoRepository.save(demo);
 
 
             //log event
-            logger.info("Demo has been succesfully assigned new state: Rejected");
-
+            logger.info("New Demo was saved successfully");
             redirectAttributes
-                    .addAttribute("id",nextDemo.getId());
-            return "redirect:/bo/{id}";
+                    .addAttribute("id",demo.getId())
+                    .addFlashAttribute("success",true);
+            return "redirect:/submit-state";
         }
-
     }
+    //-----------------------------------------//
+
+    //     BO - HANDLEDLIST.HTML
+    // List of Demos
+    @GetMapping("/bo/handled-list")
+    public String boSideList2(Model model){
+        model.addAttribute("demos", demoRepository.findByStateStateName("Rejected"));
+        return "bo/handled-list";
+    }
+
+    //     BO - HANDLED-MODE.HTML
+    // Play
+    @GetMapping("/handled-mode/{id}")
+    public String boSideDemo2 (@PathVariable Long id, Model model){
+        Optional<Demo> demo = demoRepository.findById(id);
+        if( demo.isPresent() ) {
+            model.addAttribute("demo",demo.get());
+            return "bo/handled-mode";
+        }else {
+            return "redirect:/";
+        }
+    }
+
+    //     BO - SENTLIST.HTML
+    // List of Demos
+    @GetMapping("/bo/sent-list")
+    public String boSideList3(Model model){
+        model.addAttribute("demos", demoRepository.findByStateStateName("Sent"));
+        return "bo/sent-list";
+    }
+
+    //     BO - SENT-MODE.HTML
+    // Play
+    @GetMapping("/sent-mode/{id}")
+    public String boSideDemo3 (@PathVariable Long id, Model model){
+        Optional<Demo> demo = demoRepository.findById(id);
+        if( demo.isPresent() ) {
+            model.addAttribute("demo",demo.get());
+            return "bo/sent-mode";
+        }else {
+            return "redirect:/";
+        }
+    }
+
+
+
+    //     ADMIN - REVIEW-MODE.HTML
+
 
 
 
@@ -185,7 +237,4 @@ public class DemoController {
 //    public void delete(@PathVariable Long id) {
 //        demoRepository.deleteById(id);
 //    }
-
-
-
 }

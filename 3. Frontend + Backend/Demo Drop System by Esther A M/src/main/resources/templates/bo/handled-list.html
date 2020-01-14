@@ -12,8 +12,8 @@
     <header class="section-center">
         <!-- logout -->
         <div class="upper-corner">
-            <p th:text style="display: inline;">Joris Dobbelaar &ensp;</p>
-            <a href=bo/login.html"><u>Logout</u></a>
+            <p  style="display: inline;" >Joris Dobbelaar &ensp;</p>
+            <a href="bo/login"><u>Logout</u></a>
         </div>
         <!-- headerLogo -->
         <div class="">
@@ -29,9 +29,9 @@
         <!-- navbar elements -->
         <nav class="homepage-navbar ">
             <ul id="ul">
-                <li><a href=bo/handled-list.html"style="color: #707070;">HANLED DEMOS</a></li>
-                <li><a href=bo/review-list.html">REVIEW DEMOS</a></li>
-                <li><a href=bo/sent-list.html">SENT DEMOS</a></li>
+                <li><a href="handled-list" style="color:#707070;">HANDLED DEMOS</a></li>
+                <li><a href="review-list">REVIEW DEMOS</a></li>
+                <li><a href="sent-list">SENT DEMOS</a></li>
             </ul>
         </nav>
     </div>
@@ -40,7 +40,7 @@
     <div style= "display: block; margin-bottom: 50px;"></div>
 
     <!-- todo -->
-    <h1 class="heading section-center">HANDLED: <span class="heading" th:text>(15)</span></h1>
+    <h1 class="heading section-center">HANDLED: <span class="heading" th:text="${demos.size()}">(15)</span></h1>
 
     <!-- space -->
     <div style= "display: block; margin-bottom: 100px;"></div>
@@ -50,15 +50,9 @@
         <!-- <img id="scroll" class="scroll" src="/images/anchor_scroll.png" alt="quick scroll" width="25"> -->
         
         <!-- blocks of demos -->
-        <div th:each="demo : ${demos}">
+        <div th:each="demo: ${demos}">
             <div class="list-of-demos">
-                <a href=""> <span>ARTIST NAME</span> - <span>TITLE DEMO</span> <span class="allign right">DATE/2020</span></a>
-            </div>
-            <div class="list-of-demos">
-                <a href=""> <span>ARTIST NAME</span> - <span>TITLE DEMO</span> <span class="allign right">DATE/2020</span></a>
-            </div>
-            <div class="list-of-demos">
-                <a href=""> <span>ARTIST NAME</span> - <span>TITLE DEMO</span> <span class="allign right">DATE/2020</span></a>
+                <a th:href="@{'/handled-mode/' + ${demo.id}}" > <span>ARTIST NAME</span> - <span th:text="${demo.title} + ' | by: '">TITLE DEMO</span> <span class="allign right">Joris Dobbelaar</span></a>
             </div>
         </div>
 
@@ -70,7 +64,7 @@
     <div style= "display: block; margin-bottom: 100px;"></div>
 
     <footer class="section-center">
-        <a href=bo/dashboard.html">
+        <a href="dashboard">
             <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
         </a>
     </footer>

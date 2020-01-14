@@ -41,7 +41,7 @@ public class DatabaseFiller implements CommandLineRunner {
 
             //assign demo to state
             demo1.setState(state1);
-            demo2.setState(state1);
+            demo2.setState(state2);
             demo3.setState(state3);
 
             //save the demos

@@ -41,9 +41,9 @@
                 <div>
                     <img src="/images/2. Temporary/Dj Christopher.jpg" width="250" class="img-box" alt="user prifole picture">
                 </div>
-                <h3 class="artist-name" th:text>DJ CHRISTOPHER</h3>
-                <h5 th:text> Christopher de Berg</h5>
-                <h5 th:text> cris.b@yahoo.com</h5>
+                <h3 class="artist-name" >DJ CHRISTOPHER</h3>
+                <h5 > Christopher de Berg</h5>
+                <h5 > cris.b@yahoo.com</h5>
                 <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
                 <p> Im Christopher, Im a dutch-based musicproducer with love for house music I make deep-house, future-house, tech-house, and bass house. I study computer science at the University of AmsterdIm Christopher, Im a dutch-based musicproducer with love for house music I make deep-house, future-house, tech-house, and bass house. I study computer science at t</p>
             </section>
@@ -73,21 +73,22 @@
             <section class="section s3">
 
                 <div>
-                    <form>
+                    <form method="POST" th:action="@{/submit}" th:object="${demo}">
                         <!-- review -->
                         <h3>REVIEW</h3>
                         <!-- space --><div style= "display: block; margin-bottom: 100px;"></div>
 
                         <div class="judge-boxes">
-                            <input type="radio" id="radio1" name="state" value="rejected">
+                            <input type="radio" id="radio1" name="state" th:value="rejected">
                             <label id="label1" for="radio1" class="judge-box">✗</label>
+
                             <input type="radio" id="radio2" name="state" value="sent">
                             <label id="label2" for="radio2" class="judge-box">✓</label>
                         </div>
 
                         <!-- space --><div style= "display: block; margin-bottom: 100px;"></div>
 
-                        <input type="submit" value="Next demo &#129054; "></ul>
+                        <input type="submit" value="Next demo &#129054;"></ul>
                     </form>
                 </div>
                     <!-- space --><div style= "display: block; margin-bottom: 250px;"></div>

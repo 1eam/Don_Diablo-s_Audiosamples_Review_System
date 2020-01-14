@@ -12,8 +12,8 @@
     <header class="section-center">
         <!-- logout -->
         <div class="upper-corner">
-            <p th:text style="display: inline;">ADMIN</p>
-            <a href=bo/login.html"><u>Logout</u></a>
+            <p style="display: inline;">ADMIN</p>
+            <a href="bo/login"><u>Logout</u></a>
         </div>
         <!-- HeaderLogo -->
         <div class="text-logo">
@@ -23,9 +23,9 @@
             <!-- navbar elements -->
             <nav class="admin-navbar">
                 <ul id="ul">
-                    <li><a href=bo/a_set-texts.html"style="color: #707070;">SET SYSTEM TEXTS</a></li>
-                    <li><a href=bo/tables/a_user-management.html">USER MANAGEMENT</a></li>
-                    <li><a href=bo/tables/a_bo-management.html">BACKOFFICE MANAGEMENT</a></li>
+                    <li><a href="bo/a_set-texts"style="color: #707070;">SET SYSTEM TEXTS</a></li>
+                    <li><a href="/bo/tables/a_user-management">USER MANAGEMENT</a></li>
+                    <li><a href="/tables/a_bo-management">BACKOFFICE MANAGEMENT</a></li>
                 </ul>
             </nav>
             <!-- heading -->
@@ -41,7 +41,7 @@
             <section class="a_section">
                 <p class="roboto-medium-16-lightgray">PENDING MESSAGE</p>
                 <form action="/pendingMessage">
-                    <textarea name="p endingMessage" th:text>th: Your Demo is being is currently waiting to be reviewed. Well notify you as soon as we've reviewed your demo th:</textarea>
+                    <textarea name="p endingMessage" th:text="${state.get(0).message}">th: Your Demo is being is currently waiting to be reviewed. Well notify you as soon as we've reviewed your demo th:</textarea>
                     <input type="submit" value="Save" class="button">
                 </form>            
             </section>
@@ -50,7 +50,7 @@
             <section class="a_section">
                 <p class="roboto-medium-16-lightgray">SUCCES MESSAGE</p>
                 <form action="/succesMessage">
-                    <textarea name="succesMessage" th:text>th: We have reviewed your demo and we want to let you know that we've forwarded your demo to Don Diablo. We'll send you an email about the further progress of the review.GreetingsTeam Hexagon th:
+                    <textarea name="succesMessage" th:text="${state.get(1).message}">th: We have reviewed your demo and we want to let you know that we've forwarded your demo to Don Diablo. We'll send you an email about the further progress of the review.GreetingsTeam Hexagon th:
                     </textarea>
                     <input type="submit" value="Save" class="button">
                 </form>            
@@ -60,7 +60,7 @@
             <section class="a_section">
                 <p class="roboto-medium-16-lightgray">REJECT MESSAGE</p>
                 <form action="/rejectMessage">
-                    <textarea name="rejectMessage" th:text>th: Your Demo is being is currently waiting to be reviewed. Well notify you as soon as we've reviewed your demo</textarea>
+                    <textarea name="rejectMessage" th:text="${state.get(2).message}">th: Your Demo is being is currently waiting to be reviewed. Well notify you as soon as we've reviewed your demo</textarea>
                     <input type="submit" value="Save" class="button">
                 </form>            
             </section>
@@ -70,7 +70,7 @@
     <!-- space --><div style= "display: block; margin-bottom: 80px;"></div>
 
     <footer>
-            <a href=bo/a_dashboard.html"><img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="72"></a>
+            <a href="bo/a_dashboard.html"><img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="72"></a>
     </footer>
 </body>
 </html>
