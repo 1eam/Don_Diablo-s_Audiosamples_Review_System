@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface StateNameRepository extends JpaRepository <State, Long> {
 
-    public List<State> findByStateName(String stateName);
+   public State findByStateName(String string);
+
 }
