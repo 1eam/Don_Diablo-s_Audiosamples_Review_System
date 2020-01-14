@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Set System Texts</title>
+   <link rel="stylesheet" href="/css/bo-style.css">
+   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="section-center">
+        <!-- logout -->
+        <div class="upper-corner">
+            <p style="display: inline;">ADMIN</p>
+            <a href="bo/login"><u>Logout</u></a>
+        </div>
+        <!-- HeaderLogo -->
+        <div class="text-logo">
+            <img src="/images/hexagonlogo.png" height="20" alt="HEXAGON">
+        </div>
+        <div class="section-center">
+            <!-- navbar elements -->
+            <nav class="admin-navbar">
+                <ul id="ul">
+                    <li><a href="bo/a_set-texts"style="color: #707070;">SET SYSTEM TEXTS</a></li>
+                    <li><a href="/bo/tables/a_user-management">USER MANAGEMENT</a></li>
+                    <li><a href="/tables/a_bo-management">BACKOFFICE MANAGEMENT</a></li>
+                </ul>
+            </nav>
+            <!-- heading -->
+            <h1 class="heading">SET SYSTEM TEXTS</h1>
+        </div>
+    </header>
+
+    <!-- space --><div style= "display: block; margin-bottom: 80px;"></div>
+
+    <main class="section-center" style="width: 1200px;">
+        <div class="a_sections-container">
+            <!-- Pending Message -->
+            <section class="a_section">
+                <p class="roboto-medium-16-lightgray">PENDING MESSAGE</p>
+                <form method="post" th:action="@{/admin/set-texts/}" th:object="${state1}">
+                    <textarea th:text="${state1.message}" th:field="*{message}" >th: Your Demo is being is currently waiting to be reviewed. Well notify you as soon as we've reviewed your demo th:</textarea>
+                    <input type="submit" value="Save" class="button">
+                </form>            
+            </section>
+            
+            <!-- Succes Message -->
+            <section class="a_section">
+                <p class="roboto-medium-16-lightgray">SUCCES MESSAGE</p>
+                <form action="/succesMessage">
+                    <textarea name="succesMessage" >th: We have reviewed your demo and we want to let you know that we've forwarded your demo to Don Diablo. We'll send you an email about the further progress of the review.GreetingsTeam Hexagon th
+                    </textarea>
+                    <input type="submit" value="Save" class="button">
+                </form>            
+            </section>
+            
+            <!-- Reject Message -->
+            <section class="a_section">
+                <p class="roboto-medium-16-lightgray">REJECT MESSAGE</p>
+                <form action="/rejectMessage">
+                    <textarea name="rejectMessage" >th: Your Demo is being is currently waiting to be reviewed. Well notify you as soon as we've reviewed your demo</textarea>
+                    <input type="submit" value="Save" class="button">
+                </form>            
+            </section>
+        </div>
+    </main>
+
+    <!-- space --><div style= "display: block; margin-bottom: 80px;"></div>
+
+    <footer>
+            <a href="bo/a_dashboard.html"><img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="72"></a>
+    </footer>
+</body>
+</html>

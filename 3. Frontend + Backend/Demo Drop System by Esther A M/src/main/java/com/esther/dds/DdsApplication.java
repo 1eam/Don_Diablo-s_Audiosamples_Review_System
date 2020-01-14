@@ -11,8 +11,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 public class DdsApplication {
 
     private static final Logger log = LoggerFactory.getLogger(DdsApplication.class);
+
     public static void main(String[] args) {
         SpringApplication.run(DdsApplication.class, args);
     }
+
 
 }

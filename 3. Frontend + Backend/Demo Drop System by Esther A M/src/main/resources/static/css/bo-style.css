@@ -1,0 +1,456 @@
+body{
+    box-sizing: border-box;
+    text-align: center;
+
+    margin: 0px;
+    margin-top: 30px;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    
+    background-color: #C9C9C9;
+    color: #707070;
+}
+
+.section-center{
+    display: block;
+    margin: 0px auto;
+    width: 900px;
+
+    position: relative;
+}
+
+.section-center-bo{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+/* texts - standard properties */
+a{
+    text-decoration: none;
+    display: inline;
+    color: #707070;
+}
+
+h1{
+    font-size: 40px;
+    font-weight: 400;
+    letter-spacing: 5px;
+    color: white;
+}
+
+h2{
+    font-size: 28px;
+    font-weight: 400;
+    letter-spacing: 3px;
+    color: #707070;
+}
+
+.upper-corner{
+    position: absolute;
+    top: 3px;
+    right: -170px;
+}
+
+/* texts - specific elements */
+/* bo review modes */
+h3{
+    margin: 0;
+    font-weight: 300;
+    color: black;
+}
+
+h5{
+    margin: 5px;
+    font-size: 12px;
+    font-weight: 300;
+}
+.s1> p,
+.s2> div> p{
+    line-height: 30px;
+    font-weight: 400;
+}
+
+.artist-name{
+    font-weight: 500;
+    margin-top: 20px;
+}
+
+.demo-name{
+    display: inline-block;
+    font-weight: 500;
+    font-size: 32px;
+    text-transform: uppercase;
+}
+
+
+.popup{
+    
+    background-color: rgba(255, 255, 255, 0.5);
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    filter: none;
+}
+
+/* buttons */
+.button{
+    border-style: solid;
+    border-width: 3px;
+    border-color: white;
+    background-color: #C9C9C9;
+
+    width: 150px;
+    height: 60px;
+
+    font-family: 'Roboto', sans-serif;  /* font properties have to be present for other tags that dont pick it up */
+    font-weight: 300;
+    font-size: 16px;
+    color: #707070;
+
+    text-align: center;
+    
+    cursor:pointer;
+
+    transition: all 0.3s ease 0s;
+}
+.button:hover{
+    border-color: #707070;
+    color: black; 
+    background-color: white;
+    transition: all 0.2s ease 0s;
+}
+
+.list-of-demos{
+    margin: 15px auto;
+    padding: 15px 20px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+
+    width: 440px;
+    height: 50px;
+    text-align: center;
+
+    border-style: solid;
+    background-color: white;    
+    color:#707070;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* forms */
+.login-form{
+    width: 275px;
+    text-align: center;
+}
+
+.login-form > form > p{
+    text-align: left;
+}
+
+.login-form > form > input[type=checkbox] {
+    display: inline;
+}
+
+.login-form > form > input[type=password], [type=text]{
+    width: 275px;
+    height: 30px;
+    padding: 8px 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.login-form > form > [type="submit"]{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+.login-form > form > textarea{
+    resize: none;
+    width: 275px;
+    height: 175px;
+    padding: 8px 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+input[type="radio"] {
+    opacity: 0;
+    position: fixed;
+    width: 0;
+}
+
+input[type="radio"]:checked + #label1 {
+    background-color:rgba(255, 111, 111, 0.616);
+}
+
+input[type="radio"]:checked + #label2 {
+    background-color:rgba(111, 255, 183, 0.616);
+}
+
+.judge-boxes{
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}
+.judge-box{
+    border-style: solid;
+    border-width: 3px;
+    border-color: black;
+    background-color: #D4D4D4;
+
+    padding: 10px 50px;
+    margin: 0px 7px;
+    transition: all 0.2s ease 0s;
+}
+.judge-box:hover{
+    background-color: white;
+    transition: all 0.3s ease 0s;
+}
+
+/* specific elements */
+/* div-boxes */
+.blocks-container{
+    margin: 0px auto;
+    width: 600px;
+
+    display: flex;
+    justify-content: center;
+    align-content: flex-start;
+    flex-wrap: wrap;
+
+    letter-spacing: 2px;
+}
+.block1{
+    border-style: solid;
+    border-color: white;
+    border-width: 3px;
+    
+    width: 564px;
+    padding: 10px 0px;
+    margin: 20px 0px;
+
+    transition: all 0.3s ease 0s;
+}
+.block2-3{
+    border-style: solid;
+    border-color: white;
+    border-width: 3px;
+    
+    width: 45%;
+    padding: 10px 0px;
+    margin: 0px 10px;
+    
+    transition: all 0.3s ease 0s;
+}
+.block1:hover, .block2-3:hover{
+    border-color: #707070;
+    color: black; 
+    background-color: white;
+    transition: all 0.2s ease 0s;
+}
+
+/* quick scroll */
+.scroll{
+    position: absolute;
+    top: 70px;
+    right: 0px;
+}
+
+/* bo - review mode */
+.sections-container{
+    display: flex;
+    justify-content: center;
+    height: 90vh;
+}
+.section{
+    width: 100%;
+    padding: 50px 80px;
+    position: relative;
+
+}
+.s1{
+    background-color: rgba(255, 255, 255, 0.541);
+    box-shadow: 1px -3px 10px;
+    
+}
+.s3{
+    background-color: rgba(255, 255, 255, 0.541);
+    box-shadow: -1px -3px 10px;
+}
+
+.img-box{
+    border-style: solid;
+    border-color: white;
+    box-shadow: 1px 1px 10px;
+}
+
+.bo-footer{
+    position: absolute;
+    left: 40%;
+    bottom: 50px;
+}
+    
+
+/* navbar */
+.homepage-navbar{
+    width: 100%;    /* keeps the main box stratched accros 100% of the screen & therefore centered */
+}
+
+.homepage-navbar > ul{
+    width: 100%;     /* acts as a padding of 100% inside the div */
+    text-align: center;
+    padding-inline-start: 0px;  /* stops from spilling outside body */
+    /* margin: 0;   /*margin has to stay off for desktop-view center*/
+}
+
+.homepage-navbar > ul li{
+    
+    list-style: none;
+    display: inline-block;
+   
+    width: 150px;
+}
+
+.homepage-navbar > ul li a{
+    font-family: Roboto;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    line-height: 1em;
+    color: rgb(255,255,255,.6);
+}
+
+.homepage-navbar ul li a:hover{
+    color:#707070;
+    transition: color .3s 0s ease-in-out;
+    outline: none;
+}
+/*----------------------------------------------------------------------------------------------------------------*/
+/* ADMIN SIDE */
+
+/* texts */
+.system-texts-save-button{
+    background: none;
+    border: none;
+    padding: 0;
+    text-decoration: underline;
+    cursor: pointer;
+    
+}
+
+/* admin - set texts */
+.a_sections-container{
+    display: flex;
+    justify-content: center;
+    
+    
+}
+.a_section{
+    margin: 0px 20px;
+}
+
+.a_section > p{
+    font-weight: 500;
+    margin: 0px 0px;
+}
+
+.a_section textarea{
+    resize: none;
+    width: 100%;
+    height: 175px;
+    padding: 8px 20px;
+    margin: 20px 0px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* navbar */
+.admin-navbar{
+    width: 100%;    /* keeps the main box stratched accros 100% of the screen & therefore centered */
+}
+
+.admin-navbar > ul{
+    width: 100%;     /* acts as a padding of 100% inside the div */
+    text-align: center;
+    padding-inline-start: 0px;  /* stops from spilling outside body */
+    /* margin: 0;   /*margin has to stay off for desktop-view center*/
+}
+
+.admin-navbar > ul li{
+    
+    list-style: none;
+    display: inline-block;
+   
+    width: 230px;
+}
+
+.admin-navbar > ul li a{
+    font-family: Roboto;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    line-height: 1em;
+    color: rgb(255,255,255,.6);
+}
+
+.admin-navbar ul li a:hover{
+    color:#707070;
+    transition: color .3s 0s ease-in-out;
+    outline: none;
+}
+
+/* tables */
+th{
+    background-color: #BFBFBF;
+    position: sticky;
+    top: 0;
+}
+
+.database-container{
+    width: 80%;
+    height: 400px;
+    overflow-y: scroll;
+}
+
+.textalign-center {
+    text-align: center;
+}
+
+/* searchbox */
+.searchbox{
+    padding: 40px 0px;
+    box-sizing: border-box;
+    text-align: right;
+}
+
+.searchbox > input [type="text"]{
+    display: block;
+    width: 200px;
+}
+
+/* create bo-user pointer */
+.triangle {
+    -webkit-text-stroke: 1px black;
+    color: transparent;
+    font-size: 18px;
+}

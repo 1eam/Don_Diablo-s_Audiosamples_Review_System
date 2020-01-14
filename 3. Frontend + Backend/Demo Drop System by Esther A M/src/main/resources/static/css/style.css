@@ -1,0 +1,317 @@
+body{ 
+    box-sizing: border-box;
+    text-align: center;
+
+    margin-top: 5px;
+    margin: 0;
+
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    
+    background-color: black;
+    color: white;
+}
+
+.section-center{
+    display: block;
+    margin: 0px auto;
+    width: 100%;
+
+    position: relative;
+}
+
+/* texts - standard properties */
+a{
+    text-decoration: none;
+    display: inline;
+    color: white;
+}
+
+.regular-text{
+    font-weight: 400;
+}
+.bold-text{
+    font-weight: 500;
+}
+
+/* texts - specific elements */
+.heading{
+    font-weight: 400;
+    letter-spacing: 5px;
+}
+
+.artist-name{
+    font-weight: 300;
+}
+
+.upper-corner{
+    position: absolute;
+    top: 25px;
+    right: 10%;
+
+}
+
+/* buttons */
+.button{
+    border-style: solid;
+    border-width: 3px;
+    border-color: white;
+
+    width: 150px;
+    height: 60px;
+
+    font-family: 'Roboto', sans-serif;  /* font properties have to be present for other tags that dont pick it up */
+    font-weight: 300;
+    font-size: 16px;
+    color: white;
+
+    text-align: center;
+
+    background-color: black;
+    
+    cursor:pointer;
+
+    transition: all 0.3s ease 0s;
+}
+.button:hover{
+    color: black; 
+    background-color: white;
+    transition: all 0.2s ease 0s;
+}
+
+.button-a{
+    width: 30%;
+}
+
+.settings-button{
+    text-align: right;
+    margin-right: 15%;
+}
+
+.demo-list{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.demo-component{
+    
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    padding: 0px 15%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 275px;
+    height: 40px;
+
+    background-color: white;    
+    color: black;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* forms */
+.login-form{
+
+    text-align: center;
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+    margin: 0px 20px;
+}
+
+.login-form > form > p{
+    text-align: left;
+}
+
+.login-form > form > input[type=checkbox] {
+    display: inline;
+}
+
+.login-form > form > input[type=password], [type=text]{
+    width: 275px;
+    height: 30px;
+    padding: 8px 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.login-form > form > [type="submit"]{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+}
+
+.login-form > form > textarea{
+    resize: none;
+    width: 275px;
+    height: 175px;
+    padding: 8px 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.desktop-form{
+    display: flex;
+    margin: 0px auto;
+    width: 70%;
+}
+
+.img-box > img{
+    border: solid;
+    width: 15%;
+}
+
+
+/* popups */
+.popup{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    background-color:rgba(255, 255, 255, 0.177);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#popup{
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    background-color:rgba(255, 255, 255, 0.177);
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.popup-content{
+    width: 30%;
+    height: auto;
+    background-color: #505050;
+    box-shadow: 3px 3px 25px black;
+    position: relative;
+}
+
+@media (max-width:768px){
+    .login-form{
+        margin: 0px 0px;
+    }
+
+    .desktop-form{
+        display: block;
+    }
+
+    .img-box > img{
+        width: 130px;
+    }
+}
+
+/* social media icons */
+.social-media-icons{
+    display: inline;
+}
+
+/* Responsive Navigation */
+.homepage-navbar{
+    width: 100%;    /* keeps the main box stratched accros 100% of the screen & therefore centered */
+}
+
+.homepage-navbar > ul{
+    width: 100%;     /* acts as a padding of 80% inside the div */
+    text-align: center;
+    padding-inline-start: 0px;  /* stops from spilling outside body */
+    /* margin: 0;   /*margin has to stay off for desktop-view center*/
+}
+
+.homepage-navbar > ul li{
+    list-style: none;
+    display: inline-block;
+    padding: .75em 1em;
+}
+
+.homepage-navbar > ul li a{
+    font-family: Roboto;
+    font-weight: 700;
+    font-style: normal;
+    font-size: 14px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    line-height: 1em;
+    color: rgb(255,255,255,.6);
+}
+
+.homepage-navbar ul li a:hover{
+    color: rgb(255, 255, 255);
+    transition: color .3s 0s ease-in-out;
+    outline: none;
+}
+
+.hamburger-menu{
+    margin-left: 25px;
+    width: 100%;
+    background: black; /**/
+    text-align: left;
+    box-sizing: border-box;
+    display: none;
+}
+
+@media (max-width:768px){
+    .hamburger-menu{
+        display: block;
+    }
+
+    .homepage-navbar > ul{
+        width: 100%; 
+        display: none;
+    }
+
+    .homepage-navbar ul li{
+        display: block;
+        text-align: center;
+    }
+}
+
+
+/* Responsive Registery */
+.register-link-visibility{
+    display: none;
+}
+
+.responsive-register-form-container{
+    display: flex;
+    width: 100%;
+    margin: 0px;
+}
+
+@media (max-width:768px){
+    .register-link-visibility{
+        display: block;
+    }
+
+    .responsive-register-form-container{
+        display: none;
+    }
+
+    .button-a{
+        width: 275px;
+    }
+
+    .upper-corner{
+        display: block;
+        margin-top: 40px;
+        position: unset;
+        top: unset;
+        right: unset;
+    }
+}
+
+
