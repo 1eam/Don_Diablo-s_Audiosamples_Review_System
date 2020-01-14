@@ -22,21 +22,24 @@
     <!-- space -->
     <div style= "display: inline-block; margin-bottom: 50px;"></div>
 
-    <main class="section-center" style="">
+    <form method="POST" th:action="@{/dropdemo}" th:object="${demo}">
+        <!-- select file button -->
+        <div class="">
+            <input type="file" id="file" hidden="hidden" required accept=".mp3"/>
+            <button type="button" id="button" class="button" style="min-width: 40%; width: 200px; height: 40px;">SELECT FILE</button>
+            <span style="display: block; margin-top: 20px;" id="filename">No file chosen</span>
+        </div>
 
+        <!-- space --><div style= "display: inline-block; margin-bottom: 40px;"></div>
+    </form>
+
+    <main class="section-center" style="">
 
         <div class="login-form" style="margin: 0px;" >
 
             <!-- demo drop form -->
             <form method="POST" th:action="@{/dropdemo}" th:object="${demo}">
-                <!-- select file button -->
-                <div class="">
-                    <input type="file" id="file" hidden="hidden" required/>
-                    <button type="button" id="button" class="button" style="min-width: 40%; width: 200px; height: 40px;">SELECT FILE</button>
-                    <span style="display: block; margin-top: 20px;" id="filename">No file chosen</span>
-                </div>
 
-                <!-- space --><div style= "display: inline-block; margin-bottom: 40px;"></div>
 
                 <p class="form-text">Title Demo</p>
                 <input type="text"

@@ -12,14 +12,13 @@
     <header class="section-center">
         <!-- logout -->
         <div class="upper-corner">
-            <p th:text style="display: inline;">Joris Dobbelaar &ensp;</p>
-            <a href=bo/login.html"><u>Logout</u></a>
+            <p style="display: inline;">Joris Dobbelaar &ensp;</p>
+            <a href="bo/login"><u>Logout</u></a>
         </div>
         <!-- headerLogo -->
-        <div class="">
-            <img src="/images/hexagonlogo.png" height="20" alt="HEXAGON">
+        <div>
+            <img src="/images/hexagonlogo.png" height="20" alt="HEXAGON"/>
         </div>
-    
     </header>
 
     <!-- space -->
@@ -29,9 +28,9 @@
         <!-- navbar elements -->
         <nav class="homepage-navbar ">
             <ul id="ul">
-                <li><a href=bo/handled-list.html">HANLED DEMOS</a></li>
-                <li><a href=bo/review-list.html" style="color: #707070;">REVIEW DEMOS</a></li>
-                <li><a href=bo/sent-list.html">SENT DEMOS</a></li>
+                <li><a href="handled-list">HANLED DEMOS</a></li>
+                <li><a href="review-list" style="color: #707070;">REVIEW DEMOS</a></li>
+                <li><a href="sent-list">SENT DEMOS</a></li>
             </ul>
         </nav>
     </div>
@@ -48,11 +47,11 @@
     <main class="section-center">
         <!-- quick scroll -->
         <!-- <img id="scroll" class="scroll" src="/images/anchor_scroll.png" alt="quick scroll" width="25"> -->
-        
+
         <!-- blocks of demos -->
         <div th:each="demo: ${demos}">
             <div class="list-of-demos">
-                <a th:href="@{'/demo/' + ${demo.id}}" > <span>ARTIST NAME</span> - <span th:text="${demo.title}">TITLE DEMO</span> <span class="allign right">DATE/2020</span></a>
+                <a th:href="@{'/bo/' + ${demo.id}}" > <span>ARTIST NAME</span> - <span th:text="${demo.title}">TITLE DEMO</span> <span class="allign right">DATE/2020</span></a>
             </div>
         </div>
 
@@ -71,7 +70,7 @@
     <div style= "display: block; margin-bottom: 100px;"></div>
 
     <footer class="section-center">
-        <a href=bo/dashboard.html">
+        <a href="bo/dashboard">
             <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
         </a>
     </footer>

@@ -17,8 +17,8 @@
     <header class="section-center">
         <!-- logout -->
         <div class="upper-corner">
-            <p th:text style="display: inline;">Joris Dobbelaar &ensp;</p>
-            <a href=bo/login.html"><u>Logout</u></a>
+            <p style="display: inline;">Joris Dobbelaar &ensp;</p>
+            <a href="bo/login.html"><u>Logout</u></a>
         </div>
         <!-- headerLogo -->
         <div class="">
@@ -39,7 +39,7 @@
         <div class="sections-container">
             <section class="section s1">
                 <div>
-                    <img th:src src="/images/2. Temporary/Dj Christopher.jpg" width="250" class="img-box">
+                    <img src="/images/2. Temporary/Dj Christopher.jpg" width="250" class="img-box" alt="user prifole picture">
                 </div>
                 <h3 class="artist-name" th:text>DJ CHRISTOPHER</h3>
                 <h5 th:text> Christopher de Berg</h5>
@@ -54,36 +54,44 @@
                 <!-- space --><div style= "display: block; margin-bottom: 100px;"></div>
                 <div style="height: 120px;">
                     <img src="/images/z. For white background/i_dondiablologo.png" height="20">
-                    <h3 class="demo-name" th:text>Deep House 2 </h3>
+                    <h3 class="demo-name" th:text="${demo.title}">Deep House 2</h3>
                     <img src="/images/z. For white background/i_dondiablologo.png" height="20">
                 </div>
                 <!-- space --><div style= "display: block; margin-bottom: 34px;"></div>
                 <h3 style="font-weight: 500;">PRODUCERS DESCRIPTION</h3>
                 <div>
-                    <p>Lorem Ipsim I used Nexus for bass and Sylent 1 for the melody. The track is not mastered yet but im gaining experience to do so Enjoy!</p>
+                    <p th:text="${demo.description}">Lorem Ipsim I used Nexus for bass and Sylent 1 for the melody. The track is not mastered yet but im gaining experience to do so Enjoy!</p>
                 </div>
             
                 <footer class="bo-footer">
-                    <a href=bo/dashboard.html">
+                    <a href="/bo/dashboard">
                         <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
                     </a>
                 </footer>
             </section>
             
             <section class="section s3">
-                
-                <!-- review -->
-                <h3>REVIEW</h3>
-                <!-- space --><div style= "display: block; margin-bottom: 100px;"></div>
-                <div class="judge-boxes">
-                    <div class="judge-box"> ✗ </div>
-                    <div class="judge-box"> ✓ </div>
-                </div>
 
-                    <!-- space --><div style= "display: block; margin-bottom: 100px;"></div>
-                <a href=bo/review-mode.html" style="color: black; font-weight: 300;"><u>Next Demo</u><span>&#129054</span></a>
+                <div>
+                    <form>
+                        <!-- review -->
+                        <h3>REVIEW</h3>
+                        <!-- space --><div style= "display: block; margin-bottom: 100px;"></div>
+
+                        <div class="judge-boxes">
+                            <input type="radio" id="radio1" name="state" value="rejected">
+                            <label id="label1" for="radio1" class="judge-box">✗</label>
+                            <input type="radio" id="radio2" name="state" value="sent">
+                            <label id="label2" for="radio2" class="judge-box">✓</label>
+                        </div>
+
+                        <!-- space --><div style= "display: block; margin-bottom: 100px;"></div>
+
+                        <input type="submit" value="Next demo &#129054; "></ul>
+                    </form>
+                </div>
                     <!-- space --><div style= "display: block; margin-bottom: 250px;"></div>
-                <a style="display: block;" href=bo/review-mode.html"><u>Exit review-mode</u><span>&#8635</span></a>
+                <a style="display: block;" href="/bo/review-list"><u>Exit review-mode</u><span>&#8635;</span></a>
             </section>            
         </div>
         <div class="audio-container" id="scroll">
