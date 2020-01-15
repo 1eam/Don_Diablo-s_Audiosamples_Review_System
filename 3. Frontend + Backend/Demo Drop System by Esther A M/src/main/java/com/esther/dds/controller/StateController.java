@@ -5,12 +5,17 @@ import com.esther.dds.domain.State;
 import com.esther.dds.repositories.StateNameRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.configurationprocessor.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.context.annotation.RequestScope;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.persistence.PostUpdate;
+import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
 @Controller
 public class StateController {
@@ -20,31 +25,41 @@ public class StateController {
 
     private DatabaseFiller databaseFiller;
 
+
+
     public StateController(StateNameRepository stateNameRepository, DatabaseFiller databaseFiller) {
         this.stateNameRepository = stateNameRepository;
         this.databaseFiller = databaseFiller;
     }
 
+
     //     SET-TEXTS.HTML
     //get stuff
     @GetMapping("/admin/set-texts")
-    public String setTextMapping(Model model){
-        State state1 = stateNameRepository.findByStateName("Pending");
-        final Long id = state1.getId();
-
-        model.addAttribute("state1", state1);
-
-        state1.setMessage(state1.getMessage());
+    public String loadText1Form(Model model){
+        State state = stateNameRepository.findByStateName("Pending");
+        model.addAttribute("state", state);
         return "bo/a_set-texts";
     }
 
+
     //     SET-TEXTS.HTML
     //post stuff
-    @PostMapping("/admin/set-texts")
-    public String updatePendingMessage( State state, Model model, RedirectAttributes redirectAttributes){
+    @PostMapping("/admin/set-texts/{stateName}")
+    public String updatePendingState(Model model, @PathVariable String stateName, @RequestBody String requestbody){
 
+        State state = stateNameRepository.findByStateName(stateName);
+
+
+
+
+        state.setMessage(requestbody);
         stateNameRepository.save(state);
 
+        //the only way to update this is to somehow get the value in th form
+        //And use .setMessage on this particular State
         return "redirect:/admin/set-texts";
     }
+
+
 }

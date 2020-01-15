@@ -49,6 +49,10 @@ public class DatabaseFiller implements CommandLineRunner {
             demoRepository.save(demo2);
             demoRepository.save(demo3);
 
+            //change state message
+            state1.setMessage("gg");
+
+
         };
     }
 
