@@ -40,8 +40,8 @@
             <!-- Pending Message -->
             <section class="a_section">
                 <p class="roboto-medium-16-lightgray">PENDING MESSAGE</p>
-                <form method="post" th:action="@{/admin/set-texts/}" th:object="${state1}">
-                    <textarea th:text="${state1.message}" th:field="*{message}" >th: Your Demo is being is currently waiting to be reviewed. Well notify you as soon as we've reviewed your demo th:</textarea>
+                <form method="post" th:action="@{/admin/set-texts/Pending}" th:object="${state}">
+                    <textarea name="Pending" th:text="${state.message}" >th: HARDCODED HTML:</textarea>
                     <input type="submit" value="Save" class="button">
                 </form>            
             </section>
