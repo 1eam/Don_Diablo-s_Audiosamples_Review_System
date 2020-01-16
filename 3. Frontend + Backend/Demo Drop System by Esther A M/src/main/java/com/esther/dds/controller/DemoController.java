@@ -106,8 +106,6 @@ public class DemoController {
         }
 
 
-
-
         // save uploaded demo (title, description.)
         demoRepository.save(demo);
 
@@ -117,13 +115,9 @@ public class DemoController {
         // save demo again (update: + state)
         demoRepository.save(demo);
 
-        // get multipartFile Path in string
-
-
 
         // save demo again (update: + fileLocation. Save complete)
         demoRepository.save(demo);
-
 
         //log event
         logger.info("New Demo was saved successfully");
@@ -131,9 +125,11 @@ public class DemoController {
                 .addAttribute("id",demo.getId())
                 .addFlashAttribute("success",true);
 
-        //herlaad de mappenstruktuur ()
+
+        // Dit herlaad de mappenstruktuur
+        // (Is de demo direct na upload niet zichtbaar? klik dan met je muis in intellij, en ga terug naar de browser
         try {
-            Thread.sleep(3000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
