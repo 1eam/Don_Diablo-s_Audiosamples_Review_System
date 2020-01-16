@@ -85,7 +85,7 @@ public class DatabaseFiller implements CommandLineRunner {
 
         //Encodes the raw password
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String secret = "{bcrypt}" + encoder.encode("password");
+        String secret = "{bcrypt}" + encoder.encode("pass");
 
         Role userRole = new Role("ROLE_USER");
         roleRepository.save(userRole);

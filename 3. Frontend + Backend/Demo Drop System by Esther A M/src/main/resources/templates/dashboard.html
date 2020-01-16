@@ -18,7 +18,7 @@
         <main class="top-section">
              <!-- settings button -->
             <div class="settings-button">
-                <a href="/settings.html"><img src="/images/settingsbutton.svg" width="20"></a>
+                <a href="/settings"><img src="/images/settingsbutton.svg" width="20"></a>
             </div>
 
             <!-- profile section -->
@@ -60,8 +60,8 @@
         <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
         
         <!-- logout -->
-        <form class="upper-corner" method="POST" th:action="@{/logout}" sec:authorize="isAuthenticated()">
-            <a href="/login.html"><u>Logout</u></a>
+        <form class="upper-corner" method="POST" th:action="@{/logout}">
+            <button>logout</button>
         </form>
     </footer>
 

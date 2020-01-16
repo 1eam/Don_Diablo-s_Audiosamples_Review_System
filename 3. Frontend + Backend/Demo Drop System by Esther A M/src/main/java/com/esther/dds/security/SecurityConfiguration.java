@@ -20,20 +20,30 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //set all mapplings & their permissions
         http
-                .authorizeRequests()
+                //todo, read into this (how to make it shorter so I dont have to declare everything
+            .authorizeRequests()
                 .requestMatchers(EndpointRequest.to("info")).permitAll()
                 .requestMatchers(EndpointRequest.toAnyEndpoint()).hasRole("ADMIN")
                 .antMatchers("/actuator/").hasRole("ADMIN")
                 .antMatchers("/").permitAll()
+                .antMatchers("/login").permitAll()
                 .antMatchers("/dashboard").hasRole("USER")
+                .antMatchers("/dropdemo").hasRole("USER")
+                .antMatchers("/demo/{id}").hasRole("USER")
+                .antMatchers("/delete").hasRole("USER")
+                .antMatchers("/settings").hasRole("USER")
                 .antMatchers("/h2-console/**").permitAll()
                 .and()
                 .formLogin()
-                .loginPage("/login")
-                .permitAll();
-//                .and()
-//                .csrf().disable()
-//                .headers().frameOptions().disable();
+                .loginPage("/login").permitAll()
+                .usernameParameter("email")
+                .and()
+                .logout()
+                .and()
+                .rememberMe();
+        //       .and()
+        //       .csrf().disable()
+        //       .headers().frameOptions().disable();
     }
 
     @Override
