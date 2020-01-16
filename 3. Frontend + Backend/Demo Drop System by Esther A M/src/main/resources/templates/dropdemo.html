@@ -22,12 +22,14 @@
     <!-- space -->
     <div style= "display: inline-block; margin-bottom: 50px;"></div>
 
-    <form method="POST" th:action="@{/dropdemo}" th:object="${demo}">
+<!--    FILE -->
+    <form method="POST" enctype="multipart/form-data" th:action="@{/dropdemo/uploadAudio}">
         <!-- select file button -->
         <div class="">
-            <input type="file" id="file" hidden="hidden" required accept=".mp3"/>
+            <input type="file" id="file" name="audioFile" hidden="hidden" required accept=".mp3" />
             <button type="button" id="button" class="button" style="min-width: 40%; width: 200px; height: 40px;">SELECT FILE</button>
             <span style="display: block; margin-top: 20px;" id="filename">No file chosen</span>
+            <input type="submit" value="testUpload"/>
         </div>
 
         <!-- space --><div style= "display: inline-block; margin-bottom: 40px;"></div>
@@ -36,7 +38,7 @@
     <main class="section-center" style="">
 
         <div class="login-form" style="margin: 0px;" >
-
+<!--         TEXUAL     -->
             <!-- demo drop form -->
             <form method="POST" th:action="@{/dropdemo}" th:object="${demo}">
 

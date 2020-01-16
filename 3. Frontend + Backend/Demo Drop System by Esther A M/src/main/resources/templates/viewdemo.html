@@ -70,8 +70,8 @@
         <!-- space -->
         <div style= "display: block; margin-bottom: 50px;"></div>
 
-        <!-- thymeleaf if-statement (reviewed = true), hide onderstaande -->
-        <form th:object="${demo}" th:action="@{/delete-demo}" th:method="delete"  sec:authorize="isAuthenticated()">
+        <!-- Delete Demo -->
+        <form method="post" th:object="${demo}" th:action="@{'/demo/' + ${demo.id} + '/delete'}" >
             <button type="submit" class="button">Delete demo</button>
         </form>
         <!-- space -->

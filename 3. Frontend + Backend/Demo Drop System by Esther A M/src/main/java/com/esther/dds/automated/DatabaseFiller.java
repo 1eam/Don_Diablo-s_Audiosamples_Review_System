@@ -16,7 +16,7 @@ public class DatabaseFiller implements CommandLineRunner {
     }
 
     //individual entries State
-    public State state1 = new State("Pending", "The Admin should enter a 'Pending message'");
+    public State state1 = new State("Pending", "The Admin should set a 'In-review message'");
     public State state2 = new State("Rejected", "The Admin should enter a 'Rejection message'");
     public State state3 = new State("Sent", "The Admin should enter a 'Sent message'");
 

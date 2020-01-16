@@ -212,7 +212,7 @@
     position: relative;
     display: flex;
     width: 60px;
-    height: 2px;
+    height: 3px;
     cursor: pointer;
     background-color: black;
 }
@@ -221,7 +221,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 2px;
+    height: 3px;
     background-color: #C9C9C9;
 }
 
