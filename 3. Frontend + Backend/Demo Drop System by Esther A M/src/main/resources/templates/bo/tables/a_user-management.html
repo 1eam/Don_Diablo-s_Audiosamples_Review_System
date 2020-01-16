@@ -26,7 +26,7 @@
         <!-- logout -->
         <div class="upper-corner">
           <p th:text style="display: inline;">ADMIN</p>
-          <a href=bo/login.html"><u>Logout</u></a>
+          <a href="/admin/login"><u>Logout</u></a>
       </div>
       <!-- HeaderLogo -->
       <div class="text-logo">
@@ -37,9 +37,9 @@
           <!-- navbar elements -->
           <nav class="admin-navbar">
               <ul id="ul">
-                  <li><a href=bo/a_set-texts.html">SET SYSTEM TEXTS</a></li>
-                  <li><a href=bo/tables/a_user-management.html" style="color: #707070;">USER MANAGEMENT</a></li>
-                  <li><a href=bo/tables/a_bo-management.html">BACKOFFICE MANAGEMENT</a></li>
+                  <li><a href="/admin/set-texts">SET SYSTEM TEXTS</a></li>
+                  <li><a href="/admin/user-management" style="color: #707070;">USER MANAGEMENT</a></li>
+                  <li><a href="/admin/bo-management">BACKOFFICE MANAGEMENT</a></li>
               </ul>
           </nav>
           <!-- heading -->
@@ -69,14 +69,14 @@
           <td>th: Empty: Surname</td>
           <td>th: Empty: Artistname</td>
           <td>th: Empty: Email</td>
-          <td><a th:href>delete</a></td>
+          <td><a>delete</a></td>
         </tr>
       </tbody>
     </table>
   </main>
   <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
   <footer>
-      <a href=bo/a_dashboard.html"><img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="72"></a>
+      <a href="/admin/dashboard"><img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="72"></a>
       <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
   </footer>
   <!-- End your project here-->

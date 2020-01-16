@@ -1,10 +1,10 @@
 package com.esther.dds.controller;
 
-import com.esther.dds.DdsApplication;
 import com.esther.dds.automated.DatabaseFiller;
 import com.esther.dds.domain.Demo;
-import com.esther.dds.domain.State;
+
 import com.esther.dds.repositories.DemoRepository;
+import com.esther.dds.service.AudioFileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -23,16 +23,17 @@ public class DemoController {
     private static final Logger logger = LoggerFactory.getLogger(DemoController.class);
 
     private DemoRepository demoRepository;
-
     private DatabaseFiller databaseFiller;
+    private AudioFileService audioFileService;
 
-    public DemoController(DemoRepository demoRepository, DatabaseFiller databaseFiller) {
+
+    public DemoController(DemoRepository demoRepository, DatabaseFiller databaseFiller, AudioFileService audioFileService) {
         this.demoRepository = demoRepository;
         this.databaseFiller = databaseFiller;
+        this.audioFileService = audioFileService;
     }
 
-
-//     DASHBOARD.HTML
+    //     DASHBOARD.HTML
     // List of Demos
     @GetMapping("/dashboard")
     public String userSideList(Model model){
@@ -55,12 +56,15 @@ public class DemoController {
         }
     }
 
-//    // Delete Demo
-//    @DeleteMapping("/demo/{id}")
-//    public String deleteDemo(Demo demo, @PathVariable Long id, Model model){
-//        demoRepository.delete(demo);
-//        return "dashboard";
-//    }
+//     VIEWDEMO.HTML -> DELETE
+    // Delete Demo
+    @PostMapping ("/demo/{id}/delete")
+    public String deleteDemo(Demo demo, @PathVariable Long id, Model model){
+        demoRepository.delete(demo);
+        return "redirect:/dashboard";
+    }
+
+
 
 //     DROPDEMO.HTML
     // Load new Demo-object in form
@@ -71,55 +75,72 @@ public class DemoController {
     }
 
 
-//    @PostMapping("/dropdemo")
+//    @PostMapping("/dropdemo/uploadAudio")
 //    public String uploadFile(@RequestParam("audioFile") MultipartFile audioFile){
-//        String value = "";
-//        audioUploadService.saveAudio(audioFile);
+//
+//        try {
+//            audioFileService.saveAudio(audioFile);
+//        } catch (Exception e){
+//            e.printStackTrace();
+//            logger.error("Error saving Audio");
+//            return "redirect:/dropdemo";
+//        }
+//
 //        // save multipart file to folder
-//
-//
 //        // get path (string) of multipartfile
-//        return value;
+//
+//        return "redirect:/dropdemo";
 //    }
 
 
-//     DROPDEMO.HTML -> Post
+//     DROPDEMO.HTML -> POST
     // Bind form loaded in to object
     @PostMapping("/dropdemo")
-    public String uploadDemo(@Valid Demo demo, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
-        if( bindingResult.hasErrors() ) {
-            logger.info("Validation errors were found while submitting a new demo.");
-            model.addAttribute("demo",demo); //keep data when error occurs & page refreshes
-            return "dropdemo";
-        } else {
-
-            // save uploaded demo (title, description.)
-            demoRepository.save(demo);
-
-            // assign this demo to pending state
-            demo.setState(databaseFiller.state1);
-
-            // save demo again (update: + state)
-            demoRepository.save(demo);
-
-            // get multipartFile Path in string
-
-            // assign the multipartString to demo
-            demo.setAudioFile("/serverside_audiofiles/" + "variable to path" + "variable .getdemoId");
-
-            // save demo again (update: + fileLocation. Save complete)
-            demoRepository.save(demo);
-
-
-            //log event
-            logger.info("New Demo was saved successfully");
-            redirectAttributes
-                    .addAttribute("id",demo.getId())
-                    .addFlashAttribute("success",true);
-            return "redirect:/demo/{id}";
+    public String uploadDemo(@Valid Demo demo, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes, @RequestParam("audioFile") MultipartFile audioFile) {
+        // save multipart file to folder + the path
+        try {
+            audioFileService.saveAudio(demo, audioFile);
+        } catch (Exception e){
+            e.printStackTrace();
+            logger.error("Error saving Audio");
         }
 
+
+
+
+        // save uploaded demo (title, description.)
+        demoRepository.save(demo);
+
+        // assign this demo to pending state
+        demo.setState(databaseFiller.state1);
+
+        // save demo again (update: + state)
+        demoRepository.save(demo);
+
+        // get multipartFile Path in string
+
+
+
+        // save demo again (update: + fileLocation. Save complete)
+        demoRepository.save(demo);
+
+
+        //log event
+        logger.info("New Demo was saved successfully");
+        redirectAttributes
+                .addAttribute("id",demo.getId())
+                .addFlashAttribute("success",true);
+
+        //herlaad de mappenstruktuur ()
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        return "redirect:/demo/{id}";
+
     }
+
 
     //     BO - REVIEWLIST.HTML
     // List of Demos
@@ -161,12 +182,18 @@ public class DemoController {
             redirectAttributes
                     .addAttribute("id",demo.getId())
                     .addFlashAttribute("success",true);
-            return "redirect:/submit-state";
+            return "redirect:/review-mode";
         }
     }
     //-----------------------------------------//
 
-    //     BO - HANDLEDLIST.HTML
+    //     BO - DASHBOARD.HTML
+    @GetMapping("/bo/dashboard")
+    public String boDashboard(){
+        return "bo/dashboard";
+    }
+
+    //     BO - HANDLED-LIST.HTML
     // List of Demos
     @GetMapping("/bo/handled-list")
     public String boSideList2(Model model){
@@ -207,6 +234,7 @@ public class DemoController {
             return "redirect:/";
         }
     }
+
 
 
 

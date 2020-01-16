@@ -16,9 +16,10 @@ public class DatabaseFiller implements CommandLineRunner {
     }
 
     //individual entries State
-    public State state1 = new State("Pending", "The Admin should enter a 'Pending message'");
+    public State state1 = new State("Pending", "The Admin should set a 'In-review message'");
     public State state2 = new State("Rejected", "The Admin should enter a 'Rejection message'");
     public State state3 = new State("Sent", "The Admin should enter a 'Sent message'");
+
 
     @Bean
     CommandLineRunner runner(DemoRepository demoRepository, StateNameRepository stateNameRepository) {
@@ -32,7 +33,7 @@ public class DatabaseFiller implements CommandLineRunner {
             //individual entries Demo
             Demo demo1 = new Demo("Deep House 4", "I didnt wanna put a description. Sorry", "/serverside_audiofiles/deep house 4.mp3");
             Demo demo2 = new Demo("Virus", "You Gotta love it, it was a hit song", "/serverside_audiofiles/virus.mp3");
-            Demo demo3 = new Demo("Birus", " Duplicate You Gotta love it, it was a hit song", "/serverside_audiofiles/virus.mp3");
+            Demo demo3 = new Demo("Adventure", " I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a frien, who In the end also found a vocalist. Great Right!?", "/serverside_audiofiles/house deep 2.mp3");
 
             //save the demos
             demoRepository.save(demo1);
@@ -44,7 +45,7 @@ public class DatabaseFiller implements CommandLineRunner {
             demo2.setState(state2);
             demo3.setState(state3);
 
-            //save the demos
+            //save the demos again
             demoRepository.save(demo1);
             demoRepository.save(demo2);
             demoRepository.save(demo3);
