@@ -10,7 +10,7 @@ public class AuditorAwareImpl implements AuditorAware<String> {
 
     @Override
     public Optional<String> getCurrentAuditor() {
-        //Hardcoded data (demo) (because of Auditable) will call for the user, but it wont exist. So the user will be set to admin
+        //Hardcoded data (demo) (because of Auditable) will call for the user, but it wont exist. So the uploader will be set to admin
         if(SecurityContextHolder.getContext().getAuthentication() == null) {
             return Optional.of("admin@gmail.com");
         }
