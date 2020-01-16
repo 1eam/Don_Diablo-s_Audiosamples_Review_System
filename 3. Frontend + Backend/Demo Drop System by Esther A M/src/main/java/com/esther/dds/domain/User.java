@@ -43,6 +43,15 @@ public class User implements UserDetails {
 
     private Set<Role> roles = new HashSet<>();
 
+    public void addRole(Role role) {
+        roles.add(role);
+    }
+
+//voor meerdere rollen (achteraf niet nodig)
+    public void addRoles(Set<Role> roles) {
+        roles.forEach(this::addRole);
+    }
+
     //for each role in roles, authorities.add SGA rile.getname
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
