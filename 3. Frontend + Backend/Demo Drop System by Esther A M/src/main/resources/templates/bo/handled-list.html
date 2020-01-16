@@ -9,68 +9,68 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header class="section-center">
-        <!-- logout -->
-        <div class="upper-corner">
-            <p  style="display: inline;" >Joris Dobbelaar &ensp;</p>
-            <a href="bo/login"><u>Logout</u></a>
-        </div>
-        <!-- headerLogo -->
-        <div class="">
-            <img src="/images/hexagonlogo.png" height="20" alt="HEXAGON">
-        </div>
-    
-    </header>
+<header class="section-center">
+    <!-- logout -->
+    <div class="upper-corner">
+        <p  style="display: inline;" >Joris Dobbelaar &ensp;</p>
+        <a href="bo/login"><u>Logout</u></a>
+    </div>
+    <!-- headerLogo -->
+    <div class="">
+        <img src="/images/hexagonlogo.png" height="20" alt="HEXAGON">
+    </div>
 
-    <!-- space -->
-    <div style= "display: block; margin-bottom: 15px;"></div>
+</header>
 
-    <div class="section-center">
-        <!-- navbar elements -->
-        <nav class="homepage-navbar ">
-            <ul id="ul">
-                <li><a href="handled-list" style="color:#707070;">HANDLED DEMOS</a></li>
-                <li><a href="review-list">REVIEW DEMOS</a></li>
-                <li><a href="sent-list">SENT DEMOS</a></li>
-            </ul>
-        </nav>
+<!-- space -->
+<div style= "display: block; margin-bottom: 15px;"></div>
+
+<div class="section-center">
+    <!-- navbar elements -->
+    <nav class="homepage-navbar ">
+        <ul id="ul">
+            <li><a href="handled-list" style="color:#707070;">HANDLED DEMOS</a></li>
+            <li><a href="review-list">REVIEW DEMOS</a></li>
+            <li><a href="sent-list">SENT DEMOS</a></li>
+        </ul>
+    </nav>
+</div>
+
+<!-- space -->
+<div style= "display: block; margin-bottom: 50px;"></div>
+
+<!-- todo -->
+<h1 class="heading section-center">HANDLED: <span class="heading" th:text="${demos.size()}">(15)</span></h1>
+
+<!-- space -->
+<div style= "display: block; margin-bottom: 100px;"></div>
+
+<main class="section-center">
+    <!-- quick scroll -->
+    <!-- <img id="scroll" class="scroll" src="/images/anchor_scroll.png" alt="quick scroll" width="25"> -->
+
+    <!-- blocks of demos -->
+    <div th:each="demo: ${demos}">
+        <div class="list-of-demos">
+            <a th:href="@{'/handled-mode/' + ${demo.id}}" > <span>ARTIST NAME</span> - <span th:text="${demo.title} + ' | by: '">TITLE DEMO</span> <span class="allign right">Joris Dobbelaar</span></a>
+        </div>
     </div>
 
     <!-- space -->
     <div style= "display: block; margin-bottom: 50px;"></div>
+</main>
 
-    <!-- todo -->
-    <h1 class="heading section-center">HANDLED: <span class="heading" th:text="${demos.size()}">(15)</span></h1>
+<!-- space -->
+<div style= "display: block; margin-bottom: 100px;"></div>
 
-    <!-- space -->
-    <div style= "display: block; margin-bottom: 100px;"></div>
+<footer class="section-center">
+    <a href="/bo/dashboard">
+        <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
+    </a>
+</footer>
 
-    <main class="section-center">
-        <!-- quick scroll -->
-        <!-- <img id="scroll" class="scroll" src="/images/anchor_scroll.png" alt="quick scroll" width="25"> -->
-        
-        <!-- blocks of demos -->
-        <div th:each="demo: ${demos}">
-            <div class="list-of-demos">
-                <a th:href="@{'/handled-mode/' + ${demo.id}}" > <span>ARTIST NAME</span> - <span th:text="${demo.title} + ' | by: '">TITLE DEMO</span> <span class="allign right">Joris Dobbelaar</span></a>
-            </div>
-        </div>
+<!-- space -->
+<div style= "display: block; margin-top: 50px;"></div>
 
-        <!-- space -->
-        <div style= "display: block; margin-bottom: 50px;"></div>
-    </main>
-
-    <!-- space -->
-    <div style= "display: block; margin-bottom: 100px;"></div>
-
-    <footer class="section-center">
-        <a href="/bo/dashboard">
-            <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
-        </a>
-    </footer>
-
-    <!-- space -->
-    <div style= "display: block; margin-top: 50px;"></div>
-    
 </body>
 </html>

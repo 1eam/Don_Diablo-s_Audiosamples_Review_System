@@ -5,113 +5,113 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Review-Mode</title>
-   <link rel="stylesheet" href="/css/bo-style.css">
-   <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
-   <!-- audioplayer -->
-   <link rel="stylesheet" href="/css/audioplayer bo-side.css">
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-   <script src="/js/audioplayer.js"></script>
-   
+    <link rel="stylesheet" href="/css/bo-style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
+    <!-- audioplayer -->
+    <link rel="stylesheet" href="/css/audioplayer bo-side.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/js/audioplayer.js"></script>
+
 </head>
 <body onload="myFunction()">
-    <header class="section-center">
-        <!-- logout -->
-        <div class="upper-corner">
-            <p style="display: inline;">Joris Dobbelaar &ensp;</p>
-            <a href="bo/login.html"><u>Logout</u></a>
-        </div>
-        <!-- headerLogo -->
-        <div class="">
-            <img src="/images/hexagonlogo.png" height="20" alt="HEXAGON">
-        </div>
-    </header>
+<header class="section-center">
+    <!-- logout -->
+    <div class="upper-corner">
+        <p style="display: inline;">Joris Dobbelaar &ensp;</p>
+        <a href="bo/login.html"><u>Logout</u></a>
+    </div>
+    <!-- headerLogo -->
+    <div class="">
+        <img src="/images/hexagonlogo.png" height="20" alt="HEXAGON">
+    </div>
+</header>
 
-    <!-- space --><div style= "display: block; margin-bottom: 40px;"></div>
+<!-- space --><div style= "display: block; margin-bottom: 40px;"></div>
 
-    <main class="section-center-bo">
-        <!-- popup-screen -->
-        <!-- <div class="popup">
-            <h2 class="popup-h2" style="margin-bottom: 0px;">First complete the review</h2>
-            <p class="popup-p">then press return to dashboard</p> <br>
-            <button id="ok">OK</button>
-        </div> -->
-        
-        <div class="sections-container">
-            <section class="section s1">
-                <div>
-                    <img src="/images/2. Temporary/Dj Christopher.jpg" width="250" class="img-box" alt="user prifole picture">
-                </div>
-                <h3 class="artist-name" >DJ CHRISTOPHER</h3>
-                <h5 > Christopher de Berg</h5>
-                <h5 > cris.b@yahoo.com</h5>
-                <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
-                <p> Im Christopher, Im a dutch-based musicproducer with love for house music I make deep-house, future-house, tech-house, and bass house. I study computer science at the University of AmsterdIm Christopher, Im a dutch-based musicproducer with love for house music I make deep-house, future-house, tech-house, and bass house. I study computer science at t</p>
-            </section>
-            
-            <section class="section s2">            
-                <!-- ACTUAL -->
-                <h3>ABOUT DEMO</h3>
-                <!-- space --><div style= "display: block; margin-bottom: 100px;"></div>
-                <div style="height: 120px;">
-                    <img src="/images/z. For white background/i_dondiablologo.png" height="20">
-                    <h3 class="demo-name" th:text="${demo.title}">Deep House 2</h3>
-                    <img src="/images/z. For white background/i_dondiablologo.png" height="20">
-                </div>
-                <!-- space --><div style= "display: block; margin-bottom: 34px;"></div>
-                <h3 style="font-weight: 500;">PRODUCERS DESCRIPTION</h3>
-                <div>
-                    <p th:text="${demo.description}">Lorem Ipsim I used Nexus for bass and Sylent 1 for the melody. The track is not mastered yet but im gaining experience to do so Enjoy!</p>
-                </div>
-            
-                <footer class="bo-footer">
-                    <a href="/bo/dashboard">
-                        <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
-                    </a>
-                </footer>
-            </section>
-            
-            <section class="section s3">
+<main class="section-center-bo">
+    <!-- popup-screen -->
+    <!-- <div class="popup">
+        <h2 class="popup-h2" style="margin-bottom: 0px;">First complete the review</h2>
+        <p class="popup-p">then press return to dashboard</p> <br>
+        <button id="ok">OK</button>
+    </div> -->
 
-                <div>
-                    <form method="POST" th:action="@{/submit}" th:object="${demo}">
-                        <!-- review -->
-                        <h3>REVIEW</h3>
-                        <!-- space --><div style= "display: block; margin-bottom: 100px;"></div>
+    <div class="sections-container">
+        <section class="section s1">
+            <div>
+                <img src="/images/2. Temporary/Dj Christopher.jpg" width="250" class="img-box" alt="user prifole picture">
+            </div>
+            <h3 class="artist-name" >DJ CHRISTOPHER</h3>
+            <h5 > Christopher de Berg</h5>
+            <h5 > cris.b@yahoo.com</h5>
+            <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
+            <p> Im Christopher, Im a dutch-based musicproducer with love for house music I make deep-house, future-house, tech-house, and bass house. I study computer science at the University of AmsterdIm Christopher, Im a dutch-based musicproducer with love for house music I make deep-house, future-house, tech-house, and bass house. I study computer science at t</p>
+        </section>
 
-                        <div class="judge-boxes">
-                            <input type="radio" id="radio1" name="state" th:value="rejected">
-                            <label id="label1" for="radio1" class="judge-box">✗</label>
+        <section class="section s2">
+            <!-- ACTUAL -->
+            <h3>ABOUT DEMO</h3>
+            <!-- space --><div style= "display: block; margin-bottom: 100px;"></div>
+            <div style="height: 120px;">
+                <img src="/images/z. For white background/i_dondiablologo.png" height="20">
+                <h3 class="demo-name" th:text="${demo.title}">Deep House 2</h3>
+                <img src="/images/z. For white background/i_dondiablologo.png" height="20">
+            </div>
+            <!-- space --><div style= "display: block; margin-bottom: 34px;"></div>
+            <h3 style="font-weight: 500;">PRODUCERS DESCRIPTION</h3>
+            <div>
+                <p th:text="${demo.description}">Lorem Ipsim I used Nexus for bass and Sylent 1 for the melody. The track is not mastered yet but im gaining experience to do so Enjoy!</p>
+            </div>
 
-                            <input type="radio" id="radio2" name="state" value="sent">
-                            <label id="label2" for="radio2" class="judge-box">✓</label>
-                        </div>
+            <footer class="bo-footer">
+                <a href="/bo/dashboard">
+                    <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
+                </a>
+            </footer>
+        </section>
 
-                        <!-- space --><div style= "display: block; margin-bottom: 100px;"></div>
+        <section class="section s3">
 
-                        <input type="submit" value="Next demo &#129054;"></ul>
-                    </form>
-                </div>
-                    <!-- space --><div style= "display: block; margin-bottom: 250px;"></div>
-                <a style="display: block;" href="/bo/review-list"><u>Exit review-mode</u><span>&#8635;</span></a>
-            </section>            
-        </div>
-        <div class="audio-container" id="scroll">
-            <audio class="audio" th:src="${demo.audioFile}" th:preload="auto" th:controls="controls" th:autoplay="autoplay"></audio>
-        </div>
-    </main>
+            <div>
+                <form method="POST" th:action="@{/submit}" th:object="${demo}">
+                    <!-- review -->
+                    <h3>REVIEW</h3>
+                    <!-- space --><div style= "display: block; margin-bottom: 100px;"></div>
+
+                    <div class="judge-boxes">
+                        <input type="radio" id="radio1" name="state" th:value="rejected">
+                        <label id="label1" for="radio1" class="judge-box">✗</label>
+
+                        <input type="radio" id="radio2" name="state" value="sent">
+                        <label id="label2" for="radio2" class="judge-box">✓</label>
+                    </div>
+
+                    <!-- space --><div style= "display: block; margin-bottom: 100px;"></div>
+
+                    <input type="submit" value="Next demo &#129054;"></ul>
+                </form>
+            </div>
+            <!-- space --><div style= "display: block; margin-bottom: 250px;"></div>
+            <a style="display: block;" href="/bo/review-list"><u>Exit review-mode</u><span>&#8635;</span></a>
+        </section>
+    </div>
+    <div class="audio-container" id="scroll">
+        <audio class="audio" th:src="${demo.audioFile}" th:preload="auto" th:controls="controls" th:autoplay="autoplay"></audio>
+    </div>
+</main>
 
 
-    <script>
-        function myFunction() {
-            var elmnt = document.getElementById("scroll");
-            elmnt.scrollIntoView();
-        }
-    </script>
+<script>
+    function myFunction() {
+        var elmnt = document.getElementById("scroll");
+        elmnt.scrollIntoView();
+    }
+</script>
 
-    <!-- display custum audioplayer -->
-    <script>
-        $( function() { $( 'audio' ).audioPlayer(); } );
-    </script>
-    
+<!-- display custum audioplayer -->
+<script>
+    $( function() { $( 'audio' ).audioPlayer(); } );
+</script>
+
 </body>
 </html>
