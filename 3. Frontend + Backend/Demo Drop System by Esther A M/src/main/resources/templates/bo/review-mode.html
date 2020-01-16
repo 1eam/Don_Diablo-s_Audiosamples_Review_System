@@ -96,7 +96,7 @@
             </section>            
         </div>
         <div class="audio-container" id="scroll">
-            <audio class="audio" th:src="${demo.audioFile}" th:preload="auto" controls autoplay></audio>
+            <audio class="audio" th:src="${demo.audioFile}" th:preload="auto" th:controls="controls" th:autoplay="autoplay"></audio>
         </div>
     </main>
 
