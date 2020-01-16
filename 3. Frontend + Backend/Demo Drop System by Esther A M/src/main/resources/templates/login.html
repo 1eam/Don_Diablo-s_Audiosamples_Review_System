@@ -59,7 +59,7 @@
             <li><a href="https://www.hexagonhq.com/videos">VIDEOS</a></li>
             <li><a href="https://www.hexagonhq.com/radio">RADIO</a></li>
             <li><a href="https://shop.dondiablo.com/collections/hexagon">SHOP</a></li>
-            <li><a href=login">DEMO DROP</a></li>
+            <li><a href="/login">DEMO DROP</a></li>
             <li><a href="https://www.hexagonhq.com/wallpapers">WHALLPAPERS</a></li>
             <li><a href="https://www.hexagonhq.com/contact">CONTACT</a></li>
         </ul>
@@ -78,13 +78,13 @@
 
         <div class="desktop-form">
             <!-- login form -->
-            <div class="login-form" role="form" method="POST" th:action="@{/login}">
+            <div class="login-form">
                 <!-- alert message -->
                 <!-- <div class="alert-message" th:if="${param.error != null}">
                 Invalid username or password.
                 </div> -->
 
-                <form action="">
+                <form role="form" method="POST" th:action="@{/login}">
                     <p>Username</p>
                     <input type="text" name="username">
                     <p>Password</p>
@@ -141,13 +141,13 @@
     </footer>
 
     <!-- flashatt. th: true Flash attribute -->
-    <div id="popup">
+    <div id="popup" th:if="${success}">
         <div class="section-center popup-content">
         <h2>Thanks for signing up!</h2>
         <p>Please check your email to complete the activation</p>
         
         <div>
-            <a href=login.html"><button class="button">Login</button></a>
+            <a href="/login"><button class="button">Login</button></a>
         </div>
         <!-- space --><div style= "display: block; margin-bottom: 20px;"></div>
         <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="72">
