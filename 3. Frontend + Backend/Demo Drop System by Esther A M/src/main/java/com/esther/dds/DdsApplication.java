@@ -7,7 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
-@EnableJpaAuditing
+
 public class DdsApplication {
 
     private static final Logger log = LoggerFactory.getLogger(DdsApplication.class);
