@@ -38,6 +38,7 @@ public class DemoController {
     @GetMapping("/dashboard")
     public String userSideList(Model model){
         model.addAttribute("demos", demoRepository.findAll());
+        model.addAttribute("demo", demoRepository.findById(9L));
         return "dashboard";
     }
 

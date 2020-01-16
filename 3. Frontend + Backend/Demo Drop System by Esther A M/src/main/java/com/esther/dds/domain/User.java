@@ -27,6 +27,11 @@ public class User implements UserDetails {
     private String email;
 
     @NonNull
+    @Column(length = 50)
+    private String artistName;
+
+
+    @NonNull
     @Column(length = 100)
     private String password;
 

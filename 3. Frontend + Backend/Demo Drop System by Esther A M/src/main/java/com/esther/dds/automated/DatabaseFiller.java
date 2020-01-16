@@ -92,15 +92,15 @@ public class DatabaseFiller implements CommandLineRunner {
         Role adminRole = new Role("ROLE_ADMIN");
         roleRepository.save(adminRole);
 
-        User user = new User("user@gmail.com",secret,true);
+        User user = new User("user@gmail.com", "DJ Lombok" , secret,true);
         user.addRole(userRole);
         userRepository.save(user);
 
-        User bo = new User("bo@gmail.com",secret,true);
+        User bo = new User("bo@gmail.com", "DJ sombaady" ,secret,true);
         bo.addRole(adminRole);
         userRepository.save(bo);
 
-        User admin = new User("admin@gmail.com",secret,true);
+        User admin = new User("admin@gmail.com", "Martin Garrix",secret,true);
         admin.addRoles(new HashSet<>(Arrays.asList(userRole,adminRole)));
         userRepository.save(admin);
     }
