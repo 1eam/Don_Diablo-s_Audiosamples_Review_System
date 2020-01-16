@@ -97,19 +97,15 @@ public class DemoController {
     // Bind form loaded in to object
     @PostMapping("/dropdemo")
     public String uploadDemo(@Valid Demo demo, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes, @RequestParam("audioFile") MultipartFile audioFile) {
-        // save multipart file to folder
+        // save multipart file to folder + the path
         try {
-            audioFileService.saveAudio(audioFile);
+            audioFileService.saveAudio(demo, audioFile);
         } catch (Exception e){
             e.printStackTrace();
             logger.error("Error saving Audio");
         }
 
 
-        // get path (string) of multipartfile
-
-
-        demo.setAudioFile();
 
 
         // save uploaded demo (title, description.)
@@ -123,8 +119,7 @@ public class DemoController {
 
         // get multipartFile Path in string
 
-        // assign the multipartString to demo
-        demo.setAudioFile("/serverside_audiofiles/" + "variable to path" + "variable .getdemoId");
+
 
         // save demo again (update: + fileLocation. Save complete)
         demoRepository.save(demo);
@@ -135,10 +130,16 @@ public class DemoController {
         redirectAttributes
                 .addAttribute("id",demo.getId())
                 .addFlashAttribute("success",true);
+
+        //herlaad de mappenstruktuur ()
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         return "redirect:/demo/{id}";
 
     }
-
 
 
     //     BO - REVIEWLIST.HTML
@@ -181,7 +182,7 @@ public class DemoController {
             redirectAttributes
                     .addAttribute("id",demo.getId())
                     .addFlashAttribute("success",true);
-            return "redirect:/submit-state";
+            return "redirect:/review-mode";
         }
     }
     //-----------------------------------------//
