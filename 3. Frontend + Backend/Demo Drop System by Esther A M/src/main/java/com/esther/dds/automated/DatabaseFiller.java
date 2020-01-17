@@ -1,17 +1,40 @@
 package com.esther.dds.automated;
 
 import com.esther.dds.domain.Demo;
+import com.esther.dds.domain.Role;
 import com.esther.dds.domain.State;
+import com.esther.dds.domain.User;
 import com.esther.dds.repositories.DemoRepository;
+import com.esther.dds.repositories.RoleRepository;
 import com.esther.dds.repositories.StateNameRepository;
+import com.esther.dds.repositories.UserRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
+
+import java.util.Arrays;
+import java.util.HashSet;
+
+//This class only serves to fill initial data in the database
 
 @Component
 public class DatabaseFiller implements CommandLineRunner {
+
+    private UserRepository userRepository;
+    private RoleRepository roleRepository;
+
+    public DatabaseFiller(UserRepository userRepository, RoleRepository roleRepository) {
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+    }
+
+
     @Override
     public void run(String... args) throws Exception {
+
+        //add users to roles
+        addUsersAndRoles();
 
     }
 
@@ -55,8 +78,32 @@ public class DatabaseFiller implements CommandLineRunner {
 
 
         };
-    }
 
+    }
+//Refactor in future (one to many relationship to role & different classes)
+    private void addUsersAndRoles() {
+
+        //Encodes the raw password
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        String secret = "{bcrypt}" + encoder.encode("pass");
+
+        Role userRole = new Role("ROLE_USER");
+        roleRepository.save(userRole);
+        Role adminRole = new Role("ROLE_ADMIN");
+        roleRepository.save(adminRole);
+
+        User user = new User("user@gmail.com", "DJ Lombok" , secret,true);
+        user.addRole(userRole);
+        userRepository.save(user);
+
+        User bo = new User("bo@gmail.com", "DJ sombaady" ,secret,true);
+        bo.addRole(adminRole);
+        userRepository.save(bo);
+
+        User admin = new User("admin@gmail.com", "Martin Garrix",secret,true);
+        admin.addRoles(new HashSet<>(Arrays.asList(userRole,adminRole)));
+        userRepository.save(admin);
+    }
 }
 
 

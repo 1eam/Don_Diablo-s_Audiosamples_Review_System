@@ -37,10 +37,11 @@ public class StateController {
     //get stuff
     @GetMapping("/admin/set-texts")
     public String loadText1Form(Model model){
-        State state = stateNameRepository.findByStateName("Pending");
-        model.addAttribute("state", state);
+        model.addAttribute("state", stateNameRepository.findByStateName("Pending"));
         return "bo/a_set-texts";
     }
+
+
 
 
     //     SET-TEXTS.HTML

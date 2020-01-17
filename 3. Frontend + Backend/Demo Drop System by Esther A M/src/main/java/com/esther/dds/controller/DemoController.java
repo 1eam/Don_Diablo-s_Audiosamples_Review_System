@@ -4,6 +4,7 @@ import com.esther.dds.automated.DatabaseFiller;
 import com.esther.dds.domain.Demo;
 
 import com.esther.dds.repositories.DemoRepository;
+import com.esther.dds.repositories.UserRepository;
 import com.esther.dds.service.AudioFileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,9 +36,11 @@ public class DemoController {
 
     //     DASHBOARD.HTML
     // List of Demos
-    @GetMapping("/dashboard")
+    @GetMapping("/dashboard") //usersID
     public String userSideList(Model model){
-        model.addAttribute("demos", demoRepository.findAll());
+
+        model.addAttribute("demos", demoRepository.findAll()); //find all (demos) by userID (id=pathvariable)
+        //model.addAttribute("user", userRepository.findById(/*pathvariable)*/). getArtistname;
         return "dashboard";
     }
 
@@ -106,8 +109,6 @@ public class DemoController {
         }
 
 
-
-
         // save uploaded demo (title, description.)
         demoRepository.save(demo);
 
@@ -117,13 +118,9 @@ public class DemoController {
         // save demo again (update: + state)
         demoRepository.save(demo);
 
-        // get multipartFile Path in string
-
-
 
         // save demo again (update: + fileLocation. Save complete)
         demoRepository.save(demo);
-
 
         //log event
         logger.info("New Demo was saved successfully");
@@ -131,9 +128,11 @@ public class DemoController {
                 .addAttribute("id",demo.getId())
                 .addFlashAttribute("success",true);
 
-        //herlaad de mappenstruktuur ()
+
+        // Dit herlaad de mappenstruktuur
+        // (Is de demo direct na upload niet zichtbaar? klik dan met je muis in intellij, en ga terug naar de browser
         try {
-            Thread.sleep(3000);
+            Thread.sleep(4000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

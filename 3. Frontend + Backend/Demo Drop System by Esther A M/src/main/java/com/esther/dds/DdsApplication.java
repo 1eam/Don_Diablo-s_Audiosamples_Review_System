@@ -4,10 +4,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
+
 
 @SpringBootApplication
-@EnableJpaAuditing
+
 public class DdsApplication {
 
     private static final Logger log = LoggerFactory.getLogger(DdsApplication.class);
@@ -16,5 +16,9 @@ public class DdsApplication {
         SpringApplication.run(DdsApplication.class, args);
     }
 
-
+    //This bean will not be needed until Thymeleaf startr includes it.
+//    @Bean
+//    public SpringSecurityDialect securityDialect() {
+//        return new SpringSecurityDialect();
+//    }
 }

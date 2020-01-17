@@ -18,14 +18,14 @@
         <main class="top-section">
              <!-- settings button -->
             <div class="settings-button">
-                <a href="/settings.html"><img src="/images/settingsbutton.svg" width="20"></a>
+                <a th:href="/settings/ + ${user.id}"><img src="/images/settingsbutton.svg" width="20"></a>
             </div>
 
             <!-- profile section -->
             <div class="img-box">
                 <img src="/images/2. Temporary/Dj Christopher.jpg" >
             </div>
-            <h1 class="artist-name">DJ CHRISTOPHER</h1>
+            <h1 class="artist-name" >DJ CHRISTOPHER</h1>
 
             <!-- Drop Demo button -->
             <a href="/dropdemo"><button class="button button-a">DROP DEMO</button></a>
@@ -60,8 +60,8 @@
         <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
         
         <!-- logout -->
-        <form class="upper-corner" method="POST" th:action="@{/logout}" sec:authorize="isAuthenticated()">
-            <a href="/login.html"><u>Logout</u></a>
+        <form class="upper-corner" method="POST" th:action="@{/logout}">
+            <button style="all: unset; cursor: pointer"> <u>logout</u> </button>
         </form>
     </footer>
 

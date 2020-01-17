@@ -59,7 +59,7 @@
             <li><a href="https://www.hexagonhq.com/videos">VIDEOS</a></li>
             <li><a href="https://www.hexagonhq.com/radio">RADIO</a></li>
             <li><a href="https://shop.dondiablo.com/collections/hexagon">SHOP</a></li>
-            <li><a href=login">DEMO DROP</a></li>
+            <li><a href="/login">DEMO DROP</a></li>
             <li><a href="https://www.hexagonhq.com/wallpapers">WHALLPAPERS</a></li>
             <li><a href="https://www.hexagonhq.com/contact">CONTACT</a></li>
         </ul>
@@ -78,32 +78,35 @@
 
         <div class="desktop-form">
             <!-- login form -->
-            <div class="login-form" role="form" method="POST" th:action="@{/login}">
+            <div class="login-form">
                 <!-- alert message -->
                 <!-- <div class="alert-message" th:if="${param.error != null}">
                 Invalid username or password.
                 </div> -->
 
-                <form action="">
+                                                        <!-- +/{id} later-->
+                <form role="form" method="POST" th:action="@{/login}">
+                    <p style="color: #707070" th:if="${param.error != null}">Invalid Username or password</p>
+                    <p style="color: #707070" th:if="${param.logout != null}">You have been logged out</p>
                     <p>Username</p>
-                    <input type="text" name="username">
+                    <input type="text" placeholder="Email Address" name="email">
                     <p>Password</p>
                     <input type="password" name="password"> <br>
 
                     <!-- remember me checkbox -->
-                    <p><input type="checkbox">Remember me</p>
+                    <p><input type="checkbox" name="remember-me">Remember me</p>
 
                     <!-- space -->
-                    <div style= "display: inline-block; margin-bottom: 60px;"></div>
+                    <div style= "display: inline-block; margin-bottom: 15px;"></div>
 
                     <!-- submit -->
-                    <a href=""></a> <input type="submit" value="LOGIN" class="button" >
+                    <p style="text-align: center"><input type="submit" value="LOGIN" class="button"></p>
                 </form>
             </div>
 
             <!-- register link (responsive) -->
             <div class="register-link-visibility">
-                <a href="/register.html"><p><u style="font-size: 12px;">Register</u></p></a>
+                <a href="/register"><p><u style="font-size: 12px;">Register</u></p></a>
             </div>
 
             <!-- register form -->
@@ -141,13 +144,13 @@
     </footer>
 
     <!-- flashatt. th: true Flash attribute -->
-    <div id="popup">
+    <div id="popup" th:if="${success}">
         <div class="section-center popup-content">
         <h2>Thanks for signing up!</h2>
         <p>Please check your email to complete the activation</p>
         
         <div>
-            <a href=login.html"><button class="button">Login</button></a>
+            <a href="/login"><button class="button">Login</button></a>
         </div>
         <!-- space --><div style= "display: block; margin-bottom: 20px;"></div>
         <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="72">
