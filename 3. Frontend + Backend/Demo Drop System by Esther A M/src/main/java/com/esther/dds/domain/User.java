@@ -1,5 +1,6 @@
 package com.esther.dds.domain;
 
+import com.esther.dds.domain.Validator.PasswordsMatch;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -17,6 +18,7 @@ import java.util.stream.Collectors;
 @Setter
 @ToString
 @NoArgsConstructor
+@PasswordsMatch
 public class User implements UserDetails {
 
     @Id @GeneratedValue
@@ -24,7 +26,7 @@ public class User implements UserDetails {
 
     @NonNull
     @NotEmpty
-    @Size(min = 8, max = 40)
+//    @Size(min = 8, max = 40)
     @Column(nullable = false, unique = true)
     private String email;
 
@@ -32,6 +34,12 @@ public class User implements UserDetails {
     @NotEmpty
     @Column(length = 100)
     private String password;
+
+    @Transient
+    @NotEmpty(message = "Please enter Password Confirmation")
+    private String confirmPassword;
+
+    private String activationCode;
 
     @NonNull
     @NotEmpty(message = "Please enter you name")
