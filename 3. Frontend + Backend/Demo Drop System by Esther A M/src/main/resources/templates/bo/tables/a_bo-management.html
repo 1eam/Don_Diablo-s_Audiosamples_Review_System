@@ -74,6 +74,45 @@
       </tbody>
     </table>
   </main>
+
+  <!-- space --><div style= "display: block; margin-bottom: 40px;"></div>
+
+  <main>
+      <!-- create bo-user pointer -->
+      <div class="scroll-message">
+          <u>create new bo-user</u>
+          <div class="triangle">&#9660;</div>
+      </div>
+
+      <!-- space --><div style= "display: block; margin-bottom: 100px;"></div>
+
+      <!-- flash attribute (box links-onder)-->
+<!--      th:if="${param.succes != null}"-->
+      <div class="bo-Flash">
+          <p >User has been created</p>
+          <p>An email has been sent</p>
+      </div>
+  </main>
+
+  <!-- create new bo-user -->
+  <main class="section-center-bo">
+      <!-- Heading -->
+      <h1 class="heading">CREATE NEW BO-USER</h1>
+
+      <form action="/register/submit">
+          <p class="form-text">Name</p>
+          <input type="text" name="name">
+          <p class="form-text">Last name</p>
+          <input type="text" name="lastName">
+          <p class="form-text">Email Address</p>
+          <input type="text" name="emailAddress"> <br>
+
+          <!-- space --><div style= "display: block; margin-bottom: 20px;"></div>
+          <!-- Create user button -->
+          <input type="submit" value="Create user" id="createUserButton" class="button">
+      </form>
+  </main>
+
   <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
   <footer>
       <a href="/admin/dashboard"><img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="72"></a>

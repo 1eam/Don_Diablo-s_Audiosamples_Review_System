@@ -3,9 +3,10 @@ package com.esther.dds.controller;
 import com.esther.dds.automated.DatabaseFiller;
 import com.esther.dds.domain.Demo;
 
-import com.esther.dds.repositories.DemoRepository;
+
 import com.esther.dds.repositories.UserRepository;
 import com.esther.dds.service.AudioFileService;
+import com.esther.dds.service.DemoService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -23,13 +24,13 @@ public class DemoController {
 
     private static final Logger logger = LoggerFactory.getLogger(DemoController.class);
 
-    private DemoRepository demoRepository;
+    private DemoService demoService;
     private DatabaseFiller databaseFiller;
     private AudioFileService audioFileService;
 
 
-    public DemoController(DemoRepository demoRepository, DatabaseFiller databaseFiller, AudioFileService audioFileService) {
-        this.demoRepository = demoRepository;
+    public DemoController(DemoService demoService, DatabaseFiller databaseFiller, AudioFileService audioFileService) {
+        this.demoService = demoService;
         this.databaseFiller = databaseFiller;
         this.audioFileService = audioFileService;
     }
@@ -39,7 +40,7 @@ public class DemoController {
     @GetMapping("/dashboard") //usersID
     public String userSideList(Model model){
 
-        model.addAttribute("demos", demoRepository.findAll()); //find all (demos) by userID (id=pathvariable)
+        model.addAttribute("demos", demoService.findAll()); //find all (demos) by userID (id=pathvariable)
         //model.addAttribute("user", userRepository.findById(/*pathvariable)*/). getArtistname;
         return "dashboard";
     }
@@ -48,7 +49,7 @@ public class DemoController {
     // Play
     @GetMapping("/demo/{id}")
     public String userSideDemo (@PathVariable Long id, Model model){
-        Optional<Demo> demo = demoRepository.findById(id);
+        Optional<Demo> demo = demoService.findById(id);
         if( demo.isPresent() ) {
             model.addAttribute("demo", demo.get());
             model.addAttribute("success", model.containsAttribute("success"));
@@ -63,7 +64,7 @@ public class DemoController {
     // Delete Demo
     @PostMapping ("/demo/{id}/delete")
     public String deleteDemo(Demo demo, @PathVariable Long id, Model model){
-        demoRepository.delete(demo);
+        demoService.delete(demo);
         return "redirect:/dashboard";
     }
 
@@ -110,17 +111,17 @@ public class DemoController {
 
 
         // save uploaded demo (title, description.)
-        demoRepository.save(demo);
+        demoService.save(demo);
 
         // assign this demo to pending state
         demo.setState(databaseFiller.state1);
 
         // save demo again (update: + state)
-        demoRepository.save(demo);
+        demoService.save(demo);
 
 
         // save demo again (update: + fileLocation. Save complete)
-        demoRepository.save(demo);
+        demoService.save(demo);
 
         //log event
         logger.info("New Demo was saved successfully");
@@ -145,7 +146,7 @@ public class DemoController {
     // List of Demos
     @GetMapping("/bo/review-list")
     public String boSideList(Model model){
-        model.addAttribute("demos", demoRepository.findByStateStateName("Pending"));
+        model.addAttribute("demos", demoService.findByStateStateName("Pending"));
 
         return "bo/review-list";
     }
@@ -154,7 +155,7 @@ public class DemoController {
     // Play
     @GetMapping("/review-mode/{id}")
     public String boSideDemo (@PathVariable Long id, Model model){
-        Optional<Demo> demo = demoRepository.findById(id);
+        Optional<Demo> demo = demoService.findById(id);
         if( demo.isPresent() ) {
             model.addAttribute("demo",demo.get());
             return "bo/review-mode";
@@ -172,7 +173,7 @@ public class DemoController {
             demo.setState(databaseFiller.state2);
 
             // save uploaded demo (title, description.)
-            demoRepository.save(demo);
+            demoService.save(demo);
 
 
 
@@ -196,7 +197,7 @@ public class DemoController {
     // List of Demos
     @GetMapping("/bo/handled-list")
     public String boSideList2(Model model){
-        model.addAttribute("demos", demoRepository.findByStateStateName("Rejected"));
+        model.addAttribute("demos", demoService.findByStateStateName("Rejected"));
         return "bo/handled-list";
     }
 
@@ -204,7 +205,7 @@ public class DemoController {
     // Play
     @GetMapping("/handled-mode/{id}")
     public String boSideDemo2 (@PathVariable Long id, Model model){
-        Optional<Demo> demo = demoRepository.findById(id);
+        Optional<Demo> demo = demoService.findById(id);
         if( demo.isPresent() ) {
             model.addAttribute("demo",demo.get());
             return "bo/handled-mode";
@@ -217,7 +218,7 @@ public class DemoController {
     // List of Demos
     @GetMapping("/bo/sent-list")
     public String boSideList3(Model model){
-        model.addAttribute("demos", demoRepository.findByStateStateName("Sent"));
+        model.addAttribute("demos", demoService.findByStateStateName("Sent"));
         return "bo/sent-list";
     }
 
@@ -225,7 +226,7 @@ public class DemoController {
     // Play
     @GetMapping("/sent-mode/{id}")
     public String boSideDemo3 (@PathVariable Long id, Model model){
-        Optional<Demo> demo = demoRepository.findById(id);
+        Optional<Demo> demo = demoService.findById(id);
         if( demo.isPresent() ) {
             model.addAttribute("demo",demo.get());
             return "bo/sent-mode";
@@ -246,22 +247,22 @@ public class DemoController {
 //
 //    @PostMapping("/create")
 //    public Demo create(@ModelAttribute Demo demo) {
-//        return demoRepository.save(demo);
+//        return demoService.save(demo);
 //    }
 //
 //    @GetMapping("/{id}")
 //    public Optional<Demo> read(@PathVariable Long id) {
-//        return demoRepository.findById(id);
+//        return demoService.findById(id);
 //    }
 //
 //    @PutMapping("/{id}")
 //    public Demo update(@PathVariable Long id, @ModelAttribute Demo demo) {
 //        // get the id
-//        return demoRepository.save(demo);
+//        return demoService.save(demo);
 //    }
 //
 //    @DeleteMapping("/{id}")
 //    public void delete(@PathVariable Long id) {
-//        demoRepository.deleteById(id);
+//        demoService.deleteById(id);
 //    }
 }
