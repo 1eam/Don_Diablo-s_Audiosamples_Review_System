@@ -90,8 +90,8 @@ public class DatabaseFiller implements CommandLineRunner {
 
         Role userRole = new Role("ROLE_USER");
         roleRepository.save(userRole);
-        Role adminRole = new Role("ROLE_ADMIN");
-        roleRepository.save(adminRole);
+//        Role adminRole = new Role("ROLE_ADMIN");
+//        roleRepository.save(adminRole);
 
         User user = new User("user.com", secret, "Martijn", "Garritssen", "Martin Garrix", "I thought, You know what? You might need another Talent to recruit" , "/serverside_profileimages/martijn.jpg",true);
         user.addRole(userRole);

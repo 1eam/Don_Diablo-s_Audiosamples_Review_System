@@ -25,7 +25,6 @@ public class AuthController {
     @GetMapping("/login")
     public String loginAndRegister(Model model){
         model.addAttribute("user", new User());
-        model.addAttribute("success",false);
         return "login";
     }
 

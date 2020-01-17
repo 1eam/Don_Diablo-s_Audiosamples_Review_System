@@ -30,7 +30,7 @@ public class ProfileImageService {
         //update de "AudioFile" veld in database: Locatie: string"
         user.setProfileImage("/audio/" + profileImage.getOriginalFilename());
         byte[] bytes = profileImage.getBytes();
-        Path path = Paths.get(uwMappenStruktuur + "\\src\\main\\resources\\static\\audio\\" + profileImage.getOriginalFilename());
+        Path path = Paths.get(uwMappenStruktuur + "\\src\\main\\resources\\static\\profileimagefiles\\" + profileImage.getOriginalFilename());
         Files.write(path, bytes);
 
 

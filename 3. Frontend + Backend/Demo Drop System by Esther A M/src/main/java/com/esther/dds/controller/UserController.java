@@ -5,6 +5,7 @@ import com.esther.dds.service.ProfileImageService;
 import com.esther.dds.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,8 +13,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.MultipartConfigElement;
 import javax.validation.Valid;
 
 @Controller
@@ -31,21 +34,13 @@ public class UserController {
     @PostMapping("/register") //getmapping zit in Auth
     public String registerUser(@Valid User user, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes, @RequestParam("profileImage") MultipartFile profileImage) {
 
-        if( bindingResult.hasErrors() ) {
-            // show validation errors
-            logger.info("Validation errors were found while registering a new user");
-            model.addAttribute("user",user);
-            model.addAttribute("validationErrors", bindingResult.getAllErrors());
-            return "login";
-        } else {
-
             // save multipart file to folder + set the path
-            try {
-                profileImageService.saveProfileImage(user, profileImage);
-            } catch (Exception e){
-                e.printStackTrace();
-                logger.error("Error saving ProfileImage");
-            }
+        try {
+            profileImageService.saveProfileImage(user, profileImage);
+        } catch (Exception e){
+            e.printStackTrace();
+            logger.error("Error saving ProfileImage");
+        }
 
             // Register new user
             User newUser = userService.register(user);
@@ -55,6 +50,8 @@ public class UserController {
 
             //log event
             logger.info("New user was saved successfully");
+
+
 
             // Dit herlaad de mappenstructuur
             // (Is de afbeelding toch niet zichtbaar? klik dan met je muis in intellij, en ga terug naar de browser. of refresh de map
@@ -66,8 +63,10 @@ public class UserController {
 
             return "redirect:/login";
 
-        }
+
     }
+
+
 
 
     @GetMapping("admin/user-management")
