@@ -27,12 +27,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/actuator/").hasRole("ADMIN")
                 .antMatchers("/").hasRole("USER")
                 .antMatchers("/login").permitAll()
+                .antMatchers("/activate/").permitAll()
+                .antMatchers("/register").permitAll()
                 .antMatchers("/dashboard").hasRole("USER")
                 .antMatchers("/dropdemo").hasRole("USER")
                 .antMatchers("/demo/{id}").hasRole("USER")
                 .antMatchers("/delete").hasRole("USER")
                 .antMatchers("/settings").hasRole("USER")
-                .antMatchers("/register").permitAll()
+
+
                 .antMatchers("/h2-console/**").permitAll()
                 .and()
                 .formLogin()
