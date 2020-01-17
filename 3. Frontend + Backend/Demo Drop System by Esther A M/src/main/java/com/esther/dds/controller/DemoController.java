@@ -4,6 +4,7 @@ import com.esther.dds.automated.DatabaseFiller;
 import com.esther.dds.domain.Demo;
 
 import com.esther.dds.repositories.DemoRepository;
+import com.esther.dds.repositories.UserRepository;
 import com.esther.dds.service.AudioFileService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,10 +36,11 @@ public class DemoController {
 
     //     DASHBOARD.HTML
     // List of Demos
-    @GetMapping("/dashboard")
+    @GetMapping("/dashboard") //usersID
     public String userSideList(Model model){
-        model.addAttribute("demos", demoRepository.findAll());
-        model.addAttribute("demo", demoRepository.findById(9L));
+        model.addAttribute("demos", demoRepository.findAll()); //find all by userID (id=pathvariable)
+
+        //model.addAttribute("user", userRepository.findById(/*pathvariable)*/). getArtistname;
         return "dashboard";
     }
 
