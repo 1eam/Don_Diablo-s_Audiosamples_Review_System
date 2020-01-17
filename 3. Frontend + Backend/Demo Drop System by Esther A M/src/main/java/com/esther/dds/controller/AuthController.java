@@ -11,7 +11,7 @@ public class AuthController {
 
     @GetMapping("/")
     public String login(){
-        return "dashboard";
+        return "redirect:/dashboard"; //pasaan: redirect/dashboard{id}
 
     }
 
