@@ -6,6 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -22,18 +23,36 @@ public class User implements UserDetails {
     private Long id;
 
     @NonNull
+    @NotEmpty
     @Size(min = 8, max = 40)
     @Column(nullable = false, unique = true)
     private String email;
 
     @NonNull
-    @Column(length = 50)
-    private String artistName;
-
-
-    @NonNull
+    @NotEmpty
     @Column(length = 100)
     private String password;
+
+    @NonNull
+    @NotEmpty(message = "Please enter you name")
+    private String name;
+
+    @NonNull
+    @NotEmpty(message = "Please enter your last name")
+    private String lastName;
+
+    @NonNull
+    @Column(length = 50)
+    @NotEmpty(message = "Please enter your artist name")
+    private String artistName;
+
+    @NonNull
+    @Column(length = 350)
+    @NotEmpty(message = "Please tell something about yourself")
+    private String bio;
+
+    @NonNull
+    private String profileImage;
 
     @NonNull
     @Column(nullable = false)
