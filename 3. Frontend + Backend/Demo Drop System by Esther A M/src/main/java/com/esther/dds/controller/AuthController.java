@@ -1,7 +1,9 @@
 package com.esther.dds.controller;
 
+import com.esther.dds.domain.User;
 import com.esther.dds.service.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -21,16 +23,13 @@ public class AuthController {
     }
 
     @GetMapping("/login")
-    public String authenticate(){
+    public String loginAndRegister(Model model){
+        model.addAttribute("user", new User());
+        model.addAttribute("success",false);
         return "login";
-
     }
 
-    @GetMapping("/register")
-    public String registerMobile(){
-        return "register";
 
-    }
 
 
 
@@ -47,6 +46,12 @@ public class AuthController {
 //
 //    }
 
+    //coppy getmapping login over
+    @GetMapping("/register")
+    public String registerMobile(){
+        return "register";
+
+    }
 
     @GetMapping("/settings/{id}")
     public String settings(@PathVariable Long id){

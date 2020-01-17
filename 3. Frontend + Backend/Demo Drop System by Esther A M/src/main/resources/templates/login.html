@@ -111,21 +111,28 @@
 
             <!-- register form -->
             <div class="login-form responsive-register-form-container" >
-                <form method="POST" enctype="multipart/form-data" th:action="@{/login}" th:object="${user}">
+                <form method="POST" enctype="multipart/form-data" th:action="@{/login}" th:object="${user}" th:if="!${succes}">
+<!--                    <p class="form-text" th:if="${validationErrors}">-->
+<!--                        <ul th:each="error: ${error.validationErrors}">-->
+<!--                            <li th:text="${error.getDefaultMessage()}"></li>-->
+<!--                        </ul>-->
+<!--                    </p>-->
+
                     <p class="form-text">Name</p>
-                    <input type="text" name="name">
+                    <input type="text" name="name" th:field="*{name}">
                     <p class="form-text">Last name</p>
-                    <input type="text" name="lastName">
+                    <input type="text" name="lastName" th:field="*{lastName}">
                     <p class="form-text">Artististname</p>
-                    <input type="text" name="artistName">
+                    <input type="text" name="artistName" th:field="*{artistName}">
                     <p class="form-text">Email</p>
-                    <input type="text" name="email">
+                    <input type="text" name="email" th:field="*{email}">
                     <p class="form-text">Password</p>
-                    <input type="password" placeholder="must be at least 8 characters long" name="password">
+                    <input type="password" placeholder="must be at least 8 characters long" name="password" th:field="*{password}">
                     <p class="form-text">Confirm Password</p>
+<!--                    th:field="*{confirmPassword}"-->
                     <input type="password" name="surName">
                     <p class="form-text">Tell something about yourself</p> <!-- max 350 char -->
-                    <textarea rows="10" cols="22" placeholder="I like coockies" name="bio"></textarea>
+                    <textarea rows="10" cols="22" placeholder="I like coockies" name="bio" th:field="*{bio}"></textarea>
 
                     <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
                     <p class="form-text">Upload a profile image</p>
