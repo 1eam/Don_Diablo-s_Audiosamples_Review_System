@@ -87,7 +87,6 @@ public class DatabaseFiller implements CommandLineRunner {
         //Encodes the raw password
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         String secret = "{bcrypt}" + encoder.encode("pass");
-        String secret2 = "{bcrypt}" + encoder.encode("pass");
 
         Role userRole = new Role("ROLE_USER");
         roleRepository.save(userRole);
@@ -96,10 +95,12 @@ public class DatabaseFiller implements CommandLineRunner {
 
         User user = new User("user.com", secret, "Martijn", "Garritssen", "Martin Garrix", "I thought, You know what? You might need another Talent to recruit" , "/serverside_profileimages/martijn.jpg",true);
         user.addRole(userRole);
+        user.setConfirmPassword(secret);
         userRepository.save(user);
 
 //        User bo = new User("bo.com", secret, "Floris Roddelaar",true);
-//        bo.addRole(adminRole);
+//        boUser.addRole(adminRole);
+//        boUser.setConfirmPassword(secret);
 //        userRepository.save(bo);
 //
 //        User admin = new User("admin.com",secret ,true);
