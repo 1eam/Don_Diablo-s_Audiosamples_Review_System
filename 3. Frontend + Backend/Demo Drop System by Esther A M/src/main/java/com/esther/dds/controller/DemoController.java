@@ -109,7 +109,6 @@ public class DemoController {
             logger.error("Error saving Audio");
         }
 
-
         // save uploaded demo (title, description.)
         demoService.save(demo);
 
@@ -117,10 +116,6 @@ public class DemoController {
         demo.setState(databaseFiller.state1);
 
         // save demo again (update: + state)
-        demoService.save(demo);
-
-
-        // save demo again (update: + fileLocation. Save complete)
         demoService.save(demo);
 
         //log event

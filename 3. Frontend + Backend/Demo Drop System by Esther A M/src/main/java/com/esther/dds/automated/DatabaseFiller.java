@@ -80,7 +80,8 @@ public class DatabaseFiller implements CommandLineRunner {
         };
 
     }
-//Refactor in future (one to many relationship to role & different classes)
+
+//Refactor in future (many to one relationship to role & different classes)
     private void addUsersAndRoles() {
 
         //Encodes the raw password
@@ -92,17 +93,17 @@ public class DatabaseFiller implements CommandLineRunner {
         Role adminRole = new Role("ROLE_ADMIN");
         roleRepository.save(adminRole);
 
-        User user = new User("user@gmail.com", "DJ Lombok" , secret,true);
+        User user = new User("user.com", secret, "Martijn", "Garritssen", "Martin Garrix", "I thought, You know what? You might need another Talent to recruit" , "/serverside_profileimages/martijn.jpg",true);
         user.addRole(userRole);
         userRepository.save(user);
 
-        User bo = new User("bo@gmail.com", "DJ sombaady" ,secret,true);
-        bo.addRole(adminRole);
-        userRepository.save(bo);
-
-        User admin = new User("admin@gmail.com", "Martin Garrix",secret,true);
-        admin.addRoles(new HashSet<>(Arrays.asList(userRole,adminRole)));
-        userRepository.save(admin);
+//        User bo = new User("bo.com", secret, "Floris Roddelaar",true);
+//        bo.addRole(adminRole);
+//        userRepository.save(bo);
+//
+//        User admin = new User("admin.com",secret ,true);
+//        admin.addRoles(new HashSet<>(Arrays.asList(userRole,adminRole)));
+//        userRepository.save(admin);
     }
 }
 
