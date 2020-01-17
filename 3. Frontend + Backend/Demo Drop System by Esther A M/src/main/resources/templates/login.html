@@ -129,8 +129,7 @@
                     <p class="form-text">Password</p>
                     <input type="password" placeholder="must be at least 8 characters long" name="password" minlength="8" th:field="*{password}">
                     <p class="form-text">Confirm Password</p>
-<!--                    th:field="*{confirmPassword}"-->
-                    <input type="password" minlength="8" name="confirmPassword">
+                    <input type="password" minlength="8" name="confirmPassword" th:field="*{confirmPassword}">
                     <p class="form-text">Tell something about yourself</p> <!-- max 350 char -->
                     <textarea rows="10" cols="22" placeholder="I like coockies" name="bio" maxlength="350" th:field="*{bio}"></textarea>
 
