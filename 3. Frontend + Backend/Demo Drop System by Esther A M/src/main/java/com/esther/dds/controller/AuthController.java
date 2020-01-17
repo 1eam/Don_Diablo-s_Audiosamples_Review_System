@@ -21,6 +21,12 @@ public class AuthController {
 
     }
 
+    @GetMapping("/register")
+    public String registerMobile(){
+        return "register";
+
+    }
+
 //    @PostMapping("/login")
 //    public String loginPost() {
 //        return "dashboard";
@@ -33,4 +39,12 @@ public class AuthController {
 //        return "dashboard";
 //
 //    }
+
+
+
+    @GetMapping("/settings/{id}")
+    public String settings(@PathVariable Long id){
+        return "settings";
+    }
+
 }

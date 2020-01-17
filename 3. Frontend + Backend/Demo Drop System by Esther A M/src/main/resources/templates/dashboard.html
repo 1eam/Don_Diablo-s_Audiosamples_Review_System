@@ -18,7 +18,7 @@
         <main class="top-section">
              <!-- settings button -->
             <div class="settings-button">
-                <a href="/settings"><img src="/images/settingsbutton.svg" width="20"></a>
+                <a th:href="/settings/ + ${user.id}"><img src="/images/settingsbutton.svg" width="20"></a>
             </div>
 
             <!-- profile section -->
@@ -61,7 +61,7 @@
         
         <!-- logout -->
         <form class="upper-corner" method="POST" th:action="@{/logout}">
-            <button>logout</button>
+            <button style="all: unset; cursor: pointer"> <u>logout</u> </button>
         </form>
     </footer>
 

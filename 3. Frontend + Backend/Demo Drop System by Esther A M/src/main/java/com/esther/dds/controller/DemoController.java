@@ -38,8 +38,8 @@ public class DemoController {
     // List of Demos
     @GetMapping("/dashboard") //usersID
     public String userSideList(Model model){
-        model.addAttribute("demos", demoRepository.findAll()); //find all by userID (id=pathvariable)
 
+        model.addAttribute("demos", demoRepository.findAll()); //find all (demos) by userID (id=pathvariable)
         //model.addAttribute("user", userRepository.findById(/*pathvariable)*/). getArtistname;
         return "dashboard";
     }
