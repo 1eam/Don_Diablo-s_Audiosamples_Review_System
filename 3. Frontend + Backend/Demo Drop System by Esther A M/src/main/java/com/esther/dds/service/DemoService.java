@@ -28,6 +28,10 @@ public class DemoService {
         return demoRepository.findById(id);
     }
 
+    public List<Demo> findByUser(Long id) {
+        return demoRepository.findByUser(id);
+    }
+
     public Demo save(Demo demo){
         return demoRepository.save(demo);
     }

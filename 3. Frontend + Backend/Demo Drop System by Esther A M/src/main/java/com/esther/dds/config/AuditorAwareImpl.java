@@ -15,6 +15,6 @@ public class AuditorAwareImpl implements AuditorAware<String> {
             return Optional.of("admin@gmail.com");
         }
         //to find the user thats logged in
-        return Optional.of(((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getEmail());
+        return Optional.of(((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername());
     }
 }

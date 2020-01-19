@@ -38,6 +38,10 @@ public class Demo extends Auditable{
     @JoinColumn(name="state", referencedColumnName = "id") //decides wich name it presents in the 2hDB
     private State state;
 
+    @ManyToOne
+    @JoinColumn(name="uploadedBy", referencedColumnName = "id")
+    private User user;
+
 
 //    public void addState (State state){
 //        state = new State();

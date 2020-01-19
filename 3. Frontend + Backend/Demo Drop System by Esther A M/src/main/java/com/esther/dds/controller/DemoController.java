@@ -37,13 +37,13 @@ public class DemoController {
 
     //     DASHBOARD.HTML
     // List of Demos
-    @GetMapping("/dashboard") //usersID
-    public String userSideList(Model model){
-
-        model.addAttribute("demos", demoService.findAll()); //find all (demos) by userID (id=pathvariable)
-        //model.addAttribute("user", userRepository.findById(/*pathvariable)*/). getArtistname;
-        return "dashboard";
-    }
+//    @GetMapping("/dashboard/{id}") //usersID
+//    public String userSideList(Model model, @PathVariable Long id){
+//
+//        model.addAttribute("demos", demoService.findAll()); //find all (demos) by userID (id=pathvariable)
+//        //model.addAttribute("user", userRepository.findById(/*pathvariable)*/). getArtistname;
+//        return "dashboard";
+//    }
 
     //     VIEWDEMO.HTML
     // Play
@@ -65,7 +65,7 @@ public class DemoController {
     @PostMapping ("/demo/{id}/delete")
     public String deleteDemo(Demo demo, @PathVariable Long id, Model model){
         demoService.delete(demo);
-        return "redirect:/dashboard";
+        return "redirect:/dashboard"; //redirect /id/dash
     }
 
 
@@ -79,22 +79,7 @@ public class DemoController {
     }
 
 
-//    @PostMapping("/dropdemo/uploadAudio")
-//    public String uploadFile(@RequestParam("audioFile") MultipartFile audioFile){
-//
-//        try {
-//            audioFileService.saveAudio(audioFile);
-//        } catch (Exception e){
-//            e.printStackTrace();
-//            logger.error("Error saving Audio");
-//            return "redirect:/dropdemo";
-//        }
-//
-//        // save multipart file to folder
-//        // get path (string) of multipartfile
-//
-//        return "redirect:/dropdemo";
-//    }
+
 
 
     //     DROPDEMO.HTML -> POST

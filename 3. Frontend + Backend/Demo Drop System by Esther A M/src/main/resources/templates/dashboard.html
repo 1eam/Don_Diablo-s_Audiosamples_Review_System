@@ -26,10 +26,10 @@
             <div class="img-box">
                 <img src="/images/2. Temporary/Dj Christopher.jpg" >
             </div>
-            <h1 class="artist-name" >DJ CHRISTOPHER</h1>
+            <h1 class="artist-name" th:text="${user.artistName}">DJ CHRISTOPHER</h1>
 
             <!-- Drop Demo button -->
-            <a href="/dropdemo"><button class="button button-a">DROP DEMO</button></a>
+            <a th:href="/${user.id}/dropdemo"><button class="button button-a">DROP DEMO</button></a>
         </main>
     </div>
 

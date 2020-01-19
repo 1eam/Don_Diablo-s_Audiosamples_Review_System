@@ -85,7 +85,7 @@
                 </div> -->
 
                                                         <!-- +/{id} later-->
-                <form role="form" method="POST" th:action="@{/login}">
+                <form role="form" method="POST" th:action="@{/login}" th:object="${user}">
                     <p style="color: #707070" th:if="${param.error != null}">Invalid Username or password</p>
                     <p style="color: #707070" th:if="${param.logout != null}">You have been logged out</p>
                     <p>Username</p>
@@ -111,7 +111,8 @@
 
             <!-- register form -->
             <div class="login-form responsive-register-form-container" >
-                <form method="POST" enctype="multipart/form-data" th:action="@{/register}" th:object="${user}" th:if="!${success}">
+                <form method="POST" enctype="multipart/form-data" th:action="@{/register}" th:object="${newUser}" th:if="!${success}">
+<!--                    This should display validation errors to the user, but its not working yet-->
                     <p class="form-text" th:if="${validationErrors}">
                         <ul th:each="error : ${validationErrors}">
                             <li th:text="${error.getDefaultMessage()}"></li>
