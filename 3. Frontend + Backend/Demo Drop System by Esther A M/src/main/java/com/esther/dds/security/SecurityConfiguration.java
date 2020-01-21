@@ -29,7 +29,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .antMatchers("/login").permitAll()
                     .antMatchers("/activate/").permitAll()
                     .antMatchers("/register").permitAll()
-                    .antMatchers("/{id}/dashboard").hasRole("USER")
+                    .antMatchers("/dashboard").hasRole("USER")
                     .antMatchers("/dropdemo").hasRole("USER")
                     .antMatchers("/demo/{id}").hasRole("USER")
                     .antMatchers("/delete").hasRole("USER")
@@ -43,7 +43,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                     .logout()
                     .and()
-                    .rememberMe();
+                    .rememberMe()
+                .and().csrf().ignoringAntMatchers("/h2-console/**") //don't apply CSRF protection to /h2-console
+                .and().headers().frameOptions().sameOrigin();//allow use of frame to same origin urls
+
 //               .and()
     //               .csrf().disable()
     //               .headers().frameOptions().disable();

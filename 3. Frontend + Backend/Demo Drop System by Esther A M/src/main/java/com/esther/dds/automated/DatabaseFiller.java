@@ -85,7 +85,7 @@ public class DatabaseFiller implements CommandLineRunner {
             //individual entries Demo
             Demo demo1 = new Demo("Deep House 4", "I didnt wanna put a description. Sorry", "/serverside_audiofiles/deep house 4.mp3");
             Demo demo2 = new Demo("Virus", "You Gotta love it, it was a hit song", "/serverside_audiofiles/virus.mp3");
-            Demo demo3 = new Demo("Adventure", " I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a frien, who In the end also found a vocalist. Great Right!?", "/serverside_audiofiles/house deep 2.mp3");
+            Demo demo3 = new Demo("Adventure", " I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", "/serverside_audiofiles/house deep 2.mp3");
 
             //save the demos
             demoRepository.save(demo1);

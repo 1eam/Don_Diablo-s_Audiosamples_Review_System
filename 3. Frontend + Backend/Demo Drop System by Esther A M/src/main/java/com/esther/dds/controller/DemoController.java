@@ -4,11 +4,13 @@ import com.esther.dds.automated.DatabaseFiller;
 import com.esther.dds.domain.Demo;
 
 
-import com.esther.dds.repositories.UserRepository;
+import com.esther.dds.domain.User;
 import com.esther.dds.service.AudioFileService;
 import com.esther.dds.service.DemoService;
+import com.esther.dds.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,12 +26,14 @@ public class DemoController {
 
     private static final Logger logger = LoggerFactory.getLogger(DemoController.class);
 
+    private UserService userService;
     private DemoService demoService;
     private DatabaseFiller databaseFiller;
     private AudioFileService audioFileService;
 
 
-    public DemoController(DemoService demoService, DatabaseFiller databaseFiller, AudioFileService audioFileService) {
+    public DemoController(UserService userService, DemoService demoService, DatabaseFiller databaseFiller, AudioFileService audioFileService) {
+        this.userService = userService;
         this.demoService = demoService;
         this.databaseFiller = databaseFiller;
         this.audioFileService = audioFileService;
@@ -73,6 +77,14 @@ public class DemoController {
         demo.setState(databaseFiller.state1);
 
         // save demo again (update: + state)
+        demoService.save(demo);
+
+        // set upload to current user
+        Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        Optional<User> user = userService.findById(userId);
+        demo.setUser(user.get());
+
+        // save demo again (applied user)
         demoService.save(demo);
 
         //log event
