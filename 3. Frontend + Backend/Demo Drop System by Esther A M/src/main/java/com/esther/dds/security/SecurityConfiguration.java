@@ -19,35 +19,34 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         //set all mapplings & their permissions
-        http
-                //todo, read into this (how to make it shorter so I dont have to declare everything
-            .authorizeRequests()
-                .requestMatchers(EndpointRequest.to("info")).permitAll()
-                .requestMatchers(EndpointRequest.toAnyEndpoint()).hasRole("ADMIN")
-                .antMatchers("/actuator/").hasRole("ADMIN")
-                .antMatchers("/").hasRole("USER")
-                .antMatchers("/login").permitAll()
-                .antMatchers("/activate/").permitAll()
-                .antMatchers("/register").permitAll()
-                .antMatchers("/dashboard").hasRole("USER")
-                .antMatchers("/dropdemo").hasRole("USER")
-                .antMatchers("/demo/{id}").hasRole("USER")
-                .antMatchers("/delete").hasRole("USER")
-                .antMatchers("/settings").hasRole("USER")
-
-
-                .antMatchers("/h2-console/**").permitAll()
+        //todo, read into this (how to make it shorter so I dont have to declare everything
+        http.
+                authorizeRequests()
+                    .requestMatchers(EndpointRequest.to("info")).permitAll()
+                    .requestMatchers(EndpointRequest.toAnyEndpoint()).hasRole("ADMIN")
+                    .antMatchers("/actuator/").hasRole("ADMIN")
+                    .antMatchers("/").hasRole("USER")
+                    .antMatchers("/login").permitAll()
+                    .antMatchers("/activate/").permitAll()
+                    .antMatchers("/register").permitAll()
+                    .antMatchers("/{id}/dashboard").hasRole("USER")
+                    .antMatchers("/dropdemo").hasRole("USER")
+                    .antMatchers("/demo/{id}").hasRole("USER")
+                    .antMatchers("/delete").hasRole("USER")
+                    .antMatchers("/settings").hasRole("USER")
+                    .antMatchers("/h2-console/**").permitAll()
                 .and()
                 .formLogin()
-                .loginPage("/login").permitAll()
-                .usernameParameter("email")
+                    .loginPage("/login").permitAll()
+                    .loginProcessingUrl("/login")
+                    .usernameParameter("email")
                 .and()
-                .logout()
-                .and()
-                .rememberMe()
-               .and()
-               .csrf().disable()
-               .headers().frameOptions().disable();
+                    .logout()
+                    .and()
+                    .rememberMe();
+//               .and()
+    //               .csrf().disable()
+    //               .headers().frameOptions().disable();
     }
 
     @Override

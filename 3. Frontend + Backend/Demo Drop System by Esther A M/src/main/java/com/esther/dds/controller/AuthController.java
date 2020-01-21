@@ -1,11 +1,13 @@
 package com.esther.dds.controller;
 
 import com.esther.dds.domain.User;
+import com.esther.dds.repositories.UserRepository;
 import com.esther.dds.service.DemoService;
 import com.esther.dds.service.ProfileImageService;
 import com.esther.dds.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,48 +25,45 @@ import java.util.Optional;
 public class AuthController {
 
     private UserService userService;
+    private UserRepository userRepository;
     private DemoService demoService;
     private ProfileImageService profileImageService;
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
-    public AuthController(UserService userService, DemoService demoService, ProfileImageService profileImageService) {
+    public AuthController(UserService userService, UserRepository userRepository, DemoService demoService, ProfileImageService profileImageService) {
         this.userService = userService;
+        this.userRepository = userRepository;
         this.demoService = demoService;
         this.profileImageService = profileImageService;
     }
 
     @GetMapping("/")
-    public String loginAndRegisterRedirect(Model model){
-        return "redirect:/login"; //pas aan:
+    public String toDashboard(Model model){
+        return "redirect:/dashboard"; //pas aan:
     }
 
+
     @GetMapping("/login")
-    public String loginAndRegister2(Model model){
+    public String loginAndRegister(Model model){
         model.addAttribute("newUser", new User());
         return "login";
     }
 
-    @PostMapping("/login")
-    public String dashboard(Model model, @PathVariable Long id){
-        Optional<User> user = userService.findById(id);
-        model.addAttribute("user", user);
-        model.addAttribute("demos", demoService.findAll());
-        return "dashboard";
-    }
+//    @PostMapping("/login")
+//    public String dashboard(Model model, @PathVariable Long id){
+//        Optional<User> user = userService.findById(id);
+//        model.addAttribute("user", user);
+//        return "redirect:/{id}/dashboard";
+//    }
 
-    @GetMapping("/{id}/dashboard")
-    public String userSideDemo (@PathVariable Long id, Model model){
-        Optional<User> user = userService.findById(id);
-
-        if( user.isPresent() ) {
-            model.addAttribute("user", user.get());
-            model.addAttribute("demos", demoService.findByUser(id));
+    @GetMapping("/dashboard")
+    public String userSideDemo (Model model){
+        Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        model.addAttribute("user", userService.findById(userId));
+            model.addAttribute("demos", demoService.findByUser());
             model.addAttribute("success", model.containsAttribute("success"));
             return "dashboard";
 
-        } else {
-            return "redirect:/";
-        }
     }
 
     @PostMapping("/register") //getmapping zit in Auth
@@ -99,7 +98,6 @@ public class AuthController {
 
         return "redirect:/login";
 
-
     }
 
     @GetMapping("/activate/{email}/{activationCode}")
@@ -111,7 +109,7 @@ public class AuthController {
             newUser.setConfirmPassword(newUser.getPassword());
             userService.save(newUser);
             userService.sendWelcomeEmail(newUser);
-            return "activation-succes";
+            return "activation-success";
         }
         return "redirect:/";
     }

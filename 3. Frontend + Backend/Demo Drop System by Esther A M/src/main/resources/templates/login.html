@@ -85,9 +85,9 @@
                 </div> -->
 
                                                         <!-- +/{id} later-->
-                <form role="form" method="POST" th:action="@{/login}" th:object="${user}">
-                    <p style="color: #707070" th:if="${param.error != null}">Invalid Username or password</p>
-                    <p style="color: #707070" th:if="${param.logout != null}">You have been logged out</p>
+                <form method="POST" role="form" th:action="@{/login}" >
+<!--                    <p style="color: #707070" th:if="${param.error != null}">Invalid Username or password</p>-->
+<!--                    <p style="color: #707070" th:if="${param.logout != null}">You have been logged out</p>-->
                     <p>Username</p>
                     <input type="text" placeholder="Email Address" name="email">
                     <p>Password</p>

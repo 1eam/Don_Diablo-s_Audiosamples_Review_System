@@ -45,31 +45,6 @@ public class DemoController {
 //        return "dashboard";
 //    }
 
-    //     VIEWDEMO.HTML
-    // Play
-    @GetMapping("/demo/{id}")
-    public String userSideDemo (@PathVariable Long id, Model model){
-        Optional<Demo> demo = demoService.findById(id);
-        if( demo.isPresent() ) {
-            model.addAttribute("demo", demo.get());
-            model.addAttribute("success", model.containsAttribute("success"));
-            return "viewdemo";
-
-        } else {
-            return "redirect:/";
-        }
-    }
-
-    //     VIEWDEMO.HTML -> DELETE
-    // Delete Demo
-    @PostMapping ("/demo/{id}/delete")
-    public String deleteDemo(Demo demo, @PathVariable Long id, Model model){
-        demoService.delete(demo);
-        return "redirect:/dashboard"; //redirect /id/dash
-    }
-
-
-
     //     DROPDEMO.HTML
     // Load new Demo-object in form
     @GetMapping("/dropdemo")
@@ -77,9 +52,6 @@ public class DemoController {
         model.addAttribute("demo", new Demo());
         return "dropdemo";
     }
-
-
-
 
 
     //     DROPDEMO.HTML -> POST
@@ -119,6 +91,29 @@ public class DemoController {
         }
         return "redirect:/demo/{id}";
 
+    }
+
+    //     VIEWDEMO.HTML
+    // Play
+    @GetMapping("/demo/{id}")
+    public String userSideDemo (@PathVariable Long id, Model model){
+        Optional<Demo> demo = demoService.findById(id);
+        if( demo.isPresent() ) {
+            model.addAttribute("demo", demo.get());
+            model.addAttribute("success", model.containsAttribute("success"));
+            return "viewdemo";
+
+        } else {
+            return "redirect:/dashboard";
+        }
+    }
+
+    //     VIEWDEMO.HTML -> DELETE
+    // Delete Demo
+    @PostMapping ("/demo/{id}/delete")
+    public String deleteDemo(Demo demo, @PathVariable Long id, Model model){
+        demoService.delete(demo);
+        return "redirect:/dashboard"; //redirect /id/dash
     }
 
 
