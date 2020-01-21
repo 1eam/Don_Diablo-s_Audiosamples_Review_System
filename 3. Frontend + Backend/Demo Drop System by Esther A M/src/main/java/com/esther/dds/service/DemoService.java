@@ -29,8 +29,8 @@ public class DemoService {
         return demoRepository.findById(id);
     }
 
-    public List<Demo> findByUser(Optional<User> user) {
-        return demoRepository.findByUser(user);
+    public List<Demo> findByUser(Long id) {
+        return demoRepository.findByUserId(id);
     }
 
     public Demo save(Demo demo){

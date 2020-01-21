@@ -11,7 +11,7 @@ public interface DemoRepository extends JpaRepository <Demo, Long> {
 
     public List<Demo> findByStateStateName(String stateName);
 
-    public List<Demo> findByUser(Optional<User> user);
+    public List<Demo> findByUserId(Long id);
 
 
 

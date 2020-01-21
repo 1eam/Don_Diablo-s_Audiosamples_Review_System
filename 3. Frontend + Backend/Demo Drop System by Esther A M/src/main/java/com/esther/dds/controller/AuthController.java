@@ -59,11 +59,16 @@ public class AuthController {
     @GetMapping("/dashboard")
     public String userSideDemo (Model model){
         Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
-        model.addAttribute("user", userService.findById(userId));
-            model.addAttribute("demos", demoService.findByUser());
+        Optional<User> user = userService.findById(userId);
+
+        if( user.isPresent() ) {
+            model.addAttribute("user", user.get());
+            model.addAttribute("demos", demoService.findByUser(userId));
             model.addAttribute("success", model.containsAttribute("success"));
             return "dashboard";
-
+        } else {
+            return "redirect:/";
+        }
     }
 
     @PostMapping("/register") //getmapping zit in Auth
