@@ -16,24 +16,23 @@ public class AudioFileService {
     private final Logger logger = LoggerFactory.getLogger(AudioFileService.class);
 
 
-
+    /* Werkt demo uploaden niet? Verander dan hieronder de absolute PATH
+    naar de locatie waar deze map zich bevindt: "Demo Drop System by Esther A M" */
+    //String yourPath = "D:\\1_Novi_Examenproject\\3. Frontend + Backend";
     public void saveAudio(Demo demo, MultipartFile audioFile) throws Exception{
-        /* U hoeft verder niks te doen, Maar Werkt demo uploaden niet? Verander dan hieronder de absolute PATH
-        naar de locatie waar deze map zich bevindt: "Demo Drop System by Esther A M" */
-        //String uwMap = "D:\\1_Novi_Examenproject\\3. Frontend + Backend";
 
-        //vind de root van deze map: "Demo Drop System by Esther A M"
+        //find the root of this folder "Demo Drop System by Esther A M"
         Path findCurrentLocation = Paths.get(".");
-        //vind de volledige mappenstruktuur naar deze locatie
-        Path uwMappenStruktuur = findCurrentLocation.toAbsolutePath();
 
-        //update de "AudioFile" veld in database: Locatie: string"
+        //find the path to this location
+        Path yourPath = findCurrentLocation.toAbsolutePath();
+
+        //generate & set the "AudioFile" field in the database
         demo.setAudioFile("/audio/" + audioFile.getOriginalFilename());
+
         byte[] bytes = audioFile.getBytes();
-        Path path = Paths.get(uwMappenStruktuur + "\\src\\main\\resources\\static\\audio\\" + audioFile.getOriginalFilename());
+        Path path = Paths.get(yourPath + "\\src\\main\\resources\\static\\audio\\" + audioFile.getOriginalFilename());
         Files.write(path, bytes);
-
-
 
 //        System.out.println(path.toAbsolutePath());
     }

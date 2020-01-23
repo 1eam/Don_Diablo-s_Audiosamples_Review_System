@@ -6483,7 +6483,7 @@
 			var type = ext.sErrMode || ext.errMode;
 	
 			if ( settings ) {
-				_fnCallbackFire( settings, null, 'error', [ settings, tn, msg ] );
+				_fnCallbackFire( settings, null, 'error.txt', [ settings, tn, msg ] );
 			}
 	
 			if ( type == 'alert' ) {

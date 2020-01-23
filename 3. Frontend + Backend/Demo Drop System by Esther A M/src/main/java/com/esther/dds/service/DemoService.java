@@ -1,6 +1,7 @@
 package com.esther.dds.service;
 
 import com.esther.dds.domain.Demo;
+import com.esther.dds.domain.User;
 import com.esther.dds.repositories.DemoRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -26,6 +27,10 @@ public class DemoService {
 
     public Optional<Demo> findById(Long id){
         return demoRepository.findById(id);
+    }
+
+    public List<Demo> findByUser(Long id) {
+        return demoRepository.findByUserId(id);
     }
 
     public Demo save(Demo demo){

@@ -31,40 +31,7 @@ public class UserController {
         this.profileImageService = profileImageService;
     }
 
-    @PostMapping("/register") //getmapping zit in Auth
-    public String registerUser(@Valid User user, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes, @RequestParam("profileImage") MultipartFile profileImage) {
 
-        // save multipart file to folder + set the path
-        try {
-            profileImageService.saveProfileImage(user, profileImage);
-        } catch (Exception e){
-            e.printStackTrace();
-            logger.error("Error saving ProfileImage");
-        }
-
-        // Register new user
-        User newUser = userService.register(user);
-        redirectAttributes
-                .addAttribute("id",newUser.getId())
-                .addFlashAttribute("success",true);
-
-        //log event
-        logger.info("New user was saved successfully");
-
-
-
-        // Dit herlaad de mappenstructuur
-        // (Is de afbeelding toch niet zichtbaar? klik dan met je muis in intellij, en ga terug naar de browser. of refresh de map
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
-        return "redirect:/login";
-
-
-    }
 
 
 

@@ -27,10 +27,19 @@ public class UserService {
         encoder = new BCryptPasswordEncoder();
     }
 
+
+
     public User save(User user) {
         return userRepository.save(user);
     }
 
+    public Optional<User> findById(Long id) {
+        return userRepository.findById(id);
+    }
+
+    public Optional<User> findByEmail(String email){
+        return userRepository.findByEmail(email);
+    }
     public User register(User user) {
         // take the password from the form and encode
         String secret = "{bcrypt}" + encoder.encode(user.getPassword());

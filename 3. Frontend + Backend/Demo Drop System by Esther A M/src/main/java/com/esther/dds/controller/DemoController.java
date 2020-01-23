@@ -4,11 +4,13 @@ import com.esther.dds.automated.DatabaseFiller;
 import com.esther.dds.domain.Demo;
 
 
-import com.esther.dds.repositories.UserRepository;
+import com.esther.dds.domain.User;
 import com.esther.dds.service.AudioFileService;
 import com.esther.dds.service.DemoService;
+import com.esther.dds.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,12 +26,14 @@ public class DemoController {
 
     private static final Logger logger = LoggerFactory.getLogger(DemoController.class);
 
+    private UserService userService;
     private DemoService demoService;
     private DatabaseFiller databaseFiller;
     private AudioFileService audioFileService;
 
 
-    public DemoController(DemoService demoService, DatabaseFiller databaseFiller, AudioFileService audioFileService) {
+    public DemoController(UserService userService, DemoService demoService, DatabaseFiller databaseFiller, AudioFileService audioFileService) {
+        this.userService = userService;
         this.demoService = demoService;
         this.databaseFiller = databaseFiller;
         this.audioFileService = audioFileService;
@@ -37,38 +41,13 @@ public class DemoController {
 
     //     DASHBOARD.HTML
     // List of Demos
-    @GetMapping("/dashboard") //usersID
-    public String userSideList(Model model){
-
-        model.addAttribute("demos", demoService.findAll()); //find all (demos) by userID (id=pathvariable)
-        //model.addAttribute("user", userRepository.findById(/*pathvariable)*/). getArtistname;
-        return "dashboard";
-    }
-
-    //     VIEWDEMO.HTML
-    // Play
-    @GetMapping("/demo/{id}")
-    public String userSideDemo (@PathVariable Long id, Model model){
-        Optional<Demo> demo = demoService.findById(id);
-        if( demo.isPresent() ) {
-            model.addAttribute("demo", demo.get());
-            model.addAttribute("success", model.containsAttribute("success"));
-            return "viewdemo";
-
-        } else {
-            return "redirect:/";
-        }
-    }
-
-    //     VIEWDEMO.HTML -> DELETE
-    // Delete Demo
-    @PostMapping ("/demo/{id}/delete")
-    public String deleteDemo(Demo demo, @PathVariable Long id, Model model){
-        demoService.delete(demo);
-        return "redirect:/dashboard";
-    }
-
-
+//    @GetMapping("/dashboard/{id}") //usersID
+//    public String userSideList(Model model, @PathVariable Long id){
+//
+//        model.addAttribute("demos", demoService.findAll()); //find all (demos) by userID (id=pathvariable)
+//        //model.addAttribute("user", userRepository.findById(/*pathvariable)*/). getArtistname;
+//        return "dashboard";
+//    }
 
     //     DROPDEMO.HTML
     // Load new Demo-object in form
@@ -77,24 +56,6 @@ public class DemoController {
         model.addAttribute("demo", new Demo());
         return "dropdemo";
     }
-
-
-//    @PostMapping("/dropdemo/uploadAudio")
-//    public String uploadFile(@RequestParam("audioFile") MultipartFile audioFile){
-//
-//        try {
-//            audioFileService.saveAudio(audioFile);
-//        } catch (Exception e){
-//            e.printStackTrace();
-//            logger.error("Error saving Audio");
-//            return "redirect:/dropdemo";
-//        }
-//
-//        // save multipart file to folder
-//        // get path (string) of multipartfile
-//
-//        return "redirect:/dropdemo";
-//    }
 
 
     //     DROPDEMO.HTML -> POST
@@ -118,6 +79,14 @@ public class DemoController {
         // save demo again (update: + state)
         demoService.save(demo);
 
+        // set upload to current user
+        Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        Optional<User> user = userService.findById(userId);
+        demo.setUser(user.get());
+
+        // save demo again (applied user)
+        demoService.save(demo);
+
         //log event
         logger.info("New Demo was saved successfully");
         redirectAttributes
@@ -128,12 +97,35 @@ public class DemoController {
         // Dit herlaad de mappenstruktuur
         // (Is de demo direct na upload niet zichtbaar? klik dan met je muis in intellij, en ga terug naar de browser
         try {
-            Thread.sleep(4000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         return "redirect:/demo/{id}";
 
+    }
+
+    //     VIEWDEMO.HTML
+    // Play
+    @GetMapping("/demo/{id}")
+    public String userSideDemo (@PathVariable Long id, Model model){
+        Optional<Demo> demo = demoService.findById(id);
+        if( demo.isPresent() ) {
+            model.addAttribute("demo", demo.get());
+            model.addAttribute("success", model.containsAttribute("success"));
+            return "viewdemo";
+
+        } else {
+            return "redirect:/dashboard";
+        }
+    }
+
+    //     VIEWDEMO.HTML -> DELETE
+    // Delete Demo
+    @PostMapping ("/demo/{id}/delete")
+    public String deleteDemo(Demo demo, @PathVariable Long id, Model model){
+        demoService.delete(demo);
+        return "redirect:/dashboard"; //redirect /id/dash
     }
 
 

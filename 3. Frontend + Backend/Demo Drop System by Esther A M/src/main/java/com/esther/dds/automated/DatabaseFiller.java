@@ -29,6 +29,11 @@ public class DatabaseFiller implements CommandLineRunner {
         this.roleRepository = roleRepository;
     }
 
+    //individual entries State
+    public State state1 = new State("Pending", "The Admin should set a 'In-review message'");
+    public State state2 = new State("Rejected", "The Admin should enter a 'Rejection message'");
+    public State state3 = new State("Sent", "The Admin should enter a 'Sent message'");
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -38,10 +43,34 @@ public class DatabaseFiller implements CommandLineRunner {
 
     }
 
-    //individual entries State
-    public State state1 = new State("Pending", "The Admin should set a 'In-review message'");
-    public State state2 = new State("Rejected", "The Admin should enter a 'Rejection message'");
-    public State state3 = new State("Sent", "The Admin should enter a 'Sent message'");
+    //individual entry User
+    //Encodes the raw password
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    String secret = "{bcrypt}" + encoder.encode("pass");
+    User user1 = new User("user.com", secret, "Martijn", "Garritssen", "Martin Garrix", "I thought, You know what? You might need another Talent to recruit" , "/serverside_profileimages/martijn.jpg",true);
+
+
+    //Refactor in future (many to one relationship to role & different classes)
+    private void addUsersAndRoles() {
+
+        Role userRole = new Role("ROLE_USER");
+        roleRepository.save(userRole);
+//        Role adminRole = new Role("ROLE_ADMIN");
+//        roleRepository.save(adminRole);
+
+        user1.addRole(userRole);
+        user1.setConfirmPassword(secret);
+        userRepository.save(user1);
+
+//        BoUser bo1 = new BoUser("bo.com", secret, "Floris Roddelaar",true);
+//        bo1.addRole(adminRole);
+//        bo1.setConfirmPassword(secret);
+//        userRepository.save(bo1);
+//
+//        User admin = new User("admin.com",secret ,true);
+//        admin.addRoles(new HashSet<>(Arrays.asList(userRole,adminRole)));
+//        userRepository.save(admin);
+    }
 
 
     @Bean
@@ -56,7 +85,7 @@ public class DatabaseFiller implements CommandLineRunner {
             //individual entries Demo
             Demo demo1 = new Demo("Deep House 4", "I didnt wanna put a description. Sorry", "/serverside_audiofiles/deep house 4.mp3");
             Demo demo2 = new Demo("Virus", "You Gotta love it, it was a hit song", "/serverside_audiofiles/virus.mp3");
-            Demo demo3 = new Demo("Adventure", " I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a frien, who In the end also found a vocalist. Great Right!?", "/serverside_audiofiles/house deep 2.mp3");
+            Demo demo3 = new Demo("Adventure", " I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", "/serverside_audiofiles/house deep 2.mp3");
 
             //save the demos
             demoRepository.save(demo1);
@@ -67,6 +96,11 @@ public class DatabaseFiller implements CommandLineRunner {
             demo1.setState(state1);
             demo2.setState(state2);
             demo3.setState(state3);
+
+            //assign user to demo;
+            demo1.setUser(user1);
+            demo2.setUser(user1);
+            demo3.setUser(user1);
 
             //save the demos again
             demoRepository.save(demo1);
@@ -81,32 +115,6 @@ public class DatabaseFiller implements CommandLineRunner {
 
     }
 
-//Refactor in future (many to one relationship to role & different classes)
-    private void addUsersAndRoles() {
-
-        //Encodes the raw password
-        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        String secret = "{bcrypt}" + encoder.encode("pass");
-
-        Role userRole = new Role("ROLE_USER");
-        roleRepository.save(userRole);
-//        Role adminRole = new Role("ROLE_ADMIN");
-//        roleRepository.save(adminRole);
-
-        User user = new User("user.com", secret, "Martijn", "Garritssen", "Martin Garrix", "I thought, You know what? You might need another Talent to recruit" , "/serverside_profileimages/martijn.jpg",true);
-        user.addRole(userRole);
-        user.setConfirmPassword(secret);
-        userRepository.save(user);
-
-//        User bo = new User("bo.com", secret, "Floris Roddelaar",true);
-//        boUser.addRole(adminRole);
-//        boUser.setConfirmPassword(secret);
-//        userRepository.save(bo);
-//
-//        User admin = new User("admin.com",secret ,true);
-//        admin.addRoles(new HashSet<>(Arrays.asList(userRole,adminRole)));
-//        userRepository.save(admin);
-    }
 }
 
 
