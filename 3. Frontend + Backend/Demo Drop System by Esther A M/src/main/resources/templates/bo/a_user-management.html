@@ -72,7 +72,8 @@
           <td><!-- Delete User-->
               <form method="post" th:object="${user}" th:action="@{'/admin/user-management/delete/' + ${user.id}}" >
                   <button type="submit" style="background: none">delete</button>
-              </form></td>
+              </form>
+          </td>
         </tr>
       </tbody>
     </table>
