@@ -41,13 +41,20 @@ public class DemoController {
 
     //     DASHBOARD.HTML
     // List of Demos
-//    @GetMapping("/dashboard/{id}") //usersID
-//    public String userSideList(Model model, @PathVariable Long id){
-//
-//        model.addAttribute("demos", demoService.findAll()); //find all (demos) by userID (id=pathvariable)
-//        //model.addAttribute("user", userRepository.findById(/*pathvariable)*/). getArtistname;
-//        return "dashboard";
-//    }
+    @GetMapping("/dashboard")
+    public String userSideDemo (Model model){
+        Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        Optional<User> user = userService.findById(userId);
+
+        if( user.isPresent() ) {
+            model.addAttribute("user", user.get());
+            model.addAttribute("demos", demoService.findByUser(userId));
+            model.addAttribute("success", model.containsAttribute("success"));
+            return "dashboard";
+        } else {
+            return "redirect:/";
+        }
+    }
 
     //     DROPDEMO.HTML
     // Load new Demo-object in form

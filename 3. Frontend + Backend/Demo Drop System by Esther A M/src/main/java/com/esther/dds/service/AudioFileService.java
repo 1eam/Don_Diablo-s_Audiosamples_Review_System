@@ -4,13 +4,14 @@ package com.esther.dds.service;
 import com.esther.dds.domain.Demo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-
 @Service
 public class AudioFileService {
     private final Logger logger = LoggerFactory.getLogger(AudioFileService.class);

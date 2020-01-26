@@ -5,19 +5,11 @@ import com.esther.dds.service.ProfileImageService;
 import com.esther.dds.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartResolver;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import javax.servlet.MultipartConfigElement;
-import javax.validation.Valid;
 
 @Controller
 public class UserController {
@@ -33,16 +25,21 @@ public class UserController {
 
 
 
-
-
-
     @GetMapping("admin/user-management")
-    public String userManagement(){
-        return "bo/tables/a_user-management";
+    public String userManagement(Model model){
+        model.addAttribute("users", userService.findAll());
+        return "bo/a_user-management";
+    }
+
+    // Delete User
+    @PostMapping("admin/user-management/delete/{id}")
+    public String deleteDemo(User user, @PathVariable Long id, Model model){
+        userService.delete(user);
+        return "redirect:/admin/user-management/"; //redirect /id/dash
     }
 
     @GetMapping("admin/bo-management")
     public String boManagement(){
-        return "bo/tables/a_bo-management";
+        return "bo/a_bo-management";
     }
 }

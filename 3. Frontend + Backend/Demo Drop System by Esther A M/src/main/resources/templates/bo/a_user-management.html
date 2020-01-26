@@ -10,13 +10,13 @@
     <!-- Roboto font -->
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
     <!-- Bootstrap core CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="/tables/css/bootstrap.min.css">
     <!-- Material Design Bootstrap -->
-    <link rel="stylesheet" href="css/mdb.min.css">
+    <link rel="stylesheet" href="/tables/css/mdb.min.css">
     <!-- MDBootstrap Datatables  -->
-    <link href="css/addons/datatables.min.css" rel="stylesheet">
+    <link href="/tables/css/addons/datatables.min.css" rel="stylesheet">
     <!-- Copy paste css from site (table style) -->
-    <link rel="stylesheet" href="css/tablestyle.css">
+    <link rel="stylesheet" href="/tables/css/table-style.css">
     <!-- Your custom styles (optional) -->
     <link rel="stylesheet" href="/css/bo-style.css">
 </head>
@@ -63,13 +63,17 @@
         </tr >
       </thead>
       <tbody>
-        <tr>
-          <td>th: 01</td>
-          <td>th: Empty: Name</td>
-          <td>th: Empty: Surname</td>
-          <td>th: Empty: Artistname</td>
-          <td>th: Empty: Email</td>
-          <td><a>delete</a></td>
+        <tr th:each="user: ${users}">
+          <td th:text="${user.id}">th: 01</td>
+          <td th:text="${user.name}">th: Empty: Name</td>
+          <td th:text="${user.lastName}">th: Empty: Surname</td>
+          <td th:text="${user.artistName}">th: Empty: Artistname</td>
+          <td th:text="${user.email}">th: Empty: Email</td>
+          <td><!-- Delete User-->
+              <form method="post" th:object="${user}" th:action="@{'/admin/user-management/delete/' + ${user.id}}" >
+                  <button type="submit" style="background: none">delete</button>
+              </form>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -82,21 +86,21 @@
   <!-- End your project here-->
 
   <!-- jQuery -->
-  <script type="text/javascript" src="js/jquery.min.js"></script>
+  <script type="text/javascript" src="/tables/js/jquery.min.js"></script>
   <!-- Bootstrap tooltips -->
-  <script type="text/javascript" src="js/popper.min.js"></script>
+  <script type="text/javascript" src="/tables/js/popper.min.js"></script>
   <!-- Bootstrap core JavaScript -->
-  <script type="text/javascript" src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="/tables/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="js/mdb.min.js"></script>
+  <script type="text/javascript" src="/tables/js/mdb.min.js"></script>
   <!-- MDBootstrap Datatables  -->
-  <script type="text/javascript" src="js/addons/datatables.min.js"></script>
+  <script type="text/javascript" src="/tables/js/addons/datatables.min.js"></script>
   <!-- Your custom scripts (optional) -->
   <script type="text/javascript">
   $(document).ready(function () {
     $('#dtVerticalScrollExample').DataTable({
       "scrollY": "200px",
-      "scrollCollapse": true,
+      "scrollCollapse": true
       });
     $('.dataTables_length').addClass('bs-select');
     });

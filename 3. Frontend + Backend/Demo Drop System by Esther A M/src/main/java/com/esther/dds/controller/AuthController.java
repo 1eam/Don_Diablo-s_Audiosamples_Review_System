@@ -49,29 +49,7 @@ public class AuthController {
         return "login";
     }
 
-//    @PostMapping("/login")
-//    public String dashboard(Model model, @PathVariable Long id){
-//        Optional<User> user = userService.findById(id);
-//        model.addAttribute("user", user);
-//        return "redirect:/{id}/dashboard";
-//    }
-
-    @GetMapping("/dashboard")
-    public String userSideDemo (Model model){
-        Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
-        Optional<User> user = userService.findById(userId);
-
-        if( user.isPresent() ) {
-            model.addAttribute("user", user.get());
-            model.addAttribute("demos", demoService.findByUser(userId));
-            model.addAttribute("success", model.containsAttribute("success"));
-            return "dashboard";
-        } else {
-            return "redirect:/";
-        }
-    }
-
-    @PostMapping("/register") //getmapping zit in Auth
+    @PostMapping("/register")
     public String registerUser(@Valid User user, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes, @RequestParam("profileImage") MultipartFile profileImage) {
 
         // save multipart file to folder + set the path
@@ -91,16 +69,6 @@ public class AuthController {
         //log event
         logger.info("New user was saved successfully");
 
-
-
-        // Dit herlaad de mappenstructuur
-        // (Is de afbeelding toch niet zichtbaar? klik dan met je muis in intellij, en ga terug naar de browser. of refresh de map
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-
         return "redirect:/login";
 
     }
@@ -118,15 +86,6 @@ public class AuthController {
         }
         return "redirect:/";
     }
-
-
-
-
-//    @PostMapping("/login")
-//    public String loginPost() {
-//        return "dashboard";
-//    }
-
 
 
     //coppy getmapping login over
