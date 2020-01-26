@@ -1,12 +1,15 @@
 package com.esther.dds.service;
 
+import com.esther.dds.domain.Demo;
 import com.esther.dds.domain.User;
+import com.esther.dds.repositories.DemoRepository;
 import com.esther.dds.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -17,12 +20,14 @@ public class UserService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder encoder;
     private final RoleService roleService;
-    private MailService mailService;
+    private final MailService mailService;
+    private DemoRepository demoRepository;
 
-    public UserService(UserRepository userRepository, RoleService roleService, MailService mailService) {
+    public UserService(UserRepository userRepository, RoleService roleService, MailService mailService, DemoRepository demoRepository) {
         this.userRepository = userRepository;
         this.roleService = roleService;
         this.mailService = mailService;
+        this.demoRepository = demoRepository;
         //make new encoder everytime
         encoder = new BCryptPasswordEncoder();
     }
@@ -40,6 +45,7 @@ public class UserService {
     public Optional<User> findByEmail(String email){
         return userRepository.findByEmail(email);
     }
+
     public User register(User user) {
         // take the password from the form and encode
         String secret = "{bcrypt}" + encoder.encode(user.getPassword());
@@ -80,4 +86,14 @@ public class UserService {
         return userRepository.findByEmailAndActivationCode(email,activationCode);
     }
 
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    public void delete(User user) {
+        List<Demo> demosByUser = demoRepository.findByUserId(user.getId());
+        demoRepository.deleteAll(demosByUser);
+        userRepository.delete(user);
+
+    }
 }

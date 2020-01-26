@@ -9,4 +9,5 @@ public interface StateNameRepository extends JpaRepository <State, Long> {
 
    public State findByStateName(String string);
 
+
 }

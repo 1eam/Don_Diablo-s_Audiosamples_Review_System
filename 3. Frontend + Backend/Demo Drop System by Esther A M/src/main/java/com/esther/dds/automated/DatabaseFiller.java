@@ -48,6 +48,7 @@ public class DatabaseFiller implements CommandLineRunner {
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     String secret = "{bcrypt}" + encoder.encode("pass");
     User user1 = new User("user.com", secret, "Martijn", "Garritssen", "Martin Garrix", "I thought, You know what? You might need another Talent to recruit" , "/serverside_profileimages/martijn.jpg",true);
+    User user2 = new User("user2.com", secret, "Martine", "Dijkraam", "DJ Martine", "Love makin music, Love gettin inspired by nature, Mexican food are the best" , "/serverside_profileimages/martine.jpg",true);
 
 
     //Refactor in future (many to one relationship to role & different classes)
@@ -59,8 +60,13 @@ public class DatabaseFiller implements CommandLineRunner {
 //        roleRepository.save(adminRole);
 
         user1.addRole(userRole);
+        user2.addRole(userRole);
+
         user1.setConfirmPassword(secret);
+        user2.setConfirmPassword(secret);
+
         userRepository.save(user1);
+        userRepository.save(user2);
 
 //        BoUser bo1 = new BoUser("bo.com", secret, "Floris Roddelaar",true);
 //        bo1.addRole(adminRole);

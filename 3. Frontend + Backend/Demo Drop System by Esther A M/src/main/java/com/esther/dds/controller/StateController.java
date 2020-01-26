@@ -5,12 +5,10 @@ import com.esther.dds.domain.State;
 import com.esther.dds.service.StateService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class StateController {
@@ -27,31 +25,33 @@ public class StateController {
 
 
     //     SET-TEXTS.HTML
-    //get stuff
+    //todo: get texts + set texts
     @GetMapping("/admin/set-texts")
-    public String loadText1Form(Model model){
-        model.addAttribute("state", stateService.findByStateName("Pending"));
+    public String loadTextForms(Model model){
+
+        model.addAttribute("pending", stateService.findByStateName("Pending"));
+        model.addAttribute("success", stateService.findByStateName("Success"));
+        model.addAttribute("reject", stateService.findByStateName("Reject"));
         return "bo/a_set-texts";
     }
 
 
 
-
     //     SET-TEXTS.HTML
     //post stuff
-    @PostMapping("/admin/set-texts/{stateName}")
-    public String updatePendingState(Model model, @PathVariable String stateName, @RequestBody String requestbody){
+    @PostMapping("/admin/set-texts/{state}")
+    public String updatePendingState(Model model, @PathVariable("state") String stateName){
 
         State state = stateService.findByStateName(stateName);
 
+        state.setId(state.getId());
+        state.setStateName(state.getStateName());
 
-
-
-        state.setMessage(requestbody);
         stateService.save(state);
 
         //the only way to update this is to somehow get the value in th form
         //And use .setMessage on this particular State
+
         return "redirect:/admin/set-texts";
     }
 
