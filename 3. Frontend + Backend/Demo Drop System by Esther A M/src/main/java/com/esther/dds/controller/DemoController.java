@@ -41,7 +41,7 @@ public class DemoController {
 
     //     DASHBOARD.HTML
     // List of Demos
-    @GetMapping("/dashboard")
+    @GetMapping("/user-side/authorized/dashboard")
     public String userSideDemo (Model model){
         Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
         Optional<User> user = userService.findById(userId);
@@ -58,7 +58,7 @@ public class DemoController {
 
     //     DROPDEMO.HTML
     // Load new Demo-object in form
-    @GetMapping("/dropdemo")
+    @GetMapping("/user-side/authorized/dropdemo")
     public String newDemoForm(Model model){
         model.addAttribute("demo", new Demo());
         return "dropdemo";
@@ -67,7 +67,7 @@ public class DemoController {
 
     //     DROPDEMO.HTML -> POST
     // Bind form loaded in to object
-    @PostMapping("/dropdemo")
+    @PostMapping("/user-side/authorized/dropdemo")
     public String uploadDemo(@Valid Demo demo, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes, @RequestParam("audioFile") MultipartFile audioFile) {
         // save multipart file to folder + the path
         try {
@@ -108,13 +108,13 @@ public class DemoController {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        return "redirect:/demo/{id}";
+        return "redirect:/user-side/authorized/demo/{id}";
 
     }
 
     //     VIEWDEMO.HTML
     // Play
-    @GetMapping("/demo/{id}")
+    @GetMapping("/user-side/authorized/demo/{id}")
     public String userSideDemo (@PathVariable Long id, Model model){
         Optional<Demo> demo = demoService.findById(id);
         if( demo.isPresent() ) {
@@ -123,22 +123,22 @@ public class DemoController {
             return "viewdemo";
 
         } else {
-            return "redirect:/dashboard";
+            return "redirect:/user-side/authorized/dashboard";
         }
     }
 
     //     VIEWDEMO.HTML -> DELETE
     // Delete Demo
-    @PostMapping ("/demo/{id}/delete")
+    @PostMapping ("/user-side/authorized/demo/{id}/delete")
     public String deleteDemo(Demo demo, @PathVariable Long id, Model model){
         demoService.delete(demo);
-        return "redirect:/dashboard"; //redirect /id/dash
+        return "redirect:/user-side/authorized/dashboard"; //redirect /id/dash
     }
 
 
     //     BO - REVIEWLIST.HTML
     // List of Demos
-    @GetMapping("/bo/review-list")
+    @GetMapping("/bo-side/authorized/review-list")
     public String boSideList(Model model){
         model.addAttribute("demos", demoService.findByStateStateName("Pending"));
 
@@ -147,19 +147,19 @@ public class DemoController {
 
     //     BO - REVIEW-MODE.HTML
     // Play
-    @GetMapping("/review-mode/{id}")
+    @GetMapping("/bo-side/authorized/review-mode/{id}")
     public String boSideDemo (@PathVariable Long id, Model model){
         Optional<Demo> demo = demoService.findById(id);
         if( demo.isPresent() ) {
             model.addAttribute("demo",demo.get());
             return "bo/review-mode";
         }else {
-            return "redirect:/";
+            return "redirect:/"; //todo: check
         }
     }
 
     //-----------------------------------------//
-    @PostMapping("/submit-state")
+    @PostMapping("/bo-side/authorized/submit-state")
     public String setState(@Valid Demo demo, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
 
         model.addAttribute("demo",demo);{
@@ -176,20 +176,20 @@ public class DemoController {
             redirectAttributes
                     .addAttribute("id",demo.getId())
                     .addFlashAttribute("success",true);
-            return "redirect:/review-mode";
+            return "redirect:/bo-side/authorized/review-mode";
         }
     }
     //-----------------------------------------//
 
     //     BO - DASHBOARD.HTML
-    @GetMapping("/bo/dashboard")
+    @GetMapping("/bo-side/authorized/dashboard")
     public String boDashboard(){
         return "bo/dashboard";
     }
 
     //     BO - HANDLED-LIST.HTML
     // List of Demos
-    @GetMapping("/bo/handled-list")
+    @GetMapping("/bo-side/authorized/handled-list")
     public String boSideList2(Model model){
         model.addAttribute("demos", demoService.findByStateStateName("Rejected"));
         return "bo/handled-list";
@@ -197,7 +197,7 @@ public class DemoController {
 
     //     BO - HANDLED-MODE.HTML
     // Play
-    @GetMapping("/handled-mode/{id}")
+    @GetMapping("/bo-side/authorized/handled-mode/{id}")
     public String boSideDemo2 (@PathVariable Long id, Model model){
         Optional<Demo> demo = demoService.findById(id);
         if( demo.isPresent() ) {
@@ -210,7 +210,7 @@ public class DemoController {
 
     //     BO - SENTLIST.HTML
     // List of Demos
-    @GetMapping("/bo/sent-list")
+    @GetMapping("/bo-side/authorized/sent-list")
     public String boSideList3(Model model){
         model.addAttribute("demos", demoService.findByStateStateName("Sent"));
         return "bo/sent-list";
@@ -218,7 +218,7 @@ public class DemoController {
 
     //     BO - SENT-MODE.HTML
     // Play
-    @GetMapping("/sent-mode/{id}")
+    @GetMapping("/bo-side/authorized/sent-mode/{id}")
     public String boSideDemo3 (@PathVariable Long id, Model model){
         Optional<Demo> demo = demoService.findById(id);
         if( demo.isPresent() ) {

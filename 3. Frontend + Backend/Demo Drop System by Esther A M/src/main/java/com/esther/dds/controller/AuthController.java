@@ -1,13 +1,10 @@
 package com.esther.dds.controller;
 
 import com.esther.dds.domain.User;
-import com.esther.dds.repositories.UserRepository;
-import com.esther.dds.service.DemoService;
 import com.esther.dds.service.ProfileImageService;
 import com.esther.dds.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -25,31 +22,27 @@ import java.util.Optional;
 public class AuthController {
 
     private UserService userService;
-    private UserRepository userRepository;
-    private DemoService demoService;
     private ProfileImageService profileImageService;
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
-    public AuthController(UserService userService, UserRepository userRepository, DemoService demoService, ProfileImageService profileImageService) {
+    public AuthController(UserService userService, ProfileImageService profileImageService) {
         this.userService = userService;
-        this.userRepository = userRepository;
-        this.demoService = demoService;
         this.profileImageService = profileImageService;
     }
 
     @GetMapping("/")
     public String toDashboard(Model model){
-        return "redirect:/dashboard"; //pas aan:
+        return "redirect:/user-side/authorized/dashboard"; //pas aan:
     }
 
 
-    @GetMapping("/login")
+    @GetMapping("user-side/login")
     public String loginAndRegister(Model model){
         model.addAttribute("newUser", new User());
         return "login";
     }
 
-    @PostMapping("/register")
+    @PostMapping("user/register")
     public String registerUser(@Valid User user, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes, @RequestParam("profileImage") MultipartFile profileImage) {
 
         // save multipart file to folder + set the path
@@ -69,11 +62,11 @@ public class AuthController {
         //log event
         logger.info("New user was saved successfully");
 
-        return "redirect:/login";
+        return "redirect:/user-side/login";
 
     }
 
-    @GetMapping("/activate/{email}/{activationCode}")
+    @GetMapping("/user-side/activate/{email}/{activationCode}")
     public String activate(@PathVariable String email, @PathVariable String activationCode) {
         Optional<User> user = userService.findByEmailAndActivationCode(email,activationCode);
         if( user.isPresent() ) {
@@ -89,30 +82,30 @@ public class AuthController {
 
 
     //coppy getmapping login over
-    @GetMapping("/register")
+    @GetMapping("/user-side/register")
     public String registerMobile(){
         return "register";
 
     }
 
-    @GetMapping("/settings/{id}")
+    @GetMapping("/user-side/authorized/settings/{id}")
     public String settings(@PathVariable Long id){
         return "settings";
     }
 
 
     //RegularMappings
-    @GetMapping("/bo/login")
+    @GetMapping("/bo-side/login")
     public String boLogin(){
         return "bo/login";
     }
 
-    @GetMapping("admin/login")
+    @GetMapping("admin-side/login")
     public String adminLogin(){
         return "bo/login";
     }
 
-    @GetMapping("admin/dashboard")
+    @GetMapping("admin-side/dashboard")
     public String adminDashboard(){
         return "bo/a_dashboard";
     }

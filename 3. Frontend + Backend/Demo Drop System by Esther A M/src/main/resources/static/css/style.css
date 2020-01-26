@@ -42,6 +42,7 @@ a{
 
 .artist-name{
     font-weight: 300;
+    text-transform: uppercase;
 }
 
 .upper-corner{

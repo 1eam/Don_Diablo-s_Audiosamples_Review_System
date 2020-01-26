@@ -69,7 +69,7 @@
         <div style= "display: block; margin-bottom: 50px;"></div>
 
         <!-- Delete Demo -->
-        <form method="post" th:object="${demo}" th:action="@{'/demo/' + ${demo.id} + '/delete'}" >
+        <form method="post" th:object="${demo}" th:action="@{'/user-side/authorized/demo/' + ${demo.id} + '/delete'}" >
             <button type="submit" class="button">Delete demo</button>
         </form>
         <!-- space -->

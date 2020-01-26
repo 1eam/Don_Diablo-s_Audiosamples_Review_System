@@ -5,11 +5,14 @@ import com.esther.dds.service.ProfileImageService;
 import com.esther.dds.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.util.Optional;
 
 @Controller
 public class UserController {
@@ -25,20 +28,38 @@ public class UserController {
 
 
 
-    @GetMapping("admin/user-management")
+// USER SIDE
+    @GetMapping("/user-side/authorized/settings")
+    public String settings(Model model){
+        Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        Optional<User> user = userService.findById(userId);
+
+        if( user.isPresent() ) {
+            model.addAttribute("user", user.get());
+            return "settings";
+        } else {
+        return "settings";
+        }
+    }
+
+
+
+
+// ADMIN SIDE
+    @GetMapping("/admin-side/authorized/user-management")
     public String userManagement(Model model){
         model.addAttribute("users", userService.findAll());
         return "bo/a_user-management";
     }
 
     // Delete User
-    @PostMapping("admin/user-management/delete/{id}")
+    @PostMapping("/admin-side/authorized/user-management/delete/{id}")
     public String deleteDemo(User user, @PathVariable Long id, Model model){
         userService.delete(user);
-        return "redirect:/admin/user-management/"; //redirect /id/dash
+        return "redirect:/admin-side/authorized/user-management/"; //redirect /id/dash
     }
 
-    @GetMapping("admin/bo-management")
+    @GetMapping("/admin-side/authorized/bo-management")
     public String boManagement(){
         return "bo/a_bo-management";
     }

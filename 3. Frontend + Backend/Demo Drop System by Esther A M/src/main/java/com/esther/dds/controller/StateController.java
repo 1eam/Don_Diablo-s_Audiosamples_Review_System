@@ -26,7 +26,7 @@ public class StateController {
 
     //     SET-TEXTS.HTML
     //todo: get texts + set texts
-    @GetMapping("/admin/set-texts")
+    @GetMapping("/admin-side/authorized/set-texts")
     public String loadTextForms(Model model){
 
         model.addAttribute("pending", stateService.findByStateName("Pending"));
@@ -39,7 +39,7 @@ public class StateController {
 
     //     SET-TEXTS.HTML
     //post stuff
-    @PostMapping("/admin/set-texts/{state}")
+    @PostMapping("/admin-side/authorized/set-texts/{state}")
     public String updatePendingState(Model model, @PathVariable("state") String stateName){
 
         State state = stateService.findByStateName(stateName);
@@ -52,7 +52,7 @@ public class StateController {
         //the only way to update this is to somehow get the value in th form
         //And use .setMessage on this particular State
 
-        return "redirect:/admin/set-texts";
+        return "redirect:/admin-side/authorized/set-texts";
     }
 
 

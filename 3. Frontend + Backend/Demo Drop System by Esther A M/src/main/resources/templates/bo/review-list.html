@@ -51,7 +51,7 @@
     <!-- blocks of demos -->
     <div th:each="demo: ${demos}">
         <div class="list-of-demos">
-            <a th:href="@{'/review-mode/' + ${demo.id}}" > <span>ARTIST NAME</span> | <span th:text="${demo.title}">TITLE DEMO</span> | <span class="allign right">DATE/2020</span></a>
+            <a th:href="@{'/bo-side/authorized/review-mode/' + ${demo.id}}" > <span style="text-transform: uppercase;">ARTIST NAME</span> | <span th:text="${demo.title}">TITLE DEMO</span> | <span class="allign right">DATE/2020</span></a>
         </div>
     </div>
 
@@ -70,7 +70,7 @@
 <div style= "display: block; margin-bottom: 100px;"></div>
 
 <footer class="section-center">
-    <a href="/bo/dashboard">
+    <a href="/bo-side/authorized/dashboard">
         <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
     </a>
 </footer>
