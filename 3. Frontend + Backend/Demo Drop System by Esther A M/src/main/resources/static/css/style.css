@@ -164,8 +164,15 @@ a{
 }
 
 .img-box > img{
-    border: solid;
-    width: 15%;
+    border: 2px solid;
+
+    width: auto;
+}
+.img{
+    max-width: 175px;
+    min-width: 175px;
+    height: 175px;
+    object-fit: cover;
 }
 
 
