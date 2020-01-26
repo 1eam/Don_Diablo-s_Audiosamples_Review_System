@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
 </head>
-<body>
+<body style="margin-top: 40px">
     <div class="sticky-header section-center">
         <header>
             <img src="/images/hexagonlogo.png" height="20" alt="HEXAGON">
@@ -17,19 +17,19 @@
         <!-- top section - sticky header -->
         <main class="top-section">
              <!-- settings button -->
-<!--            th:href="/settings/ + ${user.id}-->
+
             <div class="settings-button">
-                <a href="/settings"><img src="/images/settingsbutton.svg" width="20"></a>
+                <a href="/user-side/authorized/settings"><img src="/images/settingsbutton.svg" width="20"></a>
             </div>
 
-            <!-- profile section -->
+            <!--profile section-->
             <div>
                 <img class="img" th:src="${user.profileImage}" >
             </div>
             <h1 class="artist-name" th:text="${user.artistName}">DJ CHRISTOPHER</h1>
 
             <!-- Drop Demo button -->
-            <a href="/dropdemo" ><button class="button button-a">DROP DEMO</button></a>
+            <a href="/user-side/authorized/dropdemo" ><button class="button button-a">DROP DEMO</button></a>
         </main>
     </div>
 
