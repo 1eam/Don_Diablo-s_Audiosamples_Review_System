@@ -42,7 +42,7 @@ public class AuthController {
         return "login";
     }
 
-    @PostMapping("user/register")
+    @PostMapping("user-side/register")
     public String registerUser(@Valid User user, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes, @RequestParam("profileImage") MultipartFile profileImage) {
 
         // save multipart file to folder + set the path
