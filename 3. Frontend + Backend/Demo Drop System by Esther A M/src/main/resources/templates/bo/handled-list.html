@@ -52,7 +52,7 @@
     <!-- blocks of demos -->
     <div th:each="demo: ${demos}">
         <div class="list-of-demos">
-            <a th:href="@{'/handled-mode/' + ${demo.id}}" > <span>ARTIST NAME</span> - <span th:text="${demo.title} + ' | by: '">TITLE DEMO</span> <span class="allign right">Joris Dobbelaar</span></a>
+            <a th:href="@{'/bo-side/authorized/handled-mode/' + ${demo.id}}" > <span style="text-transform: uppercase;">ARTIST NAME</span> | <span th:text="${demo.title} + ' | Reviewed by: '">TITLE DEMO</span> <span class="allign right">Joris Dobbelaar</span></a>
         </div>
     </div>
 
@@ -64,7 +64,7 @@
 <div style= "display: block; margin-bottom: 100px;"></div>
 
 <footer class="section-center">
-    <a href="/bo/dashboard">
+    <a href="/bo-side/authorized/dashboard">
         <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
     </a>
 </footer>

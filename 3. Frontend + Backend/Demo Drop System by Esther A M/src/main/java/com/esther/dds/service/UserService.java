@@ -32,18 +32,20 @@ public class UserService {
         encoder = new BCryptPasswordEncoder();
     }
 
-
-
-    public User save(User user) {
-        return userRepository.save(user);
-    }
-
     public Optional<User> findById(Long id) {
         return userRepository.findById(id);
     }
 
     public Optional<User> findByEmail(String email){
         return userRepository.findByEmail(email);
+    }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    public User save(User user) {
+        return userRepository.save(user);
     }
 
     public User register(User user) {
@@ -53,6 +55,8 @@ public class UserService {
 
         // confirm password
         user.setConfirmPassword(secret);
+
+//        user.setOldPassword(secret);
 
         // assign a role to this user
         user.addRole(roleService.findByName("ROLE_USER"));
@@ -72,9 +76,7 @@ public class UserService {
         return user;
     }
 
-
     public void sendActivationEmail(User user) {
-        // ... do something
         mailService.sendActivationEmail(user);
     }
 
@@ -86,8 +88,36 @@ public class UserService {
         return userRepository.findByEmailAndActivationCode(email,activationCode);
     }
 
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public User update(User user) {
+        //to stop confirmPassword from complaining
+        user.setPassword(user.getPassword());
+        user.setConfirmPassword(user.getPassword());
+
+        return userRepository.save(user);
+    }
+
+
+    public User editPassword(User user, String oldPassword, String password) {
+        String currentPassword = user.getPassword();
+        //this removes the "{bcrypt}" prefix. This has to be done first. in order for BCrypts .matches method to work
+        String currentPwWithoutPrefix = currentPassword.substring(8);
+
+        if( encoder.matches(oldPassword, currentPwWithoutPrefix)){
+            //Edit the new password
+            String secret = "{bcrypt}" + encoder.encode(password);
+            user.setPassword(secret);
+
+            // setconfirm password field
+            user.setConfirmPassword(secret);
+            userRepository.save(user);
+
+        } else {
+            logger.error("incorrect password, try again: ");
+            //print bcrypted validation password
+            //logger.error(currentPwWithoutPrefix);
+        }
+
+        return user;
     }
 
     public void delete(User user) {

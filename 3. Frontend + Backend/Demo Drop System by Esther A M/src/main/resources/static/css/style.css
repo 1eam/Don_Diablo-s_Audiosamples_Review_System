@@ -42,6 +42,7 @@ a{
 
 .artist-name{
     font-weight: 300;
+    text-transform: uppercase;
 }
 
 .upper-corner{
@@ -162,9 +163,12 @@ a{
     width: 70%;
 }
 
-.img-box > img{
-    border: solid;
-    width: 15%;
+.img{
+    border: 3px solid;
+    max-width: 175px;
+    min-width: 175px;
+    height: 175px;
+    object-fit: cover;
 }
 
 

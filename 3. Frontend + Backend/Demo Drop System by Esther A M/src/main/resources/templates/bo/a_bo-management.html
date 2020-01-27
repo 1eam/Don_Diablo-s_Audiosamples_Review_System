@@ -37,9 +37,9 @@
             <!-- navbar elements -->
             <nav class="admin-navbar">
                 <ul id="ul">
-                    <li><a href="/admin/set-texts">SET SYSTEM TEXTS</a></li>
-                    <li><a href="/admin/user-management">USER MANAGEMENT</a></li>
-                    <li><a href="/admin/bo-management" style="color: #707070;">BACKOFFICE MANAGEMENT</a></li>
+                    <li><a href="/admin-side/authorized/set-texts">SET SYSTEM TEXTS</a></li>
+                    <li><a href="/admin-side/authorized/user-management">USER MANAGEMENT</a></li>
+                    <li><a href="/admin-side/authorized/bo-management" style="color: #707070;">BACKOFFICE MANAGEMENT</a></li>
                 </ul>
             </nav>
             <!-- heading -->
@@ -68,7 +68,7 @@
                 <td th:text="${user.lastName}">th: Empty: Surname</td>
                 <td th:text="${user.email}">th: Empty: Email</td>
                 <td><!-- Delete User-->
-                    <form method="post" th:object="${user}" th:action="@{'/admin/user-management/delete/' + ${user.id}}" >
+                    <form method="post" th:object="${user}" th:action="@{'/admin-side/authorized/user-management/delete/' + ${user.id}}" >
                         <button type="submit" style="background: none">delete</button>
                     </form>
                 </td>
@@ -102,7 +102,7 @@
         <!-- Heading -->
         <h1 class="heading">CREATE NEW BO-USER</h1>
 
-        <form action="/register/submit">
+        <form action="/admin-side/authorized/register/submit">
             <p class="form-text">Name</p>
             <input type="text" name="name">
             <p class="form-text">Last name</p>
@@ -118,7 +118,7 @@
 
     <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
     <footer>
-        <a href="/admin/dashboard"><img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="72"></a>
+        <a href="/admin-side/authorized/dashboard"><img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="72"></a>
         <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
     </footer>
     <!-- End your project here-->

@@ -13,7 +13,7 @@
     <!-- logout -->
     <div class="upper-corner">
         <p th:text style="display: inline;">Joris Dobbelaar &ensp;</p>
-        <a href="bo/login"><u>Logout</u></a>
+        <a href="/bo-side/authorized/login"><u>Logout</u></a>
     </div>
     <!-- headerLogo -->
     <div class="">
@@ -52,7 +52,7 @@
     <!-- blocks of demos -->
     <div th:each="demo: ${demos}">
         <div class="list-of-demos">
-            <a th:href="@{'/sent-mode/' + ${demo.id}}" > <span>ARTIST NAME</span> - <span th:text="${demo.title}">TITLE DEMO</span> <span class="allign right">DATE/2020</span></a>
+            <a th:href="@{'/bo-side/authorized/sent-mode/' + ${demo.id}}" > <span>ARTIST NAME</span> - <span style="text-transform: uppercase;" th:text="${demo.title}">TITLE DEMO</span> <span class="allign right">DATE/2020</span></a>
         </div>
     </div>
 
@@ -64,7 +64,7 @@
 <div style= "display: block; margin-bottom: 100px;"></div>
 
 <footer class="section-center">
-    <a href="/bo/dashboard">
+    <a href="/bo-side/authorized/dashboard">
         <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
     </a>
 </footer>

@@ -10,20 +10,21 @@
 </head>
 <body>
     <header class="section-center">
-        <img src="/images/hexagonlogo.png" height="20" alt="HEXAGON">
+        <a href="/user-side/authorized/dashboard"><img src="/images/hexagonlogo.png" height="20" alt="HEXAGON"></a>
     </header>
 
     <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
 
     <main>   
         <div class="section-center">
-            <!-- show profile photo + select new -->
-            <div>
-                <label for="files"><img class="img-box-s" src="/images/2. Temporary/Dj Christopher.jpg"></label>
-                <input id="files"type="file" hidden="hidden" >
-            </div>
             <!-- edit icon -->
             <img class="edit-icon" src="/images/edit.svg" alt="Edit Photo">
+            <!-- show profile photo + select new -->
+            <div>
+                <label for="files"><img class="img-box-s" th:src="${user.profileImage}"></label>
+                <input id="files"type="file" hidden="hidden" >
+            </div>
+
 
         </div>
 
@@ -31,17 +32,17 @@
 
         <div class="section-center login-form">
             <!-- settings form -->
-            <form action="PUT">
-                <p>Edit Artististname</p>
-                <input type="text" maxlength="20" name="artistName" th:value="${someValue}" >
+            <form method="POST" th:action="@{/user-side/authorized/settings}" th:object="${user}">
+                <p>Edit Artist name</p>
+                <input type="text" maxlength="20" name="artistName" th:value="${user.artistName}" th:field="*{artistName}" >
                 <p>Edit bio</p>
-                <textarea maxlength="350" rows="10" cols="28" name="bio" th:text="${someValue}">Im a dutch-based producer</textarea>
+                <textarea maxlength="350" rows="10" cols="28" name="bio" th:text="${user.bio}" th:field="*{bio}">Im a dutch-based producer</textarea>
                 <p>Edit Name</p>
-                <input type="text" maxlength="20" name="name" th:value="${someValue}">
+                <input type="text" maxlength="20" name="name" th:value="${user.name}" th:field="*{name}">
                 <p>Edit Last name</p>
-                <input type="text" maxlength="30" name="lastName" th:value="${someValue}">
+                <input type="text" maxlength="30" name="lastName" th:value="${user.lastName}" th:field="*{lastName}">
                 <p>Email:</p>
-                <input type="text" maxlength="30" name="email" readonly th:value="${someValue}">
+                <input type="text" maxlength="30" name="email" readonly style="background-color: darkgray" th:value="${user.email}">
                 <!-- space --><div style= "display: block; margin-bottom: 100px;"></div>
 
                 <!-- save button -->
@@ -51,7 +52,7 @@
             <!-- space --><div style= "display: inline-block; margin-bottom: 50px;"></div>
 
             <!-- cancel button -->
-            <a href="/settings"><u>Cancel</u></a>
+            <a href="/user-side/authorized/settings"><u>Cancel</u></a>
         </div>
 
         <!-- space --><div style= "display: inline-block; margin-bottom: 50px;"></div>
@@ -70,7 +71,7 @@
     <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
 
     <footer class="section-center">
-        <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
+        <a href="/user-side/authorized/dashboard"><img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="90"></a>
 
         <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
 
@@ -91,13 +92,13 @@
         <div class="section-center login-form popup-content">
             <div class="close-button">+</div>
             <h2>Edit Password</h2>
-            <form action="PUT">
+            <form method="POST" th:action="@{/user-side/authorized/editPassword}" th:object="${user}">
                 <p>Password</p>
-                <input type="password" name="password">
+                <input type="password" name="oldPassword" th:field="*{oldPassword}">
                 <p>New Password</p>
-                <input type="password"  placeholder="Must have at least 8 characters" name="newPassword">
+                <input type="password"  placeholder="Must have at least 8 characters" name="newPassword" th:field="*{password}">
                 <p>Confirm Password</p>
-                <input type="password" name="comfirmPassword">
+                <input type="password" name="confirmPassword" th:field="*{confirmPassword}">
         
                 <!-- save button: edit password -->
                 <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
@@ -133,9 +134,9 @@
             <div class="close-button-3">+</div>
             <h2>Enter your password</h2>
             <!-- space --><div style= "display: block; margin-bottom: 100px;"></div>
-            <form method="POST" th:action="@{/delete-account}" sec:authorize="isAuthenticated()">
+            <form method="POST" th:action="@{/user-side/authorized/deleteAccount}" th:object="${user}">
                 <p>Password</p>
-                <input type="password" name="password">
+                <input type="password" name="password" th:field="*{password}">
                 <!-- delete button -->
                 <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
                 <input type="submit" value="DELETE ACCOUNT" class="button-d">

@@ -132,10 +132,12 @@ h2{
 }
 
 .img-box-s{
-    border-style: solid;
-    border-width: 3px;
-    border-color: white;
-    width: 180px;
+    border: 3px solid;
+
+    max-width: 175px;
+    min-width: 175px;
+    height: 175px;
+    object-fit: cover;
 
     cursor: pointer;
     position: relative;

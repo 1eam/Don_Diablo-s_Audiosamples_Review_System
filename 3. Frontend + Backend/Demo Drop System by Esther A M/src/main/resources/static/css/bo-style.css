@@ -296,6 +296,11 @@ input[type="radio"]:checked + #label2 {
     border-style: solid;
     border-color: white;
     box-shadow: 1px 1px 10px;
+
+    max-width: 250px;
+    min-width: 250px;
+    height: 250px;
+    object-fit: cover;
 }
 
 .bo-footer{

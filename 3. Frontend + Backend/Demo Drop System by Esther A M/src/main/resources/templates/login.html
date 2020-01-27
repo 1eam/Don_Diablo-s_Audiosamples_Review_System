@@ -59,7 +59,7 @@
             <li><a href="https://www.hexagonhq.com/videos">VIDEOS</a></li>
             <li><a href="https://www.hexagonhq.com/radio">RADIO</a></li>
             <li><a href="https://shop.dondiablo.com/collections/hexagon">SHOP</a></li>
-            <li><a href="/login">DEMO DROP</a></li>
+            <li><a href="/user-side/authorized/dashboard">DEMO DROP</a></li>
             <li><a href="https://www.hexagonhq.com/wallpapers">WHALLPAPERS</a></li>
             <li><a href="https://www.hexagonhq.com/contact">CONTACT</a></li>
         </ul>
@@ -85,7 +85,7 @@
                 </div> -->
 
                                                         <!-- +/{id} later-->
-                <form method="POST" role="form" th:action="@{/login}" >
+                <form method="POST" role="form" th:action="@{/user-side/login}" >
 <!--                    <p style="color: #707070" th:if="${param.error != null}">Invalid Username or password</p>-->
 <!--                    <p style="color: #707070" th:if="${param.logout != null}">You have been logged out</p>-->
                     <p>Username</p>
@@ -106,12 +106,12 @@
 
             <!-- register link (responsive) -->
             <div class="register-link-visibility">
-                <a href="/register"><p><u style="font-size: 12px;">Register</u></p></a>
+                <a href="/user/register"><p><u style="font-size: 12px;">Register</u></p></a>
             </div>
 
             <!-- register form -->
             <div class="login-form responsive-register-form-container" >
-                <form method="POST" enctype="multipart/form-data" th:action="@{/register}" th:object="${newUser}" th:if="!${success}">
+                <form method="POST" enctype="multipart/form-data" th:action="@{/user-side/register}" th:object="${newUser}">
 <!--                    This should display validation errors to the user, but its not working yet-->
                     <p class="form-text" th:if="${validationErrors}">
                         <ul th:each="error : ${validationErrors}">
@@ -157,7 +157,7 @@
     <!-- space -->
     <div style= "display: inline-block; margin-bottom: 50px;"></div>
 
-    <footer class="section-center" th:fragment="footer">
+    <footer class="section-center">
         <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
     </footer>
 
@@ -168,7 +168,7 @@
         <p>Please check your email to complete the activation</p>
         
         <div>
-            <a href="/login"><button class="button">Login</button></a>
+            <a href="/"><button class="button">Login</button></a>
         </div>
         <!-- space --><div style= "display: block; margin-bottom: 20px;"></div>
         <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="72">

@@ -39,7 +39,7 @@
     <div class="sections-container">
         <section class="section s1">
             <div>
-                <img src="/images/2. Temporary/Dj Christopher.jpg" width="250" class="img-box" alt="user prifole picture">
+                <img th:src="${demo.user.profileImage}" width="250" class="img-box" alt="user profile picture">
             </div>
             <h3 class="artist-name" >DJ CHRISTOPHER</h3>
             <h5 > Christopher de Berg</h5>
@@ -64,7 +64,7 @@
             </div>
 
             <footer class="bo-footer">
-                <a href="/bo/dashboard">
+                <a href="/bo-side/authorized/dashboard">
                     <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
                 </a>
             </footer>
@@ -73,7 +73,7 @@
         <section class="section s3">
 
             <div>
-                <form method="POST" th:action="@{/submit}" th:object="${demo}">
+                <form method="POST" th:action="@{/bo-side/authorized/submit}" th:object="${demo}">
                     <!-- review -->
                     <h3>REVIEW</h3>
                     <!-- space --><div style= "display: block; margin-bottom: 100px;"></div>
@@ -92,7 +92,7 @@
                 </form>
             </div>
             <!-- space --><div style= "display: block; margin-bottom: 250px;"></div>
-            <a style="display: block;" href="/bo/review-list"><u>Exit review-mode</u><span>&#8635;</span></a>
+            <a style="display: block;" href="/bo-side/authorized/review-list"><u>Exit review-mode</u><span>&#8635;</span></a>
         </section>
     </div>
     <div class="audio-container" id="scroll">
