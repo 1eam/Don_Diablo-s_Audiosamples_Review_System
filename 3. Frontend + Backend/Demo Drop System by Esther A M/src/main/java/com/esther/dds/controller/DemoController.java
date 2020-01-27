@@ -101,13 +101,6 @@ public class DemoController {
                 .addFlashAttribute("success",true);
 
 
-        // Dit herlaad de mappenstruktuur
-        // (Is de demo direct na upload niet zichtbaar? klik dan met je muis in intellij, en ga terug naar de browser
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
         return "redirect:/user-side/authorized/demo/{id}";
 
     }

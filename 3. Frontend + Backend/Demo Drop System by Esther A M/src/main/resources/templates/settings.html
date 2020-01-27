@@ -32,17 +32,17 @@
 
         <div class="section-center login-form">
             <!-- settings form -->
-            <form action="PUT">
-                <p>Edit Artististname</p>
-                <input type="text" maxlength="20" name="artistName" th:value="${user.artistName}" >
+            <form method="POST" th:action="@{/user-side/authorized/settings}" th:object="${user}">
+                <p>Edit Artist name</p>
+                <input type="text" maxlength="20" name="artistName" th:value="${user.artistName}" th:field="*{artistName}" >
                 <p>Edit bio</p>
-                <textarea maxlength="350" rows="10" cols="28" name="bio" th:text="${user.bio}">Im a dutch-based producer</textarea>
+                <textarea maxlength="350" rows="10" cols="28" name="bio" th:text="${user.bio}" th:field="*{bio}">Im a dutch-based producer</textarea>
                 <p>Edit Name</p>
-                <input type="text" maxlength="20" name="name" th:value="${user.name}">
+                <input type="text" maxlength="20" name="name" th:value="${user.name}" th:field="*{name}">
                 <p>Edit Last name</p>
-                <input type="text" maxlength="30" name="lastName" th:value="${user.lastName}">
+                <input type="text" maxlength="30" name="lastName" th:value="${user.lastName}" th:field="*{lastName}">
                 <p>Email:</p>
-                <input type="text" maxlength="30" name="email" readonly th:value="${user.email}">
+                <input type="text" maxlength="30" name="email" readonly style="background-color: darkgray" th:value="${user.email}">
                 <!-- space --><div style= "display: block; margin-bottom: 100px;"></div>
 
                 <!-- save button -->

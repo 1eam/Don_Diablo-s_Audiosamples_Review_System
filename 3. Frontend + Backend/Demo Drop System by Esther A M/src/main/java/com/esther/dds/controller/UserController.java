@@ -8,9 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -30,15 +28,53 @@ public class UserController {
 
 // USER SIDE
     @GetMapping("/user-side/authorized/settings")
-    public String settings(Model model){
+    public String settings(Model model ){
         Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
-        Optional<User> user = userService.findById(userId);
+        Optional<User> optionalUser = userService.findById(userId);
+        User user = optionalUser.get();
 
-        if( user.isPresent() ) {
-            model.addAttribute("user", user.get());
+        if( optionalUser.isPresent() ) {
+            model.addAttribute("user", user);
             return "settings";
         } else {
-        return "settings";
+            return "settings";
+        }
+    }
+//
+//    @PostMapping("/user-side/authorized/settings")
+//    public String editProfile(Model model){
+//        Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+//        Optional<User> user = userService.findById(userId);
+//        if( user.isPresent() ) {
+//            userService.save(user.get());
+//            return "redirect:/user-side/authorized/settings";
+//        } else {
+//            return "settings";
+//        }
+//
+//    }
+
+    @PostMapping("/user-side/authorized/settings")
+    public String editProfile(Model model,
+                              @RequestParam(value = "artistName", required = false)String artistName,
+                              @RequestParam(value = "bio", required = false)String bio,
+                              @RequestParam(value = "name", required = false)String name,
+                              @RequestParam(value = "lastName", required = false)String lastName) {
+
+        Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        Optional<User> optionalUser = userService.findById(userId);
+        User user = optionalUser.get();
+
+        if( optionalUser.isPresent() ) {
+
+            user.setArtistName(artistName);
+            user.setBio(bio);
+            user.setName(name);
+            user.setLastName(lastName);
+            userService.update(user);
+            return "redirect:/user-side/authorized/settings";
+        } else {
+            return "redirect:/user-side/authorized/dashboard";
         }
     }
 

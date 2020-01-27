@@ -32,18 +32,20 @@ public class UserService {
         encoder = new BCryptPasswordEncoder();
     }
 
-
-
-    public User save(User user) {
-        return userRepository.save(user);
-    }
-
     public Optional<User> findById(Long id) {
         return userRepository.findById(id);
     }
 
     public Optional<User> findByEmail(String email){
         return userRepository.findByEmail(email);
+    }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    public User save(User user) {
+        return userRepository.save(user);
     }
 
     public User register(User user) {
@@ -72,9 +74,7 @@ public class UserService {
         return user;
     }
 
-
     public void sendActivationEmail(User user) {
-        // ... do something
         mailService.sendActivationEmail(user);
     }
 
@@ -86,8 +86,17 @@ public class UserService {
         return userRepository.findByEmailAndActivationCode(email,activationCode);
     }
 
-    public List<User> findAll() {
-        return userRepository.findAll();
+    public User update(User user) {
+        user.setPassword(user.getPassword());
+        user.setConfirmPassword(user.getConfirmPassword());
+
+        // take the original password
+        String secret = "{bcrypt}" + encoder.encode(user.getPassword());
+        user.setPassword(secret);
+
+        // confirm password
+        user.setConfirmPassword(secret);
+        return userRepository.save(user);
     }
 
     public void delete(User user) {
