@@ -87,6 +87,15 @@ public class UserService {
     }
 
     public User update(User user) {
+        //to stop confirmPassword from complaining
+        user.setPassword(user.getPassword());
+        user.setConfirmPassword(user.getPassword());
+
+        return userRepository.save(user);
+    }
+
+
+    public User editPassword(User user) {
         user.setPassword(user.getPassword());
         user.setConfirmPassword(user.getConfirmPassword());
 
