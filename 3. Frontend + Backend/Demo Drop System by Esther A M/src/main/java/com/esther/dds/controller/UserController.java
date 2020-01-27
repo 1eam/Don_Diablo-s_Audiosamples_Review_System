@@ -3,10 +3,10 @@ package com.esther.dds.controller;
 import com.esther.dds.domain.User;
 import com.esther.dds.service.ProfileImageService;
 import com.esther.dds.service.UserService;
-import com.sun.xml.bind.v2.runtime.output.SAXOutput;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -17,12 +17,14 @@ import java.util.Optional;
 public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(DemoController.class);
+    private final BCryptPasswordEncoder encoder;
     private UserService userService;
     private ProfileImageService profileImageService;
 
     public UserController(UserService userService, ProfileImageService profileImageService) {
         this.userService = userService;
         this.profileImageService = profileImageService;
+        encoder = new BCryptPasswordEncoder();
     }
 
 
@@ -90,9 +92,9 @@ public class UserController {
         Optional<User> optionalUser = userService.findById(userId);
 
         if( optionalUser.isPresent() ) {
-            if (oldPassword.equals(confirmPassword)){
+            if (password.equals(confirmPassword)){
                 User user = optionalUser.get();
-                userService.editPassword(user, oldPassword, password, confirmPassword);
+                userService.editPassword(user, oldPassword, password);
 
                 return "redirect:/user-side/authorized/settings";
                 }else {
@@ -103,8 +105,30 @@ public class UserController {
         }
     }
 
+    @PostMapping("/user-side/authorized/deleteAccount")
+    public String editPassword(Model model,
+                               @RequestParam(value = "password")String password){
 
-// ADMIN SIDE
+        Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        Optional<User> optionalUser = userService.findById(userId);
+        User user = optionalUser.get(); //refactor in if statement
+
+        //this removes the "{bcrypt}" prefix. This has to be done first. in order for BCrypts .matches method to work
+        String currentPassword = user.getPassword();
+        String currentPwWithoutPrefix = currentPassword.substring(8);
+
+        if( optionalUser.isPresent() && encoder.matches(password, currentPwWithoutPrefix) ) {
+            userService.delete(user);
+            SecurityContextHolder.getContext().setAuthentication(null);
+            return "redirect:/user-side/authorized/dashboard";
+        } else {
+            return "redirect:/user-side/authorized/dashboard";
+        }
+    }
+
+
+
+    // ADMIN SIDE
     @GetMapping("/admin-side/authorized/user-management")
     public String userManagement(Model model){
         model.addAttribute("users", userService.findAll());

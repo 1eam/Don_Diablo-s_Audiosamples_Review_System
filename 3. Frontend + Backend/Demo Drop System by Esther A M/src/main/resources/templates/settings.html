@@ -134,9 +134,9 @@
             <div class="close-button-3">+</div>
             <h2>Enter your password</h2>
             <!-- space --><div style= "display: block; margin-bottom: 100px;"></div>
-            <form method="POST" th:action="@{/delete-account}" sec:authorize="isAuthenticated()">
+            <form method="POST" th:action="@{/user-side/authorized/deleteAccount}" th:object="${user}">
                 <p>Password</p>
-                <input type="password" name="password">
+                <input type="password" name="password" th:field="*{password}">
                 <!-- delete button -->
                 <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
                 <input type="submit" value="DELETE ACCOUNT" class="button-d">

@@ -97,12 +97,12 @@ public class UserService {
     }
 
 
-    public User editPassword(User user, String oldPassword, String password, String confirmPassword) {
+    public User editPassword(User user, String oldPassword, String password) {
         String currentPassword = user.getPassword();
         //this removes the "{bcrypt}" prefix. This has to be done first. in order for BCrypts .matches method to work
         String currentPwWithoutPrefix = currentPassword.substring(8);
 
-        if( password.equals(confirmPassword) && encoder.matches(oldPassword, currentPwWithoutPrefix)){
+        if( encoder.matches(oldPassword, currentPwWithoutPrefix)){
             //Edit the new password
             String secret = "{bcrypt}" + encoder.encode(password);
             user.setPassword(secret);
