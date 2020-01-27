@@ -39,6 +39,9 @@ public class User implements UserDetails {
     @NotEmpty(message = "Please enter Password Confirmation")
     private String confirmPassword;
 
+    @Transient
+    private String oldPassword;
+
     private String activationCode;
 
     @NonNull

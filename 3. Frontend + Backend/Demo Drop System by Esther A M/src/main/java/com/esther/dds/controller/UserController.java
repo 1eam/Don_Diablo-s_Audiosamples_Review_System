@@ -3,6 +3,7 @@ package com.esther.dds.controller;
 import com.esther.dds.domain.User;
 import com.esther.dds.service.ProfileImageService;
 import com.esther.dds.service.UserService;
+import com.sun.xml.bind.v2.runtime.output.SAXOutput;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -31,9 +32,9 @@ public class UserController {
     public String settings(Model model ){
         Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
         Optional<User> optionalUser = userService.findById(userId);
-        User user = optionalUser.get();
 
         if( optionalUser.isPresent() ) {
+            User user = optionalUser.get();
             model.addAttribute("user", user);
             return "settings";
         } else {
@@ -63,9 +64,10 @@ public class UserController {
 
         Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
         Optional<User> optionalUser = userService.findById(userId);
-        User user = optionalUser.get();
+
 
         if( optionalUser.isPresent() ) {
+            User user = optionalUser.get();
 
             user.setArtistName(artistName);
             user.setBio(bio);
@@ -78,7 +80,28 @@ public class UserController {
         }
     }
 
+    @PostMapping("/user-side/authorized/editPassword")
+    public String editPassword(Model model,
+                               @RequestParam(value = "oldPassword", required = false)String oldPassword,
+                               @RequestParam(value = "password")String password,
+                               @RequestParam(value = "confirmPassword")String confirmPassword){
 
+        Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        Optional<User> optionalUser = userService.findById(userId);
+
+        if( optionalUser.isPresent() ) {
+            if (oldPassword.equals(confirmPassword)){
+                User user = optionalUser.get();
+                userService.editPassword(user, oldPassword, password, confirmPassword);
+
+                return "redirect:/user-side/authorized/settings";
+                }else {
+                return "redirect:/user-side/authorized/dashboard";
+            }
+        } else {
+            return "redirect:/user-side/authorized/dashboard";
+        }
+    }
 
 
 // ADMIN SIDE

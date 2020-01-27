@@ -56,6 +56,8 @@ public class UserService {
         // confirm password
         user.setConfirmPassword(secret);
 
+//        user.setOldPassword(secret);
+
         // assign a role to this user
         user.addRole(roleService.findByName("ROLE_USER"));
 
@@ -95,17 +97,27 @@ public class UserService {
     }
 
 
-    public User editPassword(User user) {
-        user.setPassword(user.getPassword());
-        user.setConfirmPassword(user.getConfirmPassword());
+    public User editPassword(User user, String oldPassword, String password, String confirmPassword) {
+        String currentPassword = user.getPassword();
+        //this removes the "{bcrypt}" prefix. This has to be done first. in order for BCrypts .matches method to work
+        String currentPwWithoutPrefix = currentPassword.substring(8);
 
-        // take the original password
-        String secret = "{bcrypt}" + encoder.encode(user.getPassword());
-        user.setPassword(secret);
+        if( password.equals(confirmPassword) && encoder.matches(oldPassword, currentPwWithoutPrefix)){
+            //Edit the new password
+            String secret = "{bcrypt}" + encoder.encode(password);
+            user.setPassword(secret);
 
-        // confirm password
-        user.setConfirmPassword(secret);
-        return userRepository.save(user);
+            // setconfirm password field
+            user.setConfirmPassword(secret);
+            userRepository.save(user);
+
+        } else {
+            logger.error("incorrect password, try again: ");
+            //print bcrypted validation password
+            //logger.error(currentPwWithoutPrefix);
+        }
+
+        return user;
     }
 
     public void delete(User user) {

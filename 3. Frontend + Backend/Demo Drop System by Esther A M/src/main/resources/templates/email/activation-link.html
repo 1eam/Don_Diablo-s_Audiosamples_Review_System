@@ -9,7 +9,7 @@
 <h1>Springit User Activation</h1>
 <p th:text="|Dear ${user.getName()}|">Dear Username</p>
 <p>Thank you for signing up at our Demo drop-system.</p>
-<p>Please click on <a th:href="${baseURL} + '/activate/' + ${user.getEmail()} + '/' + ${user.getActivationCode()}">this link</a> to activate your account.</p>
+<p>Please click on <a th:href="${baseURL} + '/user-side/activate/' + ${user.getEmail()} + '/' + ${user.getActivationCode()}">this link</a> to activate your account.</p>
 
 <p>We're waiting to hear from you!</p>
 <p>Greetings Team Hexagon!</p>

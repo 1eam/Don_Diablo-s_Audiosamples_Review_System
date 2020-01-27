@@ -75,9 +75,8 @@ public class AuthController {
             newUser.setConfirmPassword(newUser.getPassword());
             userService.save(newUser);
             userService.sendWelcomeEmail(newUser);
-            return "activation-success";
         }
-        return "redirect:/";
+        return "activation-success";
     }
 
 

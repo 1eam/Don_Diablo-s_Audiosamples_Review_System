@@ -92,13 +92,13 @@
         <div class="section-center login-form popup-content">
             <div class="close-button">+</div>
             <h2>Edit Password</h2>
-            <form action="PUT">
+            <form method="POST" th:action="@{/user-side/authorized/editPassword}" th:object="${user}">
                 <p>Password</p>
-                <input type="password" name="password">
+                <input type="password" name="oldPassword" th:field="*{oldPassword}">
                 <p>New Password</p>
-                <input type="password"  placeholder="Must have at least 8 characters" name="newPassword">
+                <input type="password"  placeholder="Must have at least 8 characters" name="newPassword" th:field="*{password}">
                 <p>Confirm Password</p>
-                <input type="password" name="comfirmPassword">
+                <input type="password" name="confirmPassword" th:field="*{confirmPassword}">
         
                 <!-- save button: edit password -->
                 <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
