@@ -41,7 +41,7 @@
             <section class="a_section">
                 <p class="roboto-medium-16-lightgray">PENDING MESSAGE</p>
                 <form method="POST" th:action="@{/admin-side/authorized/set-texts/Pending}" th:object="${pending}">
-                    <textarea name="Pending" th:field="*{message}">th: HARDCODED HTML:</textarea>
+                    <textarea name="message" th:field="*{message}">th: HARDCODED HTML:</textarea>
                     <input type="submit" value="Save" class="button">
                 </form>            
             </section>
@@ -49,8 +49,8 @@
             <!-- Succes Message -->
             <section class="a_section">
                 <p class="roboto-medium-16-lightgray">SUCCESS MESSAGE</p>
-                <form action="/succesMessage">
-                    <textarea name="succesMessage" >th: We have reviewed your demo and we want to let you know that we've forwarded your demo to Don Diablo. We'll send you an email about the further progress of the review.GreetingsTeam Hexagon th
+                <form method="POST" th:action="@{/admin-side/authorized/set-texts/Sent}" th:object="${sent}">
+                    <textarea name="message" th:field="*{message}" >th: We have reviewed your demo and we want to let you know that we've forwarded your demo to Don Diablo. We'll send you an email about the further progress of the review.GreetingsTeam Hexagon th
                     </textarea>
                     <input type="submit" value="Save" class="button">
                 </form>            
@@ -59,8 +59,8 @@
             <!-- Reject Message -->
             <section class="a_section">
                 <p class="roboto-medium-16-lightgray">REJECT MESSAGE</p>
-                <form action="/rejectMessage">
-                    <textarea name="rejectMessage" >th: Your Demo is being is currently waiting to be reviewed. Well notify you as soon as we've reviewed your demo</textarea>
+                <form method="POST" th:action="@{/admin-side/authorized/set-texts/Rejected}" th:object="${rejected}">
+                    <textarea name="message" th:field="*{message}">th: Your Demo is being is currently waiting to be reviewed. Well notify you as soon as we've reviewed your demo</textarea>
                     <input type="submit" value="Save" class="button">
                 </form>            
             </section>
