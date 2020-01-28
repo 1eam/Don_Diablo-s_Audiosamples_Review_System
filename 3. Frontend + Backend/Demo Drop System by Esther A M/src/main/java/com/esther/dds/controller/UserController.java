@@ -19,11 +19,9 @@ public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(DemoController.class);
     private final BCryptPasswordEncoder encoder;
     private UserService userService;
-    private ProfileImageService profileImageService;
 
-    public UserController(UserService userService, ProfileImageService profileImageService) {
+    public UserController(UserService userService) {
         this.userService = userService;
-        this.profileImageService = profileImageService;
         encoder = new BCryptPasswordEncoder();
     }
 
@@ -43,19 +41,6 @@ public class UserController {
             return "settings";
         }
     }
-//
-//    @PostMapping("/user-side/authorized/settings")
-//    public String editProfile(Model model){
-//        Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
-//        Optional<User> user = userService.findById(userId);
-//        if( user.isPresent() ) {
-//            userService.save(user.get());
-//            return "redirect:/user-side/authorized/settings";
-//        } else {
-//            return "settings";
-//        }
-//
-//    }
 
     @PostMapping("/user-side/authorized/settings")
     public String editProfile(Model model,

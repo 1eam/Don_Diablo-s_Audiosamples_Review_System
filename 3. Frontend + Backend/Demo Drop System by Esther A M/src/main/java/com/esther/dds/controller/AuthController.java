@@ -80,18 +80,12 @@ public class AuthController {
     }
 
 
-    //coppy getmapping login over
+    //copy getmapping login over
     @GetMapping("/user-side/register")
     public String registerMobile(){
         return "register";
 
     }
-
-    @GetMapping("/user-side/authorized/settings/{id}")
-    public String settings(@PathVariable Long id){
-        return "settings";
-    }
-
 
     //RegularMappings
     @GetMapping("/bo-side/login")
