@@ -5,6 +5,7 @@ import com.esther.dds.domain.Demo;
 
 
 import com.esther.dds.domain.User;
+import com.esther.dds.repositories.DemoRepository;
 import com.esther.dds.service.AudioFileService;
 import com.esther.dds.service.DemoService;
 import com.esther.dds.service.UserService;
@@ -28,13 +29,15 @@ public class DemoController {
 
     private UserService userService;
     private DemoService demoService;
+    private DemoRepository demoRepository;
     private DatabaseFiller databaseFiller;
     private AudioFileService audioFileService;
 
 
-    public DemoController(UserService userService, DemoService demoService, DatabaseFiller databaseFiller, AudioFileService audioFileService) {
+    public DemoController(UserService userService, DemoService demoService, DemoRepository demoRepository, DatabaseFiller databaseFiller, AudioFileService audioFileService) {
         this.userService = userService;
         this.demoService = demoService;
+        this.demoRepository = demoRepository;
         this.databaseFiller = databaseFiller;
         this.audioFileService = audioFileService;
     }
@@ -59,9 +62,23 @@ public class DemoController {
     //     DROPDEMO.HTML
     // Load new Demo-object in form
     @GetMapping("/user-side/authorized/dropdemo")
-    public String newDemoForm(Model model){
+    public String newDemoForm(Model model, RedirectAttributes redirectAttributes){
+
+        Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        Optional<User> user = userService.findById(userId);
+
+        //check if user hasnt reached the maximum of 4 uploads in review
+        if (demoRepository.findByUserId(userId).size()==4){
+
+            redirectAttributes
+                    .addFlashAttribute("maxReached",true);
+            return "redirect:/user-side/authorized/dashboard";
+
+        } else {
+        //show the upload demo-form
         model.addAttribute("demo", new Demo());
         return "dropdemo";
+        }
     }
 
 
@@ -100,9 +117,7 @@ public class DemoController {
                 .addAttribute("id",demo.getId())
                 .addFlashAttribute("success",true);
 
-
         return "redirect:/user-side/authorized/demo/{id}";
-
     }
 
     //     VIEWDEMO.HTML

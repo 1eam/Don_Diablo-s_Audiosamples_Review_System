@@ -67,5 +67,22 @@
     </footer>
 
     <!-- space --><div style= "display: inline-block; margin-bottom: 50px;"></div>
+
+
+<!--     flashatt. if true Popup attribute-->
+        <div class="popup" th:if="${maxReached}">
+            <div class="section-center popup-content">
+                <h2>Demo drop is currently unavailable...</h2>
+                <p>You have reached the maximum amount of demos in review. Please wait until our team has handled one of your demo's.</p>
+                <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
+                <div>
+                    <a href="/user-side/authorized/dashboard"><button class="button">Go back</button></a>
+                </div>
+                <!-- space --><div style= "display: block; margin-bottom: 20px;"></div>
+                <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="72">
+                <!-- space --><div style= "display: block; margin-bottom: 20px;"></div>
+            </div>
+        </div>
+
 </body>
 </html>
