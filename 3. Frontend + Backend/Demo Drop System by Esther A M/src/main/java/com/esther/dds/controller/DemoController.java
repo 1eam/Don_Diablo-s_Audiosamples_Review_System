@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -154,40 +155,73 @@ public class DemoController {
     }
 
     //     BO - REVIEW-MODE.HTML
-    // Play
+    // Show review-mode, or redirect to list-view if all demos are reviewed
     @GetMapping("/bo-side/authorized/review-mode/{id}")
     public String boSideDemo (@PathVariable Long id, Model model){
         Optional<Demo> demo = demoService.findById(id);
-        if( demo.isPresent() ) {
+
+        // !Important, execute only if the (pathVariable) Demo's state is equal to pending (else any demo-url can be re-judged afterwards)
+        if( demo.isPresent() && demo.get().getState().getStateName()=="Pending") {
             model.addAttribute("demo",demo.get());
             return "bo/review-mode";
         }else {
-            return "redirect:/"; //todo: check
+            return "redirect:/bo-side/authorized/review-list";
         }
     }
 
-    //-----------------------------------------//
-    @PostMapping("/bo-side/authorized/submit-state")
-    public String setState(@Valid Demo demo, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
+    //----------------------------------------------------------------------------------------------------------------//
+    //     BO - REVIEW-MODE.HTML
+    // Cast review & redirect to next demo
 
-        model.addAttribute("demo",demo);{
-            // assign this demo to pending state
-            demo.setState(databaseFiller.state2);
+    @PostMapping("/bo-side/authorized/submit-review/{id}")
+    public String setState(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes,
+                           @RequestParam(value = "state.stateName", required = false) String state){
 
-            // save uploaded demo (title, description.)
-            demoService.save(demo);
+        Optional<Demo> optionalDemo = demoService.findById(id);
+        if (optionalDemo.isPresent()){
 
+            Demo demo = optionalDemo.get();
 
+//          redundant variable moet voor een switch statement
+            String stateOutcome = state;
+            switch (stateOutcome) {
+                case "Rejected":
+    //              assign this demo to pending state
+                    demo.setState(databaseFiller.state2);
+                    //todo: set reviewer to user: securitycontextholder
+                    demoService.save(demo);
 
-            //log event
-            logger.info("New Demo was saved successfully");
-            redirectAttributes
-                    .addAttribute("id",demo.getId())
-                    .addFlashAttribute("success",true);
-            return "redirect:/bo-side/authorized/review-mode";
+    //              log event
+                    logger.info("New Demo was successfully assigned to state: 'Rejected'");
+                    break;
+
+                case "Sent":
+    //              assign this demo to sent state
+                    demo.setState(databaseFiller.state3);
+                    //todo: set reviewer
+                    demoService.save(demo);
+
+    //              log event
+                    logger.info("New Demo was successfully assigned to state: 'Sent'");
+                    break;
+
+                default:
+                    logger.info("Demo is still assigned to state 'Pending'");
+                    break;
+            }
+        }
+
+        List<Demo> list = demoService.findByStateStateName("Pending");
+
+//      to prevent exceptions if the list of demo's get Empty
+        if(list.size() >= 1){
+            String nextDemoId = list.get(0).getId().toString();
+            return "redirect:/bo-side/authorized/review-mode/" + nextDemoId;
+        } else{
+            return "redirect:/bo-side/authorized/review-list/";
         }
     }
-    //-----------------------------------------//
+    //----------------------------------------------------------------------------------------------------------------//
 
     //     BO - DASHBOARD.HTML
     @GetMapping("/bo-side/authorized/dashboard")

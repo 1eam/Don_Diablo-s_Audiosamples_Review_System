@@ -1,9 +1,11 @@
 package com.esther.dds;
 
+import org.ocpsoft.prettytime.PrettyTime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 
 @SpringBootApplication
@@ -16,9 +18,8 @@ public class DdsApplication {
         SpringApplication.run(DdsApplication.class, args);
     }
 
-    //This bean will not be needed until Thymeleaf startr includes it.
-//    @Bean
-//    public SpringSecurityDialect securityDialect() {
-//        return new SpringSecurityDialect();
-//    }
+    @Bean
+    PrettyTime prettyTime(){
+        return new PrettyTime();
+    }
 }

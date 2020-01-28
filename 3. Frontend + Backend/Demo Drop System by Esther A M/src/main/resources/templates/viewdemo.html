@@ -101,7 +101,14 @@
         $( function() { $( 'audio' ).audioPlayer(); } );
     </script>
 
-    <!-- show and hide popup by clicking on button or cancel-->
+    <!-- hide [flash attribute] popup by clicking on button-->
+    <script type="text/javascript">
+        document.querySelector('.close-button').addEventListener("click", function() {
+            document.querySelector('.popup').style.display = "none";
+        });
+    </script>
+
+    <!-- show and hide [delete demo] popup by clicking on cancel-->
     <script type="text/javascript">
         document.getElementById('button1').addEventListener("click", function() {
             document.querySelector('#popup1').style.display = "flex";

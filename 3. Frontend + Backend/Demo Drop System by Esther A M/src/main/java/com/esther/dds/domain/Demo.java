@@ -1,10 +1,15 @@
 package com.esther.dds.domain;
 
+import com.esther.dds.service.BeanUtil;
 import lombok.*;
+import org.ocpsoft.prettytime.PrettyTime;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -43,21 +48,16 @@ public class Demo extends Auditable{
     private User user;
 
 
-//    public void addState (State state){
-//        state = new State();
-//    }
 
+    //PrettyTime Config:v3.0
 
+    public String getPrettyTime() {
+        PrettyTime pt = BeanUtil.getBean(PrettyTime.class);
+        return pt.format(convertToDateViaInstant(getCreatedOn()));
+    }
 
-//    //PrettyTime Config:v3.0
-//
-//    public String getPrettyTime() {
-//        PrettyTime pt = new PrettyTime();
-//        return pt.format(convertToDateViaInstant(getCreationDate()));
-//    }
-//
-//    private Date convertToDateViaInstant(LocalDateTime dateToConvert) {
-//        return java.util.Date.from(dateToConvert.atZone(ZoneId.systemDefault()).toInstant());
-//    }
+    private Date convertToDateViaInstant(LocalDateTime dateToConvert) {
+        return java.util.Date.from(dateToConvert.atZone(ZoneId.systemDefault()).toInstant());
+    }
 
 }

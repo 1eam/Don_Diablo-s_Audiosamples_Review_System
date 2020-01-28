@@ -39,13 +39,13 @@
         <div class="sections-container">
             <section class="section s1">
                 <div>
-                    <img src="/images/2. Temporary/Dj Christopher.jpg" width="250" class="img-box">
+                    <img th:src="${demo.user.profileImage}" width="250" class="img-box">
                 </div>
-                <h3 class="artist-name" >DJ CHRISTOPHER</h3>
-                <h5 > Christopher de Berg</h5>
-                <h5 > cris.b@yahoo.com</h5>
+                <h3 class="artist-name" th:text="${demo.user.artistName}">DJ CHRISTOPHER</h3>
+                <h5 th:text="${demo.user.name + ' ' + demo.user.lastName}"> Christopher de Berg</h5>
+                <h5 th:text="${demo.user.email}"> cris.b@yahoo.com</h5>
                 <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
-                <p> Im Christopher, Im a dutch-based musicproducer with love for house music I make deep-house, future-house, tech-house, and bass house. I study computer science at the University of AmsterdIm Christopher, Im a dutch-based musicproducer with love for house music I make deep-house, future-house, tech-house, and bass house. I study computer science at t</p>
+                <p th:text="${demo.user.bio}"> Im Christopher, Im a dutch-based musicproducer with love for house music I make deep-house, future-house, tech-house, and bass house. I study computer science at the University of AmsterdIm Christopher, Im a dutch-based musicproducer with love for house music I make deep-house, future-house, tech-house, and bass house. I study computer science at t</p>
             </section>
 
             <section class="section s2">
