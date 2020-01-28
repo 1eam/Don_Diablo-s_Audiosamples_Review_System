@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.Optional;
 
 @Controller
@@ -173,7 +174,7 @@ public class DemoController {
     // Cast review & redirect to next demo
 
     @PostMapping("/bo-side/authorized/submit-review/{id}")
-    public String setState(@PathVariable Long id,
+    public String setState(@PathVariable Long id, Model model, RedirectAttributes redirectAttributes,
                            @RequestParam(value = "state.stateName", required = false) String state){
 
         Optional<Demo> optionalDemo = demoService.findById(id);
@@ -209,7 +210,16 @@ public class DemoController {
                     break;
             }
         }
-        return "redirect:/bo-side/authorized/review-mode/{id}";
+
+        List<Demo> list = demoService.findByStateStateName("Pending");
+
+//      to prevent exceptions if the list of demo's get Empty
+        if(list.size() >= 1){
+            String nextDemoId = list.get(0).getId().toString();
+            return "redirect:/bo-side/authorized/review-mode/" + nextDemoId;
+        } else{
+            return "redirect:/bo-side/authorized/review-list/";
+        }
     }
     //----------------------------------------------------------------------------------------------------------------//
 
