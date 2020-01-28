@@ -73,16 +73,16 @@
         <section class="section s3">
 
             <div>
-                <form method="POST" th:action="@{/bo-side/authorized/submit}" th:object="${demo}">
+                <form method="POST" th:action="@{'/bo-side/authorized/submit-review/' + ${demo.id}}" th:object="${demo}">
                     <!-- review -->
                     <h3>REVIEW</h3>
                     <!-- space --><div style= "display: block; margin-bottom: 100px;"></div>
 
                     <div class="judge-boxes">
-                        <input type="radio" id="radio1" name="state" th:value="rejected">
-                        <label id="label1" for="radio1" class="judge-box">✗</label>
+                        <input type="radio" id="radio1" name="state.stateName" value="Rejected">
+                        <label id="label1" for="radio1" class="judge-box" >✗</label>
 
-                        <input type="radio" id="radio2" name="state" value="sent">
+                        <input type="radio" id="radio2" name="state.stateName" value="Sent">
                         <label id="label2" for="radio2" class="judge-box">✓</label>
                     </div>
 

@@ -167,25 +167,44 @@ public class DemoController {
     }
 
     //-----------------------------------------//
-    @PostMapping("/bo-side/authorized/submit-state")
-    public String setState(@Valid Demo demo, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
-
-        model.addAttribute("demo",demo);{
-            // assign this demo to pending state
-            demo.setState(databaseFiller.state2);
-
-            // save uploaded demo (title, description.)
-            demoService.save(demo);
+//    todo: google radiobutton submittion in thymeleaf
+    @PostMapping("/bo-side/authorized/submit-review/{id}")
+    public String setState(@PathVariable Long id,
+                           @RequestParam(value = "state.stateName", required = false) String state){
 
 
+        Optional<Demo> optionalDemo = demoService.findById(id);
+        if (optionalDemo.isPresent()){
 
-            //log event
-            logger.info("New Demo was saved successfully");
-            redirectAttributes
-                    .addAttribute("id",demo.getId())
-                    .addFlashAttribute("success",true);
-            return "redirect:/bo-side/authorized/review-mode";
+            Demo demo = optionalDemo.get();
+
+//          redundant variable moet voor een switch statement
+            String stateOutcome = state;
+            switch (stateOutcome) {
+                case "Rejected":
+    //              assign this demo to pending state
+                    demo.setState(databaseFiller.state2);
+                    demoService.save(demo);
+
+    //              log event
+                    logger.info("New Demo was successfully assigned to a new state");
+                    break;
+
+                case "Sent":
+    //              assign this demo to sent state
+                    demo.setState(databaseFiller.state3);
+                    demoService.save(demo);
+
+    //              log event
+                    logger.info("New Demo was successfully assigned to a new state");
+                    break;
+
+                default:
+                    logger.info("Demo is still assigned to state 'Pending'");
+                    break;
+            }
         }
+        return "redirect:/bo-side/authorized/dashboard"; //edit to /review-mode/{id} + model redirect attributes
     }
     //-----------------------------------------//
 
