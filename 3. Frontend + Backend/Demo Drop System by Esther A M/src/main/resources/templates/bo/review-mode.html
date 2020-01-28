@@ -41,11 +41,11 @@
             <div>
                 <img th:src="${demo.user.profileImage}" width="250" class="img-box" alt="user profile picture">
             </div>
-            <h3 class="artist-name" >DJ CHRISTOPHER</h3>
-            <h5 > Christopher de Berg</h5>
-            <h5 > cris.b@yahoo.com</h5>
+            <h3 class="artist-name" th:text="${demo.user.artistName}">DJ CHRISTOPHER</h3>
+            <h5 th:text="${demo.user.name + ' ' + demo.user.lastName}"> Christopher de Berg</h5>
+            <h5 th:text="${demo.user.email}"> cris.b@yahoo.com</h5>
             <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
-            <p> Im Christopher, Im a dutch-based musicproducer with love for house music I make deep-house, future-house, tech-house, and bass house. I study computer science at the University of AmsterdIm Christopher, Im a dutch-based musicproducer with love for house music I make deep-house, future-house, tech-house, and bass house. I study computer science at t</p>
+            <p th:text="${demo.user.bio}"> Im Christopher, Im a dutch-based musicproducer with love for house music I make deep-house, future-house, tech-house, and bass house. I study computer science at the University of AmsterdIm Christopher, Im a dutch-based musicproducer with love for house music I make deep-house, future-house, tech-house, and bass house. I study computer science at t</p>
         </section>
 
         <section class="section s2">
@@ -58,7 +58,7 @@
                 <img src="/images/z. For white background/i_dondiablologo.png" height="20">
             </div>
             <!-- space --><div style= "display: block; margin-bottom: 34px;"></div>
-            <h3 style="font-weight: 500;">PRODUCERS DESCRIPTION</h3>
+            <h3 style="font-weight: 500;" >PRODUCERS DESCRIPTION:</h3>
             <div>
                 <p th:text="${demo.description}">Lorem Ipsim I used Nexus for bass and Sylent 1 for the melody. The track is not mastered yet but im gaining experience to do so Enjoy!</p>
             </div>
