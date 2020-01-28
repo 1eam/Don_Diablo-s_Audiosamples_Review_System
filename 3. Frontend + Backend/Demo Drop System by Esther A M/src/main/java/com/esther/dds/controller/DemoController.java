@@ -154,24 +154,27 @@ public class DemoController {
     }
 
     //     BO - REVIEW-MODE.HTML
-    // Play
+    // Show review-mode, or redirect to list-view if all demos are reviewed
     @GetMapping("/bo-side/authorized/review-mode/{id}")
     public String boSideDemo (@PathVariable Long id, Model model){
         Optional<Demo> demo = demoService.findById(id);
-        if( demo.isPresent() ) {
+
+        // !Important, execute only if the (pathVariable) Demo's state is equal to pending (else any demo-url can be re-judged afterwards)
+        if( demo.isPresent() && demo.get().getState().getStateName()=="Pending") {
             model.addAttribute("demo",demo.get());
             return "bo/review-mode";
         }else {
-            return "redirect:/"; //todo: check
+            return "redirect:/bo-side/authorized/review-list";
         }
     }
 
-    //-----------------------------------------//
-//    todo: google radiobutton submittion in thymeleaf
+    //----------------------------------------------------------------------------------------------------------------//
+    //     BO - REVIEW-MODE.HTML
+    // Cast review & redirect to next demo
+
     @PostMapping("/bo-side/authorized/submit-review/{id}")
     public String setState(@PathVariable Long id,
                            @RequestParam(value = "state.stateName", required = false) String state){
-
 
         Optional<Demo> optionalDemo = demoService.findById(id);
         if (optionalDemo.isPresent()){
@@ -184,19 +187,21 @@ public class DemoController {
                 case "Rejected":
     //              assign this demo to pending state
                     demo.setState(databaseFiller.state2);
+                    //todo: set reviewer to user: securitycontextholder
                     demoService.save(demo);
 
     //              log event
-                    logger.info("New Demo was successfully assigned to a new state");
+                    logger.info("New Demo was successfully assigned to state: 'Rejected'");
                     break;
 
                 case "Sent":
     //              assign this demo to sent state
                     demo.setState(databaseFiller.state3);
+                    //todo: set reviewer
                     demoService.save(demo);
 
     //              log event
-                    logger.info("New Demo was successfully assigned to a new state");
+                    logger.info("New Demo was successfully assigned to state: 'Sent'");
                     break;
 
                 default:
@@ -204,9 +209,9 @@ public class DemoController {
                     break;
             }
         }
-        return "redirect:/bo-side/authorized/dashboard"; //edit to /review-mode/{id} + model redirect attributes
+        return "redirect:/bo-side/authorized/review-mode/{id}";
     }
-    //-----------------------------------------//
+    //----------------------------------------------------------------------------------------------------------------//
 
     //     BO - DASHBOARD.HTML
     @GetMapping("/bo-side/authorized/dashboard")
