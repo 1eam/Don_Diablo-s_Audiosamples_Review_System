@@ -218,7 +218,7 @@ public class DemoController {
             String nextDemoId = list.get(0).getId().toString();
             return "redirect:/bo-side/authorized/review-mode/" + nextDemoId;
         } else{
-            return "redirect:/bo-side/authorized/review-list/";
+            return "redirect:/bo-side/authorized/review-list";
         }
     }
     //----------------------------------------------------------------------------------------------------------------//
