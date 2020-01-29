@@ -86,8 +86,8 @@
 
                                                         <!-- +/{id} later-->
                 <form method="POST" role="form" th:action="@{/user-side/login}" >
-<!--                    <p style="color: #707070" th:if="${param.error != null}">Invalid Username or password</p>-->
-<!--                    <p style="color: #707070" th:if="${param.logout != null}">You have been logged out</p>-->
+                    <p style="color: #707070;" th:if="${param.error != null}">Invalid Username or password</p>
+                    <p style="color: white; background-color: #2e3951; text-align: center" th:if="${param.logout != null}">You have been logged out</p>
                     <p>Username</p>
                     <input type="text" placeholder="Email Address" name="email">
                     <p>Password</p>
@@ -113,11 +113,11 @@
             <div class="login-form responsive-register-form-container" >
                 <form method="POST" enctype="multipart/form-data" th:action="@{/user-side/register}" th:object="${newUser}">
 <!--                    This should display validation errors to the user, but its not working yet-->
-                    <p class="form-text" th:if="${validationErrors}">
+                    <div class="form-text" th:if="${validationErrors}">
                         <ul th:each="error : ${validationErrors}">
                             <li th:text="${error.getDefaultMessage()}"></li>
                         </ul>
-                    </p>
+                    </div>
 
                     <p class="form-text">Name</p>
                     <input type="text" name="name" maxlength="30" th:field="*{name}">
