@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.Optional;
 
@@ -19,9 +20,11 @@ public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(DemoController.class);
     private final BCryptPasswordEncoder encoder;
     private UserService userService;
+    private ProfileImageService profileImageService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, ProfileImageService profileImageService) {
         this.userService = userService;
+        this.profileImageService = profileImageService;
         encoder = new BCryptPasswordEncoder();
     }
 
@@ -47,11 +50,11 @@ public class UserController {
                               @RequestParam(value = "artistName", required = false)String artistName,
                               @RequestParam(value = "bio", required = false)String bio,
                               @RequestParam(value = "name", required = false)String name,
-                              @RequestParam(value = "lastName", required = false)String lastName) {
+                              @RequestParam(value = "lastName", required = false)String lastName,
+                              @RequestParam(value = "profileImage", required = false) MultipartFile profileImage){
 
         Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
         Optional<User> optionalUser = userService.findById(userId);
-
 
         if( optionalUser.isPresent() ) {
             User user = optionalUser.get();
@@ -60,6 +63,16 @@ public class UserController {
             user.setBio(bio);
             user.setName(name);
             user.setLastName(lastName);
+
+            // if the user has not editted his photo, dont execute following. else: save multipart file to folder + set the path
+            if (!profileImage.getOriginalFilename().equals("")){
+                try {
+                    profileImageService.saveProfileImage(user, profileImage);
+                } catch (Exception e){
+                    e.printStackTrace();
+                    logger.error("Error saving ProfileImage");
+                }
+            }
             userService.update(user);
             return "redirect:/user-side/authorized/settings";
         } else {
