@@ -20,13 +20,13 @@
 
             <!-- settings form -->
             <form method="POST" enctype="multipart/form-data" th:action="@{/user-side/authorized/settings}" th:object="${user}">
-                <!-- edit icon -->
-                <img class="edit-icon" src="/images/edit.svg" alt="Edit Photo">
                 <!-- show profile photo + select new -->
                 <div>
-                    <label for="file"><img class="img-box-s" th:src="${user.profileImage}"></label>
+                    <label for="file" style="position: relative"><img class="img-box-s" th:src="${user.profileImage}"><img class="edit-icon" src="/images/edit.svg" alt="Edit Photo"></label>
                     <input id="file" type="file" hidden="hidden" name="profileImage" accept="image/jpeg,image/jpg">
                     <span class="filename" id="filename"></span>
+                    <!-- edit icon -->
+
                 </div>
                 <!-- space --><div style= "display: block; margin-bottom: 30px;"></div>
 

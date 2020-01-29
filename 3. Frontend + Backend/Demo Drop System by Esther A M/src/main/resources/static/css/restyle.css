@@ -150,11 +150,12 @@ h2{
     position: relative;
 }
 .edit-icon{
-    width: 20px;
+    width: 21px;
     position: absolute;
-    top: 305px;
-    right: 680px;
+    top: -20px;
+    right: 14px;
     opacity: 0.4;
+    cursor: pointer;
 }
 
 
