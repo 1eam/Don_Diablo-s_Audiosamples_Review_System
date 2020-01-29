@@ -36,14 +36,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .usernameParameter("email")
                 .and()
                     .logout()
-                    .and()
-                    .rememberMe()
+                .and()
+                    .rememberMe() // session expires after 2 weeks
                 .and().csrf().ignoringAntMatchers("/h2-console/**") //don't apply CSRF protection to /h2-console
                 .and().headers().frameOptions().sameOrigin();//allow use of frame to same origin urls
 
-//               .and()
-    //               .csrf().disable()
-    //               .headers().frameOptions().disable();
+                /* Disable the above two configurations so the DATABASE will be protected against csrf.
+                These are only there to make it possible to both run the application and inspect the DB
+                This needs to be turned off in production
+                 */
+
     }
 
     @Override
