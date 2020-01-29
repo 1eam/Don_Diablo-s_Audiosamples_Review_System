@@ -97,7 +97,7 @@ public class AuthController {
         return "bo/login";
     }
 
-    @GetMapping("admin-side/dashboard")
+    @GetMapping("admin-side/authorized/dashboard")
     public String adminDashboard(){
         return "bo/a_dashboard";
     }
