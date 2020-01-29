@@ -42,6 +42,12 @@ public class AuthController {
         return "login";
     }
 
+    @GetMapping("/user-side/register")
+    public String registerMobile(Model model){
+        model.addAttribute("newUser", new User());
+        return "register";
+    }
+
     @PostMapping("user-side/register")
     public String registerUser(@Valid User user, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes, @RequestParam("profileImage") MultipartFile profileImage) {
 
@@ -80,13 +86,6 @@ public class AuthController {
     }
 
 
-    //copy getmapping login over
-    @GetMapping("/user-side/register")
-    public String registerMobile(){
-        return "register";
-
-    }
-
     //RegularMappings
     @GetMapping("/bo-side/login")
     public String boLogin(){
@@ -98,7 +97,7 @@ public class AuthController {
         return "bo/login";
     }
 
-    @GetMapping("admin-side/dashboard")
+    @GetMapping("admin-side/authorized/dashboard")
     public String adminDashboard(){
         return "bo/a_dashboard";
     }

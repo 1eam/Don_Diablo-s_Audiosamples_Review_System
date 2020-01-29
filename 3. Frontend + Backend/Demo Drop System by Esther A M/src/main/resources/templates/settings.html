@@ -15,24 +15,22 @@
 
     <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
 
-    <main>   
-        <div class="section-center">
-            <!-- edit icon -->
-            <img class="edit-icon" src="/images/edit.svg" alt="Edit Photo">
-            <!-- show profile photo + select new -->
-            <div>
-                <label for="files"><img class="img-box-s" th:src="${user.profileImage}"></label>
-                <input id="files"type="file" hidden="hidden" >
-            </div>
-
-
-        </div>
-
-        <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
-
+    <main>
         <div class="section-center login-form">
+
             <!-- settings form -->
-            <form method="POST" th:action="@{/user-side/authorized/settings}" th:object="${user}">
+            <form method="POST" enctype="multipart/form-data" th:action="@{/user-side/authorized/settings}" th:object="${user}">
+                <!-- show profile photo + select new -->
+                <div>
+                    <label for="file" style="position: relative"><img class="img-box-s" th:src="${user.profileImage}"><img class="edit-icon" src="/images/edit.svg" alt="Edit Photo"></label>
+                    <input id="file" type="file" hidden="hidden" name="profileImage" accept="image/jpeg,image/jpg">
+                    <span class="filename" id="filename"></span>
+                    <!-- edit icon -->
+
+                </div>
+                <!-- space --><div style= "display: block; margin-bottom: 30px;"></div>
+
+                <!-- credentials -->
                 <p>Edit Artist name</p>
                 <input type="text" maxlength="20" name="artistName" th:value="${user.artistName}" th:field="*{artistName}" >
                 <p>Edit bio</p>
@@ -52,7 +50,7 @@
             <!-- space --><div style= "display: inline-block; margin-bottom: 50px;"></div>
 
             <!-- cancel button -->
-            <a href="/user-side/authorized/settings"><u>Cancel</u></a>
+            <a href="/user-side/authorized/dashboard"><u>Cancel</u></a>
         </div>
 
         <!-- space --><div style= "display: inline-block; margin-bottom: 50px;"></div>
@@ -83,8 +81,8 @@
     </footer>
 
 
-    <!-------------------->
-    <!-------------------->
+    <!----------HIDDEN POPUPS---------->
+    <!----------HIDDEN POPUPS---------->
 
 
     <div id="popup1">
@@ -190,6 +188,20 @@
         document.querySelector('#popup3').style.display = "none";
         document.querySelector('#popup2').style.display = "none";
     });
+    </script>
+
+    <!--    "Select File" button trigger-->
+    <script type="text/javascript">
+        const file = document.getElementById("file");
+        const filename = document.getElementById("filename");
+
+        file.addEventListener("change", function(){
+            if (file.value){
+                filename.innerHTML = file.value.match(/[\/\\]([\w\d\s\.\-\(\)]+)$/)[1]; //"to remove fake-path String"
+            } else {
+                filename.innerHTML = "No file chosen";
+            }
+        });
     </script>
 
 </body>
