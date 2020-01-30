@@ -41,7 +41,7 @@
 <!-- space -->
 <div style= "display: block; margin-bottom: 50px;"></div>
 
-<!-- todo -->
+<!-- size of todos -->
 <h1 class="heading section-center">HANDLED: <span class="heading" th:text="${demos.size()}">(15)</span></h1>
 
 <!-- space -->
@@ -53,7 +53,7 @@
 
     <!-- blocks of demos -->
     <div th:each="demo: ${demos}">
-        <div class="list-of-demos">
+        <div class="list-of-demos" th:style="${demo.state.stateName == 'Sent'} ? 'background-color:rgba(111, 255, 183, 0.616); color:white;'">
             <a th:href="@{'/bo-side/authorized/handled-mode/' + ${demo.id}}" >
                 <span style="text-transform: uppercase;" th:text="${demo.user.artistName}">ARTIST NAME</span> |
                 <span style="text-transform: capitalize;" th:text="${demo.title} + ' | '">Title Demo</span>

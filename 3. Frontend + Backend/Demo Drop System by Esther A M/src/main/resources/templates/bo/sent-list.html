@@ -41,7 +41,7 @@
 <!-- space -->
 <div style= "display: block; margin-bottom: 50px;"></div>
 
-<!-- todo -->
+<!-- size of list -->
 <h1 class="heading section-center">SENT: <span class="heading" th:text="${demos.size()}">(4)</span></h1>
 
 <!-- space -->
@@ -57,7 +57,8 @@
             <a th:href="@{'/bo-side/authorized/sent-mode/' + ${demo.id}}" >
                 <span style="text-transform: uppercase;" th:text="${demo.user.artistName}">ARTIST NAME</span> |
                 <span style="text-transform: capitalize;" th:text="${demo.title}">Title Demo</span> |
-                <span> <b th:title="${demo.getCreatedOn()}" th:datetime="${demo.getCreatedOn()}" th:text="${demo.getPrettyTime()}"> DATE/2020</b> DATE/2020</span></a>
+                <span><b th:title="${demo.getCreatedOn()}" th:datetime="${demo.getCreatedOn()}" th:text="${demo.getPrettyTime()}"> DATE/2020</b></span>
+            </a>
         </div>
     </div>
 

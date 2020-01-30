@@ -46,8 +46,8 @@
     <div class="section-center">
         <div class="demo-list" th:each="demo: ${demos}">
             <div class="demo-component">
-                <!-- thymeleaf if-statement (reviewed = true), show afbeelding (css justify in div) -->
-                <img src="/images/z. For white background/i_dondiablologo.png" height="15">
+                <!-- If the demos state is either Sent or Rejected, Show this notification-icon -->
+                <div th:if="${demo.state.stateName} != 'Pending'"><img src="/images/z. For white background/i_dondiablologo.png" height="15" style="display: block;"></div>
                 <a style="color: black;" th:href="@{'/user-side/authorized/demo/' + ${demo.id}}" th:text="${demo.title}"> Title Demo</a>
             </div>
         </div>

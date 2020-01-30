@@ -20,8 +20,11 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 @Controller
 public class DemoController {
@@ -233,7 +236,16 @@ public class DemoController {
     // List of Demos
     @GetMapping("/bo-side/authorized/handled-list")
     public String boSideList2(Model model){
-        model.addAttribute("demos", demoService.findByStateStateName("Rejected"));
+        //purpose: find all demos containing state Rejected and Sent, and push them to the model
+        List<Demo> rejectedDemos = demoService.findByStateStateName("Rejected");
+        List<Demo> sentDemos = demoService.findByStateStateName("Sent");
+        //store both lists in one list
+        List<Demo> demos = new ArrayList<>();
+        Stream.of(rejectedDemos, sentDemos).forEach(demos::addAll);
+        //sort the demos by "ReviewedOn" (=LastModifiedDate)
+        demos.sort(Comparator.comparing(Demo::getReviewedOn).reversed());
+        //pass list of demos to view
+        model.addAttribute("demos", demos);
         return "bo/handled-list";
     }
 

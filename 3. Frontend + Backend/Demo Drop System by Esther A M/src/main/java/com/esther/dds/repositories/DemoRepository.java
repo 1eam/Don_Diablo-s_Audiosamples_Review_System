@@ -15,5 +15,7 @@ public interface DemoRepository extends JpaRepository <Demo, Long> {
 
     public List<Demo> findByUserIdAndStateStateName(Long id, String stateName);
 
+
+
 //    Demo findWhereReviewstate=2 (But this should be done in a service layer)
 }
