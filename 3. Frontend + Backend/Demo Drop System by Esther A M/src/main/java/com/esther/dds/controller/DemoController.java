@@ -8,6 +8,7 @@ import com.esther.dds.domain.User;
 import com.esther.dds.repositories.DemoRepository;
 import com.esther.dds.service.AudioFileService;
 import com.esther.dds.service.DemoService;
+import com.esther.dds.service.MailService;
 import com.esther.dds.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,14 +37,16 @@ public class DemoController {
     private DemoRepository demoRepository;
     private DatabaseFiller databaseFiller;
     private AudioFileService audioFileService;
+    private MailService mailService;
 
 
-    public DemoController(UserService userService, DemoService demoService, DemoRepository demoRepository, DatabaseFiller databaseFiller, AudioFileService audioFileService) {
+    public DemoController(UserService userService, DemoService demoService, DemoRepository demoRepository, DatabaseFiller databaseFiller, AudioFileService audioFileService, MailService mailService) {
         this.userService = userService;
         this.demoService = demoService;
         this.demoRepository = demoRepository;
         this.databaseFiller = databaseFiller;
         this.audioFileService = audioFileService;
+        this.mailService = mailService;
     }
 
     //     DASHBOARD.HTML
@@ -194,6 +197,9 @@ public class DemoController {
                     //todo: set reviewer to user: securitycontextholder
                     demoService.save(demo);
 
+    //              Send email notifying user about demo's rejection state
+                    mailService.sendRejectionEmail(demo.getUser(), demo);
+
     //              log event
                     logger.info("New Demo was successfully assigned to state: 'Rejected'");
                     break;
@@ -206,6 +212,9 @@ public class DemoController {
 
     //              log event
                     logger.info("New Demo was successfully assigned to state: 'Sent'");
+
+    //              Send email notifying user about demo's state being forwarded to DD
+                    mailService.sendForwardedEmail(demo.getUser(), demo);
                     break;
 
                 default:

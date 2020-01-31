@@ -1,8 +1,10 @@
 package com.esther.dds.service;
 
+import com.esther.dds.domain.Demo;
 import com.esther.dds.domain.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -13,6 +15,7 @@ import org.thymeleaf.spring5.SpringTemplateEngine;
 import javax.mail.internet.MimeMessage;
 import java.util.Locale;
 
+@EnableAsync
 @Service
 public class MailService {
 
@@ -48,8 +51,20 @@ public class MailService {
         Locale locale = Locale.ENGLISH;
         Context context = new Context(locale);
         //sort of model
-        context.setVariable("user", user);
+        context.setVariable("user",user);
         context.setVariable("baseURL",BASE_URL);
+        String content = templateEngine.process(templateName,context);
+        sendEmail(user.getEmail(),subject,content,false,true);
+    }
+
+    @Async
+    public void sendEmailFromTemplate2(User user, Demo demo, String templateName, String subject) {
+        Locale locale = Locale.ENGLISH;
+        Context context = new Context(locale);
+        //sort of model
+        context.setVariable("user",user);
+        context.setVariable("baseURL",BASE_URL);
+        context.setVariable("demo",demo);
         String content = templateEngine.process(templateName,context);
         sendEmail(user.getEmail(),subject,content,false,true);
     }
@@ -57,12 +72,24 @@ public class MailService {
     @Async
     public void sendActivationEmail(User user) {
         log.debug("Sending activation email to '{}'", user.getEmail());
-        sendEmailFromTemplate(user, "email/activation-link", "Hexagon Demo Drop, Activation-link");
+        sendEmailFromTemplate(user, "email/activation-link-email", "Hexagon Demo Drop, Activation-link");
     }
 
     @Async
     public void sendWelcomeEmail(User user) {
         log.debug("Sending welcome email to '{}'", user.getEmail());
-        sendEmailFromTemplate(user, "email/welcome-email", "Welcome new user");
+        sendEmailFromTemplate(user, "email/welcome-email", "Demo drop system welcome");
+    }
+
+    @Async
+    public void sendRejectionEmail(User user, Demo demo) {
+        log.debug("Sending demo rejection email to '{}'", user.getEmail());
+        sendEmailFromTemplate2(user, demo, "email/demo-rejection-email", "Updates regarding a sent demo");
+    }
+
+    @Async
+    public void sendForwardedEmail(User user, Demo demo) {
+        log.debug("Sending email regarding demo being forwarded to DD '{}'", user.getEmail());
+        sendEmailFromTemplate2(user, demo,"email/demo-forwarded-email", "Updates regarding a sent demo");
     }
 }

@@ -6,7 +6,7 @@
     <title>Your Message Subject or Title</title>
 </head>
 <body>
-<h1>Springit User Activation</h1>
+<h1>User Activation Demodrop system</h1>
 <p th:text="|Dear ${user.getName()}|">Dear Username</p>
 <p>Thank you for signing up at our Demo drop-system.</p>
 <p>Please click on <a th:href="${baseURL} + '/user-side/activate/' + ${user.getEmail()} + '/' + ${user.getActivationCode()}">this link</a> to activate your account.</p>

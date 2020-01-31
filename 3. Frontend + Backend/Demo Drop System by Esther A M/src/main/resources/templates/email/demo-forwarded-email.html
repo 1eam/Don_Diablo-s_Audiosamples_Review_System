@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Team Hexagon</title>
+</head>
+<body>
+<h2 th:text="|Dear ${user.getArtistName()}|">Dear Username</h2>
+<h3>We have <a th:href="${baseURL} + '/user-side/authorized/demo/'+ ${demo.getId()}">updates</a> regarding a sent demo</h3>
+<br>
+<!--Intellij shows an inaccurate highlight on '${...}'. but this is valid thymeleaf, and shows the quotes in plain text-->
+<p th:text="|This is our message regarding the review on demo '${demo.getTitle()}':|"></p>
+<i th:text="${demo.state.getMessage()}"></i>
+<br>
+<p>Feel free to let us hear more!.</p>
+<p>Greetings, Team Hexagon</p>
+<br>
+<a href="http://localhost:8080/" style="color:#707070">click here to login</a>
+</body>
+</html>
+<!--this html template contains the exact same elements as the rejection email template.-->
+<!--Yet in the future we might want to add other tags or elements specific to "forwarded to DD" emails.-->
