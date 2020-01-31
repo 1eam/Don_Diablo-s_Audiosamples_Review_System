@@ -198,7 +198,7 @@ public class DemoController {
                     demoService.save(demo);
 
     //              Send email notifying user about demo's rejection state
-                    mailService.sendRejectionEmail(demo.getUser());
+                    mailService.sendRejectionEmail(demo.getUser(), demo);
 
     //              log event
                     logger.info("New Demo was successfully assigned to state: 'Rejected'");

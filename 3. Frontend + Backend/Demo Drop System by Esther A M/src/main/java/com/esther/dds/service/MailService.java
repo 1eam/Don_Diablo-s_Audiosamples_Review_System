@@ -72,7 +72,7 @@ public class MailService {
     @Async
     public void sendActivationEmail(User user) {
         log.debug("Sending activation email to '{}'", user.getEmail());
-        sendEmailFromTemplate(user, "email/activation-link", "Hexagon Demo Drop, Activation-link");
+        sendEmailFromTemplate(user, "email/activation-link-email", "Hexagon Demo Drop, Activation-link");
     }
 
     @Async
@@ -82,14 +82,14 @@ public class MailService {
     }
 
     @Async
-    public void sendRejectionEmail(User user) {
+    public void sendRejectionEmail(User user, Demo demo) {
         log.debug("Sending demo rejection email to '{}'", user.getEmail());
-        sendEmailFromTemplate(user, "email/rejection-email", "Updates regarding a sent demo");
+        sendEmailFromTemplate2(user, demo, "email/demo-rejection-email", "Updates regarding a sent demo");
     }
 
     @Async
     public void sendForwardedEmail(User user, Demo demo) {
         log.debug("Sending email regarding demo being forwarded to DD '{}'", user.getEmail());
-        sendEmailFromTemplate2(user, demo,"email/demo-forwarded", "Updates regarding a sent demo");
+        sendEmailFromTemplate2(user, demo,"email/demo-forwarded-email", "Updates regarding a sent demo");
     }
 }
