@@ -39,8 +39,8 @@
         <div style= "display: inline-block; margin-bottom: 80px;"></div>
         
         <!-- bottom section -->
-        <!-- icon -->
-        <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="15">
+        <!-- If the demos state is either Sent or Rejected, Show this notification-icon -->
+        <div th:if="${demo.state.stateName} != 'Pending'"><img class="pulse-icon" src="/images/dondiablologo.png" alt="Logo Don Diablo" width="15"></div>
         
         
         <h2>TEAM HEXAGON</h2>

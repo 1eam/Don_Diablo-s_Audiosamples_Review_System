@@ -206,7 +206,6 @@ h2{
 }
 
 /* specific elements */
-
 /* danger button */
 .button-d{
     border-style: solid;
@@ -233,4 +232,20 @@ h2{
     color: white; 
     background-color: rgb(255, 82, 82);
     transition: all 0.2s ease 0s;
+}
+
+/*notification-icon on view-demo*/
+.pulse-icon{
+    animation: shadow-pulse 5s infinite;
+}
+@keyframes shadow-pulse {
+    0% {
+        -webkit-filter: drop-shadow(0px 0px 5px black);
+    }
+    20% {
+        -webkit-filter: drop-shadow(0px 0px 5px white);
+    }
+    100% {
+        -webkit-filter: drop-shadow(0px 0px 5px black);
+    }
 }
