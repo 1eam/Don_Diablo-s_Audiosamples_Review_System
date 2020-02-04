@@ -13,6 +13,9 @@ import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 
 import javax.mail.internet.MimeMessage;
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
 import java.util.Locale;
 
 @EnableAsync

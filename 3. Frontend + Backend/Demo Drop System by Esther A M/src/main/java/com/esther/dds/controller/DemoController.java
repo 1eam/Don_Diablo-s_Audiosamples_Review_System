@@ -4,12 +4,10 @@ import com.esther.dds.automated.DatabaseFiller;
 import com.esther.dds.domain.Demo;
 
 
+
 import com.esther.dds.domain.User;
 import com.esther.dds.repositories.DemoRepository;
-import com.esther.dds.service.AudioFileService;
-import com.esther.dds.service.DemoService;
-import com.esther.dds.service.MailService;
-import com.esther.dds.service.UserService;
+import com.esther.dds.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -38,15 +36,17 @@ public class DemoController {
     private DatabaseFiller databaseFiller;
     private AudioFileService audioFileService;
     private MailService mailService;
+    private StateService stateService;
 
-
-    public DemoController(UserService userService, DemoService demoService, DemoRepository demoRepository, DatabaseFiller databaseFiller, AudioFileService audioFileService, MailService mailService) {
+    public DemoController(UserService userService, DemoService demoService, DemoRepository demoRepository, DatabaseFiller databaseFiller, AudioFileService audioFileService, MailService mailService, StateService stateService){
         this.userService = userService;
         this.demoService = demoService;
         this.demoRepository = demoRepository;
         this.databaseFiller = databaseFiller;
         this.audioFileService = audioFileService;
         this.mailService = mailService;
+        this.stateService = stateService;
+
     }
 
     //     DASHBOARD.HTML
@@ -193,7 +193,7 @@ public class DemoController {
             switch (stateOutcome) {
                 case "Rejected":
     //              assign this demo to pending state
-                    demo.setState(databaseFiller.state2);
+                    demo.setState(stateService.findByStateName("Rejected"));
                     //todo: set reviewer to user: securitycontextholder
                     demoService.save(demo);
 
@@ -206,7 +206,7 @@ public class DemoController {
 
                 case "Sent":
     //              assign this demo to sent state
-                    demo.setState(databaseFiller.state3);
+                    demo.setState(stateService.findByStateName("Sent"));
                     //todo: set reviewer
                     demoService.save(demo);
 
