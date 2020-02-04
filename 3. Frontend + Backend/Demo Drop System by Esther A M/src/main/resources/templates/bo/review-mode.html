@@ -115,10 +115,24 @@
         $( function() { $( 'audio' ).audioPlayer(); } );
     </script>
 
-    <!-- opens email popup when the positive radiobutton is clicked -->
-    <script>
+    <!-- opens email popup with added subject and body, when the positive radiobutton is clicked -->
+    <script th:inline="javascript">
+        //Thymeleaf integration
+        /*<![CDATA[*/
+        const demoId = /*[[${demo.id}]]*/ "Demo Id";
+        const demoTitle = /*[[${demo.title}]]*/ "Demo Title";
+        const demoDescription = /*[[${demo.description}]]*/ "Demo Description";
+        const demoAudioFile = /*[[${demo.audioFile}]]*/ "Demo Audio File";
+        const artistName = /*[[${demo.user.artistName}]]*/ "Demo Audio File";
+        /*]]>*/
+
+        //implementation
         function sendEmail() {
-            window.location = "mailto:info@dondiablo.example.com?subject=New Demo Recommendation from the Backoffice-Team!&body=%5BPossible%20template%20text%20example%3A%5D%20Hi%20Don%2C%20we%20have%20another%20demo%20you%20might%20like%3A%0D%0A%0D%0AAnimals%0D%0Aby%0D%0ADJ%20Sanchez%0D%0AdemoID%2009%0D%0Ahttp%3A%2F%2Flocalhost%3A8080%2Fserverside_audiofiles%2Fvirus.mp3%0D%0A%0D%0AGreetings%20Backoffice-Team%20Hexagon";
+            const address = "info@dondiablo.example.com";
+            const subject = "New Demo Recommendation from the Backoffice-Team!";
+            const body = "%5BPossible%20template%20text%20example%3A%5D%0D%0A%0D%0AHi%20Don%2C%20we%20have%20another%20demo%20you%20might%20like%3A%0D%0A%0D%0A"+demoTitle+"%2C%20by%3A%20"+artistName+"%0D%0AProducers%20description%3A%20"+demoDescription+"%0D%0A%0D%0Ahttp%3A%2F%2Flocalhost%3A8080"+demoAudioFile+"%0D%0Ademo-Id%20"+demoId+"%0D%0A%0D%0AGreetings%20Backoffice-Team%20Hexagon%0D%0A";
+
+            window.location = "mailto:" + address + "?subject=" + subject + "&body=" + body;
         }
     </script>
 </body>
