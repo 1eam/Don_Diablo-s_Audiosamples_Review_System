@@ -1,6 +1,8 @@
 package com.esther.dds.security;
 
-import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;import org.springframework.context.annotation.Configuration;
+import org.springframework.boot.actuate.autoconfigure.security.servlet.EndpointRequest;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -8,6 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableWebSecurity
+@Order(2)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private UserDetailsServiceImpl userDetailsService;
@@ -20,8 +23,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         //set all mapplings & their permissions
         //todo, read into this (how to make it shorter so I dont have to declare everything
-        http.
-                authorizeRequests()
+        http
+                .antMatcher("/user-side/**")
+                .authorizeRequests()
                     .requestMatchers(EndpointRequest.to("info")).permitAll()
                     .requestMatchers(EndpointRequest.toAnyEndpoint()).hasRole("ADMIN")
                     .antMatchers("/actuator/").hasRole("ADMIN")
@@ -36,6 +40,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .usernameParameter("email")
                 .and()
                     .logout()
+                    .logoutUrl("/user-side/logout")
                 .and()
                     .rememberMe() // session expires after 2 weeks
                 .and().csrf().ignoringAntMatchers("/h2-console/**") //don't apply CSRF protection to /h2-console

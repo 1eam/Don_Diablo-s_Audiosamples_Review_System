@@ -35,6 +35,11 @@ public class AuthController {
         return "redirect:/user-side/authorized/dashboard"; //pas aan:
     }
 
+    @GetMapping("/user-side")
+    public String toDashboard2(Model model){
+        return "redirect:/user-side/authorized/dashboard";
+    }
+
 
     @GetMapping("user-side/login")
     public String loginAndRegister(Model model){

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Your Message Subject or Title</title>
+</head>
+<body>
+<h1>Activation Backoffice-worker for the Demodrop system</h1>
+<p th:text="|Dear ${boUser.getName()}|">Dear Username</p>
+<p>We welcome you at our team as our new backoffice-worker.</p>
+<p>Please click on <a th:href="${baseURL} + '/user-side/activate/' + ${boUser.getEmail()} + '/' + ${boUser.getActivationCode()}">this link</a> to activate your account.</p>
+<p>This is your temporary password: </p>
+<p>Make sure to edit password in your settings</p>
+<p>Greetings Team Hexagon!</p>
+</body>
+</html>

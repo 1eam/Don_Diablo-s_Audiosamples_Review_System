@@ -1,20 +1,11 @@
 package com.esther.dds.automated;
 
-import com.esther.dds.domain.Demo;
-import com.esther.dds.domain.Role;
-import com.esther.dds.domain.State;
-import com.esther.dds.domain.User;
-import com.esther.dds.repositories.DemoRepository;
-import com.esther.dds.repositories.RoleRepository;
-import com.esther.dds.repositories.StateNameRepository;
-import com.esther.dds.repositories.UserRepository;
+import com.esther.dds.domain.*;
+import com.esther.dds.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-
-import java.util.Arrays;
-import java.util.HashSet;
 
 //This class only serves to fill initial data in the database
 
@@ -22,11 +13,15 @@ import java.util.HashSet;
 public class DatabaseFiller implements CommandLineRunner {
 
     private UserRepository userRepository;
+    private BoUserRepository boUserRepository;
     private RoleRepository roleRepository;
+    private BoRoleRepository boRoleRepository;
 
-    public DatabaseFiller(UserRepository userRepository, RoleRepository roleRepository) {
+    public DatabaseFiller(UserRepository userRepository, BoUserRepository boUserRepository, RoleRepository roleRepository, BoRoleRepository boRoleRepository) {
         this.userRepository = userRepository;
+        this.boUserRepository = boUserRepository;
         this.roleRepository = roleRepository;
+        this.boRoleRepository = boRoleRepository;
     }
 
     //individual entries State
@@ -37,14 +32,15 @@ public class DatabaseFiller implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-
         //add users to roles
         addUsersAndRoles();
-
+        //add users to roles
+        addBoUsersAndRoles();
     }
 
     //individual entry User
     //Encodes the raw password
+    //has been placed outside of "addUsersAndRoles" on purpose
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     String secret = "{bcrypt}" + encoder.encode("pass");
     User user1 = new User("info@garrix.com", secret, "Martijn", "Garritssen", "Martin Garrix", "I thought, You know what? You might need another Talent to recruit" , "/serverside_profileimages/martijn.jpg",true);
@@ -56,8 +52,6 @@ public class DatabaseFiller implements CommandLineRunner {
 
         Role userRole = new Role("ROLE_USER");
         roleRepository.save(userRole);
-//        Role adminRole = new Role("ROLE_ADMIN");
-//        roleRepository.save(adminRole);
 
         user1.addRole(userRole);
         user2.addRole(userRole);
@@ -68,16 +62,21 @@ public class DatabaseFiller implements CommandLineRunner {
         userRepository.save(user1);
         userRepository.save(user2);
 
-//        BoUser bo1 = new BoUser("bo.com", secret, "Floris Roddelaar",true);
-//        bo1.addRole(adminRole);
-//        bo1.setConfirmPassword(secret);
-//        userRepository.save(bo1);
-//
+
 //        User admin = new User("admin.com",secret ,true);
 //        admin.addRoles(new HashSet<>(Arrays.asList(userRole,adminRole)));
 //        userRepository.save(admin);
     }
 
+    private void addBoUsersAndRoles() {
+        BoRole boUserRole = new BoRole("ROLE_BO-USER");
+        boRoleRepository.save(boUserRole);
+
+        BoUser bo1 = new BoUser("bo.com", secret, "Floris", "Roddelaar",true); //note that password "secret" is re-used from user
+        bo1.addBoRole(boUserRole);
+        bo1.setConfirmPassword(secret); //note that password "secret" is re-used from user
+        boUserRepository.save(bo1);
+    }
 
     @Bean
     CommandLineRunner runner(DemoRepository demoRepository, StateNameRepository stateNameRepository) {

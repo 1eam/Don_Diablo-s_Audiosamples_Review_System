@@ -27,9 +27,11 @@
     </div> -->
 
     <!-- login form -->
-    <form action="">
+    <form method="POST" role="form" th:action="@{/bo-side/login}" >
+        <p style="color: white; background-color: #2e3951; text-align: center" th:if="${param.error != null}">Invalid Username or password</p>
+        <p style="color: white; background-color: #2e3951; text-align: center" th:if="${param.logout != null}">You have been logged out</p>
         <p>Username</p>
-        <input type="text" name="username">
+        <input type="text" placeholder="Email Address" name="email">
         <p>Password</p>
         <input type="password" name="password"> <br>
 
