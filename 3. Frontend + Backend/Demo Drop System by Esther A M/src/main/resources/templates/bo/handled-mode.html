@@ -18,7 +18,9 @@
     <!-- logout -->
     <div class="upper-corner">
         <p th:text style="display: inline;">Joris Dobbelaar &ensp;</p>
-        <a href="bo/login"><u>Logout</u></a><!--look + other pages-->
+        <form style="display: inline" method="POST" th:action="@{/bo-side/authorized/logout}">
+            <button style="all: unset; cursor: pointer"> <u>Logout</u> </button>
+        </form><!--look + other pages-->
     </div>
     <!-- headerLogo -->
     <div class="">

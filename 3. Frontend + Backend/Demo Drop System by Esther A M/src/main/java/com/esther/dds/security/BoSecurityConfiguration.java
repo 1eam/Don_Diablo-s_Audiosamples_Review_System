@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableWebSecurity
-@Order(1)
+@Order(2)
 public class BoSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private BoUserDetailsServiceImpl boUserDetailsService;
@@ -21,8 +21,7 @@ public class BoSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        //set all mapplings & their permissions
-        //todo, read into this (how to make it shorter so I dont have to declare everything
+        //set all mappings & their permissions
         http.
                 antMatcher("/bo-side/**")
                 .authorizeRequests()
@@ -33,9 +32,11 @@ public class BoSecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .loginPage("/bo-side/login").permitAll()
                     .loginProcessingUrl("/bo-side/login")
                     .usernameParameter("email")
+                    .defaultSuccessUrl("/bo-side/authorized/dashboard")
                 .and()
                     .logout()
-                    .logoutUrl("/bo-side/logout")
+                    .logoutUrl("/bo-side/authorized/logout")
+                    .logoutSuccessUrl("/bo-side")
                 .and()
                     .rememberMe();
 

@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 
 @Configuration
 @EnableWebSecurity
-@Order(2)
+@Order(1)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private UserDetailsServiceImpl userDetailsService;
@@ -21,10 +21,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        //set all mapplings & their permissions
-        //todo, read into this (how to make it shorter so I dont have to declare everything
-        http
-                .antMatcher("/user-side/**")
+        //set all mappings & their permissions
+        http.
+                antMatcher("/user-side/**")
                 .authorizeRequests()
                     .requestMatchers(EndpointRequest.to("info")).permitAll()
                     .requestMatchers(EndpointRequest.toAnyEndpoint()).hasRole("ADMIN")
@@ -38,9 +37,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .loginPage("/user-side/login").permitAll()
                     .loginProcessingUrl("/user-side/login")
                     .usernameParameter("email")
+                    .defaultSuccessUrl("/user-side/authorized/dashboard")
                 .and()
                     .logout()
                     .logoutUrl("/user-side/logout")
+                    .logoutSuccessUrl("/")
                 .and()
                     .rememberMe() // session expires after 2 weeks
                 .and().csrf().ignoringAntMatchers("/h2-console/**") //don't apply CSRF protection to /h2-console

@@ -40,7 +40,6 @@ public class AuthController {
         return "redirect:/user-side/authorized/dashboard";
     }
 
-
     @GetMapping("user-side/login")
     public String loginAndRegister(Model model){
         model.addAttribute("newUser", new User());
@@ -92,6 +91,11 @@ public class AuthController {
 
 
     //RegularMappings
+    @GetMapping("/bo-side")
+    public String boLogin2(){
+        return "redirect:/bo-side/authorized/dashboard";
+    }
+
     @GetMapping("/bo-side/login")
     public String boLogin(){
         return "bo/login";

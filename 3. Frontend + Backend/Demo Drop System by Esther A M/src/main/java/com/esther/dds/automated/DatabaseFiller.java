@@ -43,7 +43,7 @@ public class DatabaseFiller implements CommandLineRunner {
     //has been placed outside of "addUsersAndRoles" on purpose
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     String secret = "{bcrypt}" + encoder.encode("pass");
-    User user1 = new User("info@garrix.com", secret, "Martijn", "Garritssen", "Martin Garrix", "I thought, You know what? You might need another Talent to recruit" , "/serverside_profileimages/martijn.jpg",true);
+    User user1 = new User("user.com", secret, "Martijn", "Garritssen", "Martin Garrix", "I thought, You know what? You might need another Talent to recruit" , "/serverside_profileimages/martijn.jpg",true);
     User user2 = new User("info@user2.com", secret, "Martine", "Dijkraam", "DJ Martine", "Love makin music, Love gettin inspired by nature, Mexican food are the best" , "/serverside_profileimages/martine.jpg",true);
 
 
