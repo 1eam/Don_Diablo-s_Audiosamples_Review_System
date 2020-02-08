@@ -96,7 +96,7 @@ public class BoUserService {
     }
 
 
-    public BoUser editPassword(BoUser boUser, String oldPassword, String password) { //Todo: checl oldpassword refactor
+    public BoUser editPassword(BoUser boUser, String oldPassword, String password) { //Todo: check oldpassword refactor
         String currentPassword = boUser.getPassword();
         //this removes the "{bcrypt}" prefix. This has to be done first. in order for BCrypts .matches method to work
         String currentPwWithoutPrefix = currentPassword.substring(8);
@@ -112,8 +112,7 @@ public class BoUserService {
 
         } else {
             logger.error("incorrect password, try again: ");
-            //print bcrypted validation password
-            //logger.error(currentPwWithoutPrefix);
+
         }
 
         return boUser;
