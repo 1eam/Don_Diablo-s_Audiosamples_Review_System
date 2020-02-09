@@ -108,40 +108,4 @@ public class BoUserController {
         }
     }
 
-    //~~ADMIN SIDE~~
-
-    @PostMapping("/bo-side/authorized/deleteAccount")
-    public String editPassword(Model model,
-                               @RequestParam(value = "password")String password){
-
-        Long boUserId = ((BoUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
-        Optional<BoUser> optionalBoUser = boUserService.findById(boUserId);
-        BoUser boUser = optionalBoUser.get(); //refactor in if statement
-
-        //this removes the "{bcrypt}" prefix. This has to be done first. in order for BCrypts .matches method to work
-        String currentPassword = boUser.getPassword();
-        String currentPwWithoutPrefix = currentPassword.substring(8);
-
-        if( optionalBoUser.isPresent() && encoder.matches(password, currentPwWithoutPrefix) ) {
-            boUserService.delete(boUser);
-            SecurityContextHolder.getContext().setAuthentication(null);
-            return "redirect:/bo-side/authorized/dashboard";
-        } else {
-            return "redirect:/bo-side/authorized/dashboard";
-        }
-    }
-
-    @GetMapping("/admin-side/authorized/bo-management")
-    public String boManagement(Model model){
-        model.addAttribute("boUsers", boUserService.findAll());
-        return "bo/a_bo-management";
-    }
-
-    // Delete BoUser
-    @PostMapping("/admin-side/authorized/bo-management/delete/{id}")
-    public String deleteDemo(BoUser boUser, @PathVariable Long id, Model model){
-        boUserService.delete(boUser);
-        return "redirect:/admin-side/authorized/bo-management/"; //redirect /id/dash
-    }
-
 }

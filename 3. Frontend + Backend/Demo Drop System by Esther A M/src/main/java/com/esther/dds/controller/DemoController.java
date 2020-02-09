@@ -323,9 +323,20 @@ public class DemoController {
     }
 
 
-    //      ADMIN - REVIEW-MODE.HTML
+    //~~ADMIN SIDE~~ (Todo: Move to admin-controller)
 
+    @GetMapping("/admin-side/authorized/bo-management")
+    public String boManagement(Model model){
+        model.addAttribute("boUsers", boUserService.findAll());
+        return "bo/a_bo-management";
+    }
 
+    // Delete BoUser
+    @PostMapping("/admin-side/authorized/bo-management/delete/{id}")
+    public String deleteDemo(BoUser boUser, @PathVariable Long id, Model model){
+        boUserService.delete(boUser);
+        return "redirect:/admin-side/authorized/bo-management/";
+    }
 
 
 //    //REFERENCE
