@@ -1,10 +1,8 @@
 package com.esther.dds.controller;
 
 import com.esther.dds.automated.DatabaseFiller;
+import com.esther.dds.domain.BoUser;
 import com.esther.dds.domain.Demo;
-
-
-
 import com.esther.dds.domain.User;
 import com.esther.dds.repositories.DemoRepository;
 import com.esther.dds.service.*;
@@ -14,7 +12,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -32,15 +33,17 @@ public class DemoController {
 
     private UserService userService;
     private DemoService demoService;
+    private BoUserService boUserService;
     private DemoRepository demoRepository;
     private DatabaseFiller databaseFiller;
     private AudioFileService audioFileService;
     private MailService mailService;
     private StateService stateService;
 
-    public DemoController(UserService userService, DemoService demoService, DemoRepository demoRepository, DatabaseFiller databaseFiller, AudioFileService audioFileService, MailService mailService, StateService stateService){
+    public DemoController(UserService userService, DemoService demoService, BoUserService boUserService, DemoRepository demoRepository, DatabaseFiller databaseFiller, AudioFileService audioFileService, MailService mailService, StateService stateService){
         this.userService = userService;
         this.demoService = demoService;
+        this.boUserService = boUserService;
         this.demoRepository = demoRepository;
         this.databaseFiller = databaseFiller;
         this.audioFileService = audioFileService;
@@ -150,24 +153,72 @@ public class DemoController {
         return "redirect:/user-side/authorized/dashboard"; //redirect /id/dash
     }
 
+    /*---------------------------------- backofficeo - side --------------------------------------*/
 
-    //     BO - REVIEWLIST.HTML
+    //       REVIEWLIST.HTML
     // List of Demos
     @GetMapping("/bo-side/authorized/review-list")
     public String boSideList(Model model){
+        Long boUserId = ((BoUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        Optional<BoUser> optionalBoUser = boUserService.findById(boUserId);
+
+        BoUser boUser = optionalBoUser.get();
+        model.addAttribute("boUser", boUser);
         model.addAttribute("demos", demoService.findByStateStateName("Pending"));
 
         return "bo/review-list";
     }
 
-    //     BO - REVIEW-MODE.HTML
+    //      HANDLED-LIST.HTML
+    // List of Demos
+    @GetMapping("/bo-side/authorized/handled-list")
+    public String boSideList2(Model model){
+        Long boUserId = ((BoUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        Optional<BoUser> optionalBoUser = boUserService.findById(boUserId);
+
+        BoUser boUser = optionalBoUser.get();
+        //purpose: find all demos containing state Rejected and Sent, and push them to the model
+        List<Demo> rejectedDemos = demoService.findByStateStateName("Rejected");
+        List<Demo> sentDemos = demoService.findByStateStateName("Sent");
+        //store both lists in one list
+        List<Demo> demos = new ArrayList<>();
+        Stream.of(rejectedDemos, sentDemos).forEach(demos::addAll);
+        //sort the demos by "ReviewedOn" (=LastModifiedDate)
+        demos.sort(Comparator.comparing(Demo::getReviewedOn).reversed());
+        //pass list of demos to view
+        model.addAttribute("demos", demos);
+        //pass bo-user to the view
+        model.addAttribute("boUser", boUser);
+        return "bo/handled-list";
+    }
+
+    //      SENTLIST.HTML
+    // List of Demos
+    @GetMapping("/bo-side/authorized/sent-list")
+    public String boSideList3(Model model){
+        Long boUserId = ((BoUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        Optional<BoUser> optionalBoUser = boUserService.findById(boUserId);
+        BoUser boUser = optionalBoUser.get();
+
+        //pass bo-user to the view
+        model.addAttribute("boUser", boUser);
+        model.addAttribute("demos", demoService.findByStateStateName("Sent"));
+        return "bo/sent-list";
+    }
+
+
+    //      REVIEW-MODE.HTML
     // Show review-mode, or redirect to list-view if all demos are reviewed
     @GetMapping("/bo-side/authorized/review-mode/{id}")
     public String boSideDemo (@PathVariable Long id, Model model){
         Optional<Demo> demo = demoService.findById(id);
+        Long boUserId = ((BoUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        Optional<BoUser> optionalBoUser = boUserService.findById(boUserId);
+        BoUser boUser = optionalBoUser.get();
 
         // !Important, execute only if the (pathVariable) Demo's state is equal to pending (else any demo-url can be re-judged afterwards)
         if( demo.isPresent() && demo.get().getState().getStateName()=="Pending") {
+            model.addAttribute("boUser", boUser);
             model.addAttribute("demo",demo.get());
             return "bo/review-mode";
         }else {
@@ -176,7 +227,7 @@ public class DemoController {
     }
 
     //----------------------------------------------------------------------------------------------------------------//
-    //     BO - REVIEW-MODE.HTML
+    //      REVIEW-MODE.HTML -> post
     // Cast review & redirect to next demo
 
     @PostMapping("/bo-side/authorized/submit-review/{id}")
@@ -192,28 +243,28 @@ public class DemoController {
             String stateOutcome = state;
             switch (stateOutcome) {
                 case "Rejected":
-    //              assign this demo to pending state
+                    //              assign this demo to pending state
                     demo.setState(stateService.findByStateName("Rejected"));
                     //todo: set reviewer to user: securitycontextholder
                     demoService.save(demo);
 
-    //              Send email notifying user about demo's rejection state
+                    //              Send email notifying user about demo's rejection state
                     mailService.sendRejectionEmail(demo.getUser(), demo);
 
-    //              log event
+                    //              log event
                     logger.info("New Demo was successfully assigned to state: 'Rejected'");
                     break;
 
                 case "Sent":
-    //              assign this demo to sent state
+                    //              assign this demo to sent state
                     demo.setState(stateService.findByStateName("Sent"));
                     //todo: set reviewer
                     demoService.save(demo);
 
-    //              log event
+                    //              log event
                     logger.info("New Demo was successfully assigned to state: 'Sent'");
 
-    //              Send email notifying user about demo's state being forwarded to DD
+                    //              Send email notifying user about demo's state being forwarded to DD
                     mailService.sendForwardedEmail(demo.getUser(), demo);
                     break;
 
@@ -225,7 +276,7 @@ public class DemoController {
 
         List<Demo> list = demoService.findByStateStateName("Pending");
 
-//      to prevent exceptions if the list of demo's get Empty
+        //to prevent exceptions if the list of demo's get Empty
         if(list.size() >= 1){
             String nextDemoId = list.get(0).getId().toString();
             return "redirect:/bo-side/authorized/review-mode/" + nextDemoId;
@@ -235,35 +286,18 @@ public class DemoController {
     }
     //----------------------------------------------------------------------------------------------------------------//
 
-    //     BO - DASHBOARD.HTML
-    @GetMapping("/bo-side/authorized/dashboard")
-    public String boDashboard(){
-        return "bo/dashboard";
-    }
 
-    //     BO - HANDLED-LIST.HTML
-    // List of Demos
-    @GetMapping("/bo-side/authorized/handled-list")
-    public String boSideList2(Model model){
-        //purpose: find all demos containing state Rejected and Sent, and push them to the model
-        List<Demo> rejectedDemos = demoService.findByStateStateName("Rejected");
-        List<Demo> sentDemos = demoService.findByStateStateName("Sent");
-        //store both lists in one list
-        List<Demo> demos = new ArrayList<>();
-        Stream.of(rejectedDemos, sentDemos).forEach(demos::addAll);
-        //sort the demos by "ReviewedOn" (=LastModifiedDate)
-        demos.sort(Comparator.comparing(Demo::getReviewedOn).reversed());
-        //pass list of demos to view
-        model.addAttribute("demos", demos);
-        return "bo/handled-list";
-    }
-
-    //     BO - HANDLED-MODE.HTML
+    //      HANDLED-MODE.HTML
     // Play
     @GetMapping("/bo-side/authorized/handled-mode/{id}")
     public String boSideDemo2 (@PathVariable Long id, Model model){
         Optional<Demo> demo = demoService.findById(id);
+        Long boUserId = ((BoUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        Optional<BoUser> optionalBoUser = boUserService.findById(boUserId);
+        BoUser boUser = optionalBoUser.get();
+
         if( demo.isPresent() ) {
+            model.addAttribute("boUser", boUser);
             model.addAttribute("demo",demo.get());
             return "bo/handled-mode";
         }else {
@@ -271,20 +305,16 @@ public class DemoController {
         }
     }
 
-    //     BO - SENTLIST.HTML
-    // List of Demos
-    @GetMapping("/bo-side/authorized/sent-list")
-    public String boSideList3(Model model){
-        model.addAttribute("demos", demoService.findByStateStateName("Sent"));
-        return "bo/sent-list";
-    }
-
-    //     BO - SENT-MODE.HTML
+    //      SENT-MODE.HTML
     // Play
     @GetMapping("/bo-side/authorized/sent-mode/{id}")
     public String boSideDemo3 (@PathVariable Long id, Model model){
         Optional<Demo> demo = demoService.findById(id);
+        Long boUserId = ((BoUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+        Optional<BoUser> optionalBoUser = boUserService.findById(boUserId);
+        BoUser boUser = optionalBoUser.get();
         if( demo.isPresent() ) {
+            model.addAttribute("boUser", boUser);
             model.addAttribute("demo",demo.get());
             return "bo/sent-mode";
         }else {
@@ -293,9 +323,7 @@ public class DemoController {
     }
 
 
-
-
-    //     ADMIN - REVIEW-MODE.HTML
+    //      ADMIN - REVIEW-MODE.HTML
 
 
 

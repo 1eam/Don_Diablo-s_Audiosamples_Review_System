@@ -12,7 +12,7 @@
 <header class="section-center">
     <!-- logout -->
     <div class="upper-corner">
-        <p  style="display: inline;" >Joris Dobbelaar &ensp;</p>
+        <p th:text="${boUser.name + ' ' + boUser.lastName}" style="display: inline;" >Joris Dobbelaar &ensp;</p>
         <form style="display: inline" method="POST" th:action="@{/bo-side/authorized/logout}">
             <button style="all: unset; cursor: pointer"> <u>Logout</u> </button>
         </form>
