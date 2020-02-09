@@ -80,9 +80,9 @@
                 </div>
 
                 <!-- space --><div style= "display: block; margin-bottom: 115px;"></div>
-
-                <a href="/bo-side/authorized/handled-mode" style="color: black; font-weight: 300;"><u>Next Demo</u><span>&#129054;</span></a>
-
+                <div th:if="${demos.size() != demos.indexOf(demo)+1}">
+                    <a th:href="@{'/bo-side/authorized/sent-mode/' + ${demos[demos.indexOf(demo)+1].id}}" style="color: black; font-weight: 300;"><u>Next Demo</u><span>&#129054;</span></a>
+                </div>
                 <!-- space --><div style= "display: block; margin-bottom: 250px;"></div>
 
                 <a style="display: block;" href="/bo-side/authorized/dashboard"><u>Return to dashboard</u><span>&#8635;</span></a>

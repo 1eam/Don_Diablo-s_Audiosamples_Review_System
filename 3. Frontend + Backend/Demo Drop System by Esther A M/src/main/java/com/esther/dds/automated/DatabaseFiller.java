@@ -108,6 +108,7 @@ public class DatabaseFiller implements CommandLineRunner {
             demo3.setUser(user1);
 
             //assign back-office reviewer to demo;
+            demo1.setReviewedBy(boUser1);
             demo2.setReviewedBy(boUser1);
             demo3.setReviewedBy(boUser1);
 

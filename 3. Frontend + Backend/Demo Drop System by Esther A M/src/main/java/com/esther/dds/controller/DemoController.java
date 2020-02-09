@@ -299,12 +299,13 @@ public class DemoController {
         Optional<BoUser> optionalBoUser = boUserService.findById(boUserId);
         BoUser boUser = optionalBoUser.get();
 
-        if( demo.isPresent() ) {
+        // !Important, execute only if the (pathVariable) Demo's state is equal to pending (else any demo-url can be re-judged afterwards)
+        if( demo.isPresent() && demo.get().getState().getStateName()=="Handled") {
             model.addAttribute("boUser", boUser);
             model.addAttribute("demo",demo.get());
             return "bo/handled-mode";
         }else {
-            return "redirect:/";
+            return "redirect:/bo-side/authorized/handled-list";
         }
     }
 
@@ -316,12 +317,17 @@ public class DemoController {
         Long boUserId = ((BoUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
         Optional<BoUser> optionalBoUser = boUserService.findById(boUserId);
         BoUser boUser = optionalBoUser.get();
-        if( demo.isPresent() ) {
+
+        List<Demo> list = demoService.findByStateStateName("Sent");
+
+        //to prevent exceptions if the list of demo's get Empty
+        if( demo.isPresent() && demo.get().getState().getStateName()=="Sent") {
             model.addAttribute("boUser", boUser);
             model.addAttribute("demo",demo.get());
+            model.addAttribute("demos", demoService.findByStateStateName("Sent"));
             return "bo/sent-mode";
-        }else {
-            return "redirect:/";
+        } else {
+            return "redirect:/bo-side/authorized/sent-list";
         }
     }
 
