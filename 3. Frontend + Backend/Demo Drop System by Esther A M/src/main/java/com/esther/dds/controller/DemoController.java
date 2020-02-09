@@ -183,8 +183,8 @@ public class DemoController {
         //store both lists in one list
         List<Demo> demos = new ArrayList<>();
         Stream.of(rejectedDemos, sentDemos).forEach(demos::addAll);
-        //sort the demos by "ReviewedOn" (=LastModifiedDate)
-        demos.sort(Comparator.comparing(Demo::getReviewedOn).reversed());
+        //sort the demos by "lastModifiedOn" (=LastModifiedDate)
+        demos.sort(Comparator.comparing(Demo::getLastModifiedOn).reversed());
         //pass list of demos to view
         model.addAttribute("demos", demos);
         //pass bo-user to the view

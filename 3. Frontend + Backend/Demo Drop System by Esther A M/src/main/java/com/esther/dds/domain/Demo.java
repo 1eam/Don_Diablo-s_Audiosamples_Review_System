@@ -47,6 +47,9 @@ public class Demo extends Auditable{
     @JoinColumn(name="uploadedBy", referencedColumnName = "id")
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name="reviewedBy", referencedColumnName = "id")
+    private BoUser boUser;
 
 
     //PrettyTime Config:v3.0
