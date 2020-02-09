@@ -49,7 +49,7 @@ public class Demo extends Auditable{
 
     @ManyToOne
     @JoinColumn(name="reviewedBy", referencedColumnName = "id")
-    private BoUser boUser;
+    private BoUser reviewedBy;
 
 
     //PrettyTime Config:v3.0

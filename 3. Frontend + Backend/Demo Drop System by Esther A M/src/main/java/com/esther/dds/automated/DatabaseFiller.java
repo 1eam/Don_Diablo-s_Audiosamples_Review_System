@@ -24,12 +24,25 @@ public class DatabaseFiller implements CommandLineRunner {
         this.boRoleRepository = boRoleRepository;
     }
 
-    //individual entries State
+    //individual entries State (have to be reached by demoController)
     public State state1 = new State("Pending", "The Admin should set a 'In-review message'");
     public State state2 = new State("Rejected", "The Admin should enter a 'Rejection message'");
     public State state3 = new State("Sent", "The Admin should enter a 'Sent message'");
 
 
+    //All user passwords
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    String secret = "{bcrypt}" + encoder.encode("pass");
+
+
+    //individual users entries (have been placed outside of "addUsersAndRoles" + "runner" on purpose, so it can be accessed the commandlinerunner)
+    User user1 = new User("user.com", secret, "Martijn", "Garritssen", "Martin Garrix", "I thought, You know what? You might need another Talent to recruit" , "/serverside_profileimages/martijn.jpg",true);
+    User user2 = new User("info@user2.com", secret, "Martine", "Dijkraam", "DJ Martine", "Love makin music, Love gettin inspired by nature, Mexican food are the best" , "/serverside_profileimages/martine.jpg",true);
+
+    BoUser boUser1 = new BoUser("bo.com", secret, "Floris", "Roddelaar",true); //note that password "secret" is re-used from user
+
+
+    //Add users and Roles
     @Override
     public void run(String... args) throws Exception {
         //add users to roles
@@ -38,16 +51,6 @@ public class DatabaseFiller implements CommandLineRunner {
         addBoUsersAndRoles();
     }
 
-    //individual entry User
-    //Encodes the raw password
-    //has been placed outside of "addUsersAndRoles" on purpose
-    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-    String secret = "{bcrypt}" + encoder.encode("pass");
-    User user1 = new User("user.com", secret, "Martijn", "Garritssen", "Martin Garrix", "I thought, You know what? You might need another Talent to recruit" , "/serverside_profileimages/martijn.jpg",true);
-    User user2 = new User("info@user2.com", secret, "Martine", "Dijkraam", "DJ Martine", "Love makin music, Love gettin inspired by nature, Mexican food are the best" , "/serverside_profileimages/martine.jpg",true);
-
-
-    //Refactor in future (many to one relationship to role & different classes)
     private void addUsersAndRoles() {
 
         Role userRole = new Role("ROLE_USER");
@@ -62,20 +65,17 @@ public class DatabaseFiller implements CommandLineRunner {
         userRepository.save(user1);
         userRepository.save(user2);
 
-
-//        User admin = new User("admin.com",secret ,true);
-//        admin.addRoles(new HashSet<>(Arrays.asList(userRole,adminRole)));
-//        userRepository.save(admin);
     }
 
     private void addBoUsersAndRoles() {
         BoRole boUserRole = new BoRole("ROLE_BO-USER");
         boRoleRepository.save(boUserRole);
 
-        BoUser bo1 = new BoUser("bo.com", secret, "Floris", "Roddelaar",true); //note that password "secret" is re-used from user
-        bo1.addBoRole(boUserRole);
-        bo1.setConfirmPassword(secret); //note that password "secret" is re-used from user
-        boUserRepository.save(bo1);
+        boUser1.addBoRole(boUserRole);
+
+        boUser1.setConfirmPassword(secret); //note that password "secret" is re-used from user
+
+        boUserRepository.save(boUser1);
     }
 
     @Bean
@@ -106,6 +106,10 @@ public class DatabaseFiller implements CommandLineRunner {
             demo1.setUser(user1);
             demo2.setUser(user1);
             demo3.setUser(user1);
+
+            //assign back-office reviewer to demo;
+            demo2.setReviewedBy(boUser1);
+            demo3.setReviewedBy(boUser1);
 
             //save the demos again
             demoRepository.save(demo1);

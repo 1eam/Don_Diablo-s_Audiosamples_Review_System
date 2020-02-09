@@ -183,7 +183,7 @@ public class DemoController {
         //store both lists in one list
         List<Demo> demos = new ArrayList<>();
         Stream.of(rejectedDemos, sentDemos).forEach(demos::addAll);
-        //sort the demos by "lastModifiedOn" (=LastModifiedDate)
+        //sort the demos by "lastModifiedOn"
         demos.sort(Comparator.comparing(Demo::getLastModifiedOn).reversed());
         //pass list of demos to view
         model.addAttribute("demos", demos);
@@ -237,15 +237,18 @@ public class DemoController {
         Optional<Demo> optionalDemo = demoService.findById(id);
         if (optionalDemo.isPresent()){
 
+            Long boUserId = ((BoUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
+            Optional<BoUser> optionalBoUser = boUserService.findById(boUserId);
+            BoUser boUser = optionalBoUser.get();
             Demo demo = optionalDemo.get();
 
 //          redundant variable moet voor een switch statement
             String stateOutcome = state;
             switch (stateOutcome) {
                 case "Rejected":
-                    //              assign this demo to pending state
+                    //              assign this demo to pending state & set reviewer
                     demo.setState(stateService.findByStateName("Rejected"));
-                    //todo: set reviewer to user: securitycontextholder
+                    demo.setReviewedBy(boUser);
                     demoService.save(demo);
 
                     //              Send email notifying user about demo's rejection state
@@ -256,9 +259,9 @@ public class DemoController {
                     break;
 
                 case "Sent":
-                    //              assign this demo to sent state
+                    //              assign this demo to sent state & set reviewer
                     demo.setState(stateService.findByStateName("Sent"));
-                    //todo: set reviewer
+                    demo.setReviewedBy(boUser);
                     demoService.save(demo);
 
                     //              log event

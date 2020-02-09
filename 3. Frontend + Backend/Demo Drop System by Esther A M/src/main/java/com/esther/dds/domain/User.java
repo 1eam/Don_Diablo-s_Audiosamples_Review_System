@@ -82,6 +82,7 @@ public class User implements UserDetails {
     }
 
     //voor meerdere rollen (Eventueel nodig voor in de toekomst)
+    //Todo: delete methodin new commit
     public void addRoles(Set<Role> roles) {
         roles.forEach(this::addRole);
     }
