@@ -76,8 +76,8 @@
             <!-- space --><div style= "display: block; margin-bottom: 75px;"></div>
 
             <div class="judge-boxes" >
-                <div class="judge-box" > ✗ </div>
-                <div class="judge-box" th:if="${sent}"> ✓ </div>
+                <div class="judge-box" th:if="${demo.state.stateName} == 'Rejected'"> ✗ </div>
+                <div class="judge-box" th:if="${demo.state.stateName} == 'Sent'"> ✓ </div>
             </div>
 
             <!-- space --><div style= "display: block; margin-bottom: 120px;"></div>
