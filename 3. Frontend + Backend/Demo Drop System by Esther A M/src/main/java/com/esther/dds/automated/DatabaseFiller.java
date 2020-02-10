@@ -14,14 +14,18 @@ public class DatabaseFiller implements CommandLineRunner {
 
     private UserRepository userRepository;
     private BoUserRepository boUserRepository;
+    private AdminRepository adminRepository;
     private RoleRepository roleRepository;
     private BoRoleRepository boRoleRepository;
+    private AdminRoleRepository adminRoleRepository;
 
-    public DatabaseFiller(UserRepository userRepository, BoUserRepository boUserRepository, RoleRepository roleRepository, BoRoleRepository boRoleRepository) {
+    public DatabaseFiller(UserRepository userRepository, BoUserRepository boUserRepository, AdminRepository adminRepository, RoleRepository roleRepository, BoRoleRepository boRoleRepository, AdminRoleRepository adminRoleRepository) {
         this.userRepository = userRepository;
         this.boUserRepository = boUserRepository;
+        this.adminRepository = adminRepository;
         this.roleRepository = roleRepository;
         this.boRoleRepository = boRoleRepository;
+        this.adminRoleRepository = adminRoleRepository;
     }
 
     //individual entries State (have to be reached by demoController)
@@ -42,14 +46,15 @@ public class DatabaseFiller implements CommandLineRunner {
     BoUser boUser1 = new BoUser("bo.com", secret, "Floris", "Roddelaar",true); //note that password "secret" is re-used from user
     BoUser deletedBoUser = new BoUser("deletedbouser.com", secret, "Deleted user", "Deleted user",true);
 
+    Admin admin = new Admin("info@admin.com", secret, true);
 
     //Add users and Roles
     @Override
     public void run(String... args) throws Exception {
         //add users to roles
         addUsersAndRoles();
-        //add users to roles
         addBoUsersAndRoles();
+        addAdminUsersAndRoles();
     }
 
     private void addUsersAndRoles() {
@@ -80,6 +85,14 @@ public class DatabaseFiller implements CommandLineRunner {
 
         boUserRepository.save(boUser1);
         boUserRepository.save(deletedBoUser);
+    }
+
+    private void addAdminUsersAndRoles() {
+        AdminRole adminRole = new AdminRole("ROLE_ADMIN");
+        adminRoleRepository.save(adminRole);
+        admin.addAdminRole(adminRole);
+        admin.setConfirmPassword(secret); //note that password "secret" is re-used from user ToDo: enabled to false, set random pw at build, send email with pw + activationcode
+        adminRepository.save(admin);
     }
 
     @Bean
@@ -120,10 +133,6 @@ public class DatabaseFiller implements CommandLineRunner {
             demoRepository.save(demo1);
             demoRepository.save(demo2);
             demoRepository.save(demo3);
-
-            //change state message
-            state1.setMessage("gg");
-
 
         };
 
