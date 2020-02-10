@@ -13,6 +13,8 @@ public interface DemoRepository extends JpaRepository <Demo, Long> {
 
     public List<Demo> findByUserId(Long id);
 
+    public List<Demo> findByReviewedById(Long id);
+
     public List<Demo> findByUserIdAndStateStateName(Long id, String stateName);
 
 

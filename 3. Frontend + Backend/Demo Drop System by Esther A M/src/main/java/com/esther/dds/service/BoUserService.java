@@ -119,9 +119,13 @@ public class BoUserService {
     }
 
     public void delete(BoUser boUser) {
-//        List<Demo> demosByUser = demoRepository.findByReviewerId(boUser.getId());
-//        instead set all to "deleted bo-user"
-//        demoRepository.deleteAll(demosByUser);
+        // instead of deleting demos, set all reviewed demos to "deleted bo-user"
+
+        List<Demo> demos = demoRepository.findByReviewedById(boUser.getId());
+        for (Demo demo:demos) {
+            demo.setReviewedBy(boUserRepository.findByEmail("deletedbouser.com").get());
+        }
+
         boUserRepository.delete(boUser);
     }
 }

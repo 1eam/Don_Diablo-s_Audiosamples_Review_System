@@ -40,6 +40,7 @@ public class DatabaseFiller implements CommandLineRunner {
     User user2 = new User("info@user2.com", secret, "Martine", "Dijkraam", "DJ Martine", "Love makin music, Love gettin inspired by nature, Mexican food are the best" , "/serverside_profileimages/martine.jpg",true);
 
     BoUser boUser1 = new BoUser("bo.com", secret, "Floris", "Roddelaar",true); //note that password "secret" is re-used from user
+    BoUser deletedBoUser = new BoUser("deletedbouser.com", secret, "Deleted user", "Deleted user",true);
 
 
     //Add users and Roles
@@ -72,10 +73,13 @@ public class DatabaseFiller implements CommandLineRunner {
         boRoleRepository.save(boUserRole);
 
         boUser1.addBoRole(boUserRole);
+        deletedBoUser.addBoRole(boUserRole);
 
         boUser1.setConfirmPassword(secret); //note that password "secret" is re-used from user
+        deletedBoUser.setConfirmPassword(secret);
 
         boUserRepository.save(boUser1);
+        boUserRepository.save(deletedBoUser);
     }
 
     @Bean
