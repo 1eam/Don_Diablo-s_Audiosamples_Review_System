@@ -1,20 +1,11 @@
 package com.esther.dds.automated;
 
-import com.esther.dds.domain.Demo;
-import com.esther.dds.domain.Role;
-import com.esther.dds.domain.State;
-import com.esther.dds.domain.User;
-import com.esther.dds.repositories.DemoRepository;
-import com.esther.dds.repositories.RoleRepository;
-import com.esther.dds.repositories.StateNameRepository;
-import com.esther.dds.repositories.UserRepository;
+import com.esther.dds.domain.*;
+import com.esther.dds.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-
-import java.util.Arrays;
-import java.util.HashSet;
 
 //This class only serves to fill initial data in the database
 
@@ -22,42 +13,49 @@ import java.util.HashSet;
 public class DatabaseFiller implements CommandLineRunner {
 
     private UserRepository userRepository;
+    private BoUserRepository boUserRepository;
     private RoleRepository roleRepository;
+    private BoRoleRepository boRoleRepository;
 
-    public DatabaseFiller(UserRepository userRepository, RoleRepository roleRepository) {
+    public DatabaseFiller(UserRepository userRepository, BoUserRepository boUserRepository, RoleRepository roleRepository, BoRoleRepository boRoleRepository) {
         this.userRepository = userRepository;
+        this.boUserRepository = boUserRepository;
         this.roleRepository = roleRepository;
+        this.boRoleRepository = boRoleRepository;
     }
 
-    //individual entries State
+    //individual entries State (have to be reached by demoController)
     public State state1 = new State("Pending", "The Admin should set a 'In-review message'");
     public State state2 = new State("Rejected", "The Admin should enter a 'Rejection message'");
     public State state3 = new State("Sent", "The Admin should enter a 'Sent message'");
 
 
-    @Override
-    public void run(String... args) throws Exception {
-
-        //add users to roles
-        addUsersAndRoles();
-
-    }
-
-    //individual entry User
-    //Encodes the raw password
+    //All user passwords
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     String secret = "{bcrypt}" + encoder.encode("pass");
+
+
+    //individual users entries (have been placed outside of "addUsersAndRoles" + "runner" on purpose, so it can be accessed the commandlinerunner)
     User user1 = new User("info@garrix.com", secret, "Martijn", "Garritssen", "Martin Garrix", "I thought, You know what? You might need another Talent to recruit" , "/serverside_profileimages/martijn.jpg",true);
     User user2 = new User("info@user2.com", secret, "Martine", "Dijkraam", "DJ Martine", "Love makin music, Love gettin inspired by nature, Mexican food are the best" , "/serverside_profileimages/martine.jpg",true);
 
+    BoUser boUser1 = new BoUser("bo.com", secret, "Floris", "Roddelaar",true); //note that password "secret" is re-used from user
+    BoUser deletedBoUser = new BoUser("deletedbouser.com", secret, "Deleted user", "Deleted user",true);
 
-    //Refactor in future (many to one relationship to role & different classes)
+
+    //Add users and Roles
+    @Override
+    public void run(String... args) throws Exception {
+        //add users to roles
+        addUsersAndRoles();
+        //add users to roles
+        addBoUsersAndRoles();
+    }
+
     private void addUsersAndRoles() {
 
         Role userRole = new Role("ROLE_USER");
         roleRepository.save(userRole);
-//        Role adminRole = new Role("ROLE_ADMIN");
-//        roleRepository.save(adminRole);
 
         user1.addRole(userRole);
         user2.addRole(userRole);
@@ -68,16 +66,21 @@ public class DatabaseFiller implements CommandLineRunner {
         userRepository.save(user1);
         userRepository.save(user2);
 
-//        BoUser bo1 = new BoUser("bo.com", secret, "Floris Roddelaar",true);
-//        bo1.addRole(adminRole);
-//        bo1.setConfirmPassword(secret);
-//        userRepository.save(bo1);
-//
-//        User admin = new User("admin.com",secret ,true);
-//        admin.addRoles(new HashSet<>(Arrays.asList(userRole,adminRole)));
-//        userRepository.save(admin);
     }
 
+    private void addBoUsersAndRoles() {
+        BoRole boUserRole = new BoRole("ROLE_BO-USER");
+        boRoleRepository.save(boUserRole);
+
+        boUser1.addBoRole(boUserRole);
+        deletedBoUser.addBoRole(boUserRole);
+
+        boUser1.setConfirmPassword(secret); //note that password "secret" is re-used from user
+        deletedBoUser.setConfirmPassword(secret);
+
+        boUserRepository.save(boUser1);
+        boUserRepository.save(deletedBoUser);
+    }
 
     @Bean
     CommandLineRunner runner(DemoRepository demoRepository, StateNameRepository stateNameRepository) {
@@ -107,6 +110,11 @@ public class DatabaseFiller implements CommandLineRunner {
             demo1.setUser(user1);
             demo2.setUser(user1);
             demo3.setUser(user1);
+
+            //assign back-office reviewer to demo;
+            demo1.setReviewedBy(boUser1);
+            demo2.setReviewedBy(boUser1);
+            demo3.setReviewedBy(boUser1);
 
             //save the demos again
             demoRepository.save(demo1);

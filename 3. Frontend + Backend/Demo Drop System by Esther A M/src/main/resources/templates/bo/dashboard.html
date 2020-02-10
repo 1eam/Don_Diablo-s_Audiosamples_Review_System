@@ -16,7 +16,9 @@
     </div>
     <!-- logout -->
     <div class="upper-corner">
-        <a href="bo/login"><u>Logout</u></a>
+        <form style="display: inline" method="POST" th:action="@{/bo-side/authorized/logout}">
+            <button style="all: unset; cursor: pointer"> <u>Logout</u> </button>
+        </form>
     </div>
     <h1 class="h1">BACK OFFICE</h1>
 </header>
@@ -27,7 +29,7 @@
 <main class="section-center">
     <div>
         <h2 class="h2">LOGGED IN:</h2>
-        <p >Joris Dobbelaar</p>
+        <p th:text="${boUser.name + ' ' + boUser.lastName}">Joris Dobbelaar</p>
     </div>
 
     <!-- space -->
@@ -51,7 +53,7 @@
 <!-- edit password -->
 <div class="section-center">
     <div class="upper-corner" style="top: 0px;">
-        <a href="/bo-side/authorized/edit-password"><u>Edit Password</u></a>
+        <a href="/bo-side/authorized/editPassword"><u>Edit Password</u></a>
     </div>
 </div>
 

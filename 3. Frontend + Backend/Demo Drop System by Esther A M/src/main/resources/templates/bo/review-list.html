@@ -9,81 +9,83 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
 </head>
 <body>
-<header class="section-center">
-    <!-- logout -->
-    <div class="upper-corner">
-        <p style="display: inline;">Joris Dobbelaar &ensp;</p>
-        <a href="bo/login"><u>Logout</u></a>
-    </div>
-    <!-- headerLogo -->
-    <div>
-        <a href="/bo-side/authorized/dashboard">
-            <img src="/images/hexagonlogo.png" height="20" alt="HEXAGON"/>
-        </a>
-    </div>
-</header>
+    <header class="section-center">
+        <!-- logout -->
+        <div class="upper-corner">
+            <p th:text="${boUser.name + ' ' + boUser.lastName}" style="display: inline;">Joris Dobbelaar &ensp;</p>
+            <form style="display: inline" method="POST" th:action="@{/bo-side/authorized/logout}">
+                <button style="all: unset; cursor: pointer"> <u>Logout</u> </button>
+            </form>
+        </div>
+        <!-- headerLogo -->
+        <div>
+            <a href="/bo-side/authorized/dashboard">
+                <img src="/images/hexagonlogo.png" height="20" alt="HEXAGON"/>
+            </a>
+        </div>
+    </header>
 
-<!-- space -->
-<div style= "display: block; margin-bottom: 15px;"></div>
+    <!-- space -->
+    <div style= "display: block; margin-bottom: 15px;"></div>
 
-<div class="section-center">
-    <!-- navbar elements -->
-    <nav class="homepage-navbar ">
-        <ul id="ul">
-            <li><a href="handled-list">HANDLED DEMOS</a></li>
-            <li><a href="review-list" style="color: #707070;">REVIEW DEMOS</a></li>
-            <li><a href="sent-list">SENT DEMOS</a></li>
-        </ul>
-    </nav>
-</div>
-
-<!-- space -->
-<div style= "display: block; margin-bottom: 50px;"></div>
-
-<!-- list of todos -->
-<h1 class="heading section-center">TO REVIEW: <span class="heading" th:text="${demos.size()}" >(17)</span></h1>
-
-<!-- space -->
-<div style= "display: block; margin-bottom: 100px;"></div>
-
-<main class="section-center">
-    <!-- quick scroll -->
-    <!-- <img id="scroll" class="scroll" src="/images/anchor_scroll.png" alt="quick scroll" width="25"> -->
-
-    <!-- blocks of demos -->
-    <div th:each="demo: ${demos}">
-        <a class="list-of-demos" th:href="@{'/bo-side/authorized/review-mode/' + ${demo.id}}">
-                <span style="text-transform: uppercase;" th:text="${demo.user.artistName} + ' |&nbsp;'">ARTIST NAME</span>
-                <span style="text-transform: capitalize;" th:text="${demo.title} + ' |&nbsp;'">Title Demo</span>
-                <span><b th:title="${demo.getCreatedOn()}" th:datetime="${demo.getCreatedOn()}" th:text="${demo.getPrettyTime()}"> DATE/2020</b></span>
-        </a>
+    <div class="section-center">
+        <!-- navbar elements -->
+        <nav class="homepage-navbar ">
+            <ul id="ul">
+                <li><a href="handled-list">HANDLED DEMOS</a></li>
+                <li><a href="review-list" style="color: #707070;">REVIEW DEMOS</a></li>
+                <li><a href="sent-list">SENT DEMOS</a></li>
+            </ul>
+        </nav>
     </div>
 
     <!-- space -->
     <div style= "display: block; margin-bottom: 50px;"></div>
 
-    <!-- start review button + centering -->
-    <div th:if="${demos.size()} >= 1">
-        <a th:href="@{'/bo-side/authorized/review-mode/' + ${demos[0].id}}">
-            <div style="display: flex; justify-content: center; align-items: center;">
-                <div class="button" style="display: flex; justify-content: center; align-items: center;">START REVIEW</div>
-            </div>
+    <!-- list of todos -->
+    <h1 class="heading section-center">TO REVIEW: <span class="heading" th:text="${demos.size()}" >(17)</span></h1>
+
+    <!-- space -->
+    <div style= "display: block; margin-bottom: 100px;"></div>
+
+    <main class="section-center">
+        <!-- quick scroll -->
+        <!-- <img id="scroll" class="scroll" src="/images/anchor_scroll.png" alt="quick scroll" width="25"> -->
+
+        <!-- blocks of demos -->
+        <div th:each="demo: ${demos}">
+            <a class="list-of-demos" th:href="@{'/bo-side/authorized/review-mode/' + ${demo.id}}">
+                    <span style="text-transform: uppercase;" th:text="${demo.user.artistName} + ' |&nbsp;'">ARTIST NAME</span>
+                    <span style="text-transform: capitalize;" th:text="${demo.title} + ' |&nbsp;'">Title Demo</span>
+                    <span><b th:title="${demo.getCreatedOn()}" th:datetime="${demo.getCreatedOn()}" th:text="${demo.getPrettyTime()}"> DATE/2020</b></span>
+            </a>
+        </div>
+
+        <!-- space -->
+        <div style= "display: block; margin-bottom: 50px;"></div>
+
+        <!-- start review button + centering -->
+        <div th:if="${demos.size()} >= 1">
+            <a th:href="@{'/bo-side/authorized/review-mode/' + ${demos[0].id}}">
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <div class="button" style="display: flex; justify-content: center; align-items: center;">START REVIEW</div>
+                </div>
+            </a>
+        </div>
+
+    </main>
+
+    <!-- space -->
+    <div style= "display: block; margin-bottom: 100px;"></div>
+
+    <footer class="section-center">
+        <a href="/bo-side/authorized/dashboard">
+            <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
         </a>
-    </div>
+    </footer>
 
-</main>
-
-<!-- space -->
-<div style= "display: block; margin-bottom: 100px;"></div>
-
-<footer class="section-center">
-    <a href="/bo-side/authorized/dashboard">
-        <img src="/images/dondiablologo.png" alt="Logo Don Diablo" width="90">
-    </a>
-</footer>
-
-<!-- space -->
-<div style= "display: block; margin-top: 50px;"></div>
+    <!-- space -->
+    <div style= "display: block; margin-top: 50px;"></div>
 
 </body>
 </html>

@@ -17,8 +17,10 @@
     <header class="section-center">
         <!-- logout -->
         <div class="upper-corner">
-            <p style="display: inline;">Joris Dobbelaar &ensp;</p>
-            <a href="/bo/login"><u>Logout</u></a>
+            <p th:text="${boUser.name + ' ' + boUser.lastName}" style="display: inline;">Joris Dobbelaar &ensp;</p>
+            <form style="display: inline" method="POST" th:action="@{/bo-side/authorized/logout}">
+                <button style="all: unset; cursor: pointer"> <u>Logout</u> </button>
+            </form>
         </div>
         <!-- headerLogo -->
         <div class="">
@@ -69,7 +71,7 @@
 
                 <!-- review -->
                 <h3>SENT BY:</h3>
-                <p style="display: inline;" >Joris Dobbelaar</p>
+                <p style="display: inline;" th:text="${demo.reviewedBy.name + ' ' + demo.reviewedBy.lastName}">Joris Dobbelaar</p>
 
                 <!-- space --><div style= "display: block; margin-bottom: 75px;"></div>
 
@@ -78,9 +80,9 @@
                 </div>
 
                 <!-- space --><div style= "display: block; margin-bottom: 115px;"></div>
-
-                <a href="/bo-side/authorized/handled-mode" style="color: black; font-weight: 300;"><u>Next Demo</u><span>&#129054;</span></a>
-
+                <div th:if="${demos.size() != demos.indexOf(demo)+1}">
+                    <a th:href="@{'/bo-side/authorized/sent-mode/' + ${demos[demos.indexOf(demo)+1].id}}" style="color: black; font-weight: 300;"><u>Next Demo</u><span>&#129054;</span></a>
+                </div>
                 <!-- space --><div style= "display: block; margin-bottom: 250px;"></div>
 
                 <a style="display: block;" href="/bo-side/authorized/dashboard"><u>Return to dashboard</u><span>&#8635;</span></a>

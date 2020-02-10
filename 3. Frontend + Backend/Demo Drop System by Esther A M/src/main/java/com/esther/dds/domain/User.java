@@ -8,7 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -18,7 +17,7 @@ import java.util.stream.Collectors;
 @Setter
 @ToString
 @NoArgsConstructor
-@PasswordsMatch
+@PasswordsMatch(baseField = "password", matchField = "confirmPassword")
 public class User implements UserDetails {
 
     @Id @GeneratedValue
@@ -71,7 +70,7 @@ public class User implements UserDetails {
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name = "users_roles",
+            name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id",referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName = "id")
     )
@@ -82,7 +81,8 @@ public class User implements UserDetails {
         roles.add(role);
     }
 
-//voor meerdere rollen (achteraf niet nodig)
+    //voor meerdere rollen (Eventueel nodig voor in de toekomst)
+    //Todo: delete methodin new commit
     public void addRoles(Set<Role> roles) {
         roles.forEach(this::addRole);
     }

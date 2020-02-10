@@ -21,10 +21,10 @@ public abstract class Auditable {
     private LocalDateTime createdOn;
 
     @LastModifiedBy
-    private String reviewedBy;
+    private String lastModifiedBy;
 
     @LastModifiedDate
-    private LocalDateTime ReviewedOn;
+    private LocalDateTime lastModifiedOn;
 
     public String getCreatedBy() {
         return createdBy;
@@ -42,19 +42,19 @@ public abstract class Auditable {
         this.createdOn = createdOn;
     }
 
-    public String getReviewedBy() {
-        return reviewedBy;
+    public String getLastModifiedBy() {
+        return lastModifiedBy;
     }
 
-    public void setReviewedBy(String reviewedBy) {
-        this.reviewedBy = reviewedBy;
+    public void setLastModifiedBy(String lastModifiedBy) {
+        this.lastModifiedBy = lastModifiedBy;
     }
 
-    public LocalDateTime getReviewedOn() {
-        return ReviewedOn;
+    public LocalDateTime getLastModifiedOn() {
+        return lastModifiedOn;
     }
 
-    public void setReviewedOn(LocalDateTime reviewedOn) {
-        this.ReviewedOn = reviewedOn;
+    public void setLastModifiedOn(LocalDateTime lastModifiedOn) {
+        this.lastModifiedOn = lastModifiedOn;
     }
 }

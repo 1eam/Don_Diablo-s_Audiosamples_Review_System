@@ -25,8 +25,10 @@
     <header class="section-center">
         <!-- logout -->
         <div class="upper-corner">
-            <p th:text style="display: inline;">ADMIN</p>
-            <a href="/admin/login"><u>Logout</u></a>
+            <p style="display: inline;">ADMIN</p>
+            <form style="display: inline" method="POST" th:action="@{/admin-side/authorized/logout}">
+                <button style="all: unset; cursor: pointer"> <u>Logout</u> </button>
+            </form>
         </div>
         <!-- HeaderLogo -->
         <div class="text-logo">
@@ -64,13 +66,13 @@
             </tr >
             </thead>
             <tbody>
-            <tr th:each="user: ${users}">
-                <td th:text="${user.id}">th: 01</td>
-                <td th:text="${user.name}">th: Empty: Name</td>
-                <td th:text="${user.lastName}">th: Empty: Surname</td>
-                <td th:text="${user.email}">th: Empty: Email</td>
+            <tr th:each="boUser: ${boUsers}">
+                <td th:text="${boUser.id}">th: 01</td>
+                <td th:text="${boUser.name}">th: Empty: Name</td>
+                <td th:text="${boUser.lastName}">th: Empty: Lastname</td>
+                <td th:text="${boUser.email}">th: Empty: Email</td>
                 <td><!-- Delete User-->
-                    <form method="post" th:object="${user}" th:action="@{'/admin-side/authorized/user-management/delete/' + ${user.id}}" >
+                    <form th:if="${boUser.email!= 'deletedbouser.com'}" method="post" th:object="${boUser}" th:action="@{'/admin-side/authorized/bo-management/delete/' + ${boUser.id}}" >
                         <button type="submit" style="background: none">delete</button>
                     </form>
                 </td>
@@ -91,11 +93,10 @@
 
         <!-- space --><div style= "display: block; margin-bottom: 100px;"></div>
 
-        <!-- flash attribute (box links-onder)-->
-        <!--      th:if="${param.succes != null}"-->
-        <div class="bo-Flash">
+        <!-- flash attribute -->
+        <div th:if="${succesCreatingBoUser}">
             <p>A backoffice-user has been created</p>
-            <p>An email has been sent</p>
+            <p>An actication email has been sent</p>
         </div>
     </main>
 
@@ -104,15 +105,15 @@
         <!-- Heading -->
         <h1 class="heading">CREATE NEW BO-USER</h1>
 
-        <form action="/admin-side/authorized/register/submit">
-            <p class="form-text">Name</p>
-            <input type="text" name="name">
+        <form method="POST" th:action="@{/admin-side/authorized/bo-management/createBoUser}" th:object="${newBoUser}">
+            <p class="form-text">First name</p>
+            <input type="text" name="name" maxlength="30" th:field="*{name}">
             <p class="form-text">Last name</p>
-            <input type="text" name="lastName">
+            <input type="text" name="lastName" maxlength="30" th:field="*{lastName}">
             <p class="form-text">Email Address</p>
-            <input type="text" name="emailAddress"> <br>
+            <input type="text" name="emailAddress" maxlength="40" th:field="*{email}">
 
-            <!-- space --><div style= "display: block; margin-bottom: 20px;"></div>
+            <!-- space --><br><div style= "display: block; margin-bottom: 20px;"></div>
             <!-- Create user button -->
             <input type="submit" value="Create user" id="createUserButton" class="button">
         </form>

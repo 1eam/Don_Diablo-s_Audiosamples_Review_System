@@ -1,5 +1,6 @@
 package com.esther.dds.service;
 
+import com.esther.dds.domain.BoUser;
 import com.esther.dds.domain.Demo;
 import com.esther.dds.domain.User;
 import org.slf4j.Logger;
@@ -13,6 +14,9 @@ import org.thymeleaf.context.Context;
 import org.thymeleaf.spring5.SpringTemplateEngine;
 
 import javax.mail.internet.MimeMessage;
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
 import java.util.Locale;
 
 @EnableAsync
@@ -70,9 +74,26 @@ public class MailService {
     }
 
     @Async
+    public void sendBoEmailFromTemplate(BoUser boUser, String templateName, String subject) {
+        Locale locale = Locale.ENGLISH;
+        Context context = new Context(locale);
+        //sort of model
+        context.setVariable("boUser",boUser);
+        context.setVariable("baseURL",BASE_URL);
+        String content = templateEngine.process(templateName,context);
+        sendEmail(boUser.getEmail(),subject,content,false,true);
+    }
+
+    @Async
     public void sendActivationEmail(User user) {
         log.debug("Sending activation email to '{}'", user.getEmail());
         sendEmailFromTemplate(user, "email/activation-link-email", "Hexagon Demo Drop, Activation-link");
+    }
+
+    @Async
+    public void sendBoActivationEmail(BoUser boUser) {
+        log.debug("Sending activation email to '{}'", boUser.getEmail());
+        sendBoEmailFromTemplate(boUser, "email/bo-activation-link-email", "Hexagon Demo Drop, Backoffice-worker Activation-link");
     }
 
     @Async

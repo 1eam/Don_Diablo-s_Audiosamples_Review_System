@@ -28,9 +28,6 @@ public class UserController {
         encoder = new BCryptPasswordEncoder();
     }
 
-
-
-// USER SIDE
     @GetMapping("/user-side/authorized/settings")
     public String settings(Model model ){
         Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
@@ -124,24 +121,4 @@ public class UserController {
         }
     }
 
-
-
-    // ADMIN SIDE
-    @GetMapping("/admin-side/authorized/user-management")
-    public String userManagement(Model model){
-        model.addAttribute("users", userService.findAll());
-        return "bo/a_user-management";
-    }
-
-    // Delete User
-    @PostMapping("/admin-side/authorized/user-management/delete/{id}")
-    public String deleteDemo(User user, @PathVariable Long id, Model model){
-        userService.delete(user);
-        return "redirect:/admin-side/authorized/user-management/"; //redirect /id/dash
-    }
-
-    @GetMapping("/admin-side/authorized/bo-management")
-    public String boManagement(){
-        return "bo/a_bo-management";
-    }
 }

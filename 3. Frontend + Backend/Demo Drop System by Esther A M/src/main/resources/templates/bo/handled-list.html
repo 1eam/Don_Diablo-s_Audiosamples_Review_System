@@ -12,8 +12,10 @@
 <header class="section-center">
     <!-- logout -->
     <div class="upper-corner">
-        <p  style="display: inline;" >Joris Dobbelaar &ensp;</p>
-        <a href="bo/login"><u>Logout</u></a>
+        <p th:text="${boUser.name + ' ' + boUser.lastName}" style="display: inline;" >Joris Dobbelaar &ensp;</p>
+        <form style="display: inline" method="POST" th:action="@{/bo-side/authorized/logout}">
+            <button style="all: unset; cursor: pointer"> <u>Logout</u> </button>
+        </form>
     </div>
     <!-- headerLogo -->
     <div class="">
@@ -56,7 +58,7 @@
         <a class="list-of-demos" th:style="${demo.state.stateName == 'Sent'} ? 'background-color:rgba(111, 255, 183, 0.616); color:white;'" th:href="@{'/bo-side/authorized/handled-mode/' + ${demo.id}}">
             <span style="text-transform: uppercase;" th:text="${demo.user.artistName} + ' |&nbsp;'">ARTIST NAME</span>
             <span style="text-transform: capitalize;" th:text="${demo.title} + ' |&nbsp;'">Title Demo</span>
-            <span > <b>Joris Dobbelaar</b></span>
+            <span th:text="${demo.reviewedBy.name + ' ' + demo.reviewedBy.lastName}"> <b>Joris Dobbelaar</b></span>
         </a>
     </div>
 
