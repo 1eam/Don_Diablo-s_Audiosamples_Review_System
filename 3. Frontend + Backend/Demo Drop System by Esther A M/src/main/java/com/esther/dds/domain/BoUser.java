@@ -44,6 +44,8 @@ public class BoUser implements UserDetails {
     @Transient
     private String oldPassword;
 
+    @Transient
+    private String generatedPassword;
 
     private String activationCode;
 

@@ -1,6 +1,8 @@
 package com.esther.dds.controller;
 
+import com.esther.dds.domain.BoUser;
 import com.esther.dds.domain.User;
+import com.esther.dds.service.BoUserService;
 import com.esther.dds.service.ProfileImageService;
 import com.esther.dds.service.UserService;
 import org.slf4j.Logger;
@@ -22,11 +24,13 @@ import java.util.Optional;
 public class AuthController {
 
     private UserService userService;
+    private BoUserService boUserService;
     private ProfileImageService profileImageService;
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
-    public AuthController(UserService userService, ProfileImageService profileImageService) {
+    public AuthController(UserService userService, BoUserService boUserService, ProfileImageService profileImageService) {
         this.userService = userService;
+        this.boUserService = boUserService;
         this.profileImageService = profileImageService;
     }
 
@@ -87,6 +91,18 @@ public class AuthController {
             userService.sendWelcomeEmail(newUser);
         }
         return "activation-success";
+    }
+
+    @GetMapping("/bo-side/activate/{email}/{activationCode}")
+    public String activateBoUser(@PathVariable String email, @PathVariable String activationCode) {
+        Optional<BoUser> boUser = boUserService.findByEmailAndActivationCode(email,activationCode);
+        if( boUser.isPresent() ) {
+            BoUser newBoUser = boUser.get();
+            newBoUser.setEnabled(true);
+            newBoUser.setConfirmPassword(newBoUser.getPassword());
+            boUserService.save(newBoUser);
+        }
+        return "redirect:/bo-side/login";
     }
 
 

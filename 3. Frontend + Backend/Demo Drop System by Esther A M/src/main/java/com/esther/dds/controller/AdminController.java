@@ -8,9 +8,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.validation.Valid;
 
 
 @Controller
@@ -44,6 +50,7 @@ public class AdminController {
     @GetMapping("/admin-side/authorized/bo-management")
     public String boManagement(Model model){
         model.addAttribute("boUsers", boUserService.findAll());
+        model.addAttribute("newBoUser", new BoUser());
         return "bo/a_bo-management";
     }
 
@@ -54,11 +61,26 @@ public class AdminController {
         return "redirect:/admin-side/authorized/user-management/"; //redirect /id/dash
     }
 
-    // Delete BoUser
+    // Delete Bo-User
     @PostMapping("/admin-side/authorized/bo-management/delete/{id}")
     public String deleteDemo(BoUser boUser, @PathVariable Long id, Model model){
         boUserService.delete(boUser);
         return "redirect:/admin-side/authorized/bo-management/";
+    }
+
+    // Create new Bo-User
+    @PostMapping("/admin-side/authorized/bo-management/createBoUser")
+    public String registerBoUser(BoUser boUser, RedirectAttributes redirectAttributes) {
+        // Register new bo-user
+        BoUser newBoUser = boUserService.register(boUser);
+        redirectAttributes
+            .addAttribute("id",newBoUser.getId())
+            .addFlashAttribute("succesCreatingBoUser",true);
+        //log event
+        logger.info("New user was saved successfully");
+
+        return "redirect:/admin-side/authorized/bo-management";
+
     }
 
 }

@@ -299,8 +299,8 @@ public class DemoController {
         Optional<BoUser> optionalBoUser = boUserService.findById(boUserId);
         BoUser boUser = optionalBoUser.get();
 
-        // !Important, execute only if the (pathVariable) Demo's state is equal to pending (else any demo-url can be re-judged afterwards)
-        if( demo.isPresent() && demo.get().getState().getStateName()=="Handled") {
+        // !Important, execute only if the (pathVariable) Demo's state is equal to Rejected or  (else any demo-url can be re-judged afterwards)
+        if( demo.isPresent() && demo.get().getState().getStateName()=="Rejected" || demo.get().getState().getStateName()=="Sent") {
             model.addAttribute("boUser", boUser);
             model.addAttribute("demo",demo.get());
             return "bo/handled-mode";

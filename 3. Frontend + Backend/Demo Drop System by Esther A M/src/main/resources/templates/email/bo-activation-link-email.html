@@ -9,9 +9,9 @@
 <h1>Activation Backoffice-worker for the Demodrop system</h1>
 <p th:text="|Dear ${boUser.getName()}|">Dear Username</p>
 <p>We welcome you at our team as our new backoffice-worker.</p>
-<p>Please click on <a th:href="${baseURL} + '/user-side/activate/' + ${boUser.getEmail()} + '/' + ${boUser.getActivationCode()}">this link</a> to activate your account.</p>
-<p>This is your temporary password: </p>
-<p>Make sure to edit password in your settings</p>
+<p>Here's password: <ul></ul><b th:text="${boUser.getGeneratedPassword()}"></b></ul></p>
+<p>Please click on <a th:href="${baseURL} + '/bo-side/activate/' + ${boUser.getEmail()} + '/' + ${boUser.getActivationCode()}">this link</a> to activate your account.</p>
+<p>Make sure to edit your password right away</p>
 <p>Greetings Team Hexagon!</p>
 </body>
 </html>

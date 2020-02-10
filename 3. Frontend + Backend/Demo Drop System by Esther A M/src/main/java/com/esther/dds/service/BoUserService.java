@@ -49,30 +49,32 @@ public class BoUserService {
     }
 
     public BoUser register(BoUser boUser) {
-        // take the password from the form and encode
-        String secret = "{bcrypt}" + encoder.encode(boUser.getPassword());
+        // disable the bo-User
+        boUser.setEnabled(false);
+
+        //generate password using 32 digit UUID, and trim beginning by 26, so the result will be a 10 digit - password
+        String generatedPassword = UUID.randomUUID().toString().substring(26);
+        boUser.setGeneratedPassword(generatedPassword);
+        // take generated password and encode
+        String secret = "{bcrypt}" + encoder.encode(generatedPassword);
         boUser.setPassword(secret);
 
         // confirm password
         boUser.setConfirmPassword(secret);
 
-//        boUser.setOldPassword(secret);
-
         // assign a role to this bo-User
         boUser.addBoRole(boRoleService.findByName("ROLE_BO-USER")); //check
 
-        // set an activation code
+        // set activation code
         boUser.setActivationCode(UUID.randomUUID().toString());
 
-        // disable the bo-User
-        boUser.setEnabled(false);
         // save bo-User
         save(boUser);
 
-        // send the activation email
+        // send activation email
         sendActivationEmail(boUser);
 
-        // return the bo-User
+        // return bo-User
         return boUser;
     }
 

@@ -49,14 +49,15 @@ public class UserService {
     }
 
     public User register(User user) {
+        // disable the user
+        user.setEnabled(false);
+
         // take the password from the form and encode
         String secret = "{bcrypt}" + encoder.encode(user.getPassword());
         user.setPassword(secret);
 
-        // confirm password
+        // confirm the password
         user.setConfirmPassword(secret);
-
-//        user.setOldPassword(secret);
 
         // assign a role to this user
         user.addRole(roleService.findByName("ROLE_USER"));
@@ -64,8 +65,6 @@ public class UserService {
         // set an activation code
         user.setActivationCode(UUID.randomUUID().toString());
 
-        // disable the user
-        user.setEnabled(false);
         // save user
         save(user);
 
