@@ -330,44 +330,4 @@ public class DemoController {
             return "redirect:/bo-side/authorized/sent-list";
         }
     }
-
-
-    //~~ADMIN SIDE~~ (Todo: Move to admin-controller)
-
-    @GetMapping("/admin-side/authorized/bo-management")
-    public String boManagement(Model model){
-        model.addAttribute("boUsers", boUserService.findAll());
-        return "bo/a_bo-management";
-    }
-
-    // Delete BoUser
-    @PostMapping("/admin-side/authorized/bo-management/delete/{id}")
-    public String deleteDemo(BoUser boUser, @PathVariable Long id, Model model){
-        boUserService.delete(boUser);
-        return "redirect:/admin-side/authorized/bo-management/";
-    }
-
-
-//    //REFERENCE
-//
-//    @PostMapping("/create")
-//    public Demo create(@ModelAttribute Demo demo) {
-//        return demoService.save(demo);
-//    }
-//
-//    @GetMapping("/{id}")
-//    public Optional<Demo> read(@PathVariable Long id) {
-//        return demoService.findById(id);
-//    }
-//
-//    @PutMapping("/{id}")
-//    public Demo update(@PathVariable Long id, @ModelAttribute Demo demo) {
-//        // get the id
-//        return demoService.save(demo);
-//    }
-//
-//    @DeleteMapping("/{id}")
-//    public void delete(@PathVariable Long id) {
-//        demoService.deleteById(id);
-//    }
 }

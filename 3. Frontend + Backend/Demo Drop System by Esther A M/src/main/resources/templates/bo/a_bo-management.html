@@ -25,7 +25,7 @@
     <header class="section-center">
         <!-- logout -->
         <div class="upper-corner">
-            <p th:text style="display: inline;">ADMIN</p>
+            <p style="display: inline;">ADMIN</p>
             <form style="display: inline" method="POST" th:action="@{/admin-side/authorized/logout}">
                 <button style="all: unset; cursor: pointer"> <u>Logout</u> </button>
             </form>
@@ -66,13 +66,13 @@
             </tr >
             </thead>
             <tbody>
-            <tr th:each="user: ${users}">
-                <td th:text="${user.id}">th: 01</td>
-                <td th:text="${user.name}">th: Empty: Name</td>
-                <td th:text="${user.lastName}">th: Empty: Surname</td>
-                <td th:text="${user.email}">th: Empty: Email</td>
+            <tr th:each="boUser: ${boUsers}">
+                <td th:text="${boUser.id}">th: 01</td>
+                <td th:text="${boUser.name}">th: Empty: Name</td>
+                <td th:text="${boUser.lastName}">th: Empty: Surname</td>
+                <td th:text="${boUser.email}">th: Empty: Email</td>
                 <td><!-- Delete User-->
-                    <form method="post" th:object="${user}" th:action="@{'/admin-side/authorized/user-management/delete/' + ${user.id}}" >
+                    <form method="post" th:object="${boUser}" th:action="@{'/admin-side/authorized/user-management/delete/' + ${boUser.id}}" >
                         <button type="submit" style="background: none">delete</button>
                     </form>
                 </td>
