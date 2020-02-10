@@ -69,7 +69,7 @@
             <tr th:each="boUser: ${boUsers}">
                 <td th:text="${boUser.id}">th: 01</td>
                 <td th:text="${boUser.name}">th: Empty: Name</td>
-                <td th:text="${boUser.lastName}">th: Empty: Surname</td>
+                <td th:text="${boUser.lastName}">th: Empty: Lastname</td>
                 <td th:text="${boUser.email}">th: Empty: Email</td>
                 <td><!-- Delete User-->
                     <form method="post" th:object="${boUser}" th:action="@{'/admin-side/authorized/user-management/delete/' + ${boUser.id}}" >
