@@ -1,7 +1,9 @@
 package com.esther.dds.controller;
 
+import com.esther.dds.domain.Admin;
 import com.esther.dds.domain.BoUser;
 import com.esther.dds.domain.User;
+import com.esther.dds.service.AdminService;
 import com.esther.dds.service.BoUserService;
 import com.esther.dds.service.ProfileImageService;
 import com.esther.dds.service.UserService;
@@ -25,12 +27,14 @@ public class AuthController {
 
     private UserService userService;
     private BoUserService boUserService;
+    private AdminService adminService;
     private ProfileImageService profileImageService;
     private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
 
-    public AuthController(UserService userService, BoUserService boUserService, ProfileImageService profileImageService) {
+    public AuthController(UserService userService, BoUserService boUserService, AdminService adminService, ProfileImageService profileImageService) {
         this.userService = userService;
         this.boUserService = boUserService;
+        this.adminService = adminService;
         this.profileImageService = profileImageService;
     }
 
@@ -50,11 +54,35 @@ public class AuthController {
         return "login";
     }
 
+
+    @GetMapping("/bo-side")
+    public String boLogin2(){
+        return "redirect:/bo-side/authorized/dashboard";
+    }
+
+    @GetMapping("/bo-side/login")
+    public String boLogin(){
+        return "bo/login";
+    }
+
+
+    @GetMapping("/admin-side")
+    public String adminLogin2(){
+        return "redirect:/admin-side/authorized/dashboard";
+    }
+
+    @GetMapping("admin-side/login")
+    public String adminLogin(){
+        return "bo/a_login";
+    }
+
+
     @GetMapping("/user-side/register")
     public String registerMobile(Model model){
         model.addAttribute("newUser", new User());
         return "register";
     }
+
 
     @PostMapping("user-side/register")
     public String registerUser(@Valid User user, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes, @RequestParam("profileImage") MultipartFile profileImage) {
@@ -105,26 +133,15 @@ public class AuthController {
         return "redirect:/bo-side/login";
     }
 
-
-    //RegularMappings
-    @GetMapping("/bo-side")
-    public String boLogin2(){
-        return "redirect:/bo-side/authorized/dashboard";
+    @GetMapping("/admin-side/activate/{email}/{activationCode}")
+    public String activateAdminUser(@PathVariable String email, @PathVariable String activationCode) {
+        Optional<Admin> admin = adminService.findByEmailAndActivationCode(email,activationCode);
+        if( admin.isPresent() ) {
+            Admin newAdmin = admin.get();
+            newAdmin.setEnabled(true);
+            newAdmin.setConfirmPassword(newAdmin.getPassword());
+            adminService.save(newAdmin);
+        }
+        return "redirect:/admin-side/authorized/editPassword";
     }
-
-    @GetMapping("/bo-side/login")
-    public String boLogin(){
-        return "bo/login";
-    }
-
-    @GetMapping("admin-side/login")
-    public String adminLogin(){
-        return "bo/login";
-    }
-
-    @GetMapping("admin-side/authorized/dashboard")
-    public String adminDashboard(){
-        return "bo/a_dashboard";
-    }
-
 }

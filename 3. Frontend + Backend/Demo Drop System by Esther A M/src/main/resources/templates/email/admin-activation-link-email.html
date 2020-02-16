@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Activation + password for the Demodrop system</title>
+</head>
+<body>
+    <h1>Activation + password for the Demodrop system</h1>
+    <p>Dear Admin</p>
+    <p>The Application has restarted/new build, and you therefore have been given a new password.</p>
+    <ul><b th:text="${admin.getGeneratedPassword()}"></b></ul>
+    <p>Your account is currently disabled and its not possible to log in with your password yet. </p>
+    <p>Click here <a th:href="${baseURL} + '/admin-side/activate/' + ${admin.getEmail()} + '/' + ${admin.getActivationCode()}">here</a> to activate the Admin account.</p>
+    <p><b>Make sure to edit this password right after login!</b></p>
+    <p>Greetings Esther, the Engineer!</p>
+</body>
+</html>

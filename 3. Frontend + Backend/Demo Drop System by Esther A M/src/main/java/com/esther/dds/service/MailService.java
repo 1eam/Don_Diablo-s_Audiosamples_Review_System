@@ -1,5 +1,6 @@
 package com.esther.dds.service;
 
+import com.esther.dds.domain.Admin;
 import com.esther.dds.domain.BoUser;
 import com.esther.dds.domain.Demo;
 import com.esther.dds.domain.User;
@@ -50,6 +51,7 @@ public class MailService {
         }
     }
 
+    //user-side
     @Async
     public void sendEmailFromTemplate(User user, String templateName, String subject) {
         Locale locale = Locale.ENGLISH;
@@ -73,6 +75,7 @@ public class MailService {
         sendEmail(user.getEmail(),subject,content,false,true);
     }
 
+    //bo-side
     @Async
     public void sendBoEmailFromTemplate(BoUser boUser, String templateName, String subject) {
         Locale locale = Locale.ENGLISH;
@@ -84,16 +87,23 @@ public class MailService {
         sendEmail(boUser.getEmail(),subject,content,false,true);
     }
 
+    //admin-side
+    @Async
+    public void sendAdminEmailFromTemplate(Admin admin, String templateName, String subject) {
+        Locale locale = Locale.ENGLISH;
+        Context context = new Context(locale);
+        //sort of model
+        context.setVariable("admin",admin);
+        context.setVariable("baseURL",BASE_URL);
+        String content = templateEngine.process(templateName,context);
+        sendEmail(admin.getEmail(),subject,content,false,true);
+    }
+
+    //user-side emails
     @Async
     public void sendActivationEmail(User user) {
         log.debug("Sending activation email to '{}'", user.getEmail());
         sendEmailFromTemplate(user, "email/activation-link-email", "Hexagon Demo Drop, Activation-link");
-    }
-
-    @Async
-    public void sendBoActivationEmail(BoUser boUser) {
-        log.debug("Sending activation email to '{}'", boUser.getEmail());
-        sendBoEmailFromTemplate(boUser, "email/bo-activation-link-email", "Hexagon Demo Drop, Backoffice-worker Activation-link");
     }
 
     @Async
@@ -113,4 +123,19 @@ public class MailService {
         log.debug("Sending email regarding demo being forwarded to DD '{}'", user.getEmail());
         sendEmailFromTemplate2(user, demo,"email/demo-forwarded-email", "Updates regarding a sent demo");
     }
+
+    //bo-side emails
+    @Async
+    public void sendBoActivationEmail(BoUser boUser) {
+        log.debug("Sending activation email to '{}'", boUser.getEmail());
+        sendBoEmailFromTemplate(boUser, "email/bo-activation-link-email", "Hexagon Demo Drop, Backoffice-worker Activation-link");
+    }
+
+    //admin-side emails
+    @Async
+    public void sendAdminActivationEmail(Admin admin) {
+        log.debug("Sending admin activation email to '{}'", admin.getEmail());
+        sendAdminEmailFromTemplate(admin, "email/admin-activation-link-email", "Hexagon Demo Drop, Admin Activation");
+    }
+
 }

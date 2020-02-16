@@ -7,5 +7,5 @@
 //public interface AudioFileRepository extends JpaRepository <AudioFile, MultipartFile> {
 //
 //
-//    //This class profides crud-methods for the multipartFile
+//    //This class will provide crud-methods for multipartFiles uploaded
 //}

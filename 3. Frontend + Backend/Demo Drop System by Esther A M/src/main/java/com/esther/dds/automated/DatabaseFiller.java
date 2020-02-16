@@ -2,6 +2,7 @@ package com.esther.dds.automated;
 
 import com.esther.dds.domain.*;
 import com.esther.dds.repositories.*;
+import com.esther.dds.service.AdminService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,14 +15,18 @@ public class DatabaseFiller implements CommandLineRunner {
 
     private UserRepository userRepository;
     private BoUserRepository boUserRepository;
+    private AdminService adminService;
     private RoleRepository roleRepository;
     private BoRoleRepository boRoleRepository;
+    private AdminRoleRepository adminRoleRepository;
 
-    public DatabaseFiller(UserRepository userRepository, BoUserRepository boUserRepository, RoleRepository roleRepository, BoRoleRepository boRoleRepository) {
+    public DatabaseFiller(UserRepository userRepository, BoUserRepository boUserRepository, AdminService adminService, RoleRepository roleRepository, BoRoleRepository boRoleRepository, AdminRoleRepository adminRoleRepository) {
         this.userRepository = userRepository;
         this.boUserRepository = boUserRepository;
+        this.adminService = adminService;
         this.roleRepository = roleRepository;
         this.boRoleRepository = boRoleRepository;
+        this.adminRoleRepository = adminRoleRepository;
     }
 
     //individual entries State (have to be reached by demoController)
@@ -30,7 +35,7 @@ public class DatabaseFiller implements CommandLineRunner {
     public State state3 = new State("Sent", "The Admin should enter a 'Sent message'");
 
 
-    //All user passwords
+    //The (encoded) password all generated users get.
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     String secret = "{bcrypt}" + encoder.encode("pass");
 
@@ -42,14 +47,15 @@ public class DatabaseFiller implements CommandLineRunner {
     BoUser boUser1 = new BoUser("bo.com", secret, "Floris", "Roddelaar",true); //note that password "secret" is re-used from user
     BoUser deletedBoUser = new BoUser("deletedbouser.com", secret, "Deleted user", "Deleted user",true);
 
+    Admin admin = new Admin("info@admin.com", secret, true);
 
     //Add users and Roles
     @Override
     public void run(String... args) throws Exception {
         //add users to roles
         addUsersAndRoles();
-        //add users to roles
         addBoUsersAndRoles();
+        addAdminUsersAndRoles();
     }
 
     private void addUsersAndRoles() {
@@ -80,6 +86,16 @@ public class DatabaseFiller implements CommandLineRunner {
 
         boUserRepository.save(boUser1);
         boUserRepository.save(deletedBoUser);
+    }
+
+    private void addAdminUsersAndRoles() {
+        AdminRole adminRole = new AdminRole("ROLE_ADMIN");
+        adminRoleRepository.save(adminRole);
+        admin.addAdminRole(adminRole);
+        // sets account enabled to false, generates random password, and sends email with pw + activationcode
+        adminService.register(admin);
+
+
     }
 
     @Bean
@@ -120,10 +136,6 @@ public class DatabaseFiller implements CommandLineRunner {
             demoRepository.save(demo1);
             demoRepository.save(demo2);
             demoRepository.save(demo3);
-
-            //change state message
-            state1.setMessage("gg");
-
 
         };
 
