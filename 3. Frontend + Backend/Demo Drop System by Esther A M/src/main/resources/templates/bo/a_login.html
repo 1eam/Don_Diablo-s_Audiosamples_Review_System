@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Backoffice Login</title>
+    <title>Admin-side Login</title>
     <link rel="stylesheet" href="/css/bo-style.css">
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap" rel="stylesheet">
 </head>
@@ -14,7 +14,7 @@
     <div class="text-logo">
         <img src="/images/hexagonlogo.png" height="20" alt="HEXAGON">
     </div>
-    <h1 class="heading">BACK OFFICE</h1>
+    <h1 class="heading">ADMIN OFFICE</h1>
 </header>
 
 <!-- space -->
@@ -27,7 +27,7 @@
     </div> -->
 
     <!-- login form -->
-    <form method="POST" role="form" th:action="@{/bo-side/login}" >
+    <form method="POST" role="form" th:action="@{/admin-side/login}" >
         <p style="color: white; background-color: #2e3951; text-align: center" th:if="${param.error != null}">Invalid Username or password</p>
         <p style="color: white; background-color: #2e3951; text-align: center" th:if="${param.logout != null}">You have been logged out</p>
         <p>Username</p>

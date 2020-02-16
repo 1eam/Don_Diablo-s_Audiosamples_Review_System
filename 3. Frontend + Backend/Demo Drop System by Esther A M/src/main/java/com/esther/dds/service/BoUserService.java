@@ -90,10 +90,11 @@ public class BoUserService {
     }
 
     public BoUser update(BoUser boUser) {
-        //to stop confirmPassword from complaining
+        // first lets stop confirmPassword from complaining using the following code
         boUser.setPassword(boUser.getPassword());
         boUser.setConfirmPassword(boUser.getPassword());
 
+        //actual update function
         return boUserRepository.save(boUser);
     }
 

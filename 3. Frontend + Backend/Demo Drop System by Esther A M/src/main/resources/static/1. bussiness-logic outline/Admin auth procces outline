@@ -1,0 +1,8 @@
+enabled to false, set random pw at build, send email with pw + activationcode
+
+1. Set admin account enabled to to false
+2. Generate and Set random password at build
+3. Set activationcode
+4. Send email including activationcode and generated password
+5. Only when the activationcode is used, will the admin account be set to enabled. Meaning no one can use the password to login if they know it
+6. Admin-user will be asked to change his password: (in the email)

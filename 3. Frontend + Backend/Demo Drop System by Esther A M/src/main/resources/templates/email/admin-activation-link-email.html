@@ -12,7 +12,7 @@
     <ul><b th:text="${admin.getGeneratedPassword()}"></b></ul>
     <p>Your account is currently disabled and its not possible to log in with your password yet. </p>
     <p>Click here <a th:href="${baseURL} + '/admin-side/activate/' + ${admin.getEmail()} + '/' + ${admin.getActivationCode()}">here</a> to activate the Admin account.</p>
-    <p>Make sure to edit this password right after login</p>
+    <p><b>Make sure to edit this password right after login!</b></p>
     <p>Greetings Esther, the Engineer!</p>
 </body>
 </html>

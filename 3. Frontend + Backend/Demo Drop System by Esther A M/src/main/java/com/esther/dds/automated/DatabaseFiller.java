@@ -2,6 +2,7 @@ package com.esther.dds.automated;
 
 import com.esther.dds.domain.*;
 import com.esther.dds.repositories.*;
+import com.esther.dds.service.AdminService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -14,15 +15,15 @@ public class DatabaseFiller implements CommandLineRunner {
 
     private UserRepository userRepository;
     private BoUserRepository boUserRepository;
-    private AdminRepository adminRepository;
+    private AdminService adminService;
     private RoleRepository roleRepository;
     private BoRoleRepository boRoleRepository;
     private AdminRoleRepository adminRoleRepository;
 
-    public DatabaseFiller(UserRepository userRepository, BoUserRepository boUserRepository, AdminRepository adminRepository, RoleRepository roleRepository, BoRoleRepository boRoleRepository, AdminRoleRepository adminRoleRepository) {
+    public DatabaseFiller(UserRepository userRepository, BoUserRepository boUserRepository, AdminService adminService, RoleRepository roleRepository, BoRoleRepository boRoleRepository, AdminRoleRepository adminRoleRepository) {
         this.userRepository = userRepository;
         this.boUserRepository = boUserRepository;
-        this.adminRepository = adminRepository;
+        this.adminService = adminService;
         this.roleRepository = roleRepository;
         this.boRoleRepository = boRoleRepository;
         this.adminRoleRepository = adminRoleRepository;
@@ -34,7 +35,7 @@ public class DatabaseFiller implements CommandLineRunner {
     public State state3 = new State("Sent", "The Admin should enter a 'Sent message'");
 
 
-    //All user passwords
+    //The (encoded) password all generated users get.
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     String secret = "{bcrypt}" + encoder.encode("pass");
 
@@ -91,8 +92,10 @@ public class DatabaseFiller implements CommandLineRunner {
         AdminRole adminRole = new AdminRole("ROLE_ADMIN");
         adminRoleRepository.save(adminRole);
         admin.addAdminRole(adminRole);
-        admin.setConfirmPassword(secret); //note that password "secret" is re-used from user ToDo: enabled to false, set random pw at build, send email with pw + activationcode
-        adminRepository.save(admin);
+        // sets account enabled to false, generates random password, and sends email with pw + activationcode
+        adminService.register(admin);
+
+
     }
 
     @Bean
