@@ -1,6 +1,5 @@
 package com.esther.dds.controller;
 
-import com.esther.dds.automated.DatabaseFiller;
 import com.esther.dds.domain.BoUser;
 import com.esther.dds.domain.Demo;
 import com.esther.dds.domain.User;
@@ -35,17 +34,15 @@ public class DemoController {
     private DemoService demoService;
     private BoUserService boUserService;
     private DemoRepository demoRepository;
-    private DatabaseFiller databaseFiller;
     private AudioFileService audioFileService;
     private MailService mailService;
     private StateService stateService;
 
-    public DemoController(UserService userService, DemoService demoService, BoUserService boUserService, DemoRepository demoRepository, DatabaseFiller databaseFiller, AudioFileService audioFileService, MailService mailService, StateService stateService){
+    public DemoController(UserService userService, DemoService demoService, BoUserService boUserService, DemoRepository demoRepository, AudioFileService audioFileService, MailService mailService, StateService stateService){
         this.userService = userService;
         this.demoService = demoService;
         this.boUserService = boUserService;
         this.demoRepository = demoRepository;
-        this.databaseFiller = databaseFiller;
         this.audioFileService = audioFileService;
         this.mailService = mailService;
         this.stateService = stateService;
@@ -108,7 +105,7 @@ public class DemoController {
         demoService.save(demo);
 
         // assign this demo to pending state
-        demo.setState(databaseFiller.state1);
+        demo.setState(stateService.findByStateName("Pending"));
 
         // save demo again (update: + state)
         demoService.save(demo);
