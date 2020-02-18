@@ -62,7 +62,12 @@ public class DatabaseFiller implements CommandLineRunner {
         roleRepository.save(userRole);
 
         users.put("user1", new User("info@garrix.com", secret, "Martijn", "Garritssen", "Martin Garrix", "I thought, You know what? You might need another Talent to recruit" , "/serverside_profileimages/martijn.jpg",true));
-        users.put("user2", new User("info@user2.com", secret, "Martine", "Dijkraam", "DJ Martine", "Love makin music, Love gettin inspired by nature, Mexican food are the best" , "/serverside_profileimages/martine.jpg",true));
+        users.put("user2", new User("martine.dijkraam@yahoo.com", secret, "Martine", "Dijkraam", "DJ Martine", "Love makin music, Love gettin inspired by nature, Mexican food are the best" , "/serverside_profileimages/martine.jpg",true));
+        users.put("user3", new User("c.deberg@@yahoo.com", secret, "Christopher", "de Berg", "DJ Christopher", "Im Christopher, Im a dutch-based musicproducer with love for house music I make deep-house, future-house, tech-house, and bass house. I study computer science at the University of Amsterd" , "/serverside_profileimages/christopher.jpg",true));
+        users.put("user4", new User("jawqt59114@tempmail.com", secret, "Lincon", "Burrows", "Scylla 5", "Im in the music bussiness for over 11 years now. Been on stage whith Martin Garrix, Steve Ayoki and Kshmr several times. In fact reqruited them at Spinning records. And now its my time to shine. Listen to my music and see that I'm worthy" , "/serverside_profileimages/whoopsy.jpg",true));
+        users.put("user5", new User("info@kurtkennedey.com", secret, "Kurt", "Kennedey", "Katarpillar", "A accountant with a business and passion for mixing and producing" , "/serverside_profileimages/kurt.jpg",true));
+        users.put("user6", new User("dennisyoung@gmail.com", secret, "Dennis", "Young Carpenter", "DJ YCee", "hmm.. what can i tell about myself... you know this is hard, but ill keep yall updated. I love producing music, fo sure $bands$" , "/serverside_profileimages/dennis.jpg",true));
+        users.put("user7", new User("berder3@myspace.com", secret, "Brandon ", "Guillintinni", "Sweet Icing", "roses are red, violets are blue, i love edm, you should too" , "/serverside_profileimages/brandon.jpg",true));
 
         //save all users
         //"v" here is actually the "new User" object, it belongs to the Map object and it stands for value. "k" stands for key.
@@ -95,6 +100,7 @@ public class DatabaseFiller implements CommandLineRunner {
 
     private void addAdminUsersAndRoles() {
         //admin user entry, no need for a hashmap (yet, unless there will be multiple admin roles in the future)
+        //this is the place to enter the admins email address
         Admin admin = new Admin("info@admin.com", secret, true);
 
         //assign a role to admin
@@ -121,10 +127,30 @@ public class DatabaseFiller implements CommandLineRunner {
                 stateNameRepository.save(v);
             });
 
+            String prefixPath = "/serverside_audiofiles/";
+
             //individual entries Demo
-            demos.put("demo1", new Demo("Deep House 4", "I didnt wanna put a description. Sorry", "/serverside_audiofiles/deep house 4.mp3"));
-            demos.put("demo2", new Demo("Virus", "You Gotta love it, it was a hit song", "/serverside_audiofiles/virus.mp3"));
-            demos.put("demo3", new Demo("Adventure", " I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", "/serverside_audiofiles/house deep 2.mp3"));
+            demos.put("demo1", new Demo("Deep House 4", "I didnt wanna put a description. Sorry", prefixPath + "/1. sana.mp3"));
+            demos.put("demo2", new Demo("Adventure", " I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", prefixPath + "2. adventure.mp3"));
+            demos.put("demo3", new Demo("Virus", "You Gotta love it, it was a hit song", prefixPath + "3. virus.mp3"));
+            demos.put("demo4", new Demo("Love is Forgiveness", "This is the result of an experimental project that turned into a full blown deep house track produced in october 2017, Prager University. Vocals are done by Marcian Patzrelek.", prefixPath + "4. love is forgiveness.mp3"));
+            demos.put("demo5", new Demo("Trans", " ", prefixPath + "5. trans.mp3"));
+            demos.put("demo6", new Demo("$Wande - Bands$", "be ble$$ed", prefixPath + "6. bands.mp3"));
+            demos.put("demo7", new Demo("Lily-Jo – SWAY feat. Dawn Elektra", " I did the production for this song which was first an acoustic. The singers wanted an 'upbeat' deep house version and I was asked to make the production for this one. Please focus on the background music ", prefixPath + "7. sway.mp3"));
+            demos.put("demo8", new Demo("I got you", "Please listen to this sample I have here. Its short, I hope you like it", "/serverside_audiofiles/8. i got you.mp3"));
+            demos.put("demo9", new Demo("NoBody", " I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", prefixPath + "9. nobody.mp3"));
+            demos.put("demo10", new Demo("Triangles", " Good vibes!", prefixPath + "10. triangles.mp3"));
+            demos.put("demo11", new Demo("Bumps on Roses", " Enjoy the song", prefixPath + "11. bumps on roses"));
+            demos.put("demo12", new Demo("Mazza", " I was in my yard when i heard two shots go of... them tings flew right past. watch my videoclip: https://www.youtube.com/watch?v=tbrz5Xlyy9Q", prefixPath + "12. mazza.mp3"));
+            demos.put("demo13", new Demo("Hanki Elämä III", "*fins*", prefixPath + "14. hanki elama.mp3"));
+            demos.put("demo14", new Demo("It Is Time.mp3", "*fins*", prefixPath + "14. it is time.mp3"));
+            demos.put("demo15", new Demo("Kremlin", " Wanna play good music at an edm party? listen to this", prefixPath + "15. kremlin.mp3"));
+            demos.put("demo16", new Demo("Adventure", " I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", prefixPath + "2. adventure.mp3"));
+            demos.put("demo17", new Demo("Adventure", " I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", prefixPath + "2. adventure.mp3"));
+            demos.put("demo18", new Demo("Adventure", " I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", prefixPath + "2. adventure.mp3"));
+            demos.put("demo19", new Demo("Adventure", " I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", prefixPath + "2. adventure.mp3"));
+            demos.put("demo20", new Demo("Adventure", " I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", prefixPath + "2. adventure.mp3"));
+            demos.put("demo21", new Demo("Adventure", " I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", prefixPath + "2. adventure.mp3"));
 
             //assign demos to state
             demos.forEach((k,v) -> {
@@ -138,7 +164,7 @@ public class DatabaseFiller implements CommandLineRunner {
             });
 
             //assign demos to user
-            //todo: randomize demo nr so same profile picture wont be shows after each other
+            //todo: randomize the order of list of demos so the same profile picture wont be shown one after another
             demos.forEach((k,v) -> {
                 if (k== "demo1"||k== "demo2"||k== "demo3"){
                     v.setUser(users.get("user1"));
