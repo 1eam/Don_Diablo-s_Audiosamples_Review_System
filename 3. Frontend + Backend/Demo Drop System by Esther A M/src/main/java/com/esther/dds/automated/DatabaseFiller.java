@@ -131,26 +131,26 @@ public class DatabaseFiller implements CommandLineRunner {
 
             //individual entries Demo
             demos.put("demo1", new Demo("Deep House 4", "I didnt wanna put a description. Sorry", prefixPath + "/1. sana.mp3"));
-            demos.put("demo2", new Demo("Adventure", " I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", prefixPath + "2. adventure.mp3"));
+            demos.put("demo2", new Demo("Adventure", "I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", prefixPath + "2. adventure.mp3"));
             demos.put("demo3", new Demo("Virus", "You Gotta love it, it was a hit song", prefixPath + "3. virus.mp3"));
             demos.put("demo4", new Demo("Love is Forgiveness", "This is the result of an experimental project that turned into a full blown deep house track produced in october 2017, Prager University. Vocals are done by Marcian Patzrelek.", prefixPath + "4. love is forgiveness.mp3"));
             demos.put("demo5", new Demo("Trans", " ", prefixPath + "5. trans.mp3"));
             demos.put("demo6", new Demo("$Wande - Bands$", "be ble$$ed", prefixPath + "6. bands.mp3"));
-            demos.put("demo7", new Demo("Lily-Jo – SWAY feat. Dawn Elektra", " I did the production for this song which was first an acoustic. The singers wanted an 'upbeat' deep house version and I was asked to make the production for this one. Please focus on the background music ", prefixPath + "7. sway.mp3"));
+            demos.put("demo7", new Demo("Lily-Jo – SWAY feat. Dawn Elektra", "I did the production for this song which was first an acoustic. The singers wanted an 'upbeat' deep house version and I was asked to make the production for this one. Please focus on the background music ", prefixPath + "7. sway.mp3"));
             demos.put("demo8", new Demo("I got you", "Please listen to this sample I have here. Its short, I hope you like it", "/serverside_audiofiles/8. i got you.mp3"));
-            demos.put("demo9", new Demo("NoBody", " I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", prefixPath + "9. nobody.mp3"));
-            demos.put("demo10", new Demo("Triangles", " Good vibes!", prefixPath + "10. triangles.mp3"));
-            demos.put("demo11", new Demo("Bumps on Roses", " Enjoy the song", prefixPath + "11. bumps on roses"));
-            demos.put("demo12", new Demo("Mazza", " I was in my yard when i heard two shots go of... them tings flew right past. watch my videoclip: https://www.youtube.com/watch?v=tbrz5Xlyy9Q", prefixPath + "12. mazza.mp3"));
+            demos.put("demo9", new Demo("NoBody", "I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", prefixPath + "9. nobody.mp3"));
+            demos.put("demo10", new Demo("Triangles", "Good vibes!", prefixPath + "10. triangles.mp3"));
+            demos.put("demo11", new Demo("Bumps on Roses", "Enjoy the song", prefixPath + "11. bumps on roses"));
+            demos.put("demo12", new Demo("Mazza", "I was in my yard when i heard two shots go of... them tings flew right past. watch my videoclip: https://www.youtube.com/watch?v=tbrz5Xlyy9Q", prefixPath + "12. mazza.mp3"));
             demos.put("demo13", new Demo("Hanki Elämä III", "*fins*", prefixPath + "14. hanki elama.mp3"));
             demos.put("demo14", new Demo("It Is Time.mp3", "*fins*", prefixPath + "14. it is time.mp3"));
-            demos.put("demo15", new Demo("Kremlin", " Wanna play good music at an edm party? listen to this", prefixPath + "15. kremlin.mp3"));
-            demos.put("demo16", new Demo("Adventure", " I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", prefixPath + "2. adventure.mp3"));
-            demos.put("demo17", new Demo("Adventure", " I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", prefixPath + "2. adventure.mp3"));
-            demos.put("demo18", new Demo("Adventure", " I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", prefixPath + "2. adventure.mp3"));
-            demos.put("demo19", new Demo("Adventure", " I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", prefixPath + "2. adventure.mp3"));
-            demos.put("demo20", new Demo("Adventure", " I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", prefixPath + "2. adventure.mp3"));
-            demos.put("demo21", new Demo("Adventure", " I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", prefixPath + "2. adventure.mp3"));
+            demos.put("demo15", new Demo("Kremlin", "Wanna play good music at an edm party? listen to this", prefixPath + "15. kremlin.mp3"));
+            demos.put("demo16", new Demo("Brazilian bass", "I really hope you liked this one. Its not finished yet, but i was very excited to release this early for youto hear. Also its not officially released yet. make sure to check out my youtube: https://youtube.com/youtube", prefixPath + "brazilian bass.mp3"));
+            demos.put("demo17", new Demo("All day", "watch the videoclip at: https://www.youtube.com/watch?v=PHWvKQBleMY", prefixPath + "17. all day.mp3"));
+            /*Todo: redownload*/demos.put("demo18", new Demo("Special kind of love", " This time I added some Jazz logic in my production. Hope youll love it", prefixPath + "18. special kind of love.mp3"));/*fix this download: https://www.youtube.com/watch?v=sIalyQPvjjo 2:08:00.7- 2:09:02.7 */
+            demos.put("demo19", new Demo("Keys", " ... ", prefixPath + "19. keys.mp3"));
+            demos.put("demo20", new Demo("Skynight", " Worked together with a singer on this one. Did the production with a little help, but mastered the song all by myself ", prefixPath + "20.skynight.mp3"));
+            demos.put("demo21", new Demo("Gos Edm", " Gospel EDM", prefixPath + "21. gospel-edm.mp3"));
 
             //assign demos to state
             demos.forEach((k,v) -> {
