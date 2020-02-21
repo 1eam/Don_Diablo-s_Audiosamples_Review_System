@@ -64,9 +64,9 @@ public class DatabaseFiller implements CommandLineRunner {
         users.put("user1", new User("info@garrix.com", secret, "Martijn", "Garritssen", "Martin Garrix", "I thought, You know what? You might need another Talent to recruit" , "/serverside_profileimages/martijn.jpg",true));
         users.put("user2", new User("martine.dijkraam@yahoo.com", secret, "Martine", "Dijkraam", "DJ Martine", "Love makin music, Love gettin inspired by nature, Mexican food are the best" , "/serverside_profileimages/martine.jpg",true));
         users.put("user3", new User("c.deberg@@yahoo.com", secret, "Christopher", "de Berg", "DJ Christopher", "Im Christopher, Im a dutch-based musicproducer with love for house music I make deep-house, future-house, tech-house, and bass house. I study computer science at the University of Amsterd" , "/serverside_profileimages/christopher.jpg",true));
-        users.put("user4", new User("jawqt59114@tempmail.com", secret, "Lincon", "Burrows", "Scylla 5", "Im in the music bussiness for over 11 years now. Been on stage whith Martin Garrix, Steve Ayoki and Kshmr several times. In fact reqruited them at Spinning records. And now its my time to shine. Listen to my music and see that I'm worthy" , "/serverside_profileimages/whoopsy.jpg",true));
-        users.put("user5", new User("info@kurtkennedey.com", secret, "Kurt", "Kennedey", "Katarpillar", "A accountant with a business and passion for mixing and producing" , "/serverside_profileimages/kurt.jpg",true));
-        users.put("user6", new User("dennisyoung@gmail.com", secret, "Dennis", "Young Carpenter", "DJ YCee", "hmm.. what can i tell about myself... you know this is hard, but ill keep yall updated. I love producing music, fo sure $bands$" , "/serverside_profileimages/dennis.jpg",true));
+        users.put("user4", new User("HB@gmail.com", secret, "Johanna", "Aaltonen", "HB", "HB perustettiin vuonna 2002 Forssassa. Yhtye teki seitsemän albumia. HB-kirjainten sanotaan valittu sattumanvaraisesti eivätkä oikeasti tarkoita mitään, mutta niille on annettu Pyhän Raamatun merkitys." , "/serverside_profileimages/hb.jpg",true));
+        users.put("user5", new User("jawqt59114@tempmail.com", secret, "Lincon", "Burrows", "Scylla 5", "Im in the music bussiness for over 11 years now. Been on stage whith Martin Garrix, Steve Ayoki and Kshmr several times. In fact reqruited them at Spinning records. And now its my time to shine. Listen to my music and see that I'm worthy" , "/serverside_profileimages/whoopsy.jpg",true));
+        users.put("user6", new User("info@kurtkennedey.com", secret, "Kurt", "Kennedey", "Katarpillar", "A accountant with a business and passion for mixing and producing" , "/serverside_profileimages/kurt.jpg",true));
         users.put("user7", new User("berder3@myspace.com", secret, "Brandon ", "Guillintinni", "Sweet Icing", "roses are red, violets are blue, i love edm, you should too" , "/serverside_profileimages/brandon.jpg",true));
 
         //save all users
@@ -142,7 +142,7 @@ public class DatabaseFiller implements CommandLineRunner {
             demos.put("demo10", new Demo("Triangles", "Good vibes!", prefixPath + "10. triangles.mp3"));
             demos.put("demo11", new Demo("Bumps on Roses", "Enjoy the song", prefixPath + "11. bumps on roses"));
             demos.put("demo12", new Demo("Mazza", "I was in my yard when i heard two shots go of... them tings flew right past. watch my videoclip: https://www.youtube.com/watch?v=tbrz5Xlyy9Q", prefixPath + "12. mazza.mp3"));
-            demos.put("demo13", new Demo("Hanki Elämä III", "*fins*", prefixPath + "14. hanki elama.mp3"));
+            demos.put("demo13", new Demo("Hanki Elämä III", "Sata vastustaa, sata puolustaa, sata huutaa muuten vaan Sukupolvia samat ongelmat taas vaivaa Kuka kasteen saa kuka kastetaan Kuka leivän viinin jakaa Tuskin selvyyttä tähän koskaan saadaan Etkö antaisi olla", prefixPath + "13. hanki elama 3.mp3"));
             demos.put("demo14", new Demo("It Is Time.mp3", "*fins*", prefixPath + "14. it is time.mp3"));
             demos.put("demo15", new Demo("Kremlin", "Wanna play good music at an edm party? listen to this", prefixPath + "15. kremlin.mp3"));
             demos.put("demo16", new Demo("Brazilian bass", "I really hope you liked this one. Its not finished yet, but i was very excited to release this early for youto hear. Also its not officially released yet. make sure to check out my youtube: https://youtube.com/youtube", prefixPath + "brazilian bass.mp3"));
@@ -153,7 +153,7 @@ public class DatabaseFiller implements CommandLineRunner {
             demos.put("demo21", new Demo("Gos Edm", " Gospel EDM", prefixPath + "21. gospel-edm.mp3"));
 
             //assign demos to state
-            demos.forEach((k,v) -> {
+            demos.forEach((k,v) -> { //toDo: decide which audiofiles (least exciting ofcourse will be set to sent or rejected)
                 if (k== "demo14"||k== "demo16"){
                     v.setState(states.get("state3")); //Sent state
                 } else if (k== "demo6"||k== "demo9"||k== "demo13"||k== "demo19"){

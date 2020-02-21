@@ -19,10 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Stream;
 
 @Controller
@@ -55,10 +52,12 @@ public class DemoController {
     public String userSideDemo (Model model){
         Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
         Optional<User> user = userService.findById(userId);
+        List<Demo> demos = demoService.findByUser(userId);
+        Collections.reverse(demos);
 
         if( user.isPresent() ) {
             model.addAttribute("user", user.get());
-            model.addAttribute("demos", demoService.findByUser(userId));
+            model.addAttribute("demos", demos);
             model.addAttribute("success", model.containsAttribute("success"));
             return "dashboard";
         } else {
@@ -75,7 +74,7 @@ public class DemoController {
         Optional<User> user = userService.findById(userId);
 
         //check if user hasnt reached the maximum of 2 uploads in review = in Pending-state
-        if (demoRepository.findByUserIdAndStateStateName(userId, "Pending").size()==2){
+        if (demoRepository.findByUserIdAndStateStateName(userId, "Pending").size()>=4){
 
             redirectAttributes
                     .addFlashAttribute("maxReached",true);
