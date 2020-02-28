@@ -22,15 +22,19 @@ public class ProfileImageService {
         naar de locatie waar deze map zich bevindt: "Demo Drop System by Esther A M" */
         //String uwMap = "D:\\1_Novi_Examenproject\\3. Frontend + Backend";
 
-        //vind de root van deze map: "Demo Drop System by Esther A M"
-        Path findCurrentLocation = Paths.get(".");
-        //vind de volledige mappenstruktuur naar deze locatie
-        Path uwMappenStruktuur = findCurrentLocation.toAbsolutePath();
 
-        //update de "AudioFile" veld in database: Locatie: string"
+        //find the root of this folder "Demo Drop System by Esther A M"
+        Path findCurrentLocation = Paths.get(".");
+
+        //find the path to this location
+        Path yourPath = findCurrentLocation.toAbsolutePath();
+
+        //generate & set the "ProfileImage" field in the database
         user.setProfileImage("/uploads/profileimagefiles/" + profileImage.getOriginalFilename());
+
+        //actually write the file to disk
         byte[] bytes = profileImage.getBytes();
-        Path path = Paths.get(uwMappenStruktuur + "\\src\\main\\resources\\static\\uploads\\profileimagefiles\\" + profileImage.getOriginalFilename());
+        Path path = Paths.get(yourPath + "\\target\\classes\\static\\uploads\\profileimagefiles\\" + profileImage.getOriginalFilename());
         Files.write(path, bytes);
 
 
