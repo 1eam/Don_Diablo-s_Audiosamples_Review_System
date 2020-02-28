@@ -29,10 +29,10 @@ public class AudioFileService {
         Path yourPath = findCurrentLocation.toAbsolutePath();
 
         //generate & set the "AudioFile" field in the database
-        demo.setAudioFile("/audio/" + audioFile.getOriginalFilename());
+        demo.setAudioFile("/uploads/audiofiles/" + audioFile.getOriginalFilename());
 
         byte[] bytes = audioFile.getBytes();
-        Path path = Paths.get(yourPath + "\\src\\main\\resources\\static\\audio\\" + audioFile.getOriginalFilename());
+        Path path = Paths.get(yourPath + "\\src\\main\\resources\\static\\uploads\\audiofiles\\" + audioFile.getOriginalFilename());
         Files.write(path, bytes);
 
 //        System.out.println(path.toAbsolutePath());
