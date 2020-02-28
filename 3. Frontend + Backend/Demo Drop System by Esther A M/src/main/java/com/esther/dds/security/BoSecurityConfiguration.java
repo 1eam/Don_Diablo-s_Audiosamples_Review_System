@@ -36,7 +36,6 @@ public class BoSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                     .logout()
                     .logoutUrl("/bo-side/authorized/logout")
-                    .logoutSuccessUrl("/bo-side")
                 .and()
                     .rememberMe();
 
