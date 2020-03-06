@@ -238,7 +238,7 @@ public class DemoController {
             BoUser boUser = optionalBoUser.get();
             Demo demo = optionalDemo.get();
 
-//          redundant variable moet voor een switch statement
+//          "redundant" variable moet blijven voor een switch statement
             String stateOutcome = state;
             switch (stateOutcome) {
                 case "Rejected":
@@ -268,7 +268,7 @@ public class DemoController {
                     break;
 
                 default:
-                    logger.info("Demo is still assigned to state 'Pending'");
+                    logger.info("Something went wrong. Demo is still assigned to state 'Pending'");
                     break;
             }
         }

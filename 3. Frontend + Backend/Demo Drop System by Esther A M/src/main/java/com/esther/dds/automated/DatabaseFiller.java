@@ -65,7 +65,7 @@ public class DatabaseFiller implements CommandLineRunner {
         users.put("user2", new User("martine.dijkraam@yahoo.com", secret, "Martine", "Dijkraam", "DJ Martine", "Love makin music, Love gettin inspired by nature, Mexican food are the best" , "/serverside_profileimages/martine.jpg",true));
         users.put("user3", new User("c.deberg@@yahoo.com", secret, "Christopher", "de Berg", "DJ Christopher", "Im Christopher, Im a dutch-based musicproducer with love for house music I make deep-house, future-house, tech-house, and bass house. I study computer science at the University of Amsterd" , "/serverside_profileimages/christopher.jpg",true));
         users.put("user4", new User("HB@gmail.com", secret, "Johanna", "Aaltonen", "HB", "HB perustettiin vuonna 2002 Forssassa. Yhtye teki seitsemän albumia. HB-kirjainten sanotaan valittu sattumanvaraisesti eivätkä oikeasti tarkoita mitään, mutta niille on annettu Pyhän Raamatun merkitys." , "/serverside_profileimages/hb.jpg",true));
-        users.put("user5", new User("jawqt59114@tempmail.com", secret, "Lincon", "Burrows", "Scylla 5", "Im in the music bussiness for over 11 years now. Been on stage whith Martin Garrix, Steve Ayoki and Kshmr several times. In fact reqruited them at Spinning records. And now its my time to shine. Listen to my music and see that I'm worthy" , "/serverside_profileimages/whoopsy.jpg",true));
+        users.put("user5", new User("jawqt59114@tempmail.com", secret, "Theodore", "Bagwell", "Scylla 5", "Im in the music bussiness for over 11 years now. Been on stage whith Martin Garrix, Steve Ayoki and Kshmr several times. In fact reqruited them at Spinning records. And now its my time to shine. Listen to my music and see that I'm worthy" , "/serverside_profileimages/theodore.jpg",true));
         users.put("user6", new User("info@kurtkennedey.com", secret, "Kurt", "Kennedey", "Katarpillar", "A accountant with a business and passion for mixing and producing" , "/serverside_profileimages/kurt.jpg",true));
         users.put("user7", new User("berder3@myspace.com", secret, "Brandon ", "Guillintinni", "Sweet Icing", "roses are red, violets are blue, i love edm, you should too" , "/serverside_profileimages/brandon.jpg",true));
 
@@ -130,7 +130,7 @@ public class DatabaseFiller implements CommandLineRunner {
             String prefixPath = "/serverside_audiofiles/";
 
             //individual entries Demo
-            demos.put("demo1", new Demo("Deep House 4", "I didnt wanna put a description. Sorry", prefixPath + "/1. sana.mp3"));
+            demos.put("demo1", new Demo("Deep House 4", "I didnt wanna put a description. Sorry", prefixPath + "1. sana.mp3"));
             demos.put("demo2", new Demo("Adventure", "I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", prefixPath + "2. adventure.mp3"));
             demos.put("demo3", new Demo("Virus", "You Gotta love it, it was a hit song", prefixPath + "3. virus.mp3"));
             demos.put("demo4", new Demo("Love is Forgiveness", "This is the result of an experimental project that turned into a full blown deep house track produced in october 2017, Prager University. Vocals are done by Marcian Patzrelek.", prefixPath + "4. love is forgiveness.mp3"));
