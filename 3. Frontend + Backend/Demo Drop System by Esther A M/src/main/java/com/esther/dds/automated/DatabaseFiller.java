@@ -130,33 +130,36 @@ public class DatabaseFiller implements CommandLineRunner {
             String prefixPath = "/serverside_audiofiles/";
 
             //individual entries Demo
-            demos.put("demo1", new Demo("Deep House 4", "I didnt wanna put a description. Sorry", prefixPath + "1. sana.mp3"));
+            demos.put("demo1", new Demo("Deep House 4", "We didnt want to put a description. Sorry", prefixPath + "1. sana.mp3"));
             demos.put("demo2", new Demo("Adventure", "I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", prefixPath + "2. adventure.mp3"));
             demos.put("demo3", new Demo("Virus", "You Gotta love it, it was a hit song", prefixPath + "3. virus.mp3"));
             demos.put("demo4", new Demo("Love is Forgiveness", "This is the result of an experimental project that turned into a full blown deep house track produced in october 2017, Prager University. Vocals are done by Marcian Patzrelek.", prefixPath + "4. love is forgiveness.mp3"));
             demos.put("demo5", new Demo("Trans", " ", prefixPath + "5. trans.mp3"));
-            demos.put("demo6", new Demo("$Wande - Bands$", "be ble$$ed", prefixPath + "6. bands.mp3"));
+            demos.put("demo6", new Demo("$Wande - Bands$", "$tay ble$$ed", prefixPath + "6. bands.mp3"));
             demos.put("demo7", new Demo("Lily-Jo – SWAY feat. Dawn Elektra", "I did the production for this song which was first an acoustic. The singers wanted an 'upbeat' deep house version and I was asked to make the production for this one. Please focus on the background music ", prefixPath + "7. sway.mp3"));
             demos.put("demo8", new Demo("I got you", "Please listen to this sample I have here. Its short, I hope you like it", "/serverside_audiofiles/8. i got you.mp3"));
             demos.put("demo9", new Demo("NoBody", "I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", prefixPath + "9. nobody.mp3"));
             demos.put("demo10", new Demo("Triangles", "Good vibes!", prefixPath + "10. triangles.mp3"));
-            demos.put("demo11", new Demo("Bumps on Roses", "Enjoy the song", prefixPath + "11. bumps on roses"));
+            demos.put("demo11", new Demo("Adventure Mashup", "Enjoy the song", prefixPath + "11. adventure mashup.mp3"));
             demos.put("demo12", new Demo("Mazza", "I was in my yard when i heard two shots go of... them tings flew right past. watch my videoclip: https://www.youtube.com/watch?v=tbrz5Xlyy9Q", prefixPath + "12. mazza.mp3"));
             demos.put("demo13", new Demo("Hanki Elämä III", "Sata vastustaa, sata puolustaa, sata huutaa muuten vaan Sukupolvia samat ongelmat taas vaivaa Kuka kasteen saa kuka kastetaan Kuka leivän viinin jakaa Tuskin selvyyttä tähän koskaan saadaan Etkö antaisi olla", prefixPath + "13. hanki elama 3.mp3"));
-            demos.put("demo14", new Demo("It Is Time.mp3", "*fins*", prefixPath + "14. it is time.mp3"));
+            demos.put("demo14", new Demo("It Is Time.mp3", "Oletko pelastettu oikeasti? Nyt elämäsi on ihanteellinen? Oletko tehnyt kotiisi vankilan? Entä komissio? Jumala on antanut sinulle niin paljon Saatatko tavoittaa kadonneet? Käveletkö ohitse ajattelematta Niistä, joilla ei ole toivoa? Isä taivaassa, auta meitä antautumaan Jos et vastaa...", prefixPath + "14. it is time.mp3"));
             demos.put("demo15", new Demo("Kremlin", "Wanna play good music at an edm party? listen to this", prefixPath + "15. kremlin.mp3"));
-            demos.put("demo16", new Demo("Brazilian bass", "I really hope you liked this one. Its not finished yet, but i was very excited to release this early for youto hear. Also its not officially released yet. make sure to check out my youtube: https://youtube.com/youtube", prefixPath + "brazilian bass.mp3"));
+            demos.put("demo16", new Demo("Brazilian bass", "I really hope you liked this one. Its not finished yet, but i was very excited to release this early for youto hear. Also its not officially released yet. make sure to check out my youtube: https://youtube.com/youtube", prefixPath + "16. brazilian bass.mp3"));
             demos.put("demo17", new Demo("All day", "watch the videoclip at: https://www.youtube.com/watch?v=PHWvKQBleMY", prefixPath + "17. all day.mp3"));
             demos.put("demo18", new Demo("Special kind of love", " This time I added some Jazz logic in my production. Hope youll love it", prefixPath + "18. special kind of love.mp3"));
             demos.put("demo19", new Demo("Keys", " ... ", prefixPath + "19. keys.mp3"));
             demos.put("demo20", new Demo("Skynight", " Worked together with a singer on this one. Did the production with a little help, but mastered the song all by myself ", prefixPath + "20.skynight.mp3"));
             demos.put("demo21", new Demo("Gos Edm", " Gospel EDM", prefixPath + "21. gospel-edm.mp3"));
+            demos.put("demo22", new Demo("Wizard", " my followup hitsong after Abimals ", prefixPath + "22. wizard.mp3"));
+            demos.put("demo23", new Demo("Proxy", " ... ", prefixPath + "23. proxy.mp3"));
+            demos.put("demo24", new Demo("She got Aesthetic", " ..Wande.. ", prefixPath + "24. aesthetic.mp3"));
 
             //assign demos to state
-            demos.forEach((k,v) -> { //toDo: decide which audiofiles (least exciting ofcourse will be set to sent or rejected)
-                if (k== "demo14"||k== "demo16"){
+            demos.forEach((k,v) -> {
+                if (k== "demo16"||k== "demo5"){
                     v.setState(states.get("state3")); //Sent state
-                } else if (k== "demo6"||k== "demo9"||k== "demo13"||k== "demo19"){
+                } else if (k== "demo8"||k== "demo9"||k== "demo19"||k== "demo20"){
                     v.setState(states.get("state2")); //Rejected state
                 } else {
                     v.setState(states.get("state1")); //the rest is Pending state
@@ -166,31 +169,31 @@ public class DatabaseFiller implements CommandLineRunner {
             //assign demos to user
             //todo: randomize the order of list of demos so the same profile picture wont be shown one after another
             demos.forEach((k,v) -> {
-                if (k== "demo1"||k== "demo2"||k== "demo3"){
+                if (k== "demo3"||k== "demo22"||k== "demo23"){
                     v.setUser(users.get("user1"));
-                } else if (k== "demo4"||k== "demo5"||k== "demo6"){
+                } else if (k== "demo4"||k== "demo5"||k== "demo8"){
                     v.setUser(users.get("user2"));
-                } else if (k== "demo7"||k== "demo8"||k== "demo9"){
+                } else if (k== "demo9"||k== "demo15"||k== "demo20"||k== "demo16"){
                     v.setUser(users.get("user3"));
-                } else if (k== "demo10"||k== "demo11"||k== "demo12"){
+                } else if (k== "demo1"||k== "demo13"||k== "demo14"){
                     v.setUser(users.get("user4"));
-                } else if (k== "demo13"||k== "demo14"||k== "demo15"){
+                } else if (k== "demo6"||k== "demo12"||k== "demo17"||k== "demo24"){
                     v.setUser(users.get("user5"));
-                } else if (k== "demo16"||k== "demo17"||k== "demo18"){
+                } else if (k== "demo7"||k== "demo11"||k== "demo18"||k== "demo21"){
                     v.setUser(users.get("user6"));
-                } else if (k== "demo19"||k== "demo20"||k== "demo21"){
+                } else if (k== "demo2"||k== "demo10"||k== "demo19"){
                     v.setUser(users.get("user7"));
                 }
             });
 
             //assign back-office reviewer to demo:
-            //rejected: "demo6"||k== "demo9"||k== "demo13"||k== "demo19"
-            demos.get("demo6").setReviewedBy(boUsers.get("bo2"));
+            //rejected: "demo8"||k== "demo9"||k== "demo19"||k== "demo20"
+            demos.get("demo8").setReviewedBy(boUsers.get("bo2"));
             demos.get("demo9").setReviewedBy(boUsers.get("bo3"));
-            demos.get("demo13").setReviewedBy(boUsers.get("bo2"));
-            demos.get("demo19").setReviewedBy(boUsers.get("bo4"));
-            //sent: "demo14"||k== "demo16"
-            demos.get("demo14").setReviewedBy(boUsers.get("bo2"));
+            demos.get("demo19").setReviewedBy(boUsers.get("bo2"));
+            demos.get("demo20").setReviewedBy(boUsers.get("bo4"));
+            //sent: "demo5"||k== "demo16"
+            demos.get("demo5").setReviewedBy(boUsers.get("bo2"));
             demos.get("demo16").setReviewedBy(boUsers.get("bo3"));
 
 
