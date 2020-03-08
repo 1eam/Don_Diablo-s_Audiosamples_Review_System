@@ -42,6 +42,7 @@ public class DatabaseFiller implements CommandLineRunner {
 
 
     //initialization of hashmaps that will contain all db entries in its variable.
+    //todo: use LinkedHashmap to preserve entry order after I've specified a prevered order. As for now I'm quite okay with the "random" order by Hashap
     Map<String, Demo> demos = new HashMap<String, Demo>();
     Map<String, State> states = new HashMap<String, State>();
     Map<String, User> users = new HashMap<String, User>();
@@ -130,7 +131,8 @@ public class DatabaseFiller implements CommandLineRunner {
             String prefixPath = "/serverside_audiofiles/";
 
             //individual entries Demo
-            demos.put("demo1", new Demo("Deep House 4", "We didnt want to put a description. Sorry", prefixPath + "1. sana.mp3"));
+            //todo: to customize bo-side order of demo's/ order of saving demo in db uding Hashmap; change demos entries order and Use LinkedHashmap instead of Hashmap to preserve saving order.
+            demos.put("demo1", new Demo("Deep House 4", "Emme halunneet antaa kuvausta. anteeksi", prefixPath + "1. sana.mp3"));
             demos.put("demo2", new Demo("Adventure", "I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", prefixPath + "2. adventure.mp3"));
             demos.put("demo3", new Demo("Virus", "You Gotta love it, it was a hit song", prefixPath + "3. virus.mp3"));
             demos.put("demo4", new Demo("Love is Forgiveness", "This is the result of an experimental project that turned into a full blown deep house track produced in october 2017, Prager University. Vocals are done by Marcian Patzrelek.", prefixPath + "4. love is forgiveness.mp3"));
@@ -140,7 +142,7 @@ public class DatabaseFiller implements CommandLineRunner {
             demos.put("demo8", new Demo("I got you", "Please listen to this sample I have here. Its short, I hope you like it", "/serverside_audiofiles/8. i got you.mp3"));
             demos.put("demo9", new Demo("NoBody", "I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", prefixPath + "9. nobody.mp3"));
             demos.put("demo10", new Demo("Triangles", "Good vibes!", prefixPath + "10. triangles.mp3"));
-            demos.put("demo11", new Demo("Adventure Mashup", "Enjoy the song", prefixPath + "11. adventure mashup.mp3"));
+            demos.put("demo11", new Demo("Adventure Mashup", "Remaked the original production by DJ Sweet Icing, and added some great vibes", prefixPath + "11. adventure mashup.mp3"));
             demos.put("demo12", new Demo("Mazza", "I was in my yard when i heard two shots go of... them tings flew right past. watch my videoclip: https://www.youtube.com/watch?v=tbrz5Xlyy9Q", prefixPath + "12. mazza.mp3"));
             demos.put("demo13", new Demo("Hanki Elämä III", "Sata vastustaa, sata puolustaa, sata huutaa muuten vaan Sukupolvia samat ongelmat taas vaivaa Kuka kasteen saa kuka kastetaan Kuka leivän viinin jakaa Tuskin selvyyttä tähän koskaan saadaan Etkö antaisi olla", prefixPath + "13. hanki elama 3.mp3"));
             demos.put("demo14", new Demo("It Is Time.mp3", "Oletko pelastettu oikeasti? Nyt elämäsi on ihanteellinen? Oletko tehnyt kotiisi vankilan? Entä komissio? Jumala on antanut sinulle niin paljon Saatatko tavoittaa kadonneet? Käveletkö ohitse ajattelematta Niistä, joilla ei ole toivoa? Isä taivaassa, auta meitä antautumaan Jos et vastaa...", prefixPath + "14. it is time.mp3"));
@@ -167,7 +169,6 @@ public class DatabaseFiller implements CommandLineRunner {
             });
 
             //assign demos to user
-            //todo: randomize the order of list of demos so the same profile picture wont be shown one after another
             demos.forEach((k,v) -> {
                 if (k== "demo3"||k== "demo22"||k== "demo23"){
                     v.setUser(users.get("user1"));
