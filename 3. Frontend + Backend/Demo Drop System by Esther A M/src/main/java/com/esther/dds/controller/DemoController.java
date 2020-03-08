@@ -1,6 +1,5 @@
 package com.esther.dds.controller;
 
-import com.esther.dds.automated.DatabaseFiller;
 import com.esther.dds.domain.BoUser;
 import com.esther.dds.domain.Demo;
 import com.esther.dds.domain.User;
@@ -20,10 +19,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Stream;
 
 @Controller
@@ -35,17 +31,15 @@ public class DemoController {
     private DemoService demoService;
     private BoUserService boUserService;
     private DemoRepository demoRepository;
-    private DatabaseFiller databaseFiller;
     private AudioFileService audioFileService;
     private MailService mailService;
     private StateService stateService;
 
-    public DemoController(UserService userService, DemoService demoService, BoUserService boUserService, DemoRepository demoRepository, DatabaseFiller databaseFiller, AudioFileService audioFileService, MailService mailService, StateService stateService){
+    public DemoController(UserService userService, DemoService demoService, BoUserService boUserService, DemoRepository demoRepository, AudioFileService audioFileService, MailService mailService, StateService stateService){
         this.userService = userService;
         this.demoService = demoService;
         this.boUserService = boUserService;
         this.demoRepository = demoRepository;
-        this.databaseFiller = databaseFiller;
         this.audioFileService = audioFileService;
         this.mailService = mailService;
         this.stateService = stateService;
@@ -58,10 +52,12 @@ public class DemoController {
     public String userSideDemo (Model model){
         Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
         Optional<User> user = userService.findById(userId);
+        List<Demo> demos = demoService.findByUser(userId);
+        Collections.reverse(demos);
 
         if( user.isPresent() ) {
             model.addAttribute("user", user.get());
-            model.addAttribute("demos", demoService.findByUser(userId));
+            model.addAttribute("demos", demos);
             model.addAttribute("success", model.containsAttribute("success"));
             return "dashboard";
         } else {
@@ -78,7 +74,7 @@ public class DemoController {
         Optional<User> user = userService.findById(userId);
 
         //check if user hasnt reached the maximum of 2 uploads in review = in Pending-state
-        if (demoRepository.findByUserIdAndStateStateName(userId, "Pending").size()==2){
+        if (demoRepository.findByUserIdAndStateStateName(userId, "Pending").size()>=4){
 
             redirectAttributes
                     .addFlashAttribute("maxReached",true);
@@ -108,7 +104,7 @@ public class DemoController {
         demoService.save(demo);
 
         // assign this demo to pending state
-        demo.setState(databaseFiller.state1);
+        demo.setState(stateService.findByStateName("Pending"));
 
         // save demo again (update: + state)
         demoService.save(demo);
@@ -242,7 +238,7 @@ public class DemoController {
             BoUser boUser = optionalBoUser.get();
             Demo demo = optionalDemo.get();
 
-//          redundant variable moet voor een switch statement
+//          "redundant" variable moet blijven voor een switch statement
             String stateOutcome = state;
             switch (stateOutcome) {
                 case "Rejected":
@@ -272,7 +268,7 @@ public class DemoController {
                     break;
 
                 default:
-                    logger.info("Demo is still assigned to state 'Pending'");
+                    logger.info("Something went wrong. Demo is still assigned to state 'Pending'");
                     break;
             }
         }

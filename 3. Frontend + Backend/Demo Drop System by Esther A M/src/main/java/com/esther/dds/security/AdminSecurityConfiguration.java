@@ -35,7 +35,6 @@ public class AdminSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                     .logout()
                     .logoutUrl("/admin-side/authorized/logout")
-                    .logoutSuccessUrl("/admin-side")
                 .and()
                     .rememberMe();
 

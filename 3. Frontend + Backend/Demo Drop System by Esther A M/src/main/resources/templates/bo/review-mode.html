@@ -49,7 +49,7 @@
                 <h5 th:text="${demo.user.name + ' ' + demo.user.lastName}"> Christopher de Berg</h5>
                 <h5 th:text="${demo.user.email}"> cris.b@yahoo.com</h5>
                 <!-- space --><div style= "display: block; margin-bottom: 50px;"></div>
-                <p th:text="${demo.user.bio}"> Im Christopher, Im a dutch-based musicproducer with love for house music I make deep-house, future-house, tech-house, and bass house. I study computer science at the University of AmsterdIm Christopher, Im a dutch-based musicproducer with love for house music I make deep-house, future-house, tech-house, and bass house. I study computer science at t</p>
+                <p th:text="${demo.user.bio}"> Im Christopher, Im a dutch-based musicproducer with love for house music I make deep-house, future-house, tech-house, and bass house. I study computer science at the University of Amsterd Im Christopher, Im a dutch-based musicproducer with love for house music I make deep-house, future-house, tech-house, and bass house. I study computer science at t</p>
             </section>
 
             <section class="section s2">
@@ -83,10 +83,10 @@
                         <!-- space --><div style= "display: block; margin-bottom: 100px;"></div>
 
                         <div class="judge-boxes">
-                            <input type="radio" id="radio1" name="state.stateName" value="Rejected">
+                            <input type="radio" id="radio1" name="state.stateName" value="Rejected" required>
                             <label id="label1" for="radio1" class="judge-box" >✗</label>
 
-                            <input type="radio" id="radio2" name="state.stateName" value="Sent">
+                            <input type="radio" id="radio2" name="state.stateName" value="Sent" required>
                             <label id="label2" for="radio2" class="judge-box" onclick="sendEmail()">✓</label>
                         </div>
 
@@ -125,7 +125,7 @@
         const demoTitle = /*[[${demo.title}]]*/ "Demo Title";
         const demoDescription = /*[[${demo.description}]]*/ "Demo Description";
         const demoAudioFile = /*[[${demo.audioFile}]]*/ "Demo Audio File";
-        const artistName = /*[[${demo.user.artistName}]]*/ "Demo Audio File";
+        const artistName = /*[[${demo.user.artistName}]]*/ "Demo Artist Name";
         /*]]>*/
 
         //implementation

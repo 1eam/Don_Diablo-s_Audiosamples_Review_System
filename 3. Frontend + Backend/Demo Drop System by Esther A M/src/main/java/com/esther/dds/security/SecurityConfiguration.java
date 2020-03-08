@@ -41,7 +41,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                     .logout()
                     .logoutUrl("/user-side/logout")
-                    .logoutSuccessUrl("/")
                 .and()
                     .rememberMe() // session expires after 2 weeks
                 .and().csrf().ignoringAntMatchers("/h2-console/**") //don't apply CSRF protection to /h2-console
