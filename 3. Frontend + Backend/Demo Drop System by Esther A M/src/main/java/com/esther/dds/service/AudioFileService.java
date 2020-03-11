@@ -29,12 +29,15 @@ public class AudioFileService {
         Path yourPath = findCurrentLocation.toAbsolutePath();
 
         //generate & set the "AudioFile" field in the database
+        //audiofiles are served from the taget-folder. Reason: this is the only solution that works during runtime, however not saved anywherre
         demo.setAudioFile("/uploads/audiofiles/" + audioFile.getOriginalFilename());
 
         //actually write the file to disk
         byte[] bytes = audioFile.getBytes();
-        Path path = Paths.get(yourPath + "\\target\\classes\\static\\uploads\\audiofiles\\" + audioFile.getOriginalFilename());
-        Files.write(path, bytes);
+        Path pathToRuntimePreview = Paths.get(yourPath + "\\target\\classes\\static\\uploads\\audiofiles\\" + audioFile.getOriginalFilename());
+        Path pathToSaveCopyOnDisk = Paths.get(yourPath + "\\src\\main\\resources\\static\\uploads\\audiofiles\\" + audioFile.getOriginalFilename());
+        Files.write(pathToRuntimePreview, bytes);
+        Files.write(pathToSaveCopyOnDisk, bytes);
 
 //        System.out.println(path.toAbsolutePath());
     }
