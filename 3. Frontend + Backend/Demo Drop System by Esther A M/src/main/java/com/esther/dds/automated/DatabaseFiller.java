@@ -159,7 +159,7 @@ public class DatabaseFiller implements CommandLineRunner {
 
             //assign demos to state
             demos.forEach((k,v) -> {
-                if (k== "demo16"||k== "demo5"){
+                if (k== "demo16"||k== "demo5"||k== "demo23"){
                     v.setState(states.get("state3")); //Sent state
                 } else if (k== "demo8"||k== "demo9"||k== "demo19"||k== "demo20"){
                     v.setState(states.get("state2")); //Rejected state
@@ -196,6 +196,7 @@ public class DatabaseFiller implements CommandLineRunner {
             //sent: "demo5"||k== "demo16"
             demos.get("demo5").setReviewedBy(boUsers.get("bo2"));
             demos.get("demo16").setReviewedBy(boUsers.get("bo3"));
+            demos.get("demo23").setReviewedBy(boUsers.get("bo4"));
 
 
             //save all demos.
