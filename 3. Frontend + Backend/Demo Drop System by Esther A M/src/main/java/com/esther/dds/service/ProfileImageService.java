@@ -34,12 +34,8 @@ public class ProfileImageService {
 
         //actually write the file to disk
         byte[] bytes = profileImage.getBytes();
-        Path pathToRuntimePreview = Paths.get(yourPath + "\\target\\classes\\static\\uploads\\profileimagefiles\\" + profileImage.getOriginalFilename());
-        Path pathToSaveCopyOnDisk = Paths.get(yourPath + "\\src\\main\\resources\\static\\uploads\\profileimagefiles\\" + profileImage.getOriginalFilename());
-
-        Files.write(pathToRuntimePreview, bytes);
-        Files.write(pathToSaveCopyOnDisk, bytes);
-
+        Path path = Paths.get(yourPath + "\\target\\classes\\static\\uploads\\profileimagefiles\\" + profileImage.getOriginalFilename());
+        Files.write(path, bytes);
 
 
 //        System.out.println(path.toAbsolutePath());
