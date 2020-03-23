@@ -29,6 +29,7 @@ public class AudioFileService {
         Path yourPath = findCurrentLocation.toAbsolutePath();
 
         //generate & set the "AudioFile" field in the database
+        //audiofiles are served from the taget-folder. Reason: this is the only solution that works during runtime, however not saved anywherre
         demo.setAudioFile("/uploads/audiofiles/" + audioFile.getOriginalFilename());
 
         //actually write the file to disk
@@ -39,4 +40,3 @@ public class AudioFileService {
 //        System.out.println(path.toAbsolutePath());
     }
 }
-

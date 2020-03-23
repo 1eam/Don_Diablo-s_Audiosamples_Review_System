@@ -38,7 +38,6 @@ public class ProfileImageService {
         Files.write(path, bytes);
 
 
-
 //        System.out.println(path.toAbsolutePath());
     }
 }
