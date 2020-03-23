@@ -42,13 +42,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .logout()
                     .logoutUrl("/user-side/logout")
                 .and()
-                    .rememberMe() // session expires after 2 weeks
-                .and().csrf().ignoringAntMatchers("/h2-console/**") //don't apply CSRF protection to /h2-console
-                .and().headers().frameOptions().sameOrigin();//allow use of frame to same origin urls
+                    .rememberMe()// session expires after 2 weeks
+                .and()
+                    .csrf();
 
-                /* Disable the above two configurations so the DATABASE will be protected against csrf.
-                These are only there to make it possible to both run the application and inspect the DB
-                This needs to be turned off in production
+//                .and().csrf().ignoringAntMatchers("/h2-console/**") //don't apply CSRF protection to /h2-console
+//                .and().headers().frameOptions().sameOrigin(); //allow use of frame to same origin urls
+
+                /*
+                Disable the above two lines of code so the DATABASE will be protected against csrf. current state: disabled
+                To make it possible to both run the application and inspect the DB, you should have ignogeAntmatchers nd frameIotiions enabled
+                In this case: uncomment the last 2 lines
+
+                CSRF should needs to be turned off in production.
                  */
 
     }
