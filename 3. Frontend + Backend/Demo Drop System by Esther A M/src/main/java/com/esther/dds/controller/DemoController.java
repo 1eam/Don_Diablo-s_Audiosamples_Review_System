@@ -73,8 +73,8 @@ public class DemoController {
         Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
         Optional<User> user = userService.findById(userId);
 
-        //check if user hasnt reached the maximum of 2 uploads in review = in Pending-state
-        if (demoRepository.findByUserIdAndStateStateName(userId, "Pending").size()>=4){
+        //check if user hasnt reached the maximum of 3 uploads in review = in Pending-state
+        if (demoRepository.findByUserIdAndStateStateName(userId, "Pending").size()>=3){
 
             redirectAttributes
                     .addFlashAttribute("maxReached",true);
