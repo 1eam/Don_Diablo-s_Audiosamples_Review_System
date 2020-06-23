@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>com.esther.dds</OriginalElement>
+  <nodes>
+    <node x="1120.0" y="2140.0">com.esther.dds.service.BeanUtil</node>
+    <node x="2282.0" y="1292.0">com.esther.dds.service.AdminService</node>
+    <node x="0.0" y="2460.0">com.esther.dds.service.RoleService</node>
+    <node x="1117.0" y="2460.0">com.esther.dds.repositories.UserRepository</node>
+    <node x="0.0" y="318.0">com.esther.dds.domain.Admin</node>
+    <node x="364.0" y="2140.0">com.esther.dds.controller.StateController</node>
+    <node x="0.0" y="2576.0">com.esther.dds.DdsApplicationTests</node>
+    <node x="2376.0" y="2322.0">com.esther.dds.service.AudioFileService</node>
+    <node x="1803.0" y="2140.0">com.esther.dds.security.AdminSecurityConfiguration</node>
+    <node x="1760.0" y="0.0">com.esther.dds.controller.DemoController</node>
+    <node x="1460.0" y="0.0">com.esther.dds.domain.AuditableState</node>
+    <node x="2378.0" y="2460.0">com.esther.dds.repositories.StateNameRepository</node>
+    <node x="1397.0" y="1292.0">com.esther.dds.controller.AdminController</node>
+    <node x="702.0" y="1738.0">com.esther.dds.domain.BoRole</node>
+    <node x="1463.0" y="2140.0">com.esther.dds.security.BoSecurityConfiguration</node>
+    <node x="0.0" y="2140.0">com.esther.dds.domain.Validator.PasswordsMatchValidator</node>
+    <node x="540.0" y="2322.0">com.esther.dds.service.AdminRoleService</node>
+    <node x="1174.0" y="2322.0">com.esther.dds.security.AdminDetailsServiceImpl</node>
+    <node x="864.0" y="2322.0">com.esther.dds.service.ProfileImageService</node>
+    <node x="235.0" y="2576.0">com.esther.dds.repositories.BoRoleRepository</node>
+    <node x="1537.0" y="2460.0">com.esther.dds.config.AuditorAwareImpl</node>
+    <node x="1496.0" y="341.0">com.esther.dds.domain.State</node>
+    <node x="1480.0" y="2322.0">com.esther.dds.security.UserDetailsServiceImpl</node>
+    <node x="398.0" y="1738.0">com.esther.dds.domain.AdminRole</node>
+    <node x="252.0" y="2460.0">com.esther.dds.repositories.BoUserRepository</node>
+    <node x="324.0" y="2322.0">com.esther.dds.DdsApplication</node>
+    <node x="1830.0" y="2460.0">com.esther.dds.config.JpaConfig</node>
+    <node x="418.0" y="0.0">com.esther.dds.domain.Validator.PasswordsMatch</node>
+    <node x="0.0" y="1292.0">com.esther.dds.controller.AuthController</node>
+    <node x="2140.0" y="1738.0">com.esther.dds.service.DemoService</node>
+    <node x="686.0" y="2460.0">com.esther.dds.repositories.AdminRepository</node>
+    <node x="2139.0" y="2140.0">com.esther.dds.security.SecurityConfiguration</node>
+    <node x="977.0" y="1292.0">com.esther.dds.service.UserService</node>
+    <node x="0.0" y="1738.0">com.esther.dds.service.MailService</node>
+    <node x="2092.0" y="2322.0">com.esther.dds.service.BoRoleService</node>
+    <node x="714.0" y="2140.0">com.esther.dds.repositories.DemoRepository</node>
+    <node x="1142.0" y="0.0">com.esther.dds.domain.Auditable</node>
+    <node x="734.0" y="186.0">com.esther.dds.domain.User</node>
+    <node x="1786.0" y="2322.0">com.esther.dds.security.BoUserDetailsServiceImpl</node>
+    <node x="0.0" y="2322.0">com.esther.dds.service.StateService</node>
+    <node x="2122.0" y="2460.0">com.esther.dds.repositories.AdminRoleRepository</node>
+    <node x="470.0" y="2576.0">com.esther.dds.repositories.RoleRepository</node>
+    <node x="514.0" y="1292.0">com.esther.dds.automated.DatabaseFiller</node>
+    <node x="988.0" y="1738.0">com.esther.dds.domain.Role</node>
+    <node x="1126.0" y="341.0">com.esther.dds.domain.Demo</node>
+    <node x="1848.0" y="1292.0">com.esther.dds.service.BoUserService</node>
+    <node x="367.0" y="252.0">com.esther.dds.domain.BoUser</node>
+    <node x="1698.0" y="1738.0">com.esther.dds.controller.UserController</node>
+    <node x="1247.0" y="1738.0">com.esther.dds.controller.BoUserController</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="com.esther.dds.domain.BoUser" target="com.esther.dds.domain.Validator.PasswordsMatch">
+      <point x="0.0" y="-464.5" />
+      <point x="0.0" y="68.0" />
+    </edge>
+    <edge source="com.esther.dds.domain.Demo" target="com.esther.dds.domain.Auditable">
+      <point x="0.0" y="-277.5" />
+      <point x="0.0" y="145.5" />
+    </edge>
+    <edge source="com.esther.dds.domain.User" target="com.esther.dds.domain.Validator.PasswordsMatch">
+      <point x="0.0" y="-530.5" />
+      <point x="907.5" y="161.0" />
+      <point x="622.1666666666667" y="161.0" />
+      <point x="81.66666666666674" y="68.0" />
+    </edge>
+    <edge source="com.esther.dds.domain.Admin" target="com.esther.dds.domain.Validator.PasswordsMatch">
+      <point x="0.0" y="-398.5" />
+      <point x="173.5" y="161.0" />
+      <point x="458.8333333333333" y="161.0" />
+      <point x="-81.66666666666669" y="68.0" />
+    </edge>
+    <edge source="com.esther.dds.domain.State" target="com.esther.dds.domain.AuditableState">
+      <point x="0.0" y="-123.5" />
+      <point x="0.0" y="145.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.4547584187408492" x="567.0000000000001" y="29.999999999999993" />
+  <SelectedNodes>
+    <node>com.esther.dds.service.BeanUtil</node>
+    <node>com.esther.dds.service.AdminService</node>
+    <node>com.esther.dds.service.RoleService</node>
+    <node>com.esther.dds.repositories.UserRepository</node>
+    <node>com.esther.dds.domain.Admin</node>
+    <node>com.esther.dds.controller.StateController</node>
+    <node>com.esther.dds.DdsApplicationTests</node>
+    <node>com.esther.dds.service.AudioFileService</node>
+    <node>com.esther.dds.security.AdminSecurityConfiguration</node>
+    <node>com.esther.dds.controller.DemoController</node>
+    <node>com.esther.dds.domain.AuditableState</node>
+    <node>com.esther.dds.repositories.StateNameRepository</node>
+    <node>com.esther.dds.controller.AdminController</node>
+    <node>com.esther.dds.domain.BoRole</node>
+    <node>com.esther.dds.security.BoSecurityConfiguration</node>
+    <node>com.esther.dds.domain.Validator.PasswordsMatchValidator</node>
+    <node>com.esther.dds.service.AdminRoleService</node>
+    <node>com.esther.dds.security.AdminDetailsServiceImpl</node>
+    <node>com.esther.dds.service.ProfileImageService</node>
+    <node>com.esther.dds.repositories.BoRoleRepository</node>
+    <node>com.esther.dds.config.AuditorAwareImpl</node>
+    <node>com.esther.dds.domain.State</node>
+    <node>com.esther.dds.security.UserDetailsServiceImpl</node>
+    <node>com.esther.dds.domain.AdminRole</node>
+    <node>com.esther.dds.repositories.BoUserRepository</node>
+    <node>com.esther.dds.DdsApplication</node>
+    <node>com.esther.dds.config.JpaConfig</node>
+    <node>com.esther.dds.domain.Validator.PasswordsMatch</node>
+    <node>com.esther.dds.controller.AuthController</node>
+    <node>com.esther.dds.service.DemoService</node>
+    <node>com.esther.dds.repositories.AdminRepository</node>
+    <node>com.esther.dds.security.SecurityConfiguration</node>
+    <node>com.esther.dds.service.UserService</node>
+    <node>com.esther.dds.service.MailService</node>
+    <node>com.esther.dds.service.BoRoleService</node>
+    <node>com.esther.dds.repositories.DemoRepository</node>
+    <node>com.esther.dds.domain.Auditable</node>
+    <node>com.esther.dds.domain.User</node>
+    <node>com.esther.dds.security.BoUserDetailsServiceImpl</node>
+    <node>com.esther.dds.service.StateService</node>
+    <node>com.esther.dds.repositories.AdminRoleRepository</node>
+    <node>com.esther.dds.repositories.RoleRepository</node>
+    <node>com.esther.dds.automated.DatabaseFiller</node>
+    <node>com.esther.dds.domain.Role</node>
+    <node>com.esther.dds.domain.Demo</node>
+    <node>com.esther.dds.service.BoUserService</node>
+    <node>com.esther.dds.domain.BoUser</node>
+    <node>com.esther.dds.controller.UserController</node>
+    <node>com.esther.dds.controller.BoUserController</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
