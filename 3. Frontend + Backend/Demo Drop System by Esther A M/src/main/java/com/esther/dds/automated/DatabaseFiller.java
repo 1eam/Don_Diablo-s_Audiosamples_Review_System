@@ -153,7 +153,7 @@ public class DatabaseFiller implements CommandLineRunner {
             demos.put("demo19", new Demo("Keys", " ... ", prefixPath + "19. keys.mp3"));
             demos.put("demo20", new Demo("Skynight", " Worked together with a singer on this one. Did the production with a little help, but mastered the song all by myself ", prefixPath + "20.skynight.mp3"));
             demos.put("demo21", new Demo("Gos Edm", " Gospel EDM", prefixPath + "21. gospel-edm.mp3"));
-            demos.put("demo22", new Demo("Wizard", " my followup hitsong after Abimals ", prefixPath + "22. wizard.mp3"));
+            demos.put("demo22", new Demo("Wizard", " my followup hitsong after Animals ", prefixPath + "22. wizard.mp3"));
             demos.put("demo23", new Demo("Proxy", " Your difinantly love it... ", prefixPath + "23. proxy.mp3"));
             demos.put("demo24", new Demo("She got Aesthetic", " ..Wande.. ", prefixPath + "24. aesthetic.mp3"));
 
