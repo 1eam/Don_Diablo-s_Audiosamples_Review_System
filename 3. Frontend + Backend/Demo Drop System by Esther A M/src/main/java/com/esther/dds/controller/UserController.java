@@ -59,6 +59,7 @@ public class UserController {
             user.setArtistName(artistName);
             user.setBio(bio);
             user.setName(name);
+            user.setName(name);
             user.setLastName(lastName);
 
             // if the user has not editted his photo, dont execute following. else: save multipart file to folder + set the path

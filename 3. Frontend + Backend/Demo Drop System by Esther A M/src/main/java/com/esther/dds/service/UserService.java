@@ -28,9 +28,10 @@ public class UserService {
         this.roleService = roleService;
         this.mailService = mailService;
         this.demoRepository = demoRepository;
-        //make new encoder everytime
+        //make new encoder every time
         encoder = new BCryptPasswordEncoder();
     }
+
 
     public Optional<User> findById(Long id) {
         return userRepository.findById(id);
