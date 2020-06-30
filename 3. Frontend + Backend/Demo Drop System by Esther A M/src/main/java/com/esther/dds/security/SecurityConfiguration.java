@@ -51,7 +51,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
                 /*
                 Disable the above two lines of code so the DATABASE will be protected against csrf. current state: disabled
-                To make it possible to both run the application and inspect the DB, you should have ignogeAntmatchers nd frameIotiions enabled
+                To make it possible to both run the application and inspect the DB, you should have ignoreAntMatchers nd frameOptions enabled
                 In this case: uncomment the last 2 lines
 
                 CSRF should needs to be turned off in production.
