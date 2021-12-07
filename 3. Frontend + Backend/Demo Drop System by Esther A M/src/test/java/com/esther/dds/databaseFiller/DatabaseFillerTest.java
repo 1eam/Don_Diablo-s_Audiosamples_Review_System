@@ -1,8 +1,6 @@
-package com.esther.dds.automated;
+package com.esther.dds.databaseFiller;
 
 import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 class DatabaseFillerTest {
 

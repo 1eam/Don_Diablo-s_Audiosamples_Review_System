@@ -1,4 +1,10 @@
-package com.esther.dds.automated;
+package com.esther.dds.databaseFiller;
+
+/**
+ * This class serves to fill initial data in the database
+ * Data such as fictional users and their roles (e.g. Role of reviewer or admin)
+ * This class will always execute first at startup
+ */
 
 import com.esther.dds.domain.*;
 import com.esther.dds.repositories.*;
@@ -7,15 +13,11 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
-
 import java.util.HashMap;
 import java.util.Map;
 
-//This class serves to fill initial data to the database
-
 @Component
 public class DatabaseFiller implements CommandLineRunner {
-
     private UserRepository userRepository;
     private BoUserRepository boUserRepository;
     private AdminService adminService;
@@ -32,24 +34,18 @@ public class DatabaseFiller implements CommandLineRunner {
         this.adminRoleRepository = adminRoleRepository;
     }
 
-
-
-
-
-    //The (encoded) password all generated users get.
-    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-    String secret = "{bcrypt}" + encoder.encode("pass");
-
-
-    //initialization of hashmaps that will contain all db entries in its variable.
-    //todo: use LinkedHashmap to preserve entry order after I've specified a prevered order. As for now I'm quite okay with the "random" order by Hashap
+    //Initialization of hashmaps that will contain all database entries
+    //Admin-hashmap not present cause there's currently one Admin.
     Map<String, Demo> demos = new HashMap<String, Demo>();
     Map<String, State> states = new HashMap<String, State>();
     Map<String, User> users = new HashMap<String, User>();
     Map<String, BoUser> boUsers = new HashMap<String, BoUser>();
-    //Admin doesnt need a hashmap because there's currently only one Admin
 
+    //This is the (encoded) password all generated users will get.
+    BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+    String secret = "{bcrypt}" + encoder.encode("pass");
 
+    //Interface implementation of Commandline runner, responsible for execution at startup
     @Override
     public void run(String... args) throws Exception {
         //add users to roles
@@ -70,14 +66,11 @@ public class DatabaseFiller implements CommandLineRunner {
         users.put("user6", new User("info@kurtkennedey.com", secret, "Kurt", "Kennedey", "Katarpillar", "A accountant with a business and passion for mixing and producing" , "/serverside_profileimages/kurt.jpg",true));
         users.put("user7", new User("berder3@myspace.com", secret, "Brandon ", "Guillintinni", "Sweet Icing", "roses are red, violets are blue, i love edm, you should too" , "/serverside_profileimages/brandon.jpg",true));
 
-        //save all users
-        //"v" here is actually the "new User" object, it belongs to the Map object and it stands for value. "k" stands for key.
         users.forEach((k,v) -> {
             v.addRole(userRole);
             v.setConfirmPassword(secret);
             userRepository.save(v);
         });
-
     }
 
     private void addBoUsersAndRoles() {
@@ -90,48 +83,42 @@ public class DatabaseFiller implements CommandLineRunner {
         boUsers.put("bo3", new BoUser("info@bo3.com", secret, "Joris", "Dobbelaar",true));
         boUsers.put("bo4", new BoUser("info@bo4.com", secret, "Daphne", "van Veldt",true));
 
-        //save all boUsers at once
         boUsers.forEach((k,v) -> {
             v.addBoRole(boUserRole);
             v.setConfirmPassword(secret);
             boUserRepository.save(v);
         });
-
     }
 
     private void addAdminUsersAndRoles() {
-        //admin user entry, no need for a hashmap (yet, unless there will be multiple admin roles in the future)
-        //this is the place to enter the admins email address
+        //In case more admin-users need to be created, make use of a hashmap like in the above examples
         Admin admin = new Admin("info@admin.com", secret, true);
-
-        //assign a role to admin
         AdminRole adminRole = new AdminRole("ROLE_ADMIN");
+
         adminRoleRepository.save(adminRole);
         admin.addAdminRole(adminRole);
 
-        //register admin user: sets account enabled to false, generates random password, and sends email with pw + activationcode
+        //Registers the admin user: sets account enabled to false, generates the random password, and sends authentication-email with pw + activationcode. This occurs at every startup.
         adminService.register(admin);
-
-
     }
 
+    //Predefined Tracks, These tracks are stored in the resources/static/serverside_audiofiles folder
     @Bean
     CommandLineRunner runner(DemoRepository demoRepository, StateNameRepository stateNameRepository) {
         return args -> {
-            //individual entries State
+            //set review-states
             states.put("state1", new State("Pending", "The Admin should set a 'In-review message'"));
             states.put("state2", new State("Rejected", "The Admin should enter a 'Rejection message'"));
             states.put("state3", new State("Sent", "The Admin should enter a 'Sent message'"));
 
-            //save all states
+            //Store review states
             states.forEach((k,v) -> {
                 stateNameRepository.save(v);
             });
 
             String prefixPath = "/serverside_audiofiles/";
 
-            //individual entries Demo
-            //todo: to customize bo-side order of demo's/ order of saving demo in db uding Hashmap; change demos entries order and Use LinkedHashmap instead of Hashmap to preserve saving order.
+            //Individual Demo entries
             demos.put("demo1", new Demo("Deep House 4", "Emme halunneet antaa kuvausta. anteeksi", prefixPath + "1. sana.mp3"));
             demos.put("demo2", new Demo("Adventure", "I used 13 different vst's, to much to name in this description. I also mastered the track with some help of a friend, who also found me a vocalist. Great Right!?", prefixPath + "2. adventure.mp3"));
             demos.put("demo3", new Demo("Virus", "You Gotta love it, it was a hit song", prefixPath + "3. virus.mp3"));
@@ -157,7 +144,7 @@ public class DatabaseFiller implements CommandLineRunner {
             demos.put("demo23", new Demo("Proxy", " Your difinantly love it... ", prefixPath + "23. proxy.mp3"));
             demos.put("demo24", new Demo("She got Aesthetic", " ..Wande.. ", prefixPath + "24. aesthetic.mp3"));
 
-            //assign demos to state
+            //Assign demos to a review state: 'pending review', 'Rejected', 'Sent' (= forwarded to Don Diablo)
             demos.forEach((k,v) -> {
                 if (k== "demo16"||k== "demo5"||k== "demo23"){
                     v.setState(states.get("state3")); //Sent state
@@ -168,7 +155,7 @@ public class DatabaseFiller implements CommandLineRunner {
                 }
             });
 
-            //assign demos to user
+            //Assign demos to user (uploader)
             demos.forEach((k,v) -> {
                 if (k== "demo3"||k== "demo22"||k== "demo23"){
                     v.setUser(users.get("user1"));
@@ -187,27 +174,21 @@ public class DatabaseFiller implements CommandLineRunner {
                 }
             });
 
-            //assign back-office reviewer to demo:
-            //rejected: "demo8"||k== "demo9"||k== "demo19"||k== "demo20"
+            //Assign back-office reviewer to a demo:
             demos.get("demo8").setReviewedBy(boUsers.get("bo2"));
             demos.get("demo9").setReviewedBy(boUsers.get("bo3"));
             demos.get("demo19").setReviewedBy(boUsers.get("bo2"));
             demos.get("demo20").setReviewedBy(boUsers.get("bo4"));
-            //sent: "demo5"||k== "demo16"
             demos.get("demo5").setReviewedBy(boUsers.get("bo2"));
             demos.get("demo16").setReviewedBy(boUsers.get("bo3"));
             demos.get("demo23").setReviewedBy(boUsers.get("bo4"));
-
 
             //save all demos.
             demos.forEach((k,v) -> {
                 demoRepository.save(v);
             });
-
         };
-
     }
-
 }
 
 
