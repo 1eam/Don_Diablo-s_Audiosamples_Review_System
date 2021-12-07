@@ -80,7 +80,7 @@ public class AuthController {
     @GetMapping("/user-side/register")
     public String registerMobile(Model model){
         model.addAttribute("newUser", new User());
-        return "register";
+        return "mobile-register-page";
     }
 
 
