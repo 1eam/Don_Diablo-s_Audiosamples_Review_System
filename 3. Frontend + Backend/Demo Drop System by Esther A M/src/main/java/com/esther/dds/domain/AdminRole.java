@@ -8,6 +8,10 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import java.util.Collection;
 
+/**
+ * update 2021: After all I would have rather not used the lombok plugin but POJ instead
+ */
+
 @Entity
 @RequiredArgsConstructor
 @Getter
@@ -24,5 +28,4 @@ public class AdminRole {
 
     @ManyToMany( mappedBy = "adminRoles")
     private Collection<Admin> adminUsers;
-
 } 

@@ -10,10 +10,13 @@ import javax.persistence.EntityListeners;
 import javax.persistence.MappedSuperclass;
 import java.time.LocalDateTime;
 
+/**
+ * update 2021: After all I would have rather not used the lombok plugin but POJ instead
+ */
+
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public abstract class Auditable {
-
     @CreatedBy
     private String createdBy;
 

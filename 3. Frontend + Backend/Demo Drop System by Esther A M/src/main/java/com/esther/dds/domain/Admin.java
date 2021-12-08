@@ -13,6 +13,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * update 2021: After all I would have rather not used the lombok plugin but POJ instead
+ */
+
 @Entity
 @RequiredArgsConstructor
 @Getter
@@ -21,7 +25,6 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @PasswordsMatch(baseField = "password", matchField = "confirmPassword")
 public class Admin implements UserDetails {
-
     @Id
     @GeneratedValue
     private Long id;
@@ -61,15 +64,8 @@ public class Admin implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName = "id")
     )       private Set<AdminRole> adminRoles = new HashSet<>();
 
-
-
     public void addAdminRole(AdminRole adminRole) {
         adminRoles.add(adminRole);
-    }
-
-    //voor meerdere rollen (Eventueel nodig voor in de toekomst)
-    public void addadminRoles(Set<AdminRole> adminRoles) {
-        adminRoles.forEach(this::addAdminRole);
     }
 
     //for each role in adminRoles, authorities.add SGA rile.getname
@@ -97,5 +93,4 @@ public class Admin implements UserDetails {
     public boolean isCredentialsNonExpired() {
         return true;
     }
-
 }
