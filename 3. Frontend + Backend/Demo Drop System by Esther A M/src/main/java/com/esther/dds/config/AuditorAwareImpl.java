@@ -8,11 +8,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.util.Optional;
 
+/**
+ * This class makes sure the components of the application are aware of the application's current auditor.
+ */
 public class AuditorAwareImpl implements AuditorAware<String> {
 
     @Override
     public Optional<String> getCurrentAuditor() {
-        //Hardcoded data (demo) (because of Auditable) will call for the user, but it wont exist. So the uploader will be set to admin
+        //If the hardcoded data (demo) calls for the user and it doesnt exist, the uploader will be set to admin
         if(SecurityContextHolder.getContext().getAuthentication() == null || SecurityContextHolder.getContext().getAuthentication().getPrincipal().equals("anonymousUser")) {
             return Optional.of("admin@gmail.com");
         }

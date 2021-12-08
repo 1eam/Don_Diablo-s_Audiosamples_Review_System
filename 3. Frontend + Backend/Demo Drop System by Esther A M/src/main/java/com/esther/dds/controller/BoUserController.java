@@ -52,8 +52,6 @@ public class BoUserController {
         }
     }
 
-
-
     @GetMapping("/bo-side/authorized/editPassword")
     public String settings(Model model ){
         Long boUserId = ((BoUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
@@ -107,5 +105,4 @@ public class BoUserController {
             return "redirect:/bo-side/authorized/editPassword";
         }
     }
-
 }
