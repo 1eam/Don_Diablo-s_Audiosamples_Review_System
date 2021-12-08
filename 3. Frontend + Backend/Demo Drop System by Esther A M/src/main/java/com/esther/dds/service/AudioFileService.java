@@ -37,7 +37,6 @@ public class AudioFileService {
     }
 
     public void saveAudioFile(Demo demo, MultipartFile audioFile) throws Exception{
-
         Path thisMachinesPath = findThisMachinesPath();
         //generate & set the "audioFiles" field in the database
         demo.setAudioFile("/uploads/audioFiles/" + audioFile.getOriginalFilename());

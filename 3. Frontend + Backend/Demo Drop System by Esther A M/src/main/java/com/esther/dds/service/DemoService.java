@@ -12,14 +12,12 @@ import java.util.Optional;
 
 @Service
 public class DemoService {
-
     private final Logger logger = LoggerFactory.getLogger(UserService.class);
     private final DemoRepository demoRepository;
 
     public DemoService(DemoRepository userRepository) {
         this.demoRepository = userRepository;
     }
-
 
     public List<Demo> findAll() {
         return demoRepository.findAll();

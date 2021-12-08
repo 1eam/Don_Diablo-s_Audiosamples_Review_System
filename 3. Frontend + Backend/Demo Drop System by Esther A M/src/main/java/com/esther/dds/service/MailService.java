@@ -23,7 +23,6 @@ import java.util.Locale;
 @EnableAsync
 @Service
 public class MailService {
-
     private final Logger log = LoggerFactory.getLogger(MailService.class);
     private final SpringTemplateEngine templateEngine;
     private final JavaMailSender javaMailSender;
@@ -137,5 +136,4 @@ public class MailService {
         log.debug("Sending admin activation email to '{}'", admin.getEmail());
         sendAdminEmailFromTemplate(admin, "email/admin-activation-link-email", "Hexagon Demo Drop, Admin Activation");
     }
-
 }

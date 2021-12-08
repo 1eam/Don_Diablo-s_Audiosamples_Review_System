@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AdminRoleService {
-
     private final AdminRoleRepository adminRoleRepository;
 
     public AdminRoleService(AdminRoleRepository adminRoleRepository) {
