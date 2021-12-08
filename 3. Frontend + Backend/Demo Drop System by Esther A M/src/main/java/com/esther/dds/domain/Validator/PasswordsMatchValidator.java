@@ -7,7 +7,6 @@ import javax.validation.ConstraintValidatorContext;
 import java.lang.reflect.Field;
 
 public class PasswordsMatchValidator implements ConstraintValidator<PasswordsMatch,Object> {
-
     private String baseField;
     private String matchField;
 
