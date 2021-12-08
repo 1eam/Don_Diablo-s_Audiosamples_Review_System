@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BoRoleService {
-
     private final BoRoleRepository boRoleRepository;
 
     public BoRoleService(BoRoleRepository boRoleRepository) {

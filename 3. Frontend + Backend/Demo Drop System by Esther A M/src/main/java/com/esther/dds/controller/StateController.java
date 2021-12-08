@@ -19,30 +19,22 @@ public class StateController {
     public StateController(StateService stateService) {
         this.stateService = stateService;
     }
-
-
     //     SET-TEXTS.HTML
     @GetMapping("/admin-side/authorized/set-texts")
     public String loadTextForms(Model model){
-
         model.addAttribute("pending", stateService.findByStateName("Pending"));
         model.addAttribute("sent", stateService.findByStateName("Sent"));
         model.addAttribute("rejected", stateService.findByStateName("Rejected"));
         return "bo/a_set-texts";
     }
 
-
     //     SET-TEXTS.HTML
     @PostMapping("/admin-side/authorized/set-texts/{state}")
     public String updatePendingState(Model model, @PathVariable("state") String stateName, @RequestParam(value = "message")String message){
-
         State state = stateService.findByStateName(stateName);
-
         state.setMessage(message);
         stateService.save(state);
         logger.info("state message: '" + stateName + "' was updated successfully");
-
         return "redirect:/admin-side/authorized/set-texts";
     }
-
 }

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BeanUtil implements ApplicationContextAware {
-
     private static ApplicationContext context;
 
     @Override

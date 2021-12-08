@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * update 2021: After all I would have rather not used the lombok plugin but POJ instead
+ */
 
 @Entity
 @RequiredArgsConstructor
@@ -19,7 +22,6 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 public class Demo extends Auditable{
-
     @Id
     @GeneratedValue
     private Long id;
@@ -37,7 +39,6 @@ public class Demo extends Auditable{
 //   @NotEmpty(message = "Select a file")
     private String audioFile;
 
-
     //State LookupTable
     @ManyToOne
     @JoinColumn(name="state", referencedColumnName = "id") //decides wich name it presents in the 2hDB
@@ -51,9 +52,7 @@ public class Demo extends Auditable{
     @JoinColumn(name="reviewedBy", referencedColumnName = "id")
     private BoUser reviewedBy;
 
-
     //PrettyTime Config:v3.0
-
     public String getPrettyTime() {
         PrettyTime pt = BeanUtil.getBean(PrettyTime.class);
         return pt.format(convertToDateViaInstant(getCreatedOn()));
@@ -62,5 +61,4 @@ public class Demo extends Auditable{
     private Date convertToDateViaInstant(LocalDateTime dateToConvert) {
         return java.util.Date.from(dateToConvert.atZone(ZoneId.systemDefault()).toInstant());
     }
-
 }

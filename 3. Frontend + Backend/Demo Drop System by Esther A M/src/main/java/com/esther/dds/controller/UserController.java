@@ -62,7 +62,7 @@ public class UserController {
             user.setName(name);
             user.setLastName(lastName);
 
-            // if the user has not editted his photo, dont execute following. else: save multipart file to folder + set the path
+            // if the user hasnt editted his photo, dont execute following. else: save multipart file to folder + set the path
             if (!profileImage.getOriginalFilename().equals("")){
                 try {
                     profileImageService.saveProfileImage(user, profileImage);
@@ -102,9 +102,7 @@ public class UserController {
     }
 
     @PostMapping("/user-side/authorized/deleteAccount")
-    public String editPassword(Model model,
-                               @RequestParam(value = "password")String password){
-
+    public String editPassword(Model model, @RequestParam(value = "password")String password){
         Long userId = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getId();
         Optional<User> optionalUser = userService.findById(userId);
         User user = optionalUser.get(); //refactor in if statement

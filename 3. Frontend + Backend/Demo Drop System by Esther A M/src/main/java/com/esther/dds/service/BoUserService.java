@@ -15,7 +15,6 @@ import java.util.UUID;
 
 @Service
 public class BoUserService {
-
     private final Logger logger = LoggerFactory.getLogger(BoUserService.class);
     private final BoUserRepository boUserRepository;
     private final BCryptPasswordEncoder encoder;

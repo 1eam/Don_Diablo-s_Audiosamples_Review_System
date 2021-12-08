@@ -32,11 +32,12 @@ import java.util.Optional;
 @Controller
 public class AuthController {
 
+    private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
     private UserService userService;
     private BoUserService boUserService;
     private AdminService adminService;
     private ProfileImageService profileImageService;
-    private static final Logger logger = LoggerFactory.getLogger(AuthController.class);
+
 
     public AuthController(UserService userService, BoUserService boUserService, AdminService adminService, ProfileImageService profileImageService) {
         this.userService = userService;

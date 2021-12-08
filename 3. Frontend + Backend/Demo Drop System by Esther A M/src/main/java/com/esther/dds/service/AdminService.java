@@ -15,7 +15,6 @@ import java.util.UUID;
 
 @Service
 public class AdminService {
-
     private final Logger logger = LoggerFactory.getLogger(AdminService.class);
     private final AdminRepository adminRepository;
     private final BCryptPasswordEncoder encoder;
@@ -97,7 +96,6 @@ public class AdminService {
         return adminRepository.save(admin);
     }
 
-
     public Admin editPassword(Admin admin, String oldPassword, String password) {
         String currentPassword = admin.getPassword();
         //this removes the "{bcrypt}" text prefix in the db. This has to be done first. in order for BCrypts .matches method to work
@@ -111,15 +109,11 @@ public class AdminService {
             // setconfirm password field
             admin.setConfirmPassword(secret);
             adminRepository.save(admin);
-
         } else {
             logger.error("incorrect password, try again: ");
-
         }
-
         return admin;
     }
-
     // Just in case for future admin-accounts to be deleted
     public void delete(Admin admin) {
         adminRepository.delete(admin);

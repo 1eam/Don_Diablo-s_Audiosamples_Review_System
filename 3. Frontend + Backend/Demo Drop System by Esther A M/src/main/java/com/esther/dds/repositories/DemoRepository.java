@@ -8,16 +8,8 @@ import java.util.List;
 import java.util.Optional;
 
 public interface DemoRepository extends JpaRepository <Demo, Long> {
-
     public List<Demo> findByStateStateName(String stateName);
-
     public List<Demo> findByUserId(Long id);
-
     public List<Demo> findByReviewedById(Long id);
-
     public List<Demo> findByUserIdAndStateStateName(Long id, String stateName);
-
-
-
-//    Demo findWhereReviewstate=2 (But this should be done in a service layer)
 }

@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class StateService {
-
     private final StateNameRepository stateNameRepository;
 
     public StateService(StateNameRepository stateNameRepository) {

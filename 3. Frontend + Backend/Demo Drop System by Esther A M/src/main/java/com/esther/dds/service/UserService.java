@@ -15,7 +15,6 @@ import java.util.UUID;
 
 @Service
 public class UserService {
-
     private final Logger logger = LoggerFactory.getLogger(UserService.class);
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder encoder;
@@ -31,7 +30,6 @@ public class UserService {
         //make new encoder every time
         encoder = new BCryptPasswordEncoder();
     }
-
 
     public Optional<User> findById(Long id) {
         return userRepository.findById(id);
@@ -96,7 +94,6 @@ public class UserService {
         return userRepository.save(user);
     }
 
-
     public User editPassword(User user, String oldPassword, String password) {
         String currentPassword = user.getPassword();
         //this removes the "{bcrypt}" prefix. This has to be done first. in order for BCrypts .matches method to work
@@ -110,13 +107,11 @@ public class UserService {
             // setconfirm password field
             user.setConfirmPassword(secret);
             userRepository.save(user);
-
         } else {
             logger.error("incorrect password, try again: ");
             //print bcrypted validation password
             //logger.error(currentPwWithoutPrefix);
         }
-
         return user;
     }
 
@@ -124,6 +119,5 @@ public class UserService {
         List<Demo> demosByUser = demoRepository.findByUserId(user.getId());
         demoRepository.deleteAll(demosByUser);
         userRepository.delete(user);
-
     }
 }

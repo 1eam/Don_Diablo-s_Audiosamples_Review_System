@@ -13,6 +13,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+/**
+ * update 2021: After all I would have rather not used the lombok plugin but POJ instead
+ */
+
 @Entity
 @RequiredArgsConstructor
 @Getter
@@ -21,7 +25,6 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @PasswordsMatch(baseField = "password", matchField = "confirmPassword")
 public class BoUser implements UserDetails {
-
     @Id
     @GeneratedValue
     private Long id;
@@ -49,7 +52,6 @@ public class BoUser implements UserDetails {
 
     private String activationCode;
 
-
     @NonNull
     @NotEmpty(message = "Please enter you name")
     private String name;
@@ -58,11 +60,9 @@ public class BoUser implements UserDetails {
     @NotEmpty(message = "Please enter your last name")
     private String lastName;
 
-
     @NonNull
     @Column(nullable = false)
     private boolean enabled;
-
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -70,8 +70,6 @@ public class BoUser implements UserDetails {
             joinColumns = @JoinColumn(name = "boUser_id",referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id",referencedColumnName = "id")
     )       private Set<BoRole> boRoles = new HashSet<>();
-
-
 
     public void addBoRole(BoRole boRole) {
         boRoles.add(boRole);
@@ -107,5 +105,4 @@ public class BoUser implements UserDetails {
     public boolean isCredentialsNonExpired() {
         return true;
     }
-
 }

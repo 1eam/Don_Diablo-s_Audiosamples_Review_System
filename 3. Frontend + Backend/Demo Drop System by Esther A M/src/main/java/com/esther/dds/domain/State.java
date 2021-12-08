@@ -7,6 +7,10 @@ import javax.persistence.*;
 import java.util.Date;
 import java.util.Set;
 
+/**
+ * update 2021: After all I would have rather not used the lombok plugin but POJ instead
+ */
+
 @Entity
 @RequiredArgsConstructor
 @Getter
@@ -14,8 +18,6 @@ import java.util.Set;
 @ToString
 @NoArgsConstructor
 public class State extends AuditableState{
-
-
     @Id
     @GeneratedValue
     private Long id;

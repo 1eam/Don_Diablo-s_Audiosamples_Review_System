@@ -24,7 +24,7 @@ To help grasp the application visit these classes in order:
 4. UserService
 5. UserRepository
 
-Then the html files (which use thymeleaf expressions)
+Then the html files (which use thymeleaf notation)
 1. /resources/templates/login.html
 2. /resources/templates/dashboard.html
 

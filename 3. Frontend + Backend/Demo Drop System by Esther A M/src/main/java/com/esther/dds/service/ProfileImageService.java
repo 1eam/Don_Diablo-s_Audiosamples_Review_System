@@ -21,7 +21,6 @@ import java.nio.file.Paths;
 public class ProfileImageService {
     private final Logger logger = LoggerFactory.getLogger(ProfileImageService.class);
 
-
     public Path findThisMachinesPath(){
         Path findCurrentLocation;
         Path thisMachinesPath = null;

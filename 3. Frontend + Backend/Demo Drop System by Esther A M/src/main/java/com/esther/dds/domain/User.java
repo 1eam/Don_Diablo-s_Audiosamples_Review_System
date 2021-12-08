@@ -11,6 +11,10 @@ import javax.validation.constraints.NotEmpty;
 import java.util.*;
 import java.util.stream.Collectors;
 
+/**
+ * update 2021: After all I would have rather not used the lombok plugin but POJ instead
+ */
+
 @Entity
 @RequiredArgsConstructor
 @Getter
@@ -19,7 +23,6 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 @PasswordsMatch(baseField = "password", matchField = "confirmPassword")
 public class User implements UserDetails {
-
     @Id @GeneratedValue
     private Long id;
 

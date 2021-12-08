@@ -26,7 +26,6 @@ import java.util.stream.Stream;
 public class DemoController {
 
     private static final Logger logger = LoggerFactory.getLogger(DemoController.class);
-
     private UserService userService;
     private DemoService demoService;
     private BoUserService boUserService;
