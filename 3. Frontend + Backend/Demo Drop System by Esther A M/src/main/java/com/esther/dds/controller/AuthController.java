@@ -22,6 +22,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.validation.Valid;
 import java.util.Optional;
 
+/**
+ * ControllerClass that handles the http requests around Authentication & Authorization.
+ * For example registration-process and login.
+ * The string return-types represent the html page to be served to the user
+ * (html templates are found in java/resources/templates)
+ */
+
 @Controller
 public class AuthController {
 
@@ -37,10 +44,10 @@ public class AuthController {
         this.adminService = adminService;
         this.profileImageService = profileImageService;
     }
-
+//UserAuthentication & Authorization
     @GetMapping("/")
     public String toDashboard(Model model){
-        return "redirect:/user-side/authorized/dashboard"; //pas aan:
+        return "redirect:/user-side/authorized/dashboard";
     }
 
     @GetMapping("/user-side")
@@ -54,40 +61,36 @@ public class AuthController {
         return "login";
     }
 
+    @GetMapping("/user-side/register")
+    public String mobileRegister(Model model){
+        model.addAttribute("newUser", new User());
+        return "mobile-register-page";
+    }
 
     @GetMapping("/bo-side")
-    public String boLogin2(){
+    public String boLogin(){
         return "redirect:/bo-side/authorized/dashboard";
     }
 
     @GetMapping("/bo-side/login")
-    public String boLogin(){
+    public String boLogin2(){
         return "bo/login";
     }
 
-
     @GetMapping("/admin-side")
-    public String adminLogin2(){
+    public String adminLogin(){
         return "redirect:/admin-side/authorized/dashboard";
     }
 
     @GetMapping("admin-side/login")
-    public String adminLogin(){
+    public String adminLogin2(){
         return "bo/a_login";
     }
 
-
-    @GetMapping("/user-side/register")
-    public String registerMobile(Model model){
-        model.addAttribute("newUser", new User());
-        return "register";
-    }
-
-
+//UserRegistration
     @PostMapping("user-side/register")
     public String registerUser(@Valid User user, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes, @RequestParam("profileImage") MultipartFile profileImage) {
-
-        // save multipart file to folder + set the path
+        //Store profileimage
         try {
             profileImageService.saveProfileImage(user, profileImage);
         } catch (Exception e){
@@ -95,21 +98,21 @@ public class AuthController {
             logger.error("Error saving ProfileImage");
         }
 
-        // Register new user
+        //Register new user
         User newUser = userService.register(user);
         redirectAttributes
                 .addAttribute("id",newUser.getId())
                 .addFlashAttribute("success",true);
 
-        //log event
+        //Log event
         logger.info("New user was saved successfully");
 
         return "redirect:/user-side/login";
-
     }
 
+//UserActivation
     @GetMapping("/user-side/activate/{email}/{activationCode}")
-    public String activate(@PathVariable String email, @PathVariable String activationCode) {
+    public String activateUser(@PathVariable String email, @PathVariable String activationCode) {
         Optional<User> user = userService.findByEmailAndActivationCode(email,activationCode);
         if( user.isPresent() ) {
             User newUser = user.get();

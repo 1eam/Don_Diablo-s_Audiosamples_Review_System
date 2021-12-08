@@ -1,0 +1,3 @@
+1. This file ensures that the /uploads/audioFile directory will be created in the /target/classes/static folder.
+2. Without this file the /uploads directory will not be created at startup, leaving audiofiles unsaved & unfound
+3. Dont remove this file

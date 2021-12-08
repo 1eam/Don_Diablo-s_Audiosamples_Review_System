@@ -94,7 +94,7 @@ public class DemoController {
     public String uploadDemo(@Valid Demo demo, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes, @RequestParam("audioFile") MultipartFile audioFile) {
         // save multipart file to folder + the path
         try {
-            audioFileService.saveAudio(demo, audioFile);
+            audioFileService.saveAudioFile(demo, audioFile);
         } catch (Exception e){
             e.printStackTrace();
             logger.error("Error saving Audio");

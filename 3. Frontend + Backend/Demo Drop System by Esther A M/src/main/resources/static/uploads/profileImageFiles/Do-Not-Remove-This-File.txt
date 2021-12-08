@@ -1,0 +1,3 @@
+1. This file ensures that the /uploads/profileImageFiles directory will be created in the /target/classes/static folder.
+2. Without this file the directory will not be created at startup, leaving profile-images unsaved & unfound
+3. Dont remove this file
