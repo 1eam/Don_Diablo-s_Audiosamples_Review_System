@@ -11,9 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 @Order(3)
 public class AdminSecurityConfiguration extends WebSecurityConfigurerAdapter {
-
     private AdminDetailsServiceImpl adminDetailsService;
-
     public AdminSecurityConfiguration(AdminDetailsServiceImpl adminDetailsService) {
         this.adminDetailsService = adminDetailsService;
     }

@@ -11,9 +11,7 @@ import java.util.Optional;
 
 @Service
 public class BoUserDetailsServiceImpl implements UserDetailsService {
-
     private BoUserRepository boUserRepository;
-
     public BoUserDetailsServiceImpl(BoUserRepository boUserRepository) {
         this.boUserRepository = boUserRepository;
     }

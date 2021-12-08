@@ -13,9 +13,7 @@ import java.util.Optional;
 
 @Service
 public class AdminDetailsServiceImpl implements UserDetailsService {
-
     private AdminRepository adminRepository;
-
     public AdminDetailsServiceImpl(AdminRepository adminRepository) {
         this.adminRepository = adminRepository;
     }

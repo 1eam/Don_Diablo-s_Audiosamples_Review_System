@@ -12,9 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 @Order(1)
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
-
     private UserDetailsServiceImpl userDetailsService;
-
     public SecurityConfiguration(UserDetailsServiceImpl userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
