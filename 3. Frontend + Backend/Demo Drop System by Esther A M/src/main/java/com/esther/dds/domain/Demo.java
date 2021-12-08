@@ -39,7 +39,6 @@ public class Demo extends Auditable{
 //   @NotEmpty(message = "Select a file")
     private String audioFile;
 
-
     //State LookupTable
     @ManyToOne
     @JoinColumn(name="state", referencedColumnName = "id") //decides wich name it presents in the 2hDB
@@ -53,9 +52,7 @@ public class Demo extends Auditable{
     @JoinColumn(name="reviewedBy", referencedColumnName = "id")
     private BoUser reviewedBy;
 
-
     //PrettyTime Config:v3.0
-
     public String getPrettyTime() {
         PrettyTime pt = BeanUtil.getBean(PrettyTime.class);
         return pt.format(convertToDateViaInstant(getCreatedOn()));
