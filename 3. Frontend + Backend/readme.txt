@@ -12,3 +12,19 @@ Maildev is installed and running:
 Select OS in programme
 	go to the Globals Class and set your OS in the String variable
 
+Run *having issues documenting to run with maven. will be updated soon
+	as a workaround the IDE can be used
+	
+-----------------------------------------------------------------------
+
+To help grasp the application visit these classes in order:
+1. DatabaseFiller
+2. pom.xml
+3. AuthController
+4. UserService
+5. UserRepository
+
+Then the html files (which use thymeleaf expressions)
+1. /resources/templates/login.html
+2. /resources/templates/dashboard.html
+

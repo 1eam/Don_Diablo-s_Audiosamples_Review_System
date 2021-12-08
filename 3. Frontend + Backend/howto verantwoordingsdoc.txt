@@ -1,6 +1,0 @@
-"Let op:  Naast het ontwikkelen van de applicatie schrijf je een VERANTWOORDINGSDOCUMENT waarin je een overzicht maakt van alle toegepaste technieken. Je vermeldt bij iedere techniek op welk regelnummer van de code dit gevonden kan worden en je onderbouwt waarom deze techniek toegepast is."
-
-Bij elk filmpje van Dan, Zowel de verantwoordingsdocument aanpassen als de Haalbaarheidsstudie & Risico-Analyse. (Handig: Welke requirement gaan we tackelen? opgedane info implementeren(meestal inleiding of afsluiting van Dan))
-- Lijst Algemene software/technieken bovenaan
-- Per class (of groep klassen) uitleggen waarom die bestaat en welke gedrag het speelt
-- verantwoordingsdocument aan het einde van een toepassing bijwerkn + in comments vermelden
