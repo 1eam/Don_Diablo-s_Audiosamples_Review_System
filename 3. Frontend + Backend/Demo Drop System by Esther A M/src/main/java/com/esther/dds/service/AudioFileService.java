@@ -1,11 +1,10 @@
 package com.esther.dds.service;
 
 
+import com.esther.dds.Globals.Globals;
 import com.esther.dds.domain.Demo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,27 +15,36 @@ import java.nio.file.Paths;
 public class AudioFileService {
     private final Logger logger = LoggerFactory.getLogger(AudioFileService.class);
 
+    public Path findThisMachinesPath(){
+        Path findCurrentLocation;
+        Path thisMachinesPath = null;
 
-    /* Werkt demo uploaden niet? Verander dan hieronder de absolute PATH
-    naar de locatie waar deze map zich bevindt: "Demo Drop System by Esther A M" */
-    //String yourPath = "D:\\1_Novi_Examenproject\\3. Frontend + Backend";
-    public void saveAudio(Demo demo, MultipartFile audioFile) throws Exception{
+        switch(Globals.OS) {
+            case "Windows":
+                //find the root of the projectfolder & the path of the target location
+                findCurrentLocation = Paths.get(".");
+                thisMachinesPath = findCurrentLocation.toAbsolutePath();
+                Globals.targetPath = "\\target\\classes\\static\\uploads\\audioFiles\\";
+                break;
+            case "Linux Ubuntu":
+                //find the root of the projectfolder & the path of the target location
+                findCurrentLocation = Path.of(Paths.get("") + "Demo Drop System by Esther A M");
+                thisMachinesPath = findCurrentLocation.toAbsolutePath();
+                Globals.targetPath = "/target/classes/static/uploads/audioFiles/";
+                break;
+        }
+        return thisMachinesPath;
+    }
 
-        //find the root of this folder "Demo Drop System by Esther A M"
-        Path findCurrentLocation = Paths.get(".");
+    public void saveAudioFile(Demo demo, MultipartFile audioFile) throws Exception{
 
-        //find the path to this location
-        Path yourPath = findCurrentLocation.toAbsolutePath();
-
-        //generate & set the "AudioFile" field in the database
-        //audiofiles are served from the taget-folder. Reason: this is the only solution that works during runtime, however not saved anywherre
-        demo.setAudioFile("/uploads/audiofiles/" + audioFile.getOriginalFilename());
+        Path thisMachinesPath = findThisMachinesPath();
+        //generate & set the "audioFiles" field in the database
+        demo.setAudioFile("/uploads/audioFiles/" + audioFile.getOriginalFilename());
 
         //actually write the file to disk
         byte[] bytes = audioFile.getBytes();
-        Path path = Paths.get(yourPath + "\\target\\classes\\static\\uploads\\audiofiles\\" + audioFile.getOriginalFilename());
-        Files.write(path, bytes);
-
-//        System.out.println(path.toAbsolutePath());
+        Path fullPath = Paths.get(thisMachinesPath + Globals.targetPath + audioFile.getOriginalFilename());
+        Files.write(fullPath, bytes);
     }
 }
