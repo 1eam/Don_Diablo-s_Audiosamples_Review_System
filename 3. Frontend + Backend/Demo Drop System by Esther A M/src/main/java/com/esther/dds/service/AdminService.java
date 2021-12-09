@@ -1,6 +1,7 @@
 package com.esther.dds.service;
 
 import com.esther.dds.domain.Admin;
+import com.esther.dds.domain.AdminRole;
 import com.esther.dds.domain.Demo;
 import com.esther.dds.repositories.AdminRepository;
 import com.esther.dds.repositories.DemoRepository;
@@ -47,7 +48,10 @@ public class AdminService {
         return adminRepository.save(admin);
     }
 
-    public Admin register(Admin admin) {
+    public void register(Admin admin, AdminRole adminRole) {
+        // assign the role to admin
+        admin.addAdminRole(adminRole);
+
         // disable the admin account
         admin.setEnabled(false);
 
@@ -63,9 +67,6 @@ public class AdminService {
         // confirm password
         admin.setConfirmPassword(secret);
 
-        // assign a role to this admin-user
-        admin.addAdminRole(adminRoleService.findByName("ROLE_ADMIN-USER")); //check
-
         // set activation code
         admin.setActivationCode(UUID.randomUUID().toString());
 
@@ -74,9 +75,6 @@ public class AdminService {
 
         // send activation email
         sendActivationEmail(admin);
-
-        // return admin-user (todo: Review code. This method can probably return void)
-        return admin;
     }
 
     public void sendActivationEmail(Admin admin) {

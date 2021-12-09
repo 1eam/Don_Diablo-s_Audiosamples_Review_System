@@ -18,13 +18,17 @@ import java.util.stream.Collectors;
  */
 
 @Entity
-@RequiredArgsConstructor
 @Getter
 @Setter
 @ToString
 @NoArgsConstructor
 @PasswordsMatch(baseField = "password", matchField = "confirmPassword")
 public class Admin implements UserDetails {
+
+    public Admin(String email) {
+        this.email = email;
+    }
+
     @Id
     @GeneratedValue
     private Long id;
@@ -35,10 +39,9 @@ public class Admin implements UserDetails {
     @Column(nullable = false, unique = true)
     private String email;
 
-    @NonNull
     @NotEmpty
     @Column(length = 100)
-    private String password;
+    private String password = null;
 
     @Transient
     @NotEmpty(message = "Please enter Password Confirmation")
@@ -54,8 +57,7 @@ public class Admin implements UserDetails {
 
     @NonNull
     @Column(nullable = false)
-    private boolean enabled;
-
+    private boolean enabled = false;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
