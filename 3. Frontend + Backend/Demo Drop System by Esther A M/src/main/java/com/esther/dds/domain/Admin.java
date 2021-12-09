@@ -28,7 +28,7 @@ public class Admin implements UserDetails {
     public Admin(String email) {
         this.email = email;
     }
-    
+
     @Id
     @GeneratedValue
     private Long id;

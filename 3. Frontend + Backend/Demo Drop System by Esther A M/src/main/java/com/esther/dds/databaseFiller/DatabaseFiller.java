@@ -49,12 +49,12 @@ public class DatabaseFiller implements CommandLineRunner {
     //Fills database with manually generated users and registers the admins account
     @Override
     public void run(String... args) throws Exception {
-        registerAdminAccountInDB();
+        registerAdminAccount();
         fillDBWithGeneratedUsers();
         fillDBWithGeneratedBOUsers();
     }
 
-    private void registerAdminAccountInDB() {
+    private void registerAdminAccount() {
         //Save rolename to DB
         AdminRole adminRole = new AdminRole("ROLE_ADMIN");
         adminRoleRepository.save(adminRole);
