@@ -34,27 +34,37 @@ public class DatabaseFiller implements CommandLineRunner {
         this.adminRoleRepository = adminRoleRepository;
     }
 
-    //Initialization of hashmaps that will contain all database entries
-    //Admin-hashmap not present cause there's currently one Admin.
+    //Initialization of hashmaps that will contain all entries for the database
+    //Admin-hashmap not present cause the system currently supports one Admin.
     Map<String, Demo> demos = new HashMap<String, Demo>();
     Map<String, State> states = new HashMap<String, State>();
     Map<String, User> users = new HashMap<String, User>();
     Map<String, BoUser> boUsers = new HashMap<String, BoUser>();
 
-    //This is the (encoded) password all generated users will get.
+    //This is the password that all generated users get: 0000
     BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-    String secret = "{bcrypt}" + encoder.encode("pass");
+    String secret = "{bcrypt}" + encoder.encode("0000");
 
     //Interface implementation of Commandline runner, responsible for execution at startup
+    //Fills database with manually generated users and registers the admins account
     @Override
     public void run(String... args) throws Exception {
-        //add users to roles
-        addUsersAndRoles();
-        addBoUsersAndRoles();
-        addAdminUsersAndRoles();
+        registerAdminAccountInDB();
+        fillDBWithGeneratedUsers();
+        fillDBWithGeneratedBOUsers();
     }
 
-    private void addUsersAndRoles() {
+    private void registerAdminAccountInDB() {
+        //Save rolename to DB
+        AdminRole adminRole = new AdminRole("ROLE_ADMIN");
+        adminRoleRepository.save(adminRole);
+
+        //Registers the admin user: sets account enabled to false, generates the random password, and sends authentication-email with pw + activationcode. This occurs at every startup.
+        Admin admin = new Admin("info@admin.com");
+        adminService.register(admin, adminRole);
+    }
+
+    private void fillDBWithGeneratedUsers() {
         Role userRole = new Role("ROLE_USER");
         roleRepository.save(userRole);
 
@@ -73,7 +83,7 @@ public class DatabaseFiller implements CommandLineRunner {
         });
     }
 
-    private void addBoUsersAndRoles() {
+    private void fillDBWithGeneratedBOUsers() {
         BoRole boUserRole = new BoRole("ROLE_BO-USER");
         boRoleRepository.save(boUserRole);
 
@@ -88,18 +98,6 @@ public class DatabaseFiller implements CommandLineRunner {
             v.setConfirmPassword(secret);
             boUserRepository.save(v);
         });
-    }
-
-    private void addAdminUsersAndRoles() {
-        //In case more admin-users need to be created, make use of a hashmap like in the above examples
-        Admin admin = new Admin("info@admin.com", secret, true);
-        AdminRole adminRole = new AdminRole("ROLE_ADMIN");
-
-        adminRoleRepository.save(adminRole);
-        admin.addAdminRole(adminRole);
-
-        //Registers the admin user: sets account enabled to false, generates the random password, and sends authentication-email with pw + activationcode. This occurs at every startup.
-        adminService.register(admin);
     }
 
     //Predefined Tracks, These tracks are stored in the resources/static/serverside_audiofiles folder

@@ -1,6 +1,7 @@
 package com.esther.dds.service;
 
 import com.esther.dds.domain.Admin;
+import com.esther.dds.domain.AdminRole;
 import com.esther.dds.domain.Demo;
 import com.esther.dds.repositories.AdminRepository;
 import com.esther.dds.repositories.DemoRepository;
@@ -47,7 +48,10 @@ public class AdminService {
         return adminRepository.save(admin);
     }
 
-    public Admin register(Admin admin) {
+    public Admin register(Admin admin, AdminRole adminRole) {
+        // set the role to admin
+        admin.addAdminRole(adminRole);
+
         // disable the admin account
         admin.setEnabled(false);
 
