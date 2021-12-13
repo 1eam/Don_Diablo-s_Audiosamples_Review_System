@@ -1,0 +1,165 @@
+USECASES Admin-side
+______________________
+
+Title: ADMIN REGISTRY
+Actor(s): System, Admin, Database
+Description:
+	The system has an admin-account ready and sends credentials to the Admin over email
+	The admin then activates his account
+Trigger:
+	The system starts up for the first time
+Preconditions:
+	There's an Admin
+	The admins email address is known by the System
+	The system has not started up yet
+Postconditions:
+	The admin-account is set to enabled in the database
+	The admin has access to his account
+	The system is running
+Normal flow:
+	1. The system starts up
+	2. The system creates an admin-account and sets it to disabled 
+	3. The system sends an email including the password & activation-code to the admin (with instructions to change the password after login)
+	4. The admin clicks on the activation-link and copies the password 
+	5. The system sets the admin-account to enabled
+	6. The admin logs in
+	7. The system(frontend) redirects to the change-password-page
+	8. The admin changes his password
+	9. The system updates the password in the database
+____________________
+____________________
+
+Title: ADMIN LOGIN
+Actor(s): Admin, System
+Description:
+	Admin wants to log in
+Trigger:
+	The admin clicks on the "Login" button
+Preconditions:
+	The admin-account is set to enabled
+	The admin is on the admin-login-page
+Postconditions:
+	The admin is logged in
+	The admin is on the dashboard-page
+Normal flow:
+	1. The admin is on the admin-login-page
+	2. The admin enters valid login credentials
+	3. The system authenticates the user and checks if the user is authorized
+	4. The system grants access to the request
+	5. The admin is on the dashboard
+____________________
+____________________
+
+Title: EDIT PASSWORD
+Actor(s): Admin, System, Database
+Description:
+	Admin wants to edit his password
+Trigger:
+	The admin clicks on the "Edit password" button
+Preconditions:
+	The admin is logged in
+	The admin is on the "edit-password" page
+Postconditions:
+	The database contains the updated password
+	The admin sees that his password is successfully changed
+Normal flow:
+	1. The admin has entered valid credentials and clicks on the edit password button
+	2. The system validates the password
+	3. The system encrypts the new password
+	4. The system updates the password in the database
+____________________
+____________________
+
+Title: SET REVIEWER-RESPONSE-MESSAGES
+Actor(s): Admin, System
+Description:
+	The reviewers must communicate a review to the producers.
+	Since its unrealistic to do for ever single demo, an automatic reply is sent based on the reviewers rating
+	The admin sets these text.
+	These texts contain the 3 states the demo can have: 'pending review' 'Rejected' or 'Forwarded to DD'
+Trigger:
+	The admin clicks on the save-button
+Preconditions:
+	The admin is logged in
+	The admin is on the 'Set system texts' page
+Postconditions:
+	The automatic reviewer-response-message is updated in the DB
+	The producer can see the status of the uploaded demo: 
+		an (now updated) detailed message explaining that the demo is pending review, rejected or forwarded to DD
+Normal flow:
+	1. The admin has written the automatic response and clicks Save
+	2. The system saves the written response to the database
+	3. The admin sees that the auto-response-message is successfully saved
+	4. The producer can see on the individual demo's page, that the review-status message has been updated
+____________________
+____________________
+
+Title: CREATE REVIEWER-account
+Actor(s): Admin, System, Database, Reviewer
+Description:
+	Only the admin is authorized to create new reviewer accounts
+	The process is finished by the reviewer activating his account and using the generated password
+Trigger:
+	The admin clicks on the "create user" button
+Preconditions:
+	The admin is logged in
+	The admin is on the 'backoffice-management' page
+	The admin has entered valid credentials in the form
+Postconditions:
+	The database holds a new user record
+	The reviewer has an account
+	The admin sees that a new user is added to the list of users
+Normal flow:
+	1. The admin enters the new user's FN, LN and email-address
+	2. The admin clicks on the "Create user" button
+	3. The system creates a new record in the database using the FN, LN and emailaddress & sets the account to disabled
+	4. The system generates a random password and encrypts it. Then saves it to the database
+	5. The system generates an acticationcode
+	6. The system sends an email containing the password and activationlink to the reviewer
+	7. The reviewer activates his account using the email
+	8. The reviewer logs in using his password from the email (& changes it as instructed in the email)
+	9. The reviewer can now login
+____________________
+____________________
+
+Title: DELETE REVIEWER-ACCOUNT
+Actor(s): Admin, System, Database
+Description:
+	The admin wants to delete a reviewer-account
+Trigger:
+	Admin clicks on the 'Delete' button
+Preconditions:
+	The account is present in the DB
+	The admin is on the "backoffice management" page
+Postconditions:
+	The account is deleted from the DB
+	All demo-review activity is placed under a "Deleted user"-user in the DB
+	The admin sees that the account is removed from the list
+	Other reviewers now see "Deleted user" on a demo thats already been reviewed by a deleted user
+Normal flow:
+	1. The admin is on the backoffice-management-page
+	2. The admin clicks on the 'delete' button besides the user
+	3. The system sets the reviewed demo's to the "Deleted user" record in the database
+	4. The system deletes the user-record
+____________________
+____________________
+
+Title: DELETE PRODUCER ACCOUNTS
+Actor(s): Admin, System, Database
+Description:
+	The admin wants to delete a producer-account
+Trigger:
+	Admin clicks on the 'Delete' button
+Preconditions:
+	The account is present in the DB
+	The admin is on the "user management" page
+Postconditions:
+	The account is deleted from the DB
+	All demo-records are deleted from the DB
+	The actual audiofiles of this user remain property of the recordlabel (as agreed upon in the Terms & Condition) and are still present in the filesystem. (*an update would be to store them in a different filesystem)
+	The demos arent present anymore on the review-side
+	The admin sees that the account is removed from the list
+Normal flow:
+	1. The admin is on the user-management-page
+	2. The admin clicks on the 'delete' button
+	3. The system deletes the user-record containing all demo-records. The actual audio-files remain untouched

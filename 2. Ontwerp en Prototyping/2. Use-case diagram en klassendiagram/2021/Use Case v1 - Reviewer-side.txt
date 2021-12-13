@@ -1,0 +1,193 @@
+USECASES Reviewer-side
+*"demo", "track"and "song" are used interchangebly for the same thing mostly to refer to cases when the actual sound gets played
+______________________
+
+Title: REVIEWER ACCOUNT-ACTIVATION
+Actor(s): Reviewer, System
+Description:
+	The reviewer activates his account
+	(*actual registery-process is handled on the admin-side)
+Trigger:
+	The reviewer follows the instructions in the given email
+Preconditions:
+	The reviewer has an inactivated account (initiallized by the admin)
+	The reviewer received the activation-email
+Postconditions:
+	The reviewer has ACCESS to his account
+	The database holds a value of enabled under this useraccount
+Normal flow:
+	1. The reviewer recieved an email from the system containing:
+		a generated password, activationlink
+		instructions to change the pw after login
+	2. The reviewer activates his account using the link in the email
+	3. The reviewer logs in using the password from the email (& changes it as instructed)
+	4. The reviewer complete access to his account now
+
+____________________
+____________________
+
+Title: REVIEWER LOGIN
+Actor(s): Reviewer, System
+Description:
+	The reviewer logs in to his account
+Trigger:
+	The reviewer clicks on the "Login" button
+Preconditions:
+	The reviewer isnt logged in
+	The reviewer is on the reviewer-side login page
+Postconditions:
+	The reviewer is logged in
+	The reviewer is on the dashboard
+Normal flow:
+	1. The reviewer is on the reviewer-side login page
+	2. The reviewer enters valid login credentials
+	3. The system authenticates the user and checks if the user is authorized
+	4. The system grants access to the request
+	5. The reviewer sees that he's logged in and is directed to the dashboard:
+		(Dashboard containing 3 options "Review demo's", "Reviewed demo's" and "Forwarded demo's")
+____________________
+____________________
+
+Title: ENTERING THE REVIEW-MODE
+Actor(s): Reviewer, System
+Description:
+	Reviewer enters the 'review-mode'
+	The reviewer wants to:
+	Play the demo
+	View the demo details: title, description and listen to the content
+	View the senders profile-details: profile-image, artistname, FN, LN, & emailaddress
+	Rate the demo
+	Move on to next demo after ratng the demo.
+Trigger:
+	reviewer clicks on the "Start reviewing" button or clicks on one of the demos on the list
+Preconditions:
+	The reviewer is logged in
+	The selected demo is present in the DB
+	The reviewer is on the "Demos to Review" page
+Postconditions:
+	The system plays the track on pageload
+	The reviewer can observe the demo-details: title, description
+	The reviewer can observe the senders profile-details: profile-image, artistname, FN, LN, & emailaddress
+	The reviewer is presented a rate option
+	The reviewer is presented a "next-demo button"
+Normal flow:
+	1. The reviewer requests the webpage (by clicking on the demo/"Start reviewing" button)
+	2. The system retrieves the all relevant data from the database described in postconditions and presents it to the reviewer Amongst the ability to rate the demo and move on to the next.
+	3. The reviewer is on the reviewing page and can observe all relevant data. The track is played on page-load
+____________________
+____________________
+
+Title: IN REVIEWMODE: RATE DEMO
+Actor(s): Reviewer, System, Database, Producer
+Description:
+	The reviewer is in the 'review-mode' and wants to:
+	Rate the demo
+	And proceed to the next
+Trigger:
+	reviewer clicks on the "next demo" button 
+Preconditions:
+	The reviewer is logged in
+	The to be reviewed demo is has a rate/state of "Pending review"
+	The reviewer is in the review-mode
+Postconditions:
+	The rate/state of the demo has been updated to either: "rejected" or "forwarded" in the DB
+		Either Don Diablo has an email containing the song in his inbox for further review
+		Or not.
+		In both cases an email is present in the producers inbox regarding the demo's review/state
+	The demo is now present in the list of reviewed demo's
+	The system plays the current track marked as 'pending review'
+Normal flow:
+	1. The reviewer selects his review (x/✓)
+		if x is selected nothing happens on the frontend
+		if ✓ is selected the default email application will open up,
+		containing a generated email body, ready to send to DD
+	2. The reviewer clicks on the "next demo" button
+	3. The system updates the demos state from "Pending review" to rejected or forwarded
+	4. The system sends an email to the producer regarding the review of his demo
+	5. The system plays the current track marked as 'pending review'
+____________________
+____________________
+
+Title: VIEW REVIEWED DEMOS *IN LIST REPRESENTATION
+Actor(s): Reviewer, System, Database, Reviewers
+Description:
+	The reviewer wants to view reviewed demos by other colleagues *in list representation
+Trigger:
+	reviewer clicks on the "reviewed demo's" or "forwarded demo's" link
+Preconditions:
+	The reviewer is logged in
+	Demo's are present in the present in the DB
+	The reviewer is on the dashboard
+Postconditions:
+	The reviewer can observe the demo-details: title, reviewer, rate (x/✓)
+Normal flow:
+	1. The reviewer is on the dashboard and clicks on either: "reviewed demo's" or "forwarded demo's"
+	2. The system retrieves all relevant data from the database
+		and returns a list of demos to the user.
+		Each item contains the demo-title, reviewer and rate
+		*These items are again clickable and open the next usecase
+	3. The reviewer can observe all these details listed in the postcondition
+____________________
+____________________
+
+
+Title: VIEW REVIEWED DEMOS *IN DETAIL
+Actor(s): Reviewer, System, Reviewers
+Description:
+	The reviewer wants to view reviewed demos by other colleagues *in detail
+Trigger:
+	reviewer clicks on the individual demo on the list
+Preconditions:
+	The reviewer is logged in
+	The selected demo is present in the DB
+	The reviewer is on the list-view page of "Forwarded to DD" or "Reviewed demos"
+Postconditions:
+	The reviewer can observe the demo-details: title, description and listen to the content
+	The reviewer can observe the senders profile-details: profile-image, artistname, FN, LN, & emailaddress
+	The reviewer can play the song
+	The reviewer can see the rate: (x/✓) meaning: rejected or forwarded and reviewer: "Reviewed by John Doe"
+Normal flow:
+	1. The reviewer is on the individual demo's page
+	2. The reviewer can observe all these details. + play the demo.
+____________________
+____________________
+
+Title: EDIT PASSWORD
+Actor(s): Reviewer, System, Database
+Description:
+	Reviewer wants to edit his password
+Trigger:
+	The reviewer clicks on the "Edit password" button
+Preconditions:
+	The reviewer is logged in
+	The reviewer is on the "edit-password" page
+Postconditions:
+	The database contains the updated password
+	The reviewer sees that his password is sucessfully changed
+Normal flow:
+	1. The reviewer has entered valid credentials and clicks on the edit password button
+	2. The system validates the password
+	3. The system encrypts the new password
+	4. The system updates the password in the database
+____________________
+____________________
+
+*Extra info, can be left out. detailed implementation found in admin-side usecases
+Title: DELETE ACCOUNT
+Actor(s): Reviewer, Admin, Database
+Description:
+	The reviewer cant delete his account manually on the system. Only an admin can,
+	For example in case the reviewer leaves the role.
+Trigger:
+	On admins aproval
+	(prior: The reviewer leaves his role)
+Preconditions:
+	The reviewer has an account
+	The admin was noted the reviewer left the position/The admin wants to delete a reviewer account
+Postconditions:
+	The account is deleted from the DB
+	The reviewer cant login with the same user-values
+Normal flow:
+	1. Admin, System & DB perform actions to delete the user (details to be found in Admin-side use cases)
+	2. The record was deleted from the db
+	

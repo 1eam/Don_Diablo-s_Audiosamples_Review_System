@@ -1,0 +1,187 @@
+USECASES Producer-side
+______________________
+
+Title: PRODUCER REGISTRY
+Actor(s): Producer, System
+Description:
+	Producer wants to register for an account
+Trigger:
+	The producer clicks on the register button
+Preconditions:
+	The producer has no account and visits the homepage
+	The producer has entered valid credentials 
+Postconditions:
+	The producer has an account
+	The database holds a new user record
+Normal flow:
+	1. Producer comes to the homepage and is given an option to register (or login)
+	2. Producer enters his credentials: FN, LN, Artist-name, Email, PW, Bio (introduction), profile picture
+	3. Producer accepts the Terms of use & conditions.
+	4. The system encrypts the password
+	5. The system stores the user-object to the database and sets the account to disabled
+	6. The system creates and sends a verification email
+	7. The producer verifies his account through the email
+	8. The system enables full access to the account
+	9. The Producer can now login
+____________________
+____________________
+
+Title: PRODUCER LOGIN
+Actor(s): Producer, System
+Description:
+	Producer wants to log into his account
+Trigger:
+	The producer clicks on the "Login" button
+Preconditions:
+	The producer isnt logged in
+	The producer is on the homepage
+Postconditions:
+	The producer is logged in
+Normal flow:
+	1. The producer is on the homepage
+	2. The producer enters valid login credentials
+	3. The system authenticates the user and checks if the user is authorized
+	4. The system grants access to the request
+	5. The producer sees that he's logged in
+____________________
+____________________
+
+Title: PRODUCER DEMO DROP (Upload for review)
+Actor(s): Producer, Reviewers, System, Database
+Description:
+	Producer wants to upload a demo for review
+Trigger:
+	The producer clicks on the upload button
+Preconditions:
+	The producer is logged in
+	The producer has no more then 10 demo's pending review
+	The producer is on the "demo drop" page
+Postconditions:
+	The producer has uploaded a single demo
+	The actual file is stored on a designated filesystem
+	The demo is stored in the table and has the state 'Pending Review'
+	The demo is present in the list of 'To review' demo's for all Reviewers
+	The producer gets an option to upload another demo or view/play the uploaded demo
+Normal flow:
+	1. The producer selects a demo (.mp3, .wav), gives the demo a title and adds a description.
+	2. The producer clicks on the upload button
+	3. The System saves the file to a designated Filesystem
+	4. The System stores the given title, description and filelocation (path in text) to a Table in the database
+	5. The System assigns a state of 'Pending review' to the demo.
+	6. The demo is available on the Review-side - because its stored in the DB
+	5. The producer gets an option to upload another demo or view/play the uploaded demo	
+____________________
+____________________
+
+Title: VIEW UPLOADED DEMO
+Actor(s): Producer, System
+Description:
+	The Producer wants to view a demo he uploaded and see whether its reviewed yet.
+Trigger:
+	Producer clicks on one of his demos in his list
+Preconditions:
+	The producer is logged in
+	The selected demo is present in the DB
+	The producer is on the individual demo's page
+Postconditions:
+	The producer read the demo's title and description, and play the track
+	The producer can see the status of the uploaded demo: 'Pending review', 'rejected' or 'forwarded to DD'
+Normal flow:
+	1. The producer requests the page
+	2. The system retrieves the data from the database and presents it to the producer
+	3. The producer is on the individual demo's page and can see all its info
+____________________
+____________________
+
+Title: DELETE DEMO
+Actor(s): Producer, System, Database, Reviewers
+Description:
+	The Producer wants to delete a demo
+Trigger:
+	Producer clicks on the "Delete demo" button
+Preconditions:
+	The producer is logged in
+	The demo to be deleted is present in the database
+	The producer is on the individual demo's page
+Postconditions:
+	The demo-record is deleted
+	The actual audiofiles remain present in the filesystem (*an update would be to store them in a different filesystem)
+	
+	(*The demo-record is deleted from the database, however the audiofile will remain property of Hexagon as part of the license agreement. The demo isnt present anymore in the lists of the reviewers nor in the list of tracks of the producer.
+Normal flow:
+	1. The producer is on the individual demo's page
+	2. The producer scrolls all the way down and clicks the delete button
+	3. The producer is warned and given the option to cancel
+	4. The system removes the record from the database *However the actual file remains untouched on the filesystem
+	5. The Producer & Reviewers see that the demo isnt present
+____________________
+____________________
+
+Title: EDIT USER CREDENTIALS (Firstname, Lastname, ProfilePhoto .etc)
+Actor(s): Producer, System
+Description:
+	Producer wants to edit his Firstname &/or Lastname &/or Profile photo &/or Artistname &/or Bio
+Trigger:
+	The producer clicks on the "save" button
+Preconditions:
+	The producer is logged in
+	The producer is on the "settings" page
+Postconditions:
+	The database contains the updated credentials
+	The producer sees that the credentials are successfully updated
+Normal flow:
+	1. The system presents the user-credentials in editable mode
+	2. The producer edits any element directly
+	3. The producer clicks the "save" button
+	4. The System updates the credentials in the database
+	5. The System lets the producer know the credentials are successfully saved and the producer remains logged in
+____________________
+____________________
+
+Title: EDIT PASSWORD
+Actor(s): Producer, System
+Description:
+	Producer wants to edit his password
+Trigger:
+	The producer clicks on the "Edit password" button
+Preconditions:
+	The producer is logged in
+	The producer is on the "settings" page
+Postconditions:
+	The database contains the updated password
+	The producer sees that his password is sucessfully changed
+Normal flow:
+	1. The producer clicks on the edit password button
+	2. The system(frontend) presents an edit password form
+	3. The producer enters valid credentials: Current pw, new pw (8 chars) & new pw confirmed
+	4. The system validates the password
+	5. The system encrypts the new password
+	6. The system updates the password in the database
+	7. The system lets the producer know the password was successfully saved and the producer remains logged in
+____________________
+____________________
+
+Title: DELETE ACCOUNT
+Actor(s): Producer, System, Database, Hexagon
+Description:
+	The Producer wants to delete his account
+Trigger:
+	Producer clicks on the "Delete account" button
+Preconditions:
+	The producer has an account
+	The producer is logged in
+	The producer is on the settingspage
+Postconditions:
+	The user-record is deleted from the DB
+	All demo records are deleted from the DB
+	The actual audiofiles of this user remain property of the recordlabel (as agreed upon in the Terms & Condition) and are still present in the filesystem. (*an update would be to store them in a different filesystem)
+	The demos arent present anymore on the review-side
+Normal flow:
+	1. The producer is on the settings-page
+	2. The producer scrolls all the way down and clicks on the 'delete account' button
+	3. The system (frontend) warns the producer and presents an option cancel (and an option to proceed deleting)
+	4. The producer clicks on the 'Delete Account' button presented by the system
+	5. The system (frontend) asks the producer to enter his password
+	6. The producer enters a valid password
+	7. The system deletes the user-record containing all demo-records. The actual audio-files remain untouched
+	

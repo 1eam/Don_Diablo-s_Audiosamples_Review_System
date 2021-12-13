@@ -1,0 +1,45 @@
+USECASES System-side
+______________________
+
+Title: FILLING DATABASE WITH EXAMPLE-USERS
+Actor(s): System, Database
+Description:
+	The system has generates example users and demos in the system as if realword activity has taken place
+Trigger:
+	The system starts up for the first time
+Preconditions:
+	The system is not running
+	There's a database running
+Postconditions:
+	The database is filled with (prod-)users, demo's and review-users
+	The system is running
+Normal flow:
+	1. The system starts up
+	2. The system creates mock users and reviewers in the database
+	3. The system assigns users and reviewers to a demo in the database. *Some demos have no reviewer
+____________________
+____________________
+	
+Title: ADMIN REGISTRY
+Actor(s): System, Database
+Description:
+	The system sets up an unactivated admin-account at startup
+Trigger:
+	The system starts up for the first time
+Preconditions:
+	There's an admin in person
+	The admins email-address is known by the system
+	The system is not running
+	There's a database is running
+Postconditions:
+	The admin-account is set to DISabled in the database
+	The system is running
+	There's an email present in the inbox of the admin 
+Normal flow:
+	1. The system starts up
+	2. The system generates & encrypts a password 
+	3. The system creates an admin-account and sets it to DISabled
+	4. The system creates an activation-code
+	4. The system sends an email including the password & activation-code to the admin (with instructions to change the password after login)
+____________________
+____________________
