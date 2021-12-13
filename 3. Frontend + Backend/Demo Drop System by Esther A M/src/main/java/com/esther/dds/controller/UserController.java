@@ -1,18 +1,21 @@
 package com.esther.dds.controller;
 
-import com.esther.dds.domain.User;
-import com.esther.dds.service.ProfileImageService;
-import com.esther.dds.service.UserService;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Optional;
+import com.esther.dds.domain.User;
+import com.esther.dds.service.ProfileImageService;
+import com.esther.dds.service.UserService;
 
 @Controller
 public class UserController {
@@ -67,8 +70,8 @@ public class UserController {
                 try {
                     profileImageService.saveProfileImage(user, profileImage);
                 } catch (Exception e){
-                    e.printStackTrace();
-                    logger.error("Error saving ProfileImage");
+                    //e.printStackTrace();
+                    logger.error("Error saving ProfileImage",e);
                 }
             }
             userService.update(user);

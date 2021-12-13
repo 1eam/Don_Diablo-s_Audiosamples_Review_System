@@ -1,24 +1,23 @@
 package com.esther.dds.service;
 
+import java.util.Locale;
+
+import javax.mail.internet.MimeMessage;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.stereotype.Service;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.spring5.SpringTemplateEngine;
+
 import com.esther.dds.domain.Admin;
 import com.esther.dds.domain.BoUser;
 import com.esther.dds.domain.Demo;
 import com.esther.dds.domain.User;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.annotation.EnableAsync;
-import org.springframework.stereotype.Service;
-import org.springframework.mail.javamail.JavaMailSender;
-import org.springframework.mail.javamail.MimeMessageHelper;
-import org.springframework.scheduling.annotation.Async;
-import org.thymeleaf.context.Context;
-import org.thymeleaf.spring5.SpringTemplateEngine;
-
-import javax.mail.internet.MimeMessage;
-import java.awt.*;
-import java.io.IOException;
-import java.net.URI;
-import java.util.Locale;
 
 @EnableAsync
 @Service
@@ -26,6 +25,7 @@ public class MailService {
     private final Logger log = LoggerFactory.getLogger(MailService.class);
     private final SpringTemplateEngine templateEngine;
     private final JavaMailSender javaMailSender;
+    // TODO  should be a configurable setting
     private final String BASE_URL = "http://localhost:8080";
 
     public MailService(JavaMailSender javaMailSender, SpringTemplateEngine templateEngine) {
@@ -46,7 +46,7 @@ public class MailService {
             message.setText(content,isHtml);
             javaMailSender.send(mimeMessage);
         } catch (Exception e) {
-            log.warn("Email could not be sent to user '{}': {}", to, e.getMessage());
+            log.warn("Email could not be sent to user '{}': {}", to, e.getMessage(), e);
         }
     }
 

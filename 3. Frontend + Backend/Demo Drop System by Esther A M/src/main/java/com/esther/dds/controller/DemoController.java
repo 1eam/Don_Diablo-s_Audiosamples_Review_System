@@ -1,10 +1,14 @@
 package com.esther.dds.controller;
 
-import com.esther.dds.domain.BoUser;
-import com.esther.dds.domain.Demo;
-import com.esther.dds.domain.User;
-import com.esther.dds.repositories.DemoRepository;
-import com.esther.dds.service.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
+
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,9 +22,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.validation.Valid;
-import java.util.*;
-import java.util.stream.Stream;
+import com.esther.dds.domain.BoUser;
+import com.esther.dds.domain.Demo;
+import com.esther.dds.domain.User;
+import com.esther.dds.repositories.DemoRepository;
+import com.esther.dds.service.AudioFileService;
+import com.esther.dds.service.BoUserService;
+import com.esther.dds.service.DemoService;
+import com.esther.dds.service.MailService;
+import com.esther.dds.service.StateService;
+import com.esther.dds.service.UserService;
 
 @Controller
 public class DemoController {
@@ -95,8 +106,8 @@ public class DemoController {
         try {
             audioFileService.saveAudioFile(demo, audioFile);
         } catch (Exception e){
-            e.printStackTrace();
-            logger.error("Error saving Audio");
+            //e.printStackTrace();
+            logger.error("Error saving Audio", e);
         }
 
         // save uploaded demo (title, description.)
