@@ -1,17 +1,18 @@
 package com.esther.dds.security;
 
-import com.esther.dds.domain.User;
-import com.esther.dds.repositories.UserRepository;
+import java.util.Optional;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import com.esther.dds.domain.User;
+import com.esther.dds.repositories.UserRepository;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
     public UserDetailsServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
     }

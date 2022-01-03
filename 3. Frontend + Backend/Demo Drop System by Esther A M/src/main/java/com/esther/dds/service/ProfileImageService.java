@@ -1,16 +1,18 @@
 package com.esther.dds.service;
 
 
-import com.esther.dds.Globals.Globals;
-import com.esther.dds.domain.User;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import com.esther.dds.Globals.Globals;
+import com.esther.dds.domain.User;
 /**
  * Before you run the application you should set the path to the location where the profileimages will be stored
  * the Paths.get method works slightly different on Windows and Ubuntu
@@ -42,7 +44,7 @@ public class ProfileImageService {
         return thisMachinesPath;
     }
 
-    public void saveProfileImage(User user, MultipartFile profileImage) throws Exception{
+    public void saveProfileImage(User user, MultipartFile profileImage) throws IOException{
         Path thisMachinesPath = findThisMachinesPath();
         //generate & set the "ProfileImage" field in the database
         user.setProfileImage("/uploads/profileImageFiles/" + profileImage.getOriginalFilename());

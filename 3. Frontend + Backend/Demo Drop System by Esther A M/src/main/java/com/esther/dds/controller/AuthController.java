@@ -1,12 +1,9 @@
 package com.esther.dds.controller;
 
-import com.esther.dds.domain.Admin;
-import com.esther.dds.domain.BoUser;
-import com.esther.dds.domain.User;
-import com.esther.dds.service.AdminService;
-import com.esther.dds.service.BoUserService;
-import com.esther.dds.service.ProfileImageService;
-import com.esther.dds.service.UserService;
+import java.util.Optional;
+
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -19,8 +16,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.validation.Valid;
-import java.util.Optional;
+import com.esther.dds.domain.Admin;
+import com.esther.dds.domain.BoUser;
+import com.esther.dds.domain.User;
+import com.esther.dds.service.AdminService;
+import com.esther.dds.service.BoUserService;
+import com.esther.dds.service.ProfileImageService;
+import com.esther.dds.service.UserService;
 
 /**
  * ControllerClass that handles the http requests around Authentication & Authorization.
@@ -95,8 +97,8 @@ public class AuthController {
         try {
             profileImageService.saveProfileImage(user, profileImage);
         } catch (Exception e){
-            e.printStackTrace();
-            logger.error("Error saving ProfileImage");
+            //e.printStackTrace();
+            logger.error("Error saving ProfileImage", e);
         }
 
         //Register new user

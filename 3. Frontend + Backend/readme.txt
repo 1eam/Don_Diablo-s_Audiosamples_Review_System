@@ -14,6 +14,18 @@ Select OS in programme
 
 Run *having issues documenting to run with maven. will be updated soon
 	as a workaround the IDE can be used
+
+	Install lombok or replace
+
+
+Javadoc - classes, packages and public functions. Author, date of inception, copyright
+
+Domain package: User, BoUser and admin are all a type of users. Use inheritage or interface to use this advantage in for instance the AuditorAwareImpl
+do not use e.printStackTrace(); is logged directly std.err and not controlled by logger
+
+why did you include the mvnw cmds?
+
+unit tests are empty?
 	
 -----------------------------------------------------------------------
 
